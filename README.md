@@ -1,1 +1,95 @@
-# narrative-adventure
+# Звездната книга
+
+A story-driven astronomy education game for Bulgarian children (~11-12), played
+in the browser. The game is framed as a magical storybook: the book is the
+level-select screen, and tapping a page zooms into that world, played from a
+top-down view.
+
+The player is a Bulgarian kid who finds an old telescope with a tiny AI
+companion inside. Something is dimming a star, and the mystery unravels by
+learning real astronomy at each location — with Bulgarian folklore woven through
+as flavour: Зорница and Вечерница turning out to be one planet, Кумова слама
+running across the sky.
+
+> **Status**: early. The storybook shell runs, the Earth level has its data and
+> markers, and the precompute pipeline produces real ephemeris data. The puzzle
+> mini-games themselves are not built yet.
+
+## Requirements
+
+|        |                                |
+| ------ | ------------------------------ |
+| Node   | ≥ 22.12 (developed on 22.17.0) |
+| Python | 3.12                           |
+| uv     | for the Python environment     |
+
+## Setup
+
+```bash
+npm install
+
+uv venv .venv
+uv pip install -r requirements.txt
+
+# Generate the astronomy data the game reads (downloads a ~32MB JPL kernel once)
+.venv/bin/python data/scripts/orbital-positions.py
+```
+
+## Running
+
+```bash
+npm run dev     # http://localhost:5173
+```
+
+There is nothing else to start. The game is static files — no server, no
+database, no accounts. See `docs/adr/0001-python-is-build-time-only.md`.
+
+## Checks
+
+```bash
+npm run validate                                  # type-check + lint + format
+npm run build                                     # production build
+.venv/bin/python -m pytest                        # regression suite
+.venv/bin/python data/scripts/validate-levels.py  # every level against the schema
+```
+
+## Structure
+
+```
+src/
+  scenes/          storybook + one folder per level (<level>-scene.ts + <level>-data.json)
+  puzzles/         the five reusable puzzle types
+  shared/          content (i18n), game-state, fonts, player, zoom transition,
+                   planet-render (the only Three.js)
+content/bg/        every player-facing string — Bulgarian, keyed
+data/
+  scripts/         Python, build-time only
+  generated/       JSON the game reads (committed)
+schemas/           level-data.schema.json
+assets/            images (NASA + generated), audio, fonts
+prompts/           the exact prompts used for generated art
+docs/              ADRs, architecture, sources.md
+tests/             pytest regression suite
+```
+
+## Tech
+
+**Phaser 3.90** for 2D gameplay and the storybook transitions — chosen over the
+newer Phaser 4 for its example library and its Canvas renderer fallback, which
+matters on Linux with integrated graphics. **Three.js** for a handful of
+single-object planet renders, behind a dynamic import so it costs nothing until
+opened. **Python + Skyfield** for real orbital math, run at build time and
+committed as static JSON.
+
+## Language
+
+Bulgarian is the only locale. No player-facing string lives in a `.ts` file —
+everything resolves through `src/shared/content.ts` to `content/bg/*.json`, so a
+future reskin for another culture means swapping content and art rather than
+editing scenes.
+
+## Contributing
+
+`main` is merge-only; work happens on `development`. See `CLAUDE.md` for the
+rules that govern changes — in particular that no astronomy claim ships without a
+source in `docs/sources.md`, and that no bug fix ships without a regression test.
