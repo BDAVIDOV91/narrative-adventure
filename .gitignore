@@ -1,0 +1,42 @@
+# ---- Node / Vite ----
+node_modules/
+dist/
+dist-ssr/
+.vite/
+*.local
+
+# ---- Python ----
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ---- Assets ----
+# Raw NASA source textures stay local: they are large (8k+) and only the
+# processed WebP outputs under assets/images/nasa/ are committed.
+assets/images/nasa/raw/
+
+# Skyfield downloads and caches DE ephemeris files (~15-100MB) on first run.
+# They are reproducible, so they are not committed.
+data/ephemeris/
+*.bsp
+*.bpc
+
+# ---- Editors / OS ----
+.idea/
+.vscode/*
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
+
+# ---- Logs ----
+*.log
+npm-debug.log*
+logs/
+
+# ---- Claude Code local overrides ----
+.claude/settings.local.json
