@@ -68,7 +68,7 @@ data/
 schemas/           level-data.schema.json
 assets/            images (NASA + generated), audio, fonts
 prompts/           the exact prompts used for generated art
-docs/              ADRs, architecture, sources.md
+docs/              ADRs, architecture, sources.md, dated session handoffs
 tests/             pytest regression suite
 ```
 

@@ -194,6 +194,14 @@ rephrase it, do not edit the hook.
 
 After big changes: ask whether to commit, and update `README.md` with what changed.
 
+**Session handoffs live in the repo, not in a scratch directory.** Write them to
+`docs/handoffs/YYYY-MM-DD-session-handoff.md`, dated for the day the handoff is
+written. A handoff in `~/.claude/plans/` is invisible to everyone but the session
+that made it and is lost on a clean checkout; in `docs/` it is versioned,
+reviewable, and a fresh session can be pointed at it by path. Carry forward what
+is settled, what is left over, and what must not be re-asked — a handoff that
+only lists tasks makes the next session re-derive the decisions.
+
 ### 8. Privacy
 
 The game makes **zero network requests** and collects **nothing** about a child.
