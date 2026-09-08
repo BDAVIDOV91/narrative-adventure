@@ -12,8 +12,8 @@ gain. Capping at 2048 is invisible to the player and is the single biggest
 load-time lever in the project.
 
 Usage:
-    .venv/bin/python data/scripts/process-textures.py
-    .venv/bin/python data/scripts/process-textures.py --max-size 1024 --quality 80
+    venv/bin/python data/scripts/process-textures.py
+    venv/bin/python data/scripts/process-textures.py --max-size 1024 --quality 80
 """
 
 from __future__ import annotations

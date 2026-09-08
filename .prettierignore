@@ -1,7 +1,7 @@
 dist/
 node_modules/
 data/generated/
-.venv/
+venv/
 package-lock.json
 
 # Agent and skill definitions are prompt documents, not source. Their frontmatter

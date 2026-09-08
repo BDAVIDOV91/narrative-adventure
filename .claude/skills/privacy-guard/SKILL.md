@@ -49,7 +49,7 @@ only, no name, no age, no device id, no timestamps that could act as one.
 ```bash
 npm audit --omit=dev
 npm ls --all --omit=dev 2>/dev/null | tail -40
-.venv/bin/python -m pip list --format=columns
+venv/bin/python -m pip list --format=columns
 ```
 
 Report real advisories. For any newly added runtime dependency, ask what it does at

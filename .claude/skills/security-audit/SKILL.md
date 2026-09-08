@@ -32,7 +32,7 @@ developer's machine.
 ```bash
 npm audit --omit=dev
 npm audit
-.venv/bin/python -m pip list --format=columns
+venv/bin/python -m pip list --format=columns
 ```
 
 Check that pins are exact (`.npmrc` sets `save-exact=true`) and that a new dependency is

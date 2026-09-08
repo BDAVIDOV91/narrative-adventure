@@ -6,7 +6,7 @@ for AU) produces a file that loads fine and teaches a child something false.
 
 Marked `integration` because they read data/generated/orbital-positions.json,
 which exists only after the generator has run:
-    .venv/bin/python data/scripts/orbital-positions.py
+    venv/bin/python data/scripts/orbital-positions.py
 """
 
 from __future__ import annotations

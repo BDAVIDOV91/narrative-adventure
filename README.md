@@ -28,11 +28,11 @@ running across the sky.
 ```bash
 npm install
 
-uv venv .venv
+uv venv venv
 uv pip install -r requirements.txt
 
 # Generate the astronomy data the game reads (downloads a ~32MB JPL kernel once)
-.venv/bin/python data/scripts/orbital-positions.py
+venv/bin/python data/scripts/orbital-positions.py
 ```
 
 ## Running
@@ -49,8 +49,8 @@ database, no accounts. See `docs/adr/0001-python-is-build-time-only.md`.
 ```bash
 npm run validate                                  # type-check + lint + format
 npm run build                                     # production build
-.venv/bin/python -m pytest                        # regression suite
-.venv/bin/python data/scripts/validate-levels.py  # every level against the schema
+venv/bin/python -m pytest                        # regression suite
+venv/bin/python data/scripts/validate-levels.py  # every level against the schema
 ```
 
 ## Structure

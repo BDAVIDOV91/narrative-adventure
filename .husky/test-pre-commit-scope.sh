@@ -54,6 +54,35 @@ expect "a mixed commit runs everything" \
   "$(printf 'src/main.ts\ndata/scripts/orbital-positions.py\ncontent/bg/facts.json')" \
   "plan: ts=1 py=1 levels=1"
 
+
+# The hook degrades gracefully when the venv is missing ("skipped: venv not
+# found") so a stale interpreter path does NOT fail a commit — it silently stops
+# running every Python check while commits keep succeeding. That happened when
+# .venv/ was renamed to venv/. These assertions make the path a tested fact.
+echo ""
+echo "interpreter paths:"
+
+for path in $(grep -oE '(^|[[:space:]])[.a-zA-Z0-9_/-]*venv/bin/[a-z0-9]+' .husky/pre-commit | tr -d ' ' | sort -u); do
+  if [ -x "$path" ]; then
+    echo "  ok   exists and is executable: $path"
+  else
+    echo "  FAIL pre-commit references a missing interpreter: $path"
+    echo "         the hook would silently SKIP its Python checks"
+    FAILURES=$((FAILURES + 1))
+  fi
+done
+
+# The setup command in the hook's own skip message must create the path the
+# hook then looks for. These drifted apart once already.
+SETUP_VENV="$(grep -oE 'uv venv [.a-zA-Z0-9_/-]+' .husky/pre-commit | head -1 | awk '{print $3}')"
+HOOK_VENV="$(grep -oE '[.a-zA-Z0-9_/-]*venv/bin/python' .husky/pre-commit | head -1 | sed 's|/bin/python||')"
+if [ "$SETUP_VENV" = "$HOOK_VENV" ]; then
+  echo "  ok   skip-message setup path matches the checked path: $HOOK_VENV"
+else
+  echo "  FAIL skip message says 'uv venv $SETUP_VENV' but the hook checks $HOOK_VENV"
+  FAILURES=$((FAILURES + 1))
+fi
+
 echo ""
 if [ "$FAILURES" -eq 0 ]; then
   echo "pre-commit scoping: all checks passed"

@@ -9,8 +9,8 @@ answers are deterministic. Computing them once and committing the result keeps
 the game a pile of static files with no Python process behind it.
 
 Usage:
-    .venv/bin/python data/scripts/orbital-positions.py
-    .venv/bin/python data/scripts/orbital-positions.py --start 2026-01-01 --days 730
+    venv/bin/python data/scripts/orbital-positions.py
+    venv/bin/python data/scripts/orbital-positions.py --start 2026-01-01 --days 730
 """
 
 from __future__ import annotations

@@ -23,7 +23,7 @@ npm run build
 For texture dimensions:
 
 ```bash
-.venv/bin/python -c "
+venv/bin/python -c "
 from PIL import Image; import pathlib
 for p in sorted(pathlib.Path('assets/images').rglob('*.webp')):
     im = Image.open(p); print(f'{p}: {im.width}x{im.height} {p.stat().st_size//1024}KB')

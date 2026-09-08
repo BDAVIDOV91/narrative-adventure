@@ -12,8 +12,8 @@ Beyond the schema, this checks things JSON Schema cannot express:
   - every dataRef points at a file that exists under data/generated/
 
 Usage:
-    .venv/bin/python data/scripts/validate-levels.py
-    .venv/bin/python data/scripts/validate-levels.py src/scenes/earth/earth-data.json
+    venv/bin/python data/scripts/validate-levels.py
+    venv/bin/python data/scripts/validate-levels.py src/scenes/earth/earth-data.json
 """
 
 from __future__ import annotations

@@ -63,7 +63,7 @@ wrong patch of sky.
 ## Regenerating
 
 ```bash
-.venv/bin/python data/scripts/orbital-positions.py --days 365 --step 1
-.venv/bin/python data/scripts/validate-levels.py
-.venv/bin/python -m pytest
+venv/bin/python data/scripts/orbital-positions.py --days 365 --step 1
+venv/bin/python data/scripts/validate-levels.py
+venv/bin/python -m pytest
 ```

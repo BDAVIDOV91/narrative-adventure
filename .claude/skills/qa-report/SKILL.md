@@ -15,10 +15,10 @@ Run all of them and report real output. Do not summarise a failure as a pass.
 ```bash
 npm run validate                                     # tsc + eslint + prettier
 npm run build                                        # production build + chunk sizes
-.venv/bin/python -m pytest                           # 15 regression tests
-.venv/bin/python data/scripts/validate-levels.py     # every level against the schema
-.venv/bin/black --check data/scripts tests
-.venv/bin/flake8 data/scripts tests
+venv/bin/python -m pytest                           # 15 regression tests
+venv/bin/python data/scripts/validate-levels.py     # every level against the schema
+venv/bin/black --check data/scripts tests
+venv/bin/flake8 data/scripts tests
 sh .husky/test-pre-commit-scope.sh                   # the hook logic itself
 ```
 
@@ -27,7 +27,7 @@ sh .husky/test-pre-commit-scope.sh                   # the hook logic itself
 Generated data must still match what its generator produces.
 
 ```bash
-.venv/bin/python data/scripts/orbital-positions.py
+venv/bin/python data/scripts/orbital-positions.py
 git diff --stat data/generated/
 ```
 

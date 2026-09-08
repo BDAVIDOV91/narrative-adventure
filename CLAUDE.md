@@ -25,15 +25,15 @@ npm run lint           # eslint, --max-warnings 0
 npm run format         # prettier --write
 
 # Python (build-time only — see the boundary rule below)
-uv venv .venv && uv pip install -r requirements.txt     # first-time setup
-.venv/bin/python data/scripts/orbital-positions.py      # regenerate ephemeris
-.venv/bin/python data/scripts/validate-levels.py        # validate every level
-.venv/bin/python data/scripts/process-textures.py       # NASA sources -> WebP
-.venv/bin/python -m pytest                              # regression suite
-.venv/bin/python -m pytest -m "not integration"         # skip ephemeris-dependent
-.venv/bin/python -m pytest tests/test_validate_levels.py::test_unknown_puzzle_type_is_rejected   # one test
-.venv/bin/black data/scripts tests                      # format (defaults, 88)
-.venv/bin/flake8 data/scripts tests                     # lint (max-line-length 100)
+uv venv venv && uv pip install -r requirements.txt     # first-time setup
+venv/bin/python data/scripts/orbital-positions.py      # regenerate ephemeris
+venv/bin/python data/scripts/validate-levels.py        # validate every level
+venv/bin/python data/scripts/process-textures.py       # NASA sources -> WebP
+venv/bin/python -m pytest                              # regression suite
+venv/bin/python -m pytest -m "not integration"         # skip ephemeris-dependent
+venv/bin/python -m pytest tests/test_validate_levels.py::test_unknown_puzzle_type_is_rejected   # one test
+venv/bin/black data/scripts tests                      # format (defaults, 88)
+venv/bin/flake8 data/scripts tests                     # lint (max-line-length 100)
 
 # Hook regression tests
 sh .husky/test-pre-commit-scope.sh
@@ -123,7 +123,32 @@ Bulgarian is the only locale. No English UI, no language switcher.
   textless art, render strings at runtime.
 - Bulgarian runs longer than English: containers wrap and grow, never fixed-width.
 
-### 4. PER FIX — the RED/GREEN rule (mandatory)
+### 4. Raise issues when found — interview mode, not prose (mandatory)
+
+Anything that needs the owner's answer, decision, or manual action must be asked via
+`AskUserQuestion` **at the moment it is found** — mid-task, mid-session, mid-anything. Do
+not bank it for the next summary or checkpoint.
+
+Applies to: a defect found while implementing something else; a plan premise that turns out
+to be false; a fork where two readings mean materially different work; an astronomy claim
+that turns out to be unsourced; anything needing a call, a credential, or hands-on action.
+
+**Especially while a background command or subagent is busy** (a test run, a build, a
+research agent). That wait is dead time otherwise — ask then, and the answer arrives while
+the work runs, instead of finishing the wait and only then asking.
+
+Format: numbered questions, the recommended option **first** and labelled "(Recommended)",
+the reason, and what would change the pick. Keep working on whatever does not depend on the
+answer.
+
+Do **not** flag these in prose ("worth noting…", "one thing I want to flag…") — that reads
+as informational and gets skimmed. An interview blocks and gets answered.
+
+For a decision with many branches, use the `grilling` skill: it works the design tree in
+rounds, asking the whole answerable frontier at once. Use `grill-with-adr` when the decision
+is one a future reader would otherwise relitigate.
+
+### 5. PER FIX — the RED/GREEN rule (mandatory)
 
 Bug found → **write a test that catches it (RED — it must fail on the old code)**
 → fix the bug → that test goes GREEN → run the full suite to confirm nothing else
@@ -132,12 +157,12 @@ broke → commit, and the test stays in the suite forever.
 **No fix ships without its own regression test. If it shipped untested, it isn't
 done.** A test that passes both before and after the fix is not a regression test.
 
-### 5. Scope boundary
+### 6. Scope boundary
 
 Solar system only for v1 — Sun, planets, major moons. Interstellar content is a
 stretch goal for a future version and must not be built toward now.
 
-### 6. Git
+### 7. Git
 
 `main` is merge-only; work happens on `development`, feature branches
 `feat/<kebab-slug>`. Conventional Commits, subject written as a declarative
@@ -151,7 +176,7 @@ rephrase it, do not edit the hook.
 
 After big changes: ask whether to commit, and update `README.md` with what changed.
 
-### 7. Privacy
+### 8. Privacy
 
 The game makes **zero network requests** and collects **nothing** about a child.
 Progress lives in `localStorage` and never leaves the device. Do not add
@@ -160,7 +185,7 @@ analytics, telemetry, crash reporting, or a CDN-loaded font — self-host fonts 
 the safest position is the one this project already holds. Guarded by the
 `privacy-guard` skill.
 
-### 8. Hardware budget
+### 9. Hardware budget
 
 Target: 4 cores, ~1.9 GB free RAM, AMD Radeon integrated APU. Textures capped at
 2048px WebP via `process-textures.py`. Three.js stays behind the dynamic import in
