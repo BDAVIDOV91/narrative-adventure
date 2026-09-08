@@ -1,0 +1,11 @@
+{
+  "app.title": "Звездната книга",
+  "ui.loading": "Зареждане…",
+  "ui.book.hint": "Докосни страница, за да влезеш в нея",
+  "ui.book.locked": "Заключено",
+  "ui.level.progress": "Решени задачи",
+  "ui.puzzle.close": "Назад",
+  "ui.puzzle.solved": "Браво!",
+  "ui.level.complete": "Страницата е разгадана",
+  "ui.next.unlocked": "Отключи се нова страница"
+}

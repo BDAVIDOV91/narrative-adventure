@@ -1,0 +1,13 @@
+{
+  "level.earth.name": "Земята",
+  "level.earth.blurb": "Всичко започва у дома — със сянка, слънце и един стар телескоп.",
+
+  "level.moon.name": "Луната",
+  "level.moon.blurb": "Най-близкият ни съсед сменя лицето си всяка нощ.",
+
+  "level.mars.name": "Марс",
+  "level.mars.blurb": "Червената планета понякога тръгва назад по небето.",
+
+  "level.jupiter.name": "Юпитер",
+  "level.saturn.name": "Сатурн"
+}

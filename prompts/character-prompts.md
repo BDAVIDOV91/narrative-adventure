@@ -31,6 +31,7 @@ then reuse the exact wording:
 ## Entries
 
 ### Player character — Bulgarian kid, ~11-12
+
 - **File**: _(not yet generated)_
 - **Date**: _(pending)_
 - **Prompt**: _(pending)_
@@ -38,6 +39,7 @@ then reuse the exact wording:
   top-down view as well as in close-up storybook panels.
 
 ### AI companion in the telescope
+
 - **File**: _(not yet generated)_
 - **Date**: _(pending)_
 - **Prompt**: _(pending)_

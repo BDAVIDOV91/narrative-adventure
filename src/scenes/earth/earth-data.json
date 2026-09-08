@@ -1,0 +1,62 @@
+{
+  "id": "earth",
+  "displayName": "level.earth.name",
+  "mode": "guided",
+  "unlockThreshold": 1.0,
+  "map": {
+    "width": 1600,
+    "height": 1200,
+    "spawn": {
+      "x": 800,
+      "y": 900
+    }
+  },
+  "markers": [
+    {
+      "id": "earth-sundial",
+      "position": {
+        "x": 520,
+        "y": 700
+      },
+      "puzzle": "rotate-match",
+      "label": "puzzle.earth.sundial.label",
+      "config": {
+        "targets": 4,
+        "tolerance": 12
+      },
+      "reward": {
+        "fact": "fact.day-night"
+      }
+    },
+    {
+      "id": "earth-seasons-globe",
+      "position": {
+        "x": 1080,
+        "y": 620
+      },
+      "puzzle": "rotate-match",
+      "label": "puzzle.earth.seasons.label",
+      "config": {
+        "targets": 2,
+        "tolerance": 8
+      },
+      "reward": {
+        "fact": "fact.seasons"
+      }
+    },
+    {
+      "id": "earth-twilight-zornitsa",
+      "position": {
+        "x": 820,
+        "y": 340
+      },
+      "puzzle": "connect-the-dots",
+      "label": "puzzle.earth.twilight.label",
+      "dataRef": "orbital-positions.json#/venus",
+      "reward": {
+        "unlocks": ["earth-gate-telescope"],
+        "fact": "fact.zornitsa"
+      }
+    }
+  ]
+}
