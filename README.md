@@ -88,6 +88,28 @@ everything resolves through `src/shared/content.ts` to `content/bg/*.json`, so a
 future reskin for another culture means swapping content and art rather than
 editing scenes.
 
+## Data credits
+
+The game's astronomy is generated from real catalogues at build time, never
+typed into a scene. Sources, licences and the download commands are in
+`docs/sources.md`.
+
+- **Planetary positions** — JPL DE440s via Skyfield.
+- **Star positions and magnitudes** — [HYG Database v4.4](https://codeberg.org/astronexus/hyg),
+  D. Nash / astronexus, **CC BY-SA 4.0**.
+- **Constellation figures** — Stellarium `modern_iau` skyculture, **CC BY-SA 4.0**.
+  These are the shapes people usually draw. The IAU standardised constellation
+  _boundaries_ and has never defined stick figures.
+- **Double-star separations** — Washington Double Star Catalog and ORB6, USNO,
+  public domain.
+- **Position verification** — Hipparcos-2 (van Leeuwen 2007, VizieR I/311), ESA.
+- **Imagery** — NASA, public domain.
+
+HYG and the Stellarium figures are share-alike, so the files derived from them —
+`data/generated/stars.json`, `constellation-lines.json` and `star-names.json` —
+are themselves offered under **CC BY-SA 4.0**, and each carries its licence and
+attribution inline. This does not affect the licence of the game's code.
+
 ## Contributing
 
 `main` is merge-only; work happens on `development`. See `CLAUDE.md` for the

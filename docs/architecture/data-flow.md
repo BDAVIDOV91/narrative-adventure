@@ -4,29 +4,42 @@ Nothing computes astronomy at runtime. The chain is one-directional and every
 arrow is a committed file.
 
 ```
-JPL de440s ephemeris          NASA source imagery
-   (downloaded once,             (assets/images/nasa/raw/,
-    data/ephemeris/,              gitignored, large)
-    gitignored)                          |
-        |                                |
-        v                                v
-data/scripts/                    data/scripts/
-  orbital-positions.py             process-textures.py
-        |                                |
-        v                                v
-data/generated/*.json          assets/images/nasa/*.webp
-  (committed)                      (committed, <=2048px)
-        \                              /
-         \                            /
-          v                          v
-        src/scenes/<level>/<level>-data.json
-          references generated files via `dataRef`
-                        |
-                        v
-                  Phaser scenes
-             (+ Three.js, lazily, for
-              single-object planet renders)
+JPL de440s ephemeris     HYG v4.4 + Stellarium      NASA source imagery
+   (downloaded once,        modern_iau figures         (assets/images/nasa/raw/,
+    data/ephemeris/,        (data/raw/, gitignored)     gitignored, large)
+    gitignored)                     |                          |
+        |                           |                          |
+        v                           v                          v
+data/scripts/               data/scripts/              data/scripts/
+  orbital-positions.py        star-catalogue.py          process-textures.py
+        |                           |                          |
+        |                           |  <-- verified against    |
+        |                           |      Hipparcos-2         |
+        |                           |      (build fails on     |
+        |                           |       any disagreement)  |
+        v                           v                          v
+data/generated/             data/generated/            assets/images/nasa/*.webp
+  orbital-positions.json      stars.json                 (committed, <=2048px)
+  (committed)                 constellation-lines.json
+                              star-names.json
+                              (committed, CC BY-SA 4.0)
+        \__________________________ | _________________________/
+                                    v
+                    src/scenes/<level>/<level>-data.json
+                      references generated files via `dataRef`
+                                    |
+                                    v
+                              Phaser scenes
+                         (+ Three.js, lazily, for
+                          single-object planet renders)
 ```
+
+The star branch carries an extra arrow the other two do not: a build-time check
+against a source that did not produce the data. A catalogue can be internally
+consistent and wrong — the rejected IAU NEC file placed Mizar 3.2 degrees off
+while passing every bounds check — so `star-catalogue.py` re-checks every
+emitted position against Hipparcos-2 and refuses to write on a disagreement over
+30 arcseconds. See `docs/sources.md`.
 
 ## Why the generated files are committed
 

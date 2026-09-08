@@ -23,6 +23,12 @@ assets/images/nasa/raw/
 # Skyfield downloads and caches DE ephemeris files (~15-100MB) on first run.
 # They are reproducible, so they are not committed.
 data/ephemeris/
+
+# Downloaded source catalogues: HYG (13MB), Stellarium skycultures, WDS/ORB6
+# and the Hipparcos-2 verification oracle. Same rule as the ephemeris — they are
+# re-downloadable and only the filtered output in data/generated/ is committed.
+# Download commands are in docs/sources.md.
+data/raw/
 *.bsp
 *.bpc
 

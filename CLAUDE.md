@@ -27,6 +27,7 @@ npm run format         # prettier --write
 # Python (build-time only — see the boundary rule below)
 uv venv venv && uv pip install -r requirements.txt     # first-time setup
 venv/bin/python data/scripts/orbital-positions.py      # regenerate ephemeris
+venv/bin/python data/scripts/star-catalogue.py         # regenerate star data
 venv/bin/python data/scripts/validate-levels.py        # validate every level
 venv/bin/python data/scripts/process-textures.py       # NASA sources -> WebP
 venv/bin/python -m pytest                              # regression suite
@@ -57,11 +58,17 @@ See `docs/adr/0001-python-is-build-time-only.md`.
 ### Data flow
 
 ```
-JPL de440s ephemeris          NASA raw imagery (gitignored)
-        |                                |
-  orbital-positions.py            process-textures.py
-        |                                |
-data/generated/*.json          assets/images/nasa/*.webp
+JPL de440s      HYG v4.4 + Stellarium      NASA raw imagery
+ ephemeris       figures (data/raw/,         (gitignored)
+                  gitignored)
+     |                   |                        |
+orbital-             star-                  process-
+positions.py       catalogue.py             textures.py
+     |                   |                        |
+     |          verified vs Hipparcos-2           |
+     |          (build fails on mismatch)         |
+     |                   |                        |
+data/generated/*.json  <-+          assets/images/nasa/*.webp
         \______________  ______________/
                        \/
         src/scenes/<level>/<level>-data.json

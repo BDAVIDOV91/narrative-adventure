@@ -111,15 +111,19 @@ the astronomy are the same act. See
   2026-09-08.
 - **What is actually true — the claim is exactly inverted.** The brightest belt
   star is **Alnilam (ε Ori, V = 1.69)** and it is the **only single star of the
-  three**. Alnitak (ζ Ori) is second at V = 1.77 combined and has **four**
-  components; Mintaka (δ Ori) is faintest at V = 2.23 and has **five**, in the
+  three**. Alnitak (ζ Ori) is second at V = 1.74 and has **four**
+  components; Mintaka (δ Ori) is faintest at V = 2.25 and has **five**, in the
   hierarchy [(Aa1 + Aa2) + Ab] + (Ca + Cb). There is no reading of "brightest"
   — combined or primary-alone — under which the brief's version survives.
 - **Source**: Oplištilová, Brož, Hummel et al., _"VLTI observations of the Orion
   Belt stars: I. ε Orionis"_, **A&A 704, A204 (2025)**,
   doi:10.1051/0004-6361/202556154 — ε Ori "represents the only massive single
-  star in Orion's Belt". Magnitudes cross-checked in SIMBAD (Ducati 2002).
-  https://arxiv.org/abs/2507.02276
+  star in Orion's Belt". https://arxiv.org/abs/2507.02276
+  **Magnitudes are quoted from Hipparcos I/239** (1.69 / 1.74 / 2.25), which is
+  what `data/generated/stars.json` holds. SIMBAD (Ducati 2002) gives 1.77 for
+  Alnitak and 2.23 for Mintaka on a different photometric system. The two agree
+  on the only thing the game claims — the brightness _order_, and that the
+  brightest is the single star — but the repo quotes the catalogue it ships.
 - **The teaching point this unlocks**: the brightest-looking dot is the lonely
   one, and the faintest is a family of five. Brightness tells you nothing about
   how many stars are there. That is a better lesson than the brief's version.
@@ -139,10 +143,15 @@ the astronomy are the same act. See
 - **Status**: **VERIFIED** 2026-09-08.
 - **The zoom ladder, each rung sourced**:
   1. Naked eye — one point. Mizar, combined V = 2.04.
-  2. Sharp eye or binoculars — Alcor appears at **708.6″ (11.8′)**, V = 4.01.
+  2. Sharp eye or binoculars — Alcor appears at **708.6″ (11.8′)**, V = 3.99.
+     Recomputed 2026-09-08 from `data/generated/stars.json` (HIP 65378, 65477):
+     **708.6″ = 11.81′**, and independently from Hipparcos-2: 708.4″. Pinned by
+     `tests/test_star_catalogue.py::test_mizar_and_alcor_are_708_arcsec_apart`.
      The classic eyesight test, confirmed experimentally: Bohigian, _"An Ancient
      Eye Test — Using the Stars"_, Surv. Ophthalmol. **53** (2008) 536.
-  3. Small telescope — Mizar splits into A (V 2.22) and B (V 3.88) at **14.44″**.
+  3. Small telescope — Mizar splits into A (V 2.22) and B (V 3.88) at **14.40″**
+     (WDS 13239+5456 STF1744 AB, magnitudes 2.230 / 3.88; the 14.44″ previously
+     recorded here is the same split at a different measurement epoch).
   4. Instruments only — Mizar A is a spectroscopic binary (P = 20.54 d, the
      **first ever discovered**), Mizar B likewise (P = 175.06 d), and Alcor has
      a red-dwarf companion at ~1″ (Zimmerman et al. 2010, ApJ 709, 733; Mamajek
@@ -167,18 +176,31 @@ the astronomy are the same act. See
   Naked-eye count 6–7 (Ангел Бонов). Galileo's _Sidereus Nuncius_ (1610) plate
   showed **36 stars beyond the six known**.
 - **Culminates at 71.5°** from Bulgaria, best in the game's winter play season.
+- **The folk count is reproducible from data, not merely attested.** A 1.5° cone
+  search of HYG v4.4 on the cluster centre returns 4 stars at mag ≤ 4.0, **6 at
+  ≤ 5.0, 7 including Pleione at ≤ 5.05**, 11 at ≤ 6.0 and 25 at ≤ 7.0. Георгиева's
+  "кокошка с 6—7 пиленца" and Бонов's naked-eye 6–7 fall straight out of the
+  catalogue at the naked-eye threshold. The folk name encodes a real magnitude
+  limit, which is exactly the standard ADR 0005 sets for a folklore beat.
 
 ### Brightest stars, for the connect-the-dots level
 
-- **Orion**: **Rigel (β Ori, V = 0.13)** is the brightest. Betelgeuse (α Ori) is
+- **Orion**: **Rigel (β Ori, V = 0.18)** is the brightest. Betelgeuse (α Ori) is
   the Bayer α but is usually _second_, V ≈ 0.50 mean, varying **0.0–1.6** — the
   widest range of any first-magnitude star (AAVSO VSX; en.wikipedia Betelgeuse).
+  Hipparcos I/239 caught it at 0.45 — a single epoch of a variable star, which
+  is why the range and not the number is what content may rely on. Rigel's 0.18
+  is likewise Hipparcos; older references quote 0.13.
   Status VERIFIED. **A string saying Betelgeuse is Orion's brightest star is
   false and must not ship.**
-- **Ursa Major**: Alioth (ε UMa, V = 1.77) is brightest, Dubhe (α UMa) 1.79.
-  Status VERIFIED **but must not become a player task** — a 0.02-mag margin is
+- **Ursa Major**: Alioth (ε UMa, V = 1.76) is brightest, Dubhe (α UMa) 1.81.
+  Status VERIFIED **but must not become a player task** — a 0.05-mag margin is
   invisible to the eye and to the screen, and asking a child to spot it teaches
   that magnitude differences are visible when they are not. Teach the shape.
+  _Corrected 2026-09-08_: this entry previously said 1.77 / 1.79, a 0.02 margin.
+  `data/generated/stars.json` (HYG v4.4, HIP 62956 and 54061) gives 1.76 / 1.81.
+  The conclusion is unchanged and slightly better supported, but the repo must
+  not hold two magnitude pairs that contradict each other.
 - **Albireo (β Cyg)**: **DISPUTED — do not use.** Whether A and B form a
   physical binary or are an optical double is unresolved (Bastian & Anton 2018,
   A&A 620, L2; Gaia DR2 astrometric noise). Do not teach an unsettled binary as
@@ -187,6 +209,123 @@ the astronomy are the same act. See
   A–C 12.86″, C–D 13.41″). Good as a _second_ panel, not the primary — the
   nebulosity competes with the "one dot becomes several" reading, and six stars
   need ~5″ aperture.
+
+---
+
+## Star catalogue and constellation figures
+
+Resolved 2026-09-08. This was the blocking entry: every constellation claim
+above needs real positions and magnitudes, and rule 1 forbids typing them into a
+scene. They are now generated by `data/scripts/star-catalogue.py`.
+
+### What ships
+
+| File                                      | Contents                                       | Size   |
+| ----------------------------------------- | ---------------------------------------------- | ------ |
+| `data/generated/stars.json`               | 2,851 stars, `[hip, raHours, decDegrees, mag]` | 106 KB |
+| `data/generated/constellation-lines.json` | 88 figures as HIP polylines                    | 11 KB  |
+| `data/generated/star-names.json`          | 2,106 designations — authoring metadata only   | 117 KB |
+
+The magnitude cut is **5.5**, not the naked-eye 6.5. 6.5 is 8,921 stars and
+draws an undifferentiated wash of dots; 5.5 draws a sky a child in a Bulgarian
+town recognises. Every star any figure references is added back regardless of
+magnitude, so lowering the cut further cannot break a constellation. Raise it
+with `--mag 6.5` if a puzzle ever demonstrably needs it.
+
+`star-names.json` is **authoring metadata, not player content**. Every
+player-facing string lives in `content/bg/` per rule 3; this file exists so a
+level author can find out which HIP number is Ригел without typing a position.
+
+### A catalogue that was rejected — NOT ATTESTED as usable
+
+**IAU/WGSN "Naked Eye Catalog" (NEC.csv, May 2025), exopla.net — REJECTED.**
+It is the obvious candidate: IAU-published, cut at exactly V ≤ 6.5, carrying the
+official proper names, HIP/HR/HD and distances. It is also **corrupt**. Cross-
+matching all 8,895 rows carrying a HIP number against Hipparcos-2 finds **15
+stars with grossly wrong right ascension, 11 of them by more than a degree** —
+including **Mizar, off by 3.2° (11,545″)**, this game's primary
+`zoom-split-star` target. Declination is correct in every case; it is an RA-only
+corruption on a subset.
+
+Recorded here so it is not re-proposed. The failure it would have produced is
+the exact defect class rule 1 exists for: the file loads, validates against the
+schema, passes every bounds check, and silently places Mizar three degrees from
+Alcor instead of eleven arcminutes.
+
+**This is why the generator verifies against a second source.** Checking a
+catalogue against its own generator proves nothing. `star-catalogue.py` re-checks
+every emitted position against Hipparcos-2 (VizieR I/311) at build time and
+**fails the build** on any disagreement over 30″, excluding four
+high-proper-motion stars whose HYG/Hipparcos epoch difference is real
+(Groombridge 1830, 61 Cyg A and B, Keid). That allowlist is pinned by a test so
+it cannot be used to wave a real error through.
+
+### Two traps in the figure data
+
+1. **Stellarium's `modern` skyculture mixes 19-digit Gaia DR3 `source_id`s into
+   the same arrays as 5-digit HIP numbers** — 85 of its 997 ids. A naive
+   `int → HIP` join drops those segments with no error and draws the
+   constellation wrong. We take `modern_iau` (745 ids, all clean, none fainter
+   than V 6.47), and the generator rejects any id over six digits regardless.
+2. **HIP 55203 does not exist in Hipparcos.** `modern_iau` references it; the
+   star is ξ UMa (Alula Australis), which HYG carries from Gliese with an empty
+   `hip` field. Resolved through an HR/HD fallback, because dropping it silently
+   removes a line from Ursa Major — the constellation the game teaches.
+
+### Never call these figures official
+
+Stellarium's skyculture is _named_ `modern_iau`, which invites the phrase. The
+IAU standardised constellation **boundaries** (Delporte 1930) and has **never**
+defined stick figures. `modern_iau`'s lines are 87/88 byte-identical to
+`modern_st`, which is generated from Sky & Telescope's data. Content says "the
+usual way these figures are drawn", never "the official IAU figures".
+
+Boundaries are deliberately not generated. They are B1875 rectilinear arcs that
+carve the sky into administrative regions, and they teach a child that a
+constellation is a box.
+
+### Licensing
+
+HYG v4.4 and the Stellarium skyculture are both **CC BY-SA 4.0**. Share-alike is
+viral over the derived files, so `data/generated/stars.json`,
+`constellation-lines.json` and `star-names.json` are themselves offered under
+CC BY-SA 4.0, and each carries its `license` and `attribution` in the file. This
+does not touch the game code's licence. Nothing here is non-commercial.
+
+### Downloads
+
+`data/raw/` is gitignored, exactly like `data/ephemeris/`. Only the filtered
+output in `data/generated/` is committed, so a clean checkout runs without ever
+fetching these.
+
+```bash
+mkdir -p data/raw/{hyg,skyculture,wds}
+
+# HYG v4.4 — note /media/ not /raw/: Codeberg serves LFS content only from
+# /media/, and /raw/ returns a 133-byte pointer that parses as garbage.
+curl -sL -o data/raw/hyg/hyg_v44.csv.gz \
+  https://codeberg.org/astronexus/hyg/media/branch/main/data/hyg/CURRENT/hyg_v44.csv.gz
+echo "00b349893b9a53106dd488d8371e8d2fa586043e500bb3cdb8bff3931682197d  data/raw/hyg/hyg_v44.csv.gz" | sha256sum -c
+
+# Constellation figures
+curl -sL -o data/raw/skyculture/modern_iau.json \
+  https://raw.githubusercontent.com/Stellarium/stellarium/master/skycultures/modern_iau/index.json
+
+# Verification oracle — MUST be a different source from the catalogue above
+curl -sL -o data/raw/hyg/hip2_bright.tsv \
+  'https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=I/311/hip2&Hpmag=%3C7.2&-out=HIP,RArad,DErad,Hpmag&-out.max=unlimited'
+
+# Double stars
+curl -sL -o data/raw/wds/orb6orbits.txt https://www.astro.gsu.edu/wds/orb6/orb6orbits.txt
+
+venv/bin/python data/scripts/star-catalogue.py
+```
+
+`github.com/astronexus/HYG-Database` is **archived** (2025-02-14) and licensed
+`NOASSERTION`. Codeberg is the live home. ORB6 is **not in VizieR** — the TAP
+schema has ten WDS tables and zero ORB6 — so it comes direct from
+astro.gsu.edu. `pas.rochester.edu`'s IAU-CSN mirror did not respond and is not
+relied on.
 
 ---
 
@@ -337,8 +476,11 @@ wedding he sponsored; младоженец = groom. This error is in the brief.
 
 ## Data sources
 
-| What                    | Source                  | Notes                                                                                                                                                                                               |
-| ----------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Planetary positions     | JPL DE440s via Skyfield | `data/ephemeris/`, gitignored. Covers 1849–2150.                                                                                                                                                    |
-| Planet and moon imagery | NASA                    | Public domain. Real Mars must look like real Mars — imagery is never AI-generated.                                                                                                                  |
-| Star catalogue          | **NEEDS SOURCE**        | Blocking. Every new constellation claim above depends on real positions and magnitudes. HYG or Hipparcos, pulled by a generator script into `data/generated/` — never constants typed into a scene. |
+| What                    | Source                    | Notes                                                                                                                                                                                      |
+| ----------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Planetary positions     | JPL DE440s via Skyfield   | `data/ephemeris/`, gitignored. Covers 1849–2150.                                                                                                                                           |
+| Planet and moon imagery | NASA                      | Public domain. Real Mars must look like real Mars — imagery is never AI-generated.                                                                                                         |
+| Star catalogue          | HYG v4.4 (CC BY-SA 4.0)   | **VERIFIED** 2026-09-08. `data/raw/hyg/`, gitignored; filtered into `data/generated/stars.json` by `data/scripts/star-catalogue.py`. See "Star catalogue and constellation figures" below. |
+| Constellation figures   | Stellarium `modern_iau`   | CC BY-SA 4.0. 88 figures as HIP polylines → `data/generated/constellation-lines.json`. **Not an IAU standard** — the IAU defined boundaries, never stick figures.                          |
+| Double-star separations | WDS / ORB6 (USNO)         | Public domain. `data/raw/wds/`. The authority for Mizar A/B and the Orion belt splits.                                                                                                     |
+| Position verification   | Hipparcos-2, VizieR I/311 | van Leeuwen 2007. Deliberately a different source from HYG — the build fails if they disagree by more than 30″.                                                                            |
