@@ -1,0 +1,61 @@
+#!/usr/bin/env sh
+# Scoped to the staged file list: a docs-only commit must not pay for a full
+# type-check, lint and test run. Carried over from pdf_data_extractor_v2, where
+# the unscoped version cost 8-10 minutes on every commit.
+#
+# Testability: PRECOMMIT_STAGED overrides the staged list, PRECOMMIT_DRY_RUN=1
+# prints the plan without running anything. Both are exercised by
+# .husky/test-pre-commit-scope.sh.
+
+set -e
+
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+STAGED="${PRECOMMIT_STAGED:-$(git diff --cached --name-only --diff-filter=ACMR)}"
+
+has() { printf '%s\n' "$STAGED" | grep -qE "$1"; }
+
+RUN_TS=0
+RUN_PY=0
+RUN_LEVELS=0
+
+has '\.(ts|tsx|mjs)$|^tsconfig.*\.json$|^eslint\.config\.mjs$|^package\.json$' && RUN_TS=1
+has '\.py$|^requirements\.txt$|^pytest\.ini$|^\.flake8$' && RUN_PY=1
+has '\-data\.json$|^schemas/.*\.json$|^content/bg/.*\.json$' && RUN_LEVELS=1
+
+# Content changes affect the TypeScript build too (content keys are typed).
+has '^content/bg/.*\.json$' && RUN_TS=1
+
+if [ "${PRECOMMIT_DRY_RUN:-0}" = "1" ]; then
+  echo "plan: ts=$RUN_TS py=$RUN_PY levels=$RUN_LEVELS"
+  exit 0
+fi
+
+if [ "$RUN_LEVELS" = "1" ]; then
+  echo "→ validating level data"
+  if [ -x .venv/bin/python ]; then
+    .venv/bin/python data/scripts/validate-levels.py
+  else
+    echo "  (skipped: .venv not found — run: uv venv .venv && uv pip install -r requirements.txt)"
+  fi
+fi
+
+if [ "$RUN_PY" = "1" ]; then
+  echo "→ python: black + flake8 + pytest"
+  if [ -x .venv/bin/python ]; then
+    .venv/bin/black --check data/scripts tests
+    .venv/bin/flake8 data/scripts tests
+    .venv/bin/python -m pytest -q
+  else
+    echo "  (skipped: .venv not found)"
+  fi
+fi
+
+if [ "$RUN_TS" = "1" ]; then
+  echo "→ typescript: tsc + lint-staged"
+  npx tsc --noEmit
+  npx lint-staged
+fi
+
+exit 0
