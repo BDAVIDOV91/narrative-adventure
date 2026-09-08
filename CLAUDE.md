@@ -103,6 +103,17 @@ equivalent of a security hole, and it gets the same treatment.
   rather than illumination.
 - Bulgarian folklore claims are factual claims too, and this audience will notice.
 
+**The astronomy is the lesson; folklore is a bonus layer.** A folklore beat earns
+its place only when learning the folklore and learning the astronomy are the
+_same act_. Зорница/Вечерница passes — the folklore creates the misconception and
+the astronomy resolves it. Кумова слама failed and was cut: a moral tale about
+theft that teaches nothing about the Milky Way. See
+`docs/adr/0005-folklore-must-carry-astronomy.md`.
+
+`docs/sources.md` uses a fourth status, **NOT ATTESTED**, for claims investigated
+and found unsupported — so an appealing idea that turns out to be false is not
+re-proposed later. Check it before adding a folk name.
+
 ### 2. Hide the math (mandatory)
 
 No equations, typed numbers, displayed units or formulas ever reach the player.
