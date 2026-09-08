@@ -1,0 +1,28 @@
+# Build-time only. Nothing here runs while the game is being played.
+#
+# The boundary rule: if the output can be computed once and committed, it is a
+# build step. If it would need to respond to a player action, it must be
+# redesigned into precomputed data. Every astronomy quantity in this game is
+# deterministic, so no Python process ever needs to be running for the game to
+# work — see verification step 7 in the plan.
+
+# Real ephemeris math. Downloads a JPL DE kernel on first run and caches it
+# under data/ephemeris/ (gitignored — it is large and reproducible).
+skyfield==1.55
+
+# Asset pipeline: downscale NASA source textures and emit WebP. This is the
+# single biggest performance lever on an integrated AMD APU — an 8k source
+# texture will stall the load and eat VRAM for no visible gain at the sizes
+# these planets are actually drawn at.
+pillow==12.3.0
+
+# Level data validation against schemas/level-data.schema.json. Catches a bad
+# puzzle type or an off-map marker at commit time instead of as a silently
+# broken level in the browser.
+jsonschema==4.26.0
+
+# Dev tooling. Versions match the pdf_data_extractor_v2 conventions:
+# flake8 at max-line-length 100 with E203/W503 ignored, Black on defaults.
+pytest==9.1.1
+black==26.5.1
+flake8==7.3.0

@@ -1,0 +1,11 @@
+[flake8]
+# Matches pdf_data_extractor_v2/.flake8 exactly so Python style is consistent
+# across both projects.
+# E203/W503 conflict with Black's formatting and are ignored by convention.
+max-line-length = 100
+extend-ignore = E203,W503
+exclude =
+    .venv,
+    node_modules,
+    data/generated,
+    dist
