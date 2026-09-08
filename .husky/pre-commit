@@ -42,10 +42,11 @@ if [ "$RUN_LEVELS" = "1" ]; then
 fi
 
 if [ "$RUN_PY" = "1" ]; then
-  echo "→ python: black + flake8 + pytest"
+  echo "→ python: black + flake8 + pyright + pytest"
   if [ -x venv/bin/python ]; then
     venv/bin/black --check data/scripts tests
     venv/bin/flake8 data/scripts tests
+    npx --yes pyright@latest
     venv/bin/python -m pytest -q
   else
     echo "  (skipped: venv not found)"

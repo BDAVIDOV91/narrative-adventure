@@ -11,14 +11,16 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "type-check": "tsc --noEmit",
+    "type-check": "npm run type-check:ts && npm run type-check:py",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"**/*.{ts,js,mjs,json,md,html,css}\"",
     "format:check": "prettier --check \"**/*.{ts,js,mjs,json,md,html,css}\"",
     "test": "vitest run",
     "validate": "npm run type-check && npm run lint && npm run format:check",
-    "prepare": "husky"
+    "prepare": "husky",
+    "type-check:ts": "tsc --noEmit",
+    "type-check:py": "pyright"
   },
   "dependencies": {
     "phaser": "3.90.0",

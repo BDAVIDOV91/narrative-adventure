@@ -1,4 +1,16 @@
 #!/usr/bin/env python3
+# pyright: reportAttributeAccessIssue=false, reportGeneralTypeIssues=false
+# pyright: reportArgumentType=false
+#
+# Skyfield ships no py.typed marker, so pyright infers its API from source and
+# cannot follow the `reify` lazy-property descriptors that back .hours, .degrees
+# and .au, nor the dynamic dispatch behind ICRF.observe(). Every error it
+# reports in this file is that inference failing, not a defect. timescale.utc()
+# genuinely accepts arrays -- that vectorised call is how all 365 samples are
+# produced in one pass -- but the inferred signature says int. The values are
+# range-checked for real in tests/test_orbital_positions.py against known
+# orbital bounds. Scoped to this file so the rest of the project keeps both
+# rules enabled.
 """Precompute planetary positions into static JSON for the game to read.
 
 Build-time only. The game never runs this — it reads the JSON this writes.

@@ -142,3 +142,35 @@ def test_cyrillic_literal_in_place_of_a_content_key_is_rejected(
         write(tmp_path, good_level), validator, content_keys
     )
     assert problems, "a Cyrillic literal must not validate as a content key"
+
+
+def test_pyright_suppressions_stay_scoped_and_explained(repo_root):
+    """Type-check suppressions must not quietly spread.
+
+    orbital-positions.py disables three pyright rules because Skyfield ships no
+    py.typed marker and pyright cannot follow its `reify` descriptors or its
+    vectorised timescale.utc(). That is legitimate, but a file-level suppression
+    is exactly the kind of thing that gets copied into the next file and then
+    hides a real defect. This pins it to the one file that has earned it.
+    """
+    scripts = sorted((repo_root / "data" / "scripts").glob("*.py"))
+    suppressed = [p.name for p in scripts if "# pyright:" in p.read_text("utf-8")]
+    assert suppressed == ["orbital-positions.py"], (
+        "only orbital-positions.py may suppress pyright rules; "
+        f"found suppressions in {suppressed}"
+    )
+
+    text = (repo_root / "data" / "scripts" / "orbital-positions.py").read_text("utf-8")
+    assert (
+        "py.typed" in text
+    ), "the suppression must explain WHY, naming the untyped library"
+
+
+def test_no_python_script_silences_a_whole_rule_set(repo_root):
+    """A blanket `# type: ignore` on a module hides everything after it."""
+    for path in sorted((repo_root / "data" / "scripts").glob("*.py")):
+        first_lines = path.read_text("utf-8").splitlines()[:5]
+        for line in first_lines:
+            assert (
+                line.strip() != "# type: ignore"
+            ), f"{path.name} silences all type errors"

@@ -43,7 +43,7 @@ def process(source: Path, max_size: int, quality: int) -> tuple[Path, str]:
         if max(image.size) > max_size:
             # Keep the aspect ratio: planet maps are equirectangular (2:1) and
             # squashing them would visibly distort the surface features.
-            image.thumbnail((max_size, max_size), Image.LANCZOS)
+            image.thumbnail((max_size, max_size), Image.Resampling.LANCZOS)
 
         OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
         destination = OUTPUT_DIR / f"{source.stem}.webp"
