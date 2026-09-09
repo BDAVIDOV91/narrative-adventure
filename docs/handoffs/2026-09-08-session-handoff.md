@@ -68,7 +68,7 @@ concept is settled.** Do not build more pipeline.
   the heaviest category. Legal options: a fixed Bulgarian latitude, or a city
   picker kept in `localStorage`. This is the owner's call.
 - **The companion's voice budget** — unblocked by round 1's answer, since
-  scaffolding removal is the difficulty axis, which makes the companion *be* the
+  scaffolding removal is the difficulty axis, which makes the companion _be_ the
   scaffolding.
 - **Where the Зорница/Вечерница beat now lives**, since connect-the-dots is
   taken. `orbital-positions.json#/venus` is already committed and holds the real
@@ -80,25 +80,25 @@ The `astronomy-accuracy-checker` researching **Бонов's Ралица/Кол�
 mapping** died in the freeze. It matters more now than when it was launched,
 because the constellation puzzle is exactly where Ралица and Колата appear.
 It was asked for: the citation (author, title, edition, page — likely Ангел
-Бонов, *Митове и легенди за съзвездията*, but verify); whether χ really belongs
+Бонов, _Митове и легенди за съзвездията_, but verify); whether χ really belongs
 to the рало given χ¹/χ² sit ~2h of RA from the Belt past Betelgeuse; whether θ/χ
 resolve to specific components; the narrow-vs-wide variant tension (Бонов's own
-mapping includes Сириус and Процион, which is the *wide* variant, while the game
+mapping includes Сириус and Процион, which is the _wide_ variant, while the game
 tells the narrow one); any competing Вакарелски/Ковачев mapping; and whether
 "вълк" for η UMa is really attested.
 
 ## Task list
 
-| # | Status | |
-| - | ------ | - |
-| 20 | pending | Galilean moon periods from JPL — the last NEEDS SOURCE, non-blocking |
-| 21 | in progress | Ралица/Колата figures — blocked on the Бонов citation |
-| 22 | DONE | Commit the figure resolver |
-| 23 | **in progress** | Settle the scenario + puzzle-scaling design (grilling) |
-| 24 | blocked by 23 | Build Earth end to end and playable |
-| 25 | pending | Precompute constellation visibility by month |
-| 26 | DONE | Research game-building skills + the owner's shortlist (results below) |
-| 27 | blocked by 24 | Playwright browser QA for the Earth level |
+| #   | Status          |                                                                       |
+| --- | --------------- | --------------------------------------------------------------------- |
+| 20  | pending         | Galilean moon periods from JPL — the last NEEDS SOURCE, non-blocking  |
+| 21  | in progress     | Ралица/Колата figures — blocked on the Бонов citation                 |
+| 22  | DONE            | Commit the figure resolver                                            |
+| 23  | **in progress** | Settle the scenario + puzzle-scaling design (grilling)                |
+| 24  | blocked by 23   | Build Earth end to end and playable                                   |
+| 25  | pending         | Precompute constellation visibility by month                          |
+| 26  | DONE            | Research game-building skills + the owner's shortlist (results below) |
+| 27  | blocked by 24   | Playwright browser QA for the Earth level                             |
 
 ## Earth as currently drafted
 
@@ -182,7 +182,7 @@ for Orion, "Стожер" for the Pole Star.
 
 **Confirmed folklore**: Квачката (Pleiades), Лъжи керван (Sirius), Ралица
 (Orion) and Колата (Ursa Major), the last two citable to Вакарелски 1977 p. 413
-for the *names* — the star-by-star mapping is what is still unsourced.
+for the _names_ — the star-by-star mapping is what is still unsourced.
 
 ## Known wart
 
@@ -244,7 +244,6 @@ pays off at level six is not interesting yet.
 Expect most to be rejected. The useful output is a short list worth trying plus
 an explicit note of what was looked at and dismissed, so it is not re-proposed.
 
-
 ---
 
 ## Trigger message for a fresh session
@@ -285,7 +284,6 @@ Not on the critical path: task #20 (Galilean moon periods, the last NEEDS SOURCE
 non-blocking) and task #25 (visibility table, which only becomes real once round
 2 settles how the dynamic sky works).
 
-
 ---
 
 ## Skills research — RESULTS (2026-09-08)
@@ -301,7 +299,7 @@ Every popular design skill — Impeccable, Taste, the designer-skills collection
 audits and rewrites **DOM and CSS**. This game's player-facing UI is a **Phaser
 canvas**. There is no DOM to audit: text is a `Phaser.GameObjects.Text` draw
 call, layout is x/y coordinates, and "spacing" is not a stylesheet property.
-Their tooling has nothing to grip. The *vocabulary* (type scale, spacing rhythm,
+Their tooling has nothing to grip. The _vocabulary_ (type scale, spacing rhythm,
 motion easing) transfers to a human reading it; the commands do not run.
 
 So the design gap here does not get closed by installing something. It gets
@@ -309,14 +307,14 @@ closed by us deciding what the storybook looks like.
 
 ### Verdicts
 
-| Candidate | Stars | Licence | Verdict |
-| --- | --- | --- | --- |
-| **Playwright** (installed) | — | MIT | **Adopt** — the only clear win |
-| **Impeccable** (`pbakaus/impeccable`) | 66.5k | Apache-2.0 | Read, do not install |
-| **Taste** (`Leonxlnx/taste-skill`) | 85.4k | MIT | Reject |
-| **img2threejs** | 15.6k | Apache-2.0 | Reject for v1 |
-| **game-creator** (`PlayableIntelligence`) | 328 | **none** | Do not install; mine for patterns |
-| **designer-skills** (`Owl-Listener`) | 2.6k | MIT | Unassessed, low priority |
+| Candidate                                 | Stars | Licence    | Verdict                           |
+| ----------------------------------------- | ----- | ---------- | --------------------------------- |
+| **Playwright** (installed)                | —     | MIT        | **Adopt** — the only clear win    |
+| **Impeccable** (`pbakaus/impeccable`)     | 66.5k | Apache-2.0 | Read, do not install              |
+| **Taste** (`Leonxlnx/taste-skill`)        | 85.4k | MIT        | Reject                            |
+| **img2threejs**                           | 15.6k | Apache-2.0 | Reject for v1                     |
+| **game-creator** (`PlayableIntelligence`) | 328   | **none**   | Do not install; mine for patterns |
+| **designer-skills** (`Owl-Listener`)      | 2.6k  | MIT        | Unassessed, low priority          |
 
 **Playwright — adopt.** Already installed and currently unused. It is the answer
 to "how do we know the Earth level still works", which is a real gap: there is no
@@ -342,7 +340,7 @@ NASA imagery through `process-textures.py`.
 
 **img2threejs — reject for v1, revisit if a non-astronomical 3D prop appears.**
 The engineering is genuinely well matched on one axis: it emits a code-only
-procedural `THREE.Group` factory, and our Three.js budget is *single objects*
+procedural `THREE.Group` factory, and our Three.js budget is _single objects_
 (`src/shared/planet-render.ts`). But the only 3D object this game has is a
 planet, and a planet must be real imagery, not a procedural guess. There is
 nowhere for its output to live. Apache-2.0 and actively maintained, so it stays
@@ -371,7 +369,6 @@ The research turned up **one** adoptable tool, and it was already installed. Tha
 is consistent with the pivot recorded above: the bottleneck is not tooling, it is
 that nobody has decided what the storybook looks like or how a puzzle escalates.
 More plugins would be the same mistake in a new costume.
-
 
 ### Decisions taken on the research (owner, 2026-09-08)
 
