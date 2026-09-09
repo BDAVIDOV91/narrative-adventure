@@ -38,5 +38,21 @@
         ]
       }
     ]
+  },
+  "enableAllProjectMcpServers": false,
+  "permissions": {
+    "deny": [
+      "Bash(git push:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean -f:*)",
+      "Bash(git stash:*)",
+      "Bash(ssh:*)",
+      "Bash(chmod 777:*)",
+      "Bash(sudo:*)",
+      "Bash(rm -rf:*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./.secrets)"
+    ]
   }
 }

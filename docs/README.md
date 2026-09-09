@@ -1,12 +1,13 @@
 # Docs
 
-| Where           | What                                                                                                                                                                             |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `adr/`          | Architecture decisions, numbered and dated. One decision per file. Records the constraint that forced the choice, so a future reader does not relitigate it without the context. |
-| `architecture/` | How the pieces fit: the data flow from Python to the browser, the level lifecycle.                                                                                               |
-| `design/`       | Game design notes — puzzle types, level progression, the story spine.                                                                                                            |
-| `handoffs/`     | Session handoffs, one file per session, named `YYYY-MM-DD-session-handoff.md`. The newest is what a fresh session reads first: state, settled decisions that must not be re-asked, and what is left over. |
-| `sources.md`    | **Every astronomy and folklore claim the game makes, with its source.** The `astronomy-report` skill checks content against this file.                                           |
+| Where           | What                                                                                                                                                                                                                                                              |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `adr/`          | Architecture decisions, numbered and dated. One decision per file. Records the constraint that forced the choice, so a future reader does not relitigate it without the context.                                                                                  |
+| `architecture/` | How the pieces fit: the data flow from Python to the browser, the level lifecycle.                                                                                                                                                                                |
+| `design/`       | Game design notes — puzzle types, level progression, the story spine.                                                                                                                                                                                             |
+| `handoffs/`     | Session handoffs, one file per session, named `YYYY-MM-DD-session-handoff.md`. The newest is what a fresh session reads first: state, settled decisions that must not be re-asked, and what is left over.                                                         |
+| `security/`     | Audits of the **development harness** — hooks, settings, MCP servers, agent definitions — as distinct from the shipped game, which `privacy-guard` and `security-audit` cover. Records which scanner findings were rejected, and why, so they are not re-triaged. |
+| `sources.md`    | **Every astronomy and folklore claim the game makes, with its source.** The `astronomy-report` skill checks content against this file.                                                                                                                            |
 
 ## The rule that matters most here
 
