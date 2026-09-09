@@ -23,6 +23,11 @@ printf '%s\n' "$STAGED" | grep -qE '^assets/|planet-render\.ts$|^package\.json$'
   && NEEDED="$NEEDED perf-report"
 printf '%s\n' "$STAGED" | grep -qE '^package\.json$|^requirements\.txt$|^index\.html$|^src/' \
   && NEEDED="$NEEDED privacy-guard"
+# A dependency change is the one event that actually moves this game's attack
+# surface. privacy-guard audits the tree for network calls; supply chain is a
+# different question and is section 1 of security-audit.
+printf '%s\n' "$STAGED" | grep -qE '^package(-lock)?\.json$|^requirements\.txt$' \
+  && NEEDED="$NEEDED security-audit"
 
 [ -z "$NEEDED" ] && exit 0
 

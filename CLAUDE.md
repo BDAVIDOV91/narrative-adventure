@@ -239,6 +239,7 @@ checklist, and routes to the domain skills the staged files call for.
 | `src/puzzles/`, `content/bg/`                            | `pedagogy-report`  |
 | `assets/`, `planet-render.ts`, `package.json`            | `perf-report`      |
 | `src/`, `package.json`, `requirements.txt`, `index.html` | `privacy-guard`    |
+| `package.json`, `package-lock.json`, `requirements.txt`  | `security-audit`   |
 | before a milestone or merge to main                      | `qa-report`        |
 
 Agents: `challenger`, `astronomy-consultant` (consulted _during_ design),
