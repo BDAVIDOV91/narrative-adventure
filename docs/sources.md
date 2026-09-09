@@ -421,15 +421,78 @@ of these is the lesson; each is attached to a lesson.
 - **Status**: **VERIFIED (secondary)** — Христо Вакарелски, _Етнография на
   България_, София 1977, стр. 413, as cited by bg.wikipedia for both. Promote to
   primary once p. 413 is read directly.
-- Бонов's star-by-star mapping for Ралица: рало = the Belt + σ,θ,χ; орач =
-  Сириус; остен = η,τ,β; кучето = Процион; воловете = Бетелгейзе, Белатрикс.
-  For Колата: колела = α,β,γ,δ; волове = ε,ζ; вълк = η.
-- **The variant the game does not tell**: some Bulgarian astronomy writing holds
-  Ралицата to be a scene spanning several IAU constellations. Status PLAUSIBLE.
-  **The game tells the narrow variant (Орион = Рало)** and says so here.
+- **Source, now fully identified**: доц. Ангел Бонов, _Митове и легенди за
+  съзвездията_, София: „Наука и изкуство“, 1976, 281 с. Full text digitised at
+  chitanka.info. His own chapter titles are „Орион (Ралица)“ and „Голяма мечка
+  (Колата)“, so he independently attests both folk **names**.
+  **Page numbers: NEEDS SOURCE** — the digitisation carries no pagination.
+  **Caveat on his authority**: his 8-item bibliography contains **no Bulgarian
+  ethnographic source at all**. He is a populariser, not an ethnographic primary,
+  for the star-by-star assignment. The mapping as a whole is **NEEDS SOURCE**.
+
+- **Ралица — Бонов's actual words**: рало = δ,ε,ζ (the Belt) + σ,θ,χ; орач =
+  Сириус; остен = η,τ,β; кучето на орача = Процион; воловете = Бетелгейзе (α),
+  Белатрикс (γ).
+  **The χ component is DISPUTED and must not ship.** Checked against our own
+  `data/generated/stars.json`: χ¹ Ori (HIP 27913) is Dec **+20.28°**, sitting
+  **21.9° from Alnilam** — further than the whole Rigel–Betelgeuse span (18.6°).
+  `data/generated/constellation-lines.json` places χ¹/χ² on Orion's **club**
+  branch (`Xi–Chi-2–Chi-1–Nu`), while the leg branch is `Alnitak–Kap/Saiph`.
+  Бонов's gloss "образуват десния крак" therefore contradicts his own letters.
+  The star actually on the leg is **κ Ori / Saiph**, but **do not substitute it by
+  reasoning** — that needs the print page.
+
+- **Бонов's Greek letters in these two passages are demonstrably unreliable.**
+  In the same book he writes „Мечката — звездата **Мицар (ξ)**“. Mizar is **ζ**
+  UMa; ξ UMa is Alula Australis, not in the Dipper at all. Two wrong letters in
+  the only two folk-mapping paragraphs is a pattern — either 1976 typesetting or
+  the 2011 OCR. **No Greek letter from these passages may be transcribed into
+  game data** until the print is read.
+
+- **Колата — corrected. The earlier entry here misattributed a mapping to Бонов.**
+  It previously read "колела = α,β,γ,δ; волове = ε,ζ; вълк = η", which is wrong on
+  ε, ζ and η. Бонов verbatim: „Коларят — звездата η, Мечката — звездата Мицар (ξ),
+  Волът — звездата ε, а кучето, което лае по мечката, е звездата Алкор.
+  Останалите ярки звезди образуват Колата.“
+  Вакарелски p. 413 (via bg.wikipedia) differs again: a wagon showing „колелата,
+  воловете и вълк, който напада воловете“ — the wolf is in the scene, but **no
+  star is named for it**.
+
+- **"вълк" = η UMa is NOT ATTESTED.** Do not re-propose it. The wolf motif is
+  attested for both figures, but attaching it to η specifically appears in no
+  source — and Бонов contradicts it outright, giving η = Коларят.
+
+- **The variant the game does not tell**: Бонов tells the **wide** variant — a
+  ~30°-wide scene spanning three IAU constellations (Alnilam→Procyon is 31.4°).
+  **The game tells the narrow variant (Орион = Рало)**, following Вакарелски
+  p. 413: „осем звезди, в които се виждат орач, остен, а понякога и вълци“ —
+  **which eight is not stated**, so the narrow star list is NEEDS SOURCE.
+  Corroboration for the wide reading is now better than blog-level: a НАО Рожен
+  contributor on forum.starrydreams.com thread 5211.
+
 - **"Косери" is NOT ATTESTED for Orion.** Do not use it.
-- **Mizar = "Мечката" / Alcor = "кучето"** — PLAUSIBLE only, blog-level sourcing.
-  Do not put in game text until traced to Вакарелски or Ковачев.
+
+- **Mizar = "Мечката" / Alcor = "кучето" — upgraded from PLAUSIBLE to
+  Бонов-attested** (1976, verbatim, quoted above; the ξ typo affects the letter,
+  not the proper names). The tale attached: a bear ate one ox, the youth harnessed
+  the bear in its place, it pulled sideways, „за това в съзвездието колата е
+  разкривена“. **The dog barking at the bear _is_ Alcor** — the folk name is the
+  naked-eye split, which makes this a genuine ADR 0005 pass for the
+  `zoom-split-star` beat.
+
+- **Terminology, so it is not mangled later**: a **рало** is an ard (symmetrical
+  scratch plough), never a плуг (mouldboard). An **остен** is the ox-goad, not the
+  plough handle. Note the collision between **Коларят** (η UMa, per Бонов) and the
+  constellation **Колар (Auriga)**, which Бонов also uses.
+
+- **Closing the star-by-star mapping needs a library visit** — Дарина Младенова,
+  „Български диалектни названия на съзвездието Орион“, _Българска реч_ I/1995,
+  кн. 2, с. 23–24, is the highest-value acquisition; then Йордан Д. Ковачев,
+  СбНУ т. 30, 1914 (**note: not Богомил Ковачев**, who was one of Бонов's 1976
+  reviewers — conflating them would fabricate a citation). **Not scheduled.**
+  Folklore is a bonus layer, not the lesson (ADR 0005), and no puzzle is blocked
+  on this: `connect-the-dots` uses the IAU figures in
+  `data/generated/constellation-lines.json`.
 
 ### Стожер for the Pole Star — NOT ATTESTED
 
