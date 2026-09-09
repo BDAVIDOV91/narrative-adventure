@@ -14,6 +14,44 @@ the skills research results.
 Astronomy education game for Bulgarian children (~11–12). Browser, Phaser 3 +
 TypeScript, a little Three.js, Python build-time only. Branch `development`.
 
+## State at handoff
+
+**Eight commits on `development`, working tree clean, nothing pushed** — the owner
+pushes. `86 pytest tests green`, `validate-levels.py` exit 0, `npm run validate`
+clean, both hook suites pass.
+
+```
+29b2167 docs(adr): the enum expansion and the limits of a reskin are recorded
+208a872 feat(level): Earth carries ten markers and a guided spine
+269fa32 feat(content): six sourced claims, and the Bulgarian that carries them
+9646a9d fix(ephemeris): the generator names the seasons instead of leaving them derived
+42d2ad1 chore(workflow): an agent owns building, and research memory outlives a session
+11efed2 docs(design): the Earth brief records ten beats and the rules that shaped them
+4901f37 fix(sources): the register stops attributing a mapping Бонов never wrote
+9639446 feat(schema): the puzzle enum carries seven types and validates each config
+```
+
+**Phases 0 and 1 are done.** The schema, validator, all ten Earth markers, the
+Bulgarian labels, the twelve fact strings and their six `docs/sources.md` entries
+are committed. **Phase 2 has not started** — there is still no vitest config and
+no puzzle code. `src/puzzles/` is still five empty directories.
+
+**Three defects were caught before they shipped**, none findable by reading our
+own code:
+
+1. Earth's λ=0 is the **September** equinox, not the vernal one, and
+   `helioLonDegrees` was J2000-ecliptic rather than of-date. Reading it the
+   obvious way would have mislabelled every season by six months and put two of
+   the four events on the wrong calendar day — while validating cleanly. Fixed by
+   emitting a named `seasons` block; the payload now declares its `frame`.
+2. **Saturn's surface gravity straddles Earth** depending on which NASA fact-sheet
+   column you read (11.19 m/s² = 1.14×, 8.96 m/s² = 0.92×). "Things fall slower on
+   Saturn" is unsupportable. Saturn is excluded from the drop comparison
+   structurally, not by comment.
+3. `gravity-drop` modelling **mass** would have taught _heavy falls faster_ — the
+   Aristotelian misconception. The beat is now two contrastive panels built on
+   `въздухът`, anchored to Apollo 15.
+
 ---
 
 ## Already settled — DO NOT re-run, DO NOT re-ask
@@ -166,14 +204,19 @@ carries the "reskinnable later" framing — not as a new ADR.
 
 ## Latent bugs found by reading, now scheduled
 
-1. **`earth-data.json` `dataRef` has never resolved.** It says
-   `orbital-positions.json#/venus`; the file nests bodies under `bodies`. The
-   validator checks only the filename, so it passes silently. Fix:
-   `#/bodies/venus`.
-2. **The schema promises per-type `config` validation that does not exist.**
-   `targets` and `tolerance` are unconstrained free-form.
-3. **`reward.unlocks: ["earth-gate-telescope"]` points at nothing** and nothing
-   checks it.
+**Fixed and committed:**
+
+1. ~~`earth-data.json` `dataRef` had never resolved~~ — was
+   `orbital-positions.json#/venus`; the file nests bodies under `bodies`, and the
+   validator checked only the filename. Now `#/bodies/venus`, and the validator
+   resolves the fragment.
+2. ~~The schema promised per-type `config` validation that did not exist.~~ Seven
+   `if`/`then` branches now.
+3. ~~`reward.unlocks: ["earth-gate-telescope"]` pointed at nothing.~~ Removed, and
+   unlock targets are validated.
+
+**Still open — these are the phase-2 work:**
+
 4. **`saveProgress` has no call site anywhere.** Progress is never written.
 5. **`book-zoom-transition.ts` has no call site either.**
 6. **No vitest config and zero `*.test.ts`**, though `package.json:19` declares
@@ -182,23 +225,30 @@ carries the "reskinnable later" framing — not as a new ADR.
    `dispose`; auto-spins unconditionally; light pinned at `(5,2,3)`; ambient
    hardcoded at `0.35`, which visibly lights a moon's night side.
 8. **`assets/images/nasa/` is empty** — there is no Earth texture to render.
+9. **`game-state.ts` does not match the validator.** `validate-levels.py` now
+   computes the threshold over `solved ∩ required`, but `solvedCount()` still
+   counts every solved marker and `meetsThreshold()` takes a bare total — so a
+   child can still unlock guided Earth by finishing only optional puzzles. **This
+   is the one real carry-over from phase 0.**
+10. **Beat 4 cannot reach the seasons block.** `earth-orbit-year` points at
+    `#/bodies/earth`, but `seasons` sits at the payload root.
 
 ---
 
 ## Build order
 
-**Phase 0** — schema and validator. _(Delegated to a worker agent this session;
-check its state before redoing any of it.)_ Enum to 7, per-type config branches,
-`required` flag, pointer resolution, `reward.unlocks` validation, RED test per
-guard. `CLAUDE.md`'s "five puzzle types" section and `docs/design/puzzle-types.md`
-both go stale and need updating.
+**Phase 0 — DONE**, committed at `9639446`.
 
-**Phase 1** — all 10 markers in `earth-data.json`, content keys, the two data
-tables and their sources entries. `src/shared/content.ts` **must** be edited when
+**Phase 1 — DONE**, committed at `208a872` and `269fa32`. All ten markers, seven
+new labels, `ui.puzzle.coming-soon`, twelve fact strings, both reference tables in
+`data/`, six `docs/sources.md` entries. `rotate-match` config gained `renderer`
+and `drives`; **`drives` has no `rotation` value at all**, so "spin the tidally
+locked Moon" is unauthorable rather than merely discouraged.
+
+**Still owed from phase 1:** `src/shared/content.ts` **must** be edited when
 `companion.json` is added — it hardcodes four bundle imports, so a fifth file is
-visible to the Python validator but invisible to `t()`. `ui.puzzle.coming-soon`
-is needed for the stub markers; a Cyrillic literal in a `.ts` file would violate
-rule 3.
+visible to the Python validator but invisible to `t()`. A Cyrillic literal in a
+`.ts` file would violate rule 3.
 
 **Phase 2** — shared infrastructure, carried by engine 1. **Vitest first**, before
 any other TypeScript, or the shared runtime ships untested. Decide jsdom vs
@@ -260,17 +310,38 @@ tree.
 
 ## Task list
 
-| #   | Status          |                                                                     |
-| --- | --------------- | ------------------------------------------------------------------- |
-| 20  | pending         | Galilean moon periods from JPL — last NEEDS SOURCE, non-blocking    |
-| 21  | **parked**      | Ралица/Колата figures — off the critical path, folklore demoted     |
-| 23  | **DONE**        | Scenario + puzzle-scaling design settled (grilling rounds 1–4)      |
-| 24  | **in progress** | Build Earth — phase 0 delegated, phases 1–3 queued                  |
-| 25  | pending         | Constellation visibility by month, keyed on **latitude**            |
-| 26  | DONE            | Skills research                                                     |
-| 27  | blocked by 24   | Playwright browser QA for the Earth level                           |
-| 28  | **new**         | Two ADRs — enum expansion, and the 0003 amendment                   |
-| 29  | **new**         | NASA Earth texture through `process-textures.py` — blocks day/night |
+The session task tracker holds the live phase-2 and phase-3 breakdown (8 items).
+This table is the project-level view.
+
+| #   | Status          |                                                                          |
+| --- | --------------- | ------------------------------------------------------------------------ |
+| 20  | pending         | Galilean moon periods from JPL — last NEEDS SOURCE, non-blocking         |
+| 21  | **parked**      | Ралица/Колата figures — off the critical path, folklore demoted          |
+| 23  | **DONE**        | Scenario + puzzle-scaling design settled (grilling rounds 1–4)           |
+| 24  | **in progress** | Build Earth — phases 0 and 1 committed; phase 2 not started              |
+| 25  | pending         | Constellation visibility by month, keyed on **latitude**                 |
+| 26  | DONE            | Skills research                                                          |
+| 27  | blocked by 24   | Playwright browser QA for the Earth level                                |
+| 28  | **DONE**        | Two ADRs — 0006 enum expansion, and the 0003 amendment                   |
+| 29  | pending         | NASA Earth texture through `process-textures.py` — **blocks day/night**  |
+| 30  | **new**         | Port `solved ∩ required` into `game-state.ts` — carry-over from phase 0  |
+| 31  | **new**         | Beat 4 needs a `dataRef` reaching the root-level `seasons` block         |
+| 32  | **new**         | `puzzle-pedagogy-reviewer` over the 12 new fact strings and 7 new labels |
+
+**Not yet reviewed:** the accuracy checker explicitly did **not** assess whether
+the new Bulgarian reads naturally for an 11–12 year old — that is
+`puzzle-pedagogy-reviewer`'s job and it has not run (task 32).
+
+## If you are resuming after a compaction
+
+Read this file, then run the `session-recovery` skill rather than trusting any
+summary: reconcile against `git log`, `venv/bin/python -m pytest` and the actual
+files. Expect **86 tests green at `29b2167`** with a clean tree. If that does not
+reproduce, something drifted and the disagreement is the first thing to report.
+
+The single most important thing not to lose: **`drives` has no `rotation` value,
+and Saturn is absent from the drop comparison, on purpose.** Both look like
+omissions and are walls. Restoring either would ship a misconception.
 
 ## Commands
 
