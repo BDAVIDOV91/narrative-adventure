@@ -95,6 +95,38 @@ else
   pass "no @latest in .mcp.json"
 fi
 
+# --- file permissions (advisory, never fails) -------------------------------
+# CLAUDE.md is injected into every prompt as system instructions, and the hooks
+# execute on every Bash tool call. Group-writable versions of either are an
+# injection surface for any other account in the owner's group.
+#
+# This is advisory, not an assertion: git records only the executable bit, so a
+# fresh clone always materialises these at the umask default. Failing here would
+# make the suite red on every clone for something git cannot carry. See
+# docs/security/agent-config-audit.md for the command that reapplies them.
+LOOSE=""
+for f in "$ROOT/CLAUDE.md" "$ROOT/.mcp.json" "$SHARED" "$LOCAL"; do
+  [ -f "$f" ] || continue
+  case "$(stat -c '%a' "$f" 2>/dev/null)" in
+    600 | 400) ;;
+    *) LOOSE="$LOOSE $(basename "$f")" ;;
+  esac
+done
+for f in "$ROOT"/.claude/hooks/*.sh "$ROOT"/.husky/pre-commit "$ROOT"/.husky/pre-push; do
+  [ -f "$f" ] || continue
+  case "$(stat -c '%a' "$f" 2>/dev/null)" in
+    700 | 500) ;;
+    *) LOOSE="$LOOSE $(basename "$f")" ;;
+  esac
+done
+
+if [ -n "$LOOSE" ]; then
+  echo "note: group- or world-accessible (advisory, not a failure):$LOOSE"
+  echo "      reapply: see docs/security/agent-config-audit.md"
+else
+  pass "config and hook file permissions are owner-only"
+fi
+
 echo
 if [ "$FAILURES" -eq 0 ]; then
   echo "settings hardening: all checks passed"
