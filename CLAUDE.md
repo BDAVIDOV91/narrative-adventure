@@ -89,12 +89,18 @@ A level is `src/scenes/<id>/<id>-data.json`, validated against
 levels (Earth, Moon) and `0.7` for open-exploration levels — the brief's
 forgiving gate, kept as data so both kinds share one code path.
 
-### The five puzzle types
+### The seven puzzle types
 
 `rotate-match`, `connect-the-dots`, `parallax-compare`, `zoom-split-star`,
-`trajectory-match`. Each is built once and reskinned per planet. The schema
-enforces the list. **A sixth type is a one-off that needs its own maintenance
-forever** — adding one is a deliberate decision, never a drive-by.
+`trajectory-match`, `gravity-drop`, `telescope-focus`. Each is built once and
+reskinned per planet. The schema enforces the list, and constrains each type's
+`config` in its own branch. **An eighth type is a one-off that needs its own
+maintenance forever** — adding one is a deliberate decision, never a drive-by.
+
+A **beat** is level content; a **type** is code maintained forever. Four of
+Earth's ten beats are one interaction — rotate a model until it matches a
+reference — so they are one engine with four renderers, not four types. Review
+trigger: **any type not reused on a second level by the Mars build gets deleted.**
 
 ## Rules
 

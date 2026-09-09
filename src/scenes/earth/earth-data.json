@@ -52,9 +52,8 @@
       },
       "puzzle": "connect-the-dots",
       "label": "puzzle.earth.twilight.label",
-      "dataRef": "orbital-positions.json#/venus",
+      "dataRef": "orbital-positions.json#/bodies/venus",
       "reward": {
-        "unlocks": ["earth-gate-telescope"],
         "fact": "fact.zornitsa"
       }
     }

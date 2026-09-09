@@ -58,7 +58,7 @@ venv/bin/python data/scripts/validate-levels.py  # every level against the schem
 ```
 src/
   scenes/          storybook + one folder per level (<level>-scene.ts + <level>-data.json)
-  puzzles/         the five reusable puzzle types
+  puzzles/         the seven reusable puzzle types
   shared/          content (i18n), game-state, fonts, player, zoom transition,
                    planet-render (the only Three.js)
 content/bg/        every player-facing string — Bulgarian, keyed

@@ -53,13 +53,187 @@ def test_the_real_earth_level_passes(
 def test_unknown_puzzle_type_is_rejected(
     validate_levels, validator, content_keys, good_level, tmp_path
 ):
-    """The five reusable types are the whole vocabulary. A sixth is a one-off
+    """The seven reusable types are the whole vocabulary. An eighth is a one-off
     that would need its own maintenance forever, so it must not slip in."""
     good_level["markers"][0]["puzzle"] = "invent-a-new-minigame"
     problems = validate_levels.check_level(
         write(tmp_path, good_level), validator, content_keys
     )
     assert any("is not one of" in p for p in problems)
+
+
+def test_the_two_new_puzzle_types_are_accepted(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """gravity-drop and telescope-focus joined the enum by deliberate decision.
+    Neither has an engine yet, so neither carries config."""
+    good_level["markers"][0] = {
+        "id": "earth-gravity-drop",
+        "position": {"x": 400, "y": 400},
+        "puzzle": "gravity-drop",
+        "label": "puzzle.earth.sundial.label",
+    }
+    good_level["markers"][1] = {
+        "id": "earth-telescope-focus",
+        "position": {"x": 500, "y": 400},
+        "puzzle": "telescope-focus",
+        "label": "puzzle.earth.seasons.label",
+    }
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert problems == []
+
+
+def test_rotate_match_without_a_config_is_rejected(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """rotate-match has an engine, and the engine cannot run without knowing how
+    many rounds to play and how close counts as matched."""
+    del good_level["markers"][0]["config"]
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("'config' is a required property" in p for p in problems)
+
+
+def test_rotate_match_rejects_a_zero_target_count(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """Zero rounds is a puzzle that is solved before the child touches it."""
+    good_level["markers"][0]["config"]["targets"] = 0
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("markers/0/config/targets" in p for p in problems)
+
+
+def test_rotate_match_rejects_a_zero_tolerance(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """A tolerance of zero demands a pixel-exact drag — the opposite of the
+    brief's forgiving gate, and unreachable for an 11-year-old."""
+    good_level["markers"][0]["config"]["tolerance"] = 0
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("markers/0/config/tolerance" in p for p in problems)
+
+
+def test_rotate_match_rejects_an_unknown_config_key(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """A typo'd or invented key is silently ignored at runtime, so the puzzle
+    plays with defaults nobody authored."""
+    good_level["markers"][0]["config"]["tollerance"] = 12
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("markers/0/config" in p for p in problems)
+
+
+def test_a_type_with_no_engine_must_not_carry_config(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """Six of the seven types have no engine yet, so no config shape is known.
+    Pinning a guess would be worse than requiring emptiness: an authored config
+    that no engine reads looks like a working setting and is not one."""
+    good_level["markers"][2]["config"] = {"targets": 3, "tolerance": 5}
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("markers/2/config" in p for p in problems)
+
+
+def test_a_level_with_no_required_markers_is_rejected(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """The threshold is a fraction of the REQUIRED markers. With none required
+    the denominator vanishes and a guided level would unlock at zero puzzles."""
+    for marker in good_level["markers"]:
+        marker["required"] = False
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("no required markers" in p for p in problems)
+
+
+def test_optional_markers_alone_never_meet_a_guided_threshold(
+    validate_levels, good_level
+):
+    """The arithmetic hole: if solved counts every marker while the denominator
+    counts only the required ones, a child unlocks a guided level by doing the
+    optional puzzles and never touching the causal spine. The threshold is
+    computed over `solved` intersected with `required`."""
+    good_level["markers"][0]["required"] = True
+    good_level["markers"][1]["required"] = False
+    good_level["markers"][2]["required"] = False
+
+    optional_only = {"earth-seasons-globe", "earth-twilight-zornitsa"}
+    assert validate_levels.meets_threshold(good_level, optional_only) is False
+    assert validate_levels.meets_threshold(good_level, {"earth-sundial"}) is True
+
+
+def test_markers_are_required_by_default(validate_levels, good_level):
+    """Omitting the flag must mean required — an author who says nothing gets
+    the safe reading, not a level that unlocks itself."""
+    for marker in good_level["markers"]:
+        marker.pop("required", None)
+    assert validate_levels.required_marker_ids(good_level) == [
+        "earth-sundial",
+        "earth-seasons-globe",
+        "earth-twilight-zornitsa",
+    ]
+
+
+def test_unresolvable_data_ref_pointer_is_rejected(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """Checking only the filename hides a broken pointer: the file exists, the
+    fragment resolves to nothing, and the puzzle opens empty."""
+    good_level["markers"][2]["dataRef"] = "orbital-positions.json#/venus"
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("does not resolve" in p for p in problems)
+
+
+def test_dangling_reward_unlock_is_rejected(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """An unlock naming nothing is a world reaction that never fires — the
+    child solves the puzzle and the promised door stays shut."""
+    good_level["markers"][0]["reward"] = {"unlocks": ["earth-gate-telescope"]}
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("unlocks" in p and "earth-gate-telescope" in p for p in problems)
+
+
+def test_reward_unlock_may_name_another_marker_or_a_level(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """Two kinds of thing exist and can be unlocked: a marker in this level, and
+    a level that has data committed. 'earth' is the only level with data so far,
+    so it stands in for the level-id branch here."""
+    good_level["markers"][0]["reward"] = {
+        "unlocks": ["earth-twilight-zornitsa", "earth"]
+    }
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert problems == []
+
+
+def test_a_marker_may_not_unlock_itself(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """Self-unlocking is always an authoring slip, never a design."""
+    good_level["markers"][0]["reward"] = {"unlocks": ["earth-sundial"]}
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("unlocks itself" in p for p in problems)
 
 
 def test_marker_outside_the_map_is_rejected(

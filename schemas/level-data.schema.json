@@ -24,7 +24,7 @@
       "type": "number",
       "minimum": 0,
       "maximum": 1,
-      "description": "Fraction of this level's markers that must be solved to unlock the next page. 1.0 for guided levels, 0.7 for open ones — the brief's forgiving gate, kept as data so both kinds share one code path."
+      "description": "Fraction of this level's REQUIRED markers that must be solved to unlock the next page — solved intersected with required, so optional markers can never carry a level on their own. 1.0 for guided levels, 0.7 for open ones — the brief's forgiving gate, kept as data so both kinds share one code path."
     },
     "map": {
       "type": "object",
@@ -58,10 +58,87 @@
         "y": { "type": "number" }
       }
     },
+    "rotateMatchConfig": {
+      "type": "object",
+      "required": ["targets", "tolerance"],
+      "additionalProperties": false,
+      "description": "The one engine that exists. Four Earth beats reskin it — sundial, day/night spin, seasons tilt, moon phase — so its config is pinned here rather than left free-form.",
+      "properties": {
+        "targets": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "How many rounds the child plays before the marker is solved. Zero rounds would be solved before it is touched."
+        },
+        "tolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "How close counts as matched, in the renderer's own units. Must be positive — a zero tolerance demands an exact drag, which is the opposite of the brief's forgiving gate."
+        }
+      }
+    },
+    "noEngineConfig": {
+      "type": "object",
+      "maxProperties": 0,
+      "description": "No engine exists for this type yet, so no config shape is known. Absent or empty is the only honest value; guessing a shape now would pin a fiction. Whoever builds the engine replaces this ref with a real schema."
+    },
     "marker": {
       "type": "object",
       "required": ["id", "position", "puzzle", "label"],
       "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "required": ["puzzle"],
+            "properties": { "puzzle": { "const": "rotate-match" } }
+          },
+          "then": {
+            "required": ["config"],
+            "properties": { "config": { "$ref": "#/$defs/rotateMatchConfig" } }
+          }
+        },
+        {
+          "if": {
+            "required": ["puzzle"],
+            "properties": { "puzzle": { "const": "connect-the-dots" } }
+          },
+          "then": { "properties": { "config": { "$ref": "#/$defs/noEngineConfig" } } }
+        },
+        {
+          "if": {
+            "required": ["puzzle"],
+            "properties": { "puzzle": { "const": "parallax-compare" } }
+          },
+          "then": { "properties": { "config": { "$ref": "#/$defs/noEngineConfig" } } }
+        },
+        {
+          "if": {
+            "required": ["puzzle"],
+            "properties": { "puzzle": { "const": "zoom-split-star" } }
+          },
+          "then": { "properties": { "config": { "$ref": "#/$defs/noEngineConfig" } } }
+        },
+        {
+          "if": {
+            "required": ["puzzle"],
+            "properties": { "puzzle": { "const": "trajectory-match" } }
+          },
+          "then": { "properties": { "config": { "$ref": "#/$defs/noEngineConfig" } } }
+        },
+        {
+          "if": {
+            "required": ["puzzle"],
+            "properties": { "puzzle": { "const": "gravity-drop" } }
+          },
+          "then": { "properties": { "config": { "$ref": "#/$defs/noEngineConfig" } } }
+        },
+        {
+          "if": {
+            "required": ["puzzle"],
+            "properties": { "puzzle": { "const": "telescope-focus" } }
+          },
+          "then": { "properties": { "config": { "$ref": "#/$defs/noEngineConfig" } } }
+        }
+      ],
       "properties": {
         "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
         "position": { "$ref": "#/$defs/point" },
@@ -71,14 +148,21 @@
             "connect-the-dots",
             "parallax-compare",
             "zoom-split-star",
-            "trajectory-match"
+            "trajectory-match",
+            "gravity-drop",
+            "telescope-focus"
           ],
-          "description": "One of the five reusable puzzle types. Each is built once and reskinned per planet — a sixth value here means a one-off that needs its own maintenance forever."
+          "description": "One of the seven reusable puzzle types. Each is built once and reskinned per planet — an eighth value here means a one-off that needs its own maintenance forever, so it takes an ADR, never a drive-by edit."
         },
         "label": { "$ref": "#/$defs/contentKey" },
+        "required": {
+          "type": "boolean",
+          "default": true,
+          "description": "Does this marker count toward the unlock threshold? Defaults to true. Optional markers award progress but never block: the threshold is computed over solved-and-required markers only, so a level with no required marker at all is rejected by data/scripts/validate-levels.py."
+        },
         "config": {
           "type": "object",
-          "description": "Puzzle-type-specific settings. Validated per type by data/scripts/validate-levels.py."
+          "description": "Puzzle-type-specific settings, constrained per type by the allOf branches above. A type whose engine does not exist yet must carry no config — an authored setting no engine reads looks like it works and does not."
         },
         "dataRef": {
           "type": "string",
@@ -92,7 +176,7 @@
             "unlocks": {
               "type": "array",
               "items": { "type": "string" },
-              "description": "Ids of things in the world that react when this is solved — a path lighting up, a door opening."
+              "description": "Ids of things in the world that react when this is solved — a path lighting up, a door opening. Each must name something that exists: another marker id in this same level, or a level id that has data committed under src/scenes/. Enforced by data/scripts/validate-levels.py."
             },
             "fact": {
               "$ref": "#/$defs/contentKey",
