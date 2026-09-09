@@ -19,20 +19,46 @@ export interface GameProgress {
 
 const EMPTY: GameProgress = { version: 1, levels: {} };
 
+/**
+ * Stored progress is the only untrusted input this game has — a curious child
+ * with devtools can rewrite it. Cheating through a level that way is harmless
+ * in an offline single-player game; crashing to a blank page is not, and a
+ * `version` check followed by a cast is not enough to prevent it. Anything
+ * malformed is dropped, level by level, so one bad entry does not cost the
+ * player the rest of their progress.
+ */
+function isLevelProgress(value: unknown): value is LevelProgress {
+  if (typeof value !== 'object' || value === null) return false;
+  const level = value as { solved?: unknown; completed?: unknown };
+  return (
+    Array.isArray(level.solved) &&
+    level.solved.every((id) => typeof id === 'string') &&
+    typeof level.completed === 'boolean'
+  );
+}
+
 export function loadProgress(): GameProgress {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw === null) return EMPTY;
     const parsed: unknown = JSON.parse(raw);
     if (
-      typeof parsed === 'object' &&
-      parsed !== null &&
-      'version' in parsed &&
-      parsed.version === 1
+      typeof parsed !== 'object' ||
+      parsed === null ||
+      !('version' in parsed) ||
+      parsed.version !== 1
     ) {
-      return parsed as GameProgress;
+      return EMPTY;
     }
-    return EMPTY;
+
+    const stored = (parsed as { levels?: unknown }).levels;
+    if (typeof stored !== 'object' || stored === null) return EMPTY;
+
+    const levels: Record<string, LevelProgress> = {};
+    for (const [levelId, level] of Object.entries(stored)) {
+      if (isLevelProgress(level)) levels[levelId] = level;
+    }
+    return { version: 1, levels };
   } catch {
     return EMPTY;
   }

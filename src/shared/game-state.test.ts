@@ -131,3 +131,55 @@ describe('storage', () => {
     expect(loadProgress()).toEqual({ version: 1, levels: {} });
   });
 });
+
+function store(value: unknown): void {
+  localStorage.setItem('narrative-adventure:progress:v1', JSON.stringify(value));
+}
+
+describe('hand-edited storage', () => {
+  // The only untrusted input this game has: its own localStorage, which a
+  // curious child with devtools can rewrite. Cheating themselves through a
+  // level is harmless in an offline single-player game. Crashing the game to a
+  // blank page is not — and `version: 1` plus a cast is all that stood between
+  // a mistyped value and `undefined.length`.
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it('drops a level whose solved list is not an array', () => {
+    store({ version: 1, levels: { earth: { solved: 5, completed: false } } });
+    expect(loadProgress()).toEqual({ version: 1, levels: {} });
+  });
+
+  it('drops a level whose solved array holds things that are not marker ids', () => {
+    store({ version: 1, levels: { earth: { solved: ['earth-sundial', 7], completed: false } } });
+    expect(loadProgress()).toEqual({ version: 1, levels: {} });
+  });
+
+  it('drops a level with no completed flag but keeps the levels beside it', () => {
+    store({
+      version: 1,
+      levels: {
+        earth: { solved: ['earth-sundial'], completed: true },
+        moon: { solved: [] },
+      },
+    });
+    expect(loadProgress()).toEqual({
+      version: 1,
+      levels: { earth: { solved: ['earth-sundial'], completed: true } },
+    });
+  });
+
+  it('survives `levels` being something other than an object', () => {
+    store({ version: 1, levels: 'nope' });
+    expect(loadProgress()).toEqual({ version: 1, levels: {} });
+  });
+
+  it('leaves the readers unable to throw on anything it lets through', () => {
+    store({ version: 1, levels: { earth: { solved: 3, completed: false } } });
+    const progress = loadProgress();
+    expect(() => solvedCount(progress, 'earth')).not.toThrow();
+    expect(() => meetsThreshold(progress, 'earth', EARTH_MARKERS, 1)).not.toThrow();
+    expect(meetsThreshold(progress, 'earth', EARTH_MARKERS, 1)).toBe(false);
+  });
+});
