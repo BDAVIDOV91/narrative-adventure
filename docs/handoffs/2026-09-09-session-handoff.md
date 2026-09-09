@@ -16,11 +16,16 @@ TypeScript, a little Three.js, Python build-time only. Branch `development`.
 
 ## State at handoff
 
-**Eight commits on `development`, working tree clean, nothing pushed** — the owner
-pushes. `86 pytest tests green`, `validate-levels.py` exit 0, `npm run validate`
-clean, both hook suites pass.
+**Thirteen commits on `development`, working tree clean, nothing pushed** — the
+owner pushes. `86 pytest` and `21 vitest` green, `validate-levels.py` exit 0,
+`npm run validate` clean, `npm run build` clean, both hook suites pass.
 
 ```
+c75a71d docs(handoff): the brief records that phase 2 has started
+0ab339d fix(progress): malformed stored progress is dropped, not cast and trusted
+8a592c9 fix(progress): the unlock gate counts solved required markers, not solved markers
+7bfef27 test(vitest): the TypeScript suite exists, so rule 5 reaches .ts files
+4282b16 docs(handoff): the brief records what landed and what a fresh session must not lose
 29b2167 docs(adr): the enum expansion and the limits of a reskin are recorded
 208a872 feat(level): Earth carries ten markers and a guided spine
 269fa32 feat(content): six sourced claims, and the Bulgarian that carries them
@@ -340,12 +345,43 @@ This table is the project-level view.
 the new Bulgarian reads naturally for an 11–12 year old — that is
 `puzzle-pedagogy-reviewer`'s job and it has not run (task 32).
 
+## Resume here — the exact next step
+
+**Stopped deliberately at `c75a71d`, mid-phase-2, tree clean.** Nothing is
+half-written; every open item below is unstarted, not partly done. There is no
+uncommitted work to recover and no branch to clean up.
+
+**Next action: task #3 — the shared puzzle overlay, companion box and progress
+write.** Nothing blocks it. It is the slice where `saveProgress` finally gets a
+call site, and where `book-zoom-transition.ts` gets its first one.
+
+What phase 2 still owes, in the order it should be built:
+
+| #   | Not done                                          | Why it is next, and what it needs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| --- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3   | Puzzle overlay, companion box, progress write     | Open/close over a dimmed walking view, host a puzzle, emit solved. Consumes the already-unused keys `ui.puzzle.close` and `ui.puzzle.solved`. Companion is three tiers with the tier count read from **level data**, not branched in code. Needs `content/bg/companion.json` **and** the matching import in `src/shared/content.ts` — the vitest tripwire in `src/shared/content.test.ts` fails the commit if the second half is forgotten. Also needs `ui.puzzle.coming-soon`, since seven markers are stubs and a Cyrillic literal in a `.ts` file breaks rule 3. |
+| 4   | Widen `planet-render.ts`, prove disposal          | Add `{ autoRotate, rotationY, lightDirection, ambientIntensity }` and `setRotation` / `setLightDirection`. Reuse one module-level canvas and renderer, add `forceContextLoss()`. Prove it with a vitest test, `three` stubbed: open×N / close×N yields N disposals and ≤1 live renderer. Error path — `TextureLoader.loadAsync` rejects — closes cleanly, marker stays unsolved, no context left open. **Check `free -h` before any 3D run.**                                                                                                                       |
+| 5   | NASA Earth texture through `process-textures.py`  | `assets/images/nasa/` is empty, so beat 2 has nothing to render. Real photography only, ≤2048px WebP, with its `docs/sources.md` entry. Blocks task #6's second engine.                                                                                                                                                                                                                                                                                                                                                                                             |
+| 6   | The three `rotate-match` engines, end to end      | Sundial, day/night, seasons tilt — one type, three renderers. Each is **played** before the next starts: walk to marker, solve, world reacts, reload persists.                                                                                                                                                                                                                                                                                                                                                                                                      |
+| 7   | Beat 4's `dataRef`                                | `earth-orbit-year` points at `#/bodies/earth`; `seasons` sits at the payload root. Decide the pointer, then let the validator prove it resolves.                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| 8   | `puzzle-pedagogy-reviewer` over the new Bulgarian | Twelve fact strings and ten marker labels have not been read by the pedagogy gate yet.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+
+Also still open from the phase-0/1 audit: **leftovers 4, 5, 7, 8 and 10 above**
+(4 and 5 are closed by task #3; 7 and 8 by tasks #4 and #5; 10 by task #7).
+
+**The one constraint that makes the rest of phase 2 testable**, and the price
+vitest was bought at: **solve and tolerance arithmetic lives in pure modules
+importable without a Phaser `Scene`.** Phaser needs a real canvas and a WebGL
+context. An engine written inside a Scene cannot be unit tested at all, and rule
+5 quietly stops applying to the entire puzzle layer.
+
 ## If you are resuming after a compaction
 
 Read this file, then run the `session-recovery` skill rather than trusting any
-summary: reconcile against `git log`, `venv/bin/python -m pytest` and the actual
-files. Expect **86 tests green at `29b2167`** with a clean tree. If that does not
-reproduce, something drifted and the disagreement is the first thing to report.
+summary: reconcile against `git log`, `venv/bin/python -m pytest`, `npm test` and
+the actual files. Expect **86 pytest and 21 vitest green at `c75a71d`** with a
+clean tree. If that does not reproduce, something drifted and the disagreement is
+the first thing to report.
 
 The single most important thing not to lose: **`drives` has no `rotation` value,
 and Saturn is absent from the drop comparison, on purpose.** Both look like
