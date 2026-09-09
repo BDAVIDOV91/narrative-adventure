@@ -48,6 +48,7 @@ database, no accounts. See `docs/adr/0001-python-is-build-time-only.md`.
 
 ```bash
 npm run validate                                  # type-check + lint + format
+npm test                                          # vitest — the TypeScript suite
 npm run build                                     # production build
 venv/bin/python -m pytest                        # regression suite
 venv/bin/python data/scripts/validate-levels.py  # every level against the schema
@@ -61,6 +62,7 @@ src/
   puzzles/         the seven reusable puzzle types
   shared/          content (i18n), game-state, fonts, player, zoom transition,
                    planet-render (the only Three.js)
+  **/*.test.ts     vitest, co-located with what it tests
 content/bg/        every player-facing string — Bulgarian, keyed
 data/
   scripts/         Python, build-time only
@@ -69,7 +71,7 @@ schemas/           level-data.schema.json
 assets/            images (NASA + generated), audio, fonts
 prompts/           the exact prompts used for generated art
 docs/              ADRs, architecture, sources.md, dated session handoffs, security audits
-tests/             pytest regression suite
+tests/             pytest regression suite (Python only — TypeScript tests live in src/)
 ```
 
 ## Tech

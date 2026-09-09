@@ -57,10 +57,10 @@ if [ "$RUN_TS" = "1" ]; then
   echo "→ typescript: tsc + lint-staged + vitest"
   npx tsc --noEmit
   npx lint-staged
-  # --passWithNoTests because src/ has no vitest files yet. The runner is wired
-  # in now so that the first TypeScript bug has somewhere to put its RED test
-  # (CLAUDE.md rule 5); drop the flag once real tests exist.
-  npx vitest run --passWithNoTests
+  # Real tests exist as of src/shared/*.test.ts, so --passWithNoTests is gone:
+  # a vitest config that stops discovering files must now fail the commit
+  # rather than pass silently (CLAUDE.md rule 5).
+  npx vitest run
 fi
 
 exit 0
