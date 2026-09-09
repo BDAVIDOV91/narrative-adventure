@@ -1,5 +1,16 @@
 # Session handoff — 2026-09-08
 
+> 🟢 **SUPERSEDED — 2026-09-09.** Read
+> `docs/handoffs/2026-09-09-session-handoff.md` instead; it is the brief, this is
+> the archive. Grilling rounds 2–4 are **done**, so the "Round 2 frontier" section
+> below is spent. The Бонов research this file asks to restart **has been run and
+> closed** — its findings are in `docs/sources.md` and
+> `.claude/agent-memory/astronomy-accuracy-checker/`.
+>
+> Still true and still worth reading here: the pivot (§"The pivot that matters"),
+> grilling round 1 (§SETTLED), the star catalogue section, and the skills research
+> results. Kept in full so the movement is visible.
+
 Astronomy education game for Bulgarian children (~11–12). Browser, Phaser 3 +
 TypeScript, a little Three.js, Python build-time only. Repo:
 `/home/technojihad/narrative-adventure`, branch `development`.
