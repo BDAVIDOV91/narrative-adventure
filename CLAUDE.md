@@ -23,6 +23,7 @@ npm run build          # tsc --noEmit + production build
 npm run validate       # type-check + lint + format:check — the gate
 npm run lint           # eslint, --max-warnings 0
 npm run format         # prettier --write
+npm test               # vitest run — the TypeScript regression suite (rule 5)
 
 # Python (build-time only — see the boundary rule below)
 uv venv venv && uv pip install -r requirements.txt     # first-time setup

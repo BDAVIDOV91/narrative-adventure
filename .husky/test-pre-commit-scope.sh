@@ -83,6 +83,33 @@ else
   FAILURES=$((FAILURES + 1))
 fi
 
+# What the hook actually runs, not just which branch it picks. The scoping
+# assertions above prove ts=1, but a branch that type-checks and never runs a
+# test is a gate with a hole in it — and that hole is invisible from the plan
+# output.
+echo ""
+echo "what each branch runs:"
+
+if grep -q 'vitest' .husky/pre-commit; then
+  echo "  ok   the typescript branch runs vitest"
+else
+  echo "  FAIL the typescript branch never runs vitest"
+  echo "         src/ has no test runner in the commit gate, so CLAUDE.md rule 5"
+  echo "         (no fix ships without its own regression test) cannot be enforced"
+  FAILURES=$((FAILURES + 1))
+fi
+
+# A commit-time gate must not fetch a moving version. Everything else in this
+# repo is pinned exactly (save-exact=true, ADR-0004); the hook must match.
+UNPINNED="$(grep -n '@latest' .husky/pre-commit || true)"
+if [ -z "$UNPINNED" ]; then
+  echo "  ok   no unpinned @latest fetch in the hook"
+else
+  echo "  FAIL the hook fetches an unpinned version at commit time:"
+  printf '         %s\n' "$UNPINNED"
+  FAILURES=$((FAILURES + 1))
+fi
+
 echo ""
 if [ "$FAILURES" -eq 0 ]; then
   echo "pre-commit scoping: all checks passed"

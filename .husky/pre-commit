@@ -46,7 +46,7 @@ if [ "$RUN_PY" = "1" ]; then
   if [ -x venv/bin/python ]; then
     venv/bin/black --check data/scripts tests
     venv/bin/flake8 data/scripts tests
-    npx --yes pyright@latest
+    npx pyright
     venv/bin/python -m pytest -q
   else
     echo "  (skipped: venv not found)"
@@ -54,9 +54,13 @@ if [ "$RUN_PY" = "1" ]; then
 fi
 
 if [ "$RUN_TS" = "1" ]; then
-  echo "→ typescript: tsc + lint-staged"
+  echo "→ typescript: tsc + lint-staged + vitest"
   npx tsc --noEmit
   npx lint-staged
+  # --passWithNoTests because src/ has no vitest files yet. The runner is wired
+  # in now so that the first TypeScript bug has somewhere to put its RED test
+  # (CLAUDE.md rule 5); drop the flag once real tests exist.
+  npx vitest run --passWithNoTests
 fi
 
 exit 0
