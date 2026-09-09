@@ -2,6 +2,7 @@
 
 - **Status**: accepted
 - **Date**: 2026-09-08
+- **Amended**: 2026-09-09 — see "What does not translate" below
 
 ## Context
 
@@ -40,3 +41,30 @@ translation effort with no user.
   fixed-width text boxes.
 - Astronomy terms use standard Bulgarian forms, not literal translations. See
   [`sources.md`](../sources.md).
+
+## Amendment, 2026-09-09 — what does not translate
+
+The owner confirmed the intent behind the brief's "reskinnable later": once the
+game is finished, **add English and make it a worldwide education game.** That
+does not change v1 — Bulgarian-only still ships, with no switcher — but it settles
+that this ADR records **scope, not permanent architecture**. A future locale is a
+new directory under `content/`, not a refactor, which is what the indirection
+above was bought for.
+
+The part that does **not** survive translation is the folklore.
+
+Зорница/Вечерница, Квачката, Ралица, Колата and Лъжи керван carry the astronomy
+precisely because a Bulgarian child already half-knows them. Зорница works
+because the folk belief in two sister stars _is_ the misconception the orbit then
+resolves — that is why it passes [ADR 0005](0005-folklore-must-carry-astronomy.md)
+where Кумова слама failed. Rendered in English for a child who has never heard of
+Зорница, the beat carries no prior belief to overturn, and becomes a decorative
+anecdote — exactly what ADR 0005 exists to reject.
+
+So a worldwide version **rewrites those specific puzzles around its own culture's
+sky stories**; it does not translate ours. The astronomy underneath is universal
+and reskins cleanly. The folklore layer is the seam that has to be re-cut.
+
+This is also why folklore is a **bonus layer and never the driver**: the goal is
+Bulgarian children getting interested in astronomy and physics, and a design that
+leans on folklore is a design that has to be rebuilt for every new audience.

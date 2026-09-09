@@ -30,11 +30,38 @@ within tolerance — so they are one engine and four renderers.
 ### Config is validated per type
 
 `schemas/level-data.schema.json` carries an `if`/`then` branch per type
-constraining that type's `config`. `rotate-match` requires
-`{targets, tolerance}` with `additionalProperties: false`. **A type whose engine
-does not exist yet must carry no config at all** — that is deliberate, so nobody
-pins a guess about a shape only building can reveal. Whoever builds an engine
-replaces the placeholder with a real schema.
+constraining that type's `config`. **A type whose engine does not exist yet must
+carry no config at all** — that is deliberate, so nobody pins a guess about a
+shape only building can reveal. Whoever builds an engine replaces the placeholder
+with a real schema.
+
+`rotate-match` requires `{renderer, drives, targets, tolerance}` with
+`additionalProperties: false`:
+
+- **`renderer`** — `sundial`, `day-night`, `seasons-tilt`, `moon-phase`. Which of
+  the four reskins is drawn. The type is one engine; the renderer is what differs.
+- **`drives`** — `sunAngle`, `spin`, `tilt`, `orbitAngle`. **The quantity the
+  child's drag actually changes.**
+
+### Why `drives` has no `rotation` value
+
+The Moon is tidally locked. Rotating it produces no phase change, and "phases come
+from the Moon spinning" is a live childhood misconception this game must not
+teach.
+
+So the vocabulary has no term for it. Earth's turning is `spin`; there is no
+generic `rotation`. A marker cannot express "turn the Moon on its axis" because
+the words do not exist — rejected as a key by `additionalProperties: false`, and
+absent from the `drives` enum. A `moon-phase` renderer is additionally pinned by
+an `if`/`then` to `drives: "orbitAngle"`.
+
+Only `moon-phase` is pinned. The other three renderers stay free within the enum,
+because only that one carries a misconception if authored wrong, and pinning the
+unbuilt ones would be the guess this schema exists to prevent.
+
+**The general principle: where a misconception can be authored, remove the word
+for it rather than documenting a warning.** A comment is advice; an enum is a
+wall.
 
 ## The rule every puzzle obeys
 

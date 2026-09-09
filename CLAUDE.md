@@ -101,6 +101,7 @@ A **beat** is level content; a **type** is code maintained forever. Four of
 Earth's ten beats are one interaction — rotate a model until it matches a
 reference — so they are one engine with four renderers, not four types. Review
 trigger: **any type not reused on a second level by the Mars build gets deleted.**
+See `docs/adr/0006-seven-puzzle-types-not-thirteen.md`.
 
 ## Rules
 
