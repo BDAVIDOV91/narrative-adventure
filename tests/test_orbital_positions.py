@@ -12,6 +12,7 @@ which exists only after the generator has run:
 from __future__ import annotations
 
 import json
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pytest
@@ -24,6 +25,17 @@ GENERATED = (
     / "generated"
     / "orbital-positions.json"
 )
+
+# The four season instants inside the committed window, from docs/sources.md
+# ("A year is one orbit — and the season markers on it"), computed from de440s
+# in the ecliptic of date. These are the anchors the year-orbit beat renders as
+# season art; if the generator drifts off them the beat labels the wrong art.
+EXPECTED_SEASONS_UTC = {
+    "september-equinox": datetime(2026, 9, 23, 0, 5, tzinfo=timezone.utc),
+    "december-solstice": datetime(2026, 12, 21, 20, 50, tzinfo=timezone.utc),
+    "march-equinox": datetime(2027, 3, 20, 20, 24, tzinfo=timezone.utc),
+    "june-solstice": datetime(2027, 6, 21, 14, 11, tzinfo=timezone.utc),
+}
 
 # Real geocentric distance ranges in AU. Sourced from the bodies' orbital
 # geometry: min is opposition/perigee, max is conjunction/apogee.
@@ -162,3 +174,71 @@ def test_perihelion_falls_in_northern_winter(data):
     nearest_date, _ = min(pairs, key=lambda pair: pair[1])
     month = int(nearest_date.split("-")[1])
     assert month in (12, 1), f"perihelion fell in month {month}, expected Dec or Jan"
+
+
+def test_seasons_block_names_all_four_events(data):
+    """The year-orbit beat reads a NAMED event, never a longitude crossing.
+
+    Earth's heliocentric longitude is the Sun's geocentric longitude + 180, so
+    lambda = 0 is the SEPTEMBER equinox. Anyone deriving seasons from
+    helioLonDegrees mislabels every season by six months and still validates.
+    An explicit block removes the choice.
+    """
+    assert "seasons" in data, "payload carries no seasons block"
+    events = [entry["event"] for entry in data["seasons"]]
+    assert set(events) == set(
+        EXPECTED_SEASONS_UTC
+    ), f"seasons block names {events}, expected the four solstices and equinoxes"
+    assert len(events) == len(set(events)), f"duplicate season events: {events}"
+
+
+def test_each_season_event_lands_on_its_known_instant(data):
+    """Within a minute of the de440s instants recorded in docs/sources.md.
+
+    A wrong reference frame (J2000 ecliptic instead of ecliptic of date) is a
+    systematic -0.38 degrees, which lands the December solstice and the March
+    equinox on the wrong calendar day. A one-minute tolerance catches that.
+    """
+    assert "seasons" in data, "payload carries no seasons block"
+    found = {entry["event"]: entry["utc"] for entry in data["seasons"]}
+    for event, expected in EXPECTED_SEASONS_UTC.items():
+        assert event in found, f"{event} missing from the seasons block"
+        actual = datetime.fromisoformat(found[event].replace("Z", "+00:00"))
+        assert actual.tzinfo is not None, f"{event} instant carries no UTC marker"
+        drift = abs(actual - expected)
+        assert drift <= timedelta(minutes=1), (
+            f"{event} at {actual.isoformat()} is {drift} from the sourced "
+            f"{expected.isoformat()}"
+        )
+
+
+def test_season_events_are_in_chronological_order(data):
+    """The beat walks the orbit; the markers must come off it in orbit order."""
+    assert "seasons" in data, "payload carries no seasons block"
+    instants = [
+        datetime.fromisoformat(entry["utc"].replace("Z", "+00:00"))
+        for entry in data["seasons"]
+    ]
+    assert instants == sorted(instants), "seasons block is not in time order"
+
+
+def test_payload_declares_the_frame_of_its_ecliptic_longitudes(data):
+    """A consumer must not be able to silently assume ecliptic of date.
+
+    orbital-positions.py calls ecliptic_latlon() with no epoch, so
+    helioLonDegrees is J2000 ecliptic. That is a defensible choice, but only if
+    the file says so; undeclared it reads as ecliptic of date and is off by
+    about -0.38 degrees.
+    """
+    assert "frame" in data, "payload does not declare the frame of helioLonDegrees"
+    frame = data["frame"]
+    assert isinstance(frame, str) and frame, "frame must be a non-empty string"
+    assert "j2000" in frame.lower(), f"frame '{frame}' does not name an epoch"
+
+
+def test_readme_states_the_earth_sun_longitude_offset(data):
+    """The +180 trap is the one a future author will walk into unaided."""
+    assert "180" in data["_readme"], (
+        "_readme does not state that Earth's heliocentric longitude is the "
+        "Sun's geocentric longitude + 180 degrees"
+    )

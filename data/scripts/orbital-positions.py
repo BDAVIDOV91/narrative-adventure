@@ -32,6 +32,7 @@ import json
 from datetime import date, timedelta
 from pathlib import Path
 
+from skyfield import almanac
 from skyfield.api import load, load_file
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -54,6 +55,26 @@ BODIES: dict[str, str] = {
     "moon": "moon",
 }
 
+# The frame `helioLonDegrees` is expressed in. ecliptic_latlon() with no epoch=
+# returns the ecliptic and mean equinox of J2000, NOT the ecliptic of date --
+# a systematic -0.38 degrees in this window (measured: -0.3758 at the September
+# 2026 equinox, where the ecliptic of date gives exactly 360). That is fine for
+# drawing orbit
+# paths, and wrong for deciding which day an equinox falls on. Declared in the
+# payload so no consumer can silently assume otherwise; the season instants are
+# emitted separately instead of being derived from these longitudes.
+HELIO_LON_FRAME = "ecliptic-of-J2000"
+
+# Season events in Skyfield's almanac order. Deliberately hemisphere-neutral
+# names: "spring equinox" is autumn south of the equator, and this game will
+# eventually have players there.
+SEASON_EVENT_KEYS = (
+    "march-equinox",
+    "june-solstice",
+    "september-equinox",
+    "december-solstice",
+)
+
 
 def _load_ephemeris():
     """Load the DE kernel, downloading it once into data/ephemeris/."""
@@ -65,15 +86,57 @@ def _load_ephemeris():
     return loader(EPHEMERIS_NAME)
 
 
-def compute(start: date, days: int, step_days: int) -> dict[str, object]:
+def compute_seasons(
+    ephemeris, timescale, start: date, days: int
+) -> list[dict[str, str]]:
+    """The solstices and equinoxes inside the generated window, as instants.
+
+    Emitted explicitly rather than left to be derived from `helioLonDegrees`,
+    because that derivation has two silent traps and a level that falls into
+    either still validates:
+
+      1. Earth's heliocentric longitude is the SUN's geocentric longitude plus
+         180 degrees. Earth at lambda = 0 is the SEPTEMBER equinox, not the
+         March one. Reading "0 = spring" mislabels every season by six months.
+      2. Those longitudes are ecliptic-of-J2000 (see HELIO_LON_FRAME), so a
+         crossing lands about 0.4 day late -- enough, with daily sampling, to
+         move the December solstice and the March equinox onto the wrong
+         calendar day.
+
+    A named event has neither problem: the level asks for "june-solstice" and
+    gets the instant, with no geometry to get backwards.
+    """
+    # If Skyfield ever reorders its season indices, this mapping must not
+    # silently relabel every event. Fail the build instead.
+    expected = [
+        name.lower().replace(" ", "-") for name in almanac.SEASON_EVENTS_NEUTRAL
+    ]
+    if expected != list(SEASON_EVENT_KEYS):
+        raise SystemExit(
+            f"Skyfield season order changed: {expected} != {list(SEASON_EVENT_KEYS)}"
+        )
+
+    end = start + timedelta(days=days)
+    times, indices = almanac.find_discrete(
+        timescale.utc(start.year, start.month, start.day),
+        timescale.utc(end.year, end.month, end.day),
+        almanac.seasons(ephemeris),
+    )
+    return [
+        {"event": SEASON_EVENT_KEYS[int(index)], "utc": time.utc_iso()}
+        for time, index in zip(times, indices)
+    ]
+
+
+def compute(
+    start: date, days: int, step_days: int, ephemeris, timescale
+) -> dict[str, object]:
     """Geocentric apparent positions, sampled every `step_days`.
 
     Returns RA/Dec (where a body appears on the sky) plus distance in AU. RA/Dec
     is what a sky-watching puzzle needs; the heliocentric ecliptic longitude is
     what an orbit-path puzzle needs, so both are emitted.
     """
-    ephemeris = _load_ephemeris()
-    timescale = load.timescale()
     earth = ephemeris["earth"]
     sun = ephemeris["sun"]
 
@@ -129,7 +192,10 @@ def main() -> None:
     args = parser.parse_args()
 
     start = date.fromisoformat(args.start)
-    bodies = compute(start, args.days, args.step)
+    ephemeris = _load_ephemeris()
+    timescale = load.timescale()
+    bodies = compute(start, args.days, args.step, ephemeris, timescale)
+    seasons = compute_seasons(ephemeris, timescale, start, args.days)
 
     payload = {
         "_readme": (
@@ -137,13 +203,22 @@ def main() -> None:
             "Per body, sampled daily: heliocentric ecliptic longitude and distance "
             "from the Sun, plus geocentric apparent RA (hours), Dec (degrees) and "
             "distance (AU) for every body except Earth, where the observer is the "
-            "origin and those would all be zero. Regenerate rather than patch."
+            "origin and those would all be zero. Regenerate rather than patch. "
+            "helioLonDegrees is expressed in the frame named by `frame` -- it is "
+            "NOT the ecliptic of date. Do NOT derive seasons from it: Earth's "
+            "heliocentric longitude is the Sun's geocentric longitude + 180 "
+            "degrees, so Earth at 0 degrees is the SEPTEMBER equinox, 90 the "
+            "December solstice, 180 the March equinox and 270 the June solstice. "
+            "Read the `seasons` block instead, which names each event and gives "
+            "its UTC instant."
         ),
         "source": f"JPL {EPHEMERIS_NAME} via Skyfield",
         "generated": date.today().isoformat(),
         "start": start.isoformat(),
         "days": args.days,
         "stepDays": args.step,
+        "frame": HELIO_LON_FRAME,
+        "seasons": seasons,
         "bodies": bodies,
     }
 
