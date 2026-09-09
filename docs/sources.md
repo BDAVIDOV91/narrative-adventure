@@ -87,8 +87,19 @@ the astronomy are the same act. See
   opposition 2026-10-04 — both within the 1-day sampling grid.
 - Lunar perigee 2026-12-24 at 356,779 km and apogee 2027-01-07 at 406,564 km,
   both inside the true physical envelope.
-- **Not checked**: per-sample RA/Dec against an almanac, and whether the
-  committed file still matches what the script produces today.
+- **Staleness check — done 2026-09-09, and the file is current.** A 1-in-37
+  sample of Earth, Jupiter and Venus rows was recomputed from `de440s.bsp` with
+  today's `orbital-positions.py`: maximum deviation **4.6e-7°** in longitude,
+  **4.7e-9 AU** in distance, **4.8e-7** in RA/Dec — rounding only. This is a
+  staleness check against the same generator, not an independence check;
+  independence was done 2026-09-08 against In-The-Sky.org.
+- **Not checked**: per-sample RA/Dec against an almanac.
+- **Frame caveat — see "A year is one orbit" above.** `helioLonDegrees` is
+  **J2000-ecliptic**, and Earth's heliocentric longitude is the Sun's geocentric
+  longitude **+180°**. Both facts are silent traps: a naive reading mislabels
+  every season by six months and puts two of the four crossings on the wrong
+  calendar day. Read the generated `seasons` block, never an interpolated
+  longitude crossing.
 
 ### Jupiter's Galilean moons
 
@@ -98,6 +109,191 @@ the astronomy are the same act. See
   Galileo's discovery are uncontroversial; the numbers the puzzle depends on
   must come from a cited source (JPL) and be generated into
   `data/generated/`, never typed from memory.
+
+### Gravity — air, not weight, separates the feather from the rock
+
+- **Claim** (`fact.gravity-drop`): a rock lands before a feather on Earth
+  **because of the air**, not because it is heavier. Remove the air and they land
+  together.
+- **Status**: **VERIFIED** — Galilean equivalence, uncontroversial.
+- **The misconception this beat must not create.** Over a few metres a rock and a
+  ball land indistinguishably. A puzzle in which the **heavier** object visibly
+  wins teaches _heavy falls faster_ — the Aristotelian misconception, the same
+  failure class as seasons-by-distance. **The content is built on `въздухът`,
+  never on `тегло`.** Correct child-facing framing: „Перцето е леко и широко —
+  въздухът го носи. Камъкът си пробива път през въздуха. Без въздух няма кой да
+  ги раздели."
+- **Apollo 15 — the vacuum case, and it is filmed.** Commander **David Scott**,
+  **2 August 1971**, EVA-3, dropped a 1.32 kg aluminium geological hammer and a
+  0.03 kg falcon feather from about 1.6 m; they landed together.
+  - **Status**: **VERIFIED.** Apollo Lunar Surface Journal, _Apollo 15, EVA-3
+    Close-out_, GET 167:22:06 — Scott: „a gentleman named Galileo…"; at 167:22:46
+    „Which proves that Mr. Galileo was correct in his findings."
+    <https://apollojournals.org/alsj/a15/a15.clsout3.html>
+  - Masses and drop height from the Apollo 15 Preliminary Science Report, quoted
+    in NASA Science, _The Apollo 15 Hammer-Feather Drop_, 16 July 2018:
+    <https://science.nasa.gov/resource/the-apollo-15-hammer-feather-drop/>
+  - Date derived independently: launch 1971-07-26 13:34 UTC + GET 167:22:06 =
+    1971-08-02.
+  - **The ALSJ moved.** Every `nasa.gov/history/alsj/…` URL now redirects to a
+    landing page; cite `apollojournals.org`.
+- **Rule 2**: the masses and the drop height are for this file only. No number,
+  and no use of `земно ускорение`, reaches the player — say **притегляне**.
+
+### Surface gravity per body
+
+- **Claim** (`fact.gravity-drop.bodies`): the same drop is slow and floating on
+  the Moon, a little quicker on Mars, and far stronger on Jupiter.
+- **Status**: **VERIFIED** for Moon, Mars, Earth and Jupiter.
+- **Source**: NASA/NSSDCA planetary fact sheets. **The live URLs are dead** — as
+  of 2026-09-09 every `https://nssdc.gsfc.nasa.gov/planetary/factsheet/*` address
+  302-redirects to `https://www.nasa.gov/nssdc/`. **Cite the dated Wayback
+  snapshot**, e.g.
+  <https://web.archive.org/web/20250802093603/https://nssdc.gsfc.nasa.gov/planetary/factsheet/>,
+  and record the snapshot date per row.
+- **Values, m/s²**: Sun 274.0 · Mercury 3.70 · Venus 8.87 · Earth 9.82 mean ·
+  Moon 1.62 · Mars 3.73 mean · Jupiter 25.92 mean at 1 bar (23.12 equatorial) ·
+  Saturn 11.19 mean at 1 bar (8.96 equatorial).
+- **Saturn is NOT ATTESTED for this beat and must not appear in it.** The fact
+  sheet's two columns straddle Earth in opposite directions — 11.19 m/s² is
+  **1.14× Earth**, 8.96 m/s² is **0.92× Earth** — and the summary table publishes
+  the _acceleration_ figure while the body page leads with _gravity_. So „на
+  Сатурн би паднало по-бавно" is an artefact of a column choice, not a fact.
+  Saturn also has no surface to fall to. **Use Moon, Mars and Jupiter only.**
+- **Do not build a "which pulls harder" comparison from Mercury and Mars** — both
+  round to 3.7 at summary precision (3.70 vs 3.73). The difference is invisible,
+  the same trap as the Alioth/Dubhe 0.05-mag margin recorded below.
+- **Storage**: `data/reference/surface-gravity.json` — hand-authored, deliberately
+  **outside `data/generated/`**, which is reserved for generator output
+  (`docs/architecture/data-flow.md`). Each row carries `value`, `unit: "m/s2"`,
+  `factSheetLabel`, archived `sourceUrl` and `accessed`.
+
+### A year is one orbit — and the season markers on it
+
+- **Claim** (`fact.year-orbit`): one year is one trip around the Sun; four
+  particular places on that trip are the solstices and the equinoxes.
+- **Status**: **VERIFIED.** USNO, _The Seasons and the Earth's Orbit_:
+  <https://aa.usno.navy.mil/faq/seasons_orbit> — „The length of the year from
+  equinox to equinox … is called the tropical year, and its length is the basis
+  for our Gregorian (civil) calendar."
+- **Which year the game implies**: the **tropical** year (365.242 d), not the
+  sidereal (365.256 d). This happens automatically if the orbit closes on the
+  season art rather than on a star. Bulgarian is **тропическа година**, not
+  "тропична" — metadata only, never player text.
+- **DISPUTED — the naive derivation from `helioLonDegrees` produces wrong
+  seasons.** Two independent traps, both silent:
+  1. **The mapping is inverted by 180°.** Earth's heliocentric longitude is the
+     Sun's geocentric longitude **+ 180°**, so Earth λ = 0 is the **September**
+     equinox, 90 the **December** solstice, 180 the **March** equinox, 270 the
+     **June** solstice. Verified against the committed file: the λ=0 crossing
+     falls 2026-09-23/24. Coding "0 = пролетно равноденствие" mislabels every
+     season by six months **and still validates**.
+  2. **Wrong frame.** `data/scripts/orbital-positions.py:92` calls
+     `ecliptic_latlon()` with no `epoch=`, so values are **J2000-ecliptic**, not
+     ecliptic-of-date — a systematic **−0.3758°** measured at the September 2026
+     equinox, putting each crossing ~0.39 day late. Combined with ±1 day sampling
+     this gives the **wrong calendar day for the December solstice and the March
+     equinox**. Confirmed by direct computation: at the emitted equinox instant
+     `ecliptic_latlon()` returns Earth **359.6242°** while `epoch=t` returns
+     exactly **360.0°**, and the Sun's geocentric longitude of date is
+     **180.0057°** — both the frame offset and the +180° inversion, measured
+     rather than argued.
+- **Resolution**: the generator emits an explicit `seasons` block from Skyfield's
+  `almanac.seasons`, and the payload declares its frame. The level reads a **named
+  event**, never an interpolated longitude crossing.
+- **True instants** (de440s, ecliptic of date): September equinox 2026-09-23
+  00:05 UTC · December solstice 2026-12-21 20:50 UTC · March equinox 2027-03-20
+  20:24 UTC · June solstice 2027-06-21 14:11 UTC.
+- **Rule 2**: no date ever renders. Season art only.
+
+### Day length varies with the season — because of the tilt
+
+- **Claim** (`fact.day-length`): summer days are long and winter days short, for
+  the **same** reason there are seasons at all — the tilt of Earth's axis.
+- **Status**: **VERIFIED.** USNO Astronomical Applications, sun rise/set service:
+  <https://aa.usno.navy.mil/data/Dur_OneYear> (machine endpoint
+  `https://aa.usno.navy.mil/api/rstt/oneday`). Retrieved 2026-09-09 for Sofia,
+  42.6977 °N / 23.3219 °E.
+- **Causal link, same source**: „The solstices mark the two dates … on which the
+  Earth's position in its orbit is such that its axis of rotation is most tilted
+  toward or away from the Sun. These are the dates when the days are longest for
+  the hemisphere tilted toward the Sun." One citation covers tilt → seasons **and**
+  tilt → day length, which is the spine this beat closes.
+- **Sofia, local time**: December solstice 2026-12-21, 07:54–16:56, **9 h 02 m**.
+  March equinox 2027-03-20, 06:31–18:38, **12 h 07 m**. June solstice 2027-06-21,
+  05:49–21:08, **15 h 19 m**. September equinox 2026-09-23, 07:15–19:23,
+  **12 h 08 m**. Summer is about **1.7×** winter.
+- **The equinox day is slightly longer than 12 hours** (12 h 07 m), because of
+  refraction and the Sun's disc. **Do not draw the equinox arcs as exactly half.**
+- **This beat must actively contradict the distance misconception** (`fact.day-length.distance`),
+  the same duty as the seasons beat.
+- **Rule 2**: the bars are **continuous unlabelled arcs** — no ticks, no segment
+  count, no hours. A segmented clock face is an hour count in disguise.
+
+### Through a small telescope — what a child will actually see
+
+- **Claim** (`fact.telescope-saturn`, `fact.telescope-jupiter`): Saturn's rings
+  and Jupiter's cloud belts are visible in a small telescope.
+- **Status**: **VERIFIED**, and the honest version is better than the
+  overstatement.
+- **Saturn**: Sky & Telescope, Alan MacRobert, _Viewing Saturn: The Planet, Rings
+  and Moons_ — „The rings of Saturn should be visible in even the smallest
+  telescope at 25×. A good 3-inch scope at 50× can show them as a separate
+  structure detached on all sides from the ball of the planet." So: **ears at the
+  smallest aperture, a true detached ring at about 75 mm.**
+- **Jupiter**: Sky & Telescope, Bob King, _Jupiter Is Outstanding at Opposition_ —
+  „a sharp, gleaming disk striped with two dark belts … through my **2.4-inch
+  refractor**." **60 mm shows the two equatorial belts.** No overstatement needed.
+- **Composition**: NASA Science, _Saturn Facts_ — the rings are „billions of small
+  chunks of ice and rock … ranging from tiny, dust-sized icy grains to chunks as
+  big as a house" <https://science.nasa.gov/saturn/facts/>. _Jupiter Facts_ — the
+  stripes are „cold, windy clouds of ammonia and water"; dark **belts**, light
+  **zones**, flowing in opposite directions
+  <https://science.nasa.gov/jupiter/jupiter-facts/>.
+- **Ring tilt is favourable in this game's window.** Computed from the committed
+  `de440s.bsp` with the IAU Saturn pole: ring opening **−8.3° (2026-09)**,
+  **−14.1° (2027-09)**. Method validated against the known ring-plane crossing of
+  2025-03-23, where it returns **+0.04°**. Art may show an open ring. Had this
+  shipped in 2025 the honest picture would have been a line.
+- **Pedagogically the point of the beat**: the real view is small and shimmering,
+  not a Hubble poster (`fact.telescope-expectation`). Setting a child up for
+  disappointment at their first real telescope is a failure even where no fact is
+  wrong.
+- Bulgarian: **пръстени**, **облачни пояси** (teach the word; „ивици" is the right
+  register alongside it). Aperture is never mentioned to the player.
+
+### The brightest "star" in the evening sky is usually a planet
+
+- **Claim** (`fact.brightest-is-a-planet`): what looks like the brightest star is
+  often not a star. Venus is brightest of all; when Venus is absent, Jupiter — and
+  Jupiter outshines **Sirius**, the brightest true star.
+- **Status**: **VERIFIED.** Venus max **−4.8** and Jupiter max **−2.94** (mean at
+  opposition **−2.7**) from the NASA fact sheets — again via dated Wayback
+  snapshots, see above. Sirius **−1.44** read from this repo's own
+  `data/generated/stars.json` (HIP 32349).
+- **The ordering is unconditional**: Jupiter is brighter than Sirius at **every**
+  point of its cycle, not only near opposition — faintest **−1.70** against
+  Sirius's −1.44. **Saturn peaks at +0.43 and is always fainter than Sirius**; do
+  not include it. Mars reaches −2.94 only at a favourable opposition.
+- **"Usually Venus" is false for this game's committed window, and the truth is
+  better.** Computed for Sofia at the end of evening civil twilight across
+  2026-09-08 → 2027-09-07: **Venus is above 10° on zero evenings** — it is a
+  **morning** object from Nov 2026 to Feb 2027, which is to say it is literally
+  **Зорница**. Evenings: no bright planet Sept 2026 – late Jan 2027 (brightest
+  point is Arcturus, −0.05); **Jupiter dominates ≈145 evenings from early Feb to
+  mid-June 2027**, and **Jupiter and Sirius stand together February–April** — a
+  real side-by-side comparison from a Bulgarian back yard.
+- **Misconception risk**: „planets are brighter than stars" invites _planets are
+  intrinsically bright_. The wording must carry **reflected** and **near**
+  (`fact.brightest-why`). `fact.zornitsa` already ships „не свети сама, а я огрява
+  Слънцето" — extend it to Jupiter rather than restating it.
+- **This completes a set already half-built.** `fact.zornitsa`: Venus is not a
+  star. `fact.lazhi-kervan`: Sirius mistaken _for_ Venus. Jupiter is the third
+  bright wanderer, and it is the one that beats the brightest real star. Three
+  entries, one lesson.
+- `data/generated/orbital-positions.json#/bodies/jupiter` already carries real
+  `raHours`, `decDegrees` and `distanceAu`, so any design here uses real positions.
+- **Rule 2**: magnitudes are for this file. No number reaches the screen.
 
 ---
 

@@ -1,0 +1,83 @@
+{
+  "_readme": [
+    "Hand-authored reference table. Deliberately NOT in data/generated/, which is",
+    "reserved for generator output (docs/architecture/data-flow.md). Transcribed",
+    "from the USNO sun rise/set service and pinned by",
+    "tests/test_reference_data.py.",
+    "",
+    "It feeds the day-length beat (docs/design/earth-level-brief.md, beat 10),",
+    "which closes the causal chain rotation -> tilt -> day length. The bars are",
+    "CONTINUOUS UNLABELLED ARCS: no ticks, no segments, no hour count, no times.",
+    "A segmented clock face is an hour count in disguise and rule 2 bars it.",
+    "The four instants are also in data/generated/orbital-positions.json under",
+    "`seasons`; the two must name the same days, which a test asserts.",
+    "",
+    "The equinox day is SEVEN MINUTES LONGER than twelve hours, because of",
+    "atmospheric refraction and because sunrise is measured from the first edge",
+    "of the Sun's disc rather than its centre. Do not draw the equinox arcs as",
+    "exactly half."
+  ],
+  "location": {
+    "city": "Sofia",
+    "latitudeDegrees": 42.6977,
+    "longitudeDegrees": 23.3219,
+    "note": "The city name here is metadata, not player text. Every player-facing string lives in content/bg/ (rule 3)."
+  },
+  "sourceUrl": "https://aa.usno.navy.mil/data/Dur_OneYear",
+  "sourceApi": "https://aa.usno.navy.mil/api/rstt/oneday",
+  "sourceName": "U.S. Naval Observatory, Astronomical Applications Department, sun rise/set service",
+  "accessed": "2026-09-09",
+  "times": {
+    "kind": "local civil time",
+    "note": [
+      "Bulgarian civil time: EET (UTC+02) in winter, EEST (UTC+03) in summer.",
+      "The offset on each row is the one in force on that date, and it is",
+      "confirmed by the data itself -- the midpoint of each sunrise/sunset pair",
+      "lands on local solar noon for Sofia's longitude only under the offset",
+      "recorded here."
+    ]
+  },
+  "days": [
+    {
+      "event": "september-equinox",
+      "date": "2026-09-23",
+      "sunrise": "07:15",
+      "sunset": "19:23",
+      "durationMinutes": 728,
+      "utcOffsetHours": 3
+    },
+    {
+      "event": "december-solstice",
+      "date": "2026-12-21",
+      "sunrise": "07:54",
+      "sunset": "16:56",
+      "durationMinutes": 542,
+      "utcOffsetHours": 2
+    },
+    {
+      "event": "march-equinox",
+      "date": "2027-03-20",
+      "sunrise": "06:31",
+      "sunset": "18:38",
+      "durationMinutes": 727,
+      "utcOffsetHours": 2
+    },
+    {
+      "event": "june-solstice",
+      "date": "2027-06-21",
+      "sunrise": "05:49",
+      "sunset": "21:08",
+      "durationMinutes": 919,
+      "utcOffsetHours": 3
+    }
+  ],
+  "monthlyCurve": {
+    "status": "not authored",
+    "note": [
+      "docs/sources.md records only these four days for Sofia. A month-by-month",
+      "curve would have to be retrieved from the same USNO service and recorded",
+      "there first; typing one from memory is exactly what rule 1 forbids. The",
+      "beat compares the four season days, which is what it needs."
+    ]
+  }
+}

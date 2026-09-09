@@ -1,2 +1,3 @@
 - [Bulgarian folk constellation figures](bulgarian-folk-figures.md) — what Бонов and Вакарелски actually say, what is disputed, and which acquisitions would close it
 - [Sources already settled](settled-sources.md) — claims resolved in earlier audits; do not re-research these
+- [Earth beats 4/8/9/10 sources](earth-beats-4-8-9-10.md) — gravity, year, telescope, day length: values found, plus three traps that silently produce wrong content
