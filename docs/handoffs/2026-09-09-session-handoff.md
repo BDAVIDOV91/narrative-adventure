@@ -33,8 +33,9 @@ clean, both hook suites pass.
 
 **Phases 0 and 1 are done.** The schema, validator, all ten Earth markers, the
 Bulgarian labels, the twelve fact strings and their six `docs/sources.md` entries
-are committed. **Phase 2 has not started** — there is still no vitest config and
-no puzzle code. `src/puzzles/` is still five empty directories.
+are committed. **Phase 2 has begun**: vitest exists (`7bfef27`) and `game-state.ts`
+now matches the validator (`8a592c9`, `0ab339d`). No puzzle code yet —
+`src/puzzles/` is still five empty directories.
 
 **Three defects were caught before they shipped**, none findable by reading our
 own code:
@@ -219,17 +220,23 @@ carries the "reskinnable later" framing — not as a new ADR.
 
 4. **`saveProgress` has no call site anywhere.** Progress is never written.
 5. **`book-zoom-transition.ts` has no call site either.**
-6. **No vitest config and zero `*.test.ts`**, though `package.json:19` declares
-   `vitest run`. Rule 5 cannot be honoured on TypeScript until this exists.
+6. ~~**No vitest config and zero `*.test.ts`.**~~ **Fixed** in `7bfef27`.
+   `vitest.config.ts` runs `happy-dom` (chosen over jsdom for install weight on a
+   1.9 GB budget — recorded in ADR 0004) over `src/**/*.test.ts`, co-located with
+   what they test. `--passWithNoTests` is gone from `.husky/pre-commit`. 21 tests.
+   The accepted consequence is written into the config: **solve and tolerance
+   logic lives in pure modules importable without a Phaser `Scene`.**
 7. **`planet-render.ts` cannot do what three beats need.** Handle exposes only
    `dispose`; auto-spins unconditionally; light pinned at `(5,2,3)`; ambient
    hardcoded at `0.35`, which visibly lights a moon's night side.
 8. **`assets/images/nasa/` is empty** — there is no Earth texture to render.
-9. **`game-state.ts` does not match the validator.** `validate-levels.py` now
-   computes the threshold over `solved ∩ required`, but `solvedCount()` still
-   counts every solved marker and `meetsThreshold()` takes a bare total — so a
-   child can still unlock guided Earth by finishing only optional puzzles. **This
-   is the one real carry-over from phase 0.**
+9. ~~**`game-state.ts` does not match the validator.**~~ **Fixed** in `8a592c9`.
+   `meetsThreshold` now takes the marker list and computes `solved ∩ required`
+   over the required markers, mirroring `meets_threshold` in
+   `validate-levels.py`. The signature is the guard — a bare count can no longer
+   be handed to it. `solvedCount` stays, documented as display only. `0ab339d`
+   then hardened `loadProgress`, which cast anything carrying `version: 1` and
+   could be crashed to a blank page by hand-edited storage.
 10. **Beat 4 cannot reach the seasons block.** `earth-orbit-year` points at
     `#/bodies/earth`, but `seasons` sits at the payload root.
 
@@ -250,12 +257,13 @@ locked Moon" is unauthorable rather than merely discouraged.
 visible to the Python validator but invisible to `t()`. A Cyrillic literal in a
 `.ts` file would violate rule 3.
 
-**Phase 2** — shared infrastructure, carried by engine 1. **Vitest first**, before
-any other TypeScript, or the shared runtime ships untested. Decide jsdom vs
-happy-dom, and accept the consequence: **solve and tolerance logic lives in pure
-modules importable without a Phaser `Scene`**, or nothing is testable. Drop
-`--passWithNoTests` from `.husky/pre-commit`. Then the puzzle overlay, companion
-box, progress write, world reaction, and the widened `planet-render.ts`.
+**Phase 2** — shared infrastructure, carried by engine 1. **Vitest is done**
+(`7bfef27`, happy-dom, 21 tests), and so is the `game-state.ts` port (`8a592c9`,
+`0ab339d`). Remaining: the puzzle overlay, companion box, progress write, world
+reaction, and the widened `planet-render.ts`. Anything with solve or tolerance
+arithmetic in it goes in a pure module importable without a Phaser `Scene` —
+that is the price vitest was bought at, and skipping it makes the rest
+untestable.
 
 **Phase 3** — three engines, each finished end to end and **played** before the
 next starts: sundial, day/night, seasons tilt. All three are `rotate-match` with
@@ -348,7 +356,7 @@ omissions and are walls. Restoring either would ship a misconception.
 ```bash
 npm run dev            # http://localhost:5173
 npm run validate       # tsc + eslint + prettier
-npm test               # vitest — does not exist yet, phase 2 creates it
+npm test               # vitest run — 21 tests, happy-dom
 venv/bin/python -m pytest
 venv/bin/python data/scripts/validate-levels.py
 sh .husky/test-pre-commit-scope.sh
