@@ -42,6 +42,19 @@ def write(tmp_path: Path, data: dict) -> Path:
     return path
 
 
+def index_of(data: dict, marker_id: str) -> int:
+    """Where a marker sits in the array.
+
+    Tests that care about a *specific* beat look it up by id: the marker order
+    follows the walking route, so an authored reorder must not silently point a
+    test at a different puzzle than the one it was written for.
+    """
+    for position, marker in enumerate(data["markers"]):
+        if marker["id"] == marker_id:
+            return position
+    raise AssertionError(f"no marker '{marker_id}' in this level")
+
+
 def test_the_real_earth_level_passes(
     validate_levels, validator, content_keys, repo_root
 ):
@@ -68,13 +81,13 @@ def test_the_two_new_puzzle_types_are_accepted(
     """gravity-drop and telescope-focus joined the enum by deliberate decision.
     Neither has an engine yet, so neither carries config."""
     good_level["markers"][0] = {
-        "id": "earth-gravity-drop",
+        "id": "earth-second-gravity-drop",
         "position": {"x": 400, "y": 400},
         "puzzle": "gravity-drop",
         "label": "puzzle.earth.sundial.label",
     }
     good_level["markers"][1] = {
-        "id": "earth-telescope-focus",
+        "id": "earth-second-telescope-focus",
         "position": {"x": 500, "y": 400},
         "puzzle": "telescope-focus",
         "label": "puzzle.earth.seasons.label",
@@ -132,17 +145,79 @@ def test_rotate_match_rejects_an_unknown_config_key(
     assert any("markers/0/config" in p for p in problems)
 
 
+def test_rotate_match_requires_a_renderer(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """Four Earth beats are the same engine with four different renderers. With
+    no renderer named, the engine cannot know which of the four it is drawing."""
+    del good_level["markers"][0]["config"]["renderer"]
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("'renderer' is a required property" in p for p in problems)
+
+
+def test_rotate_match_rejects_an_unknown_renderer(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """The renderer list is closed for the same reason the puzzle-type list is:
+    a name nobody built is a marker that opens to nothing."""
+    good_level["markers"][0]["config"]["renderer"] = "flat-earth"
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("is not one of" in p for p in problems)
+
+
+def test_the_moon_phase_beat_must_drive_the_orbit_angle(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """The Moon is tidally locked: spinning it changes no phase at all, and
+    'phases come from the Moon turning' is a live childhood misconception.
+    The moon-phase renderer moves the Moon around the Earth, so its config is
+    pinned to the orbit angle and no other quantity may be authored for it."""
+    position = index_of(good_level, "earth-moon-phase")
+    good_level["markers"][position]["config"]["drives"] = "spin"
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("drives" in p and "orbitAngle" in p for p in problems)
+
+
+def test_rotate_match_can_never_carry_a_rotation(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """`rotation` is the key the original Earth draft wanted for the moon-phase
+    beat. It must be unauthorable — not ignored at runtime, rejected here — and
+    the same level without it must validate, so the rejection is provably about
+    the rotation and not about some other breakage."""
+    position = index_of(good_level, "earth-moon-phase")
+    assert (
+        validate_levels.check_level(
+            write(tmp_path, good_level), validator, content_keys
+        )
+        == []
+    )
+
+    good_level["markers"][position]["config"]["rotation"] = 45
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("rotation" in p for p in problems)
+
+
 def test_a_type_with_no_engine_must_not_carry_config(
     validate_levels, validator, content_keys, good_level, tmp_path
 ):
     """Six of the seven types have no engine yet, so no config shape is known.
     Pinning a guess would be worse than requiring emptiness: an authored config
     that no engine reads looks like a working setting and is not one."""
-    good_level["markers"][2]["config"] = {"targets": 3, "tolerance": 5}
+    position = index_of(good_level, "earth-twilight-zornitsa")
+    good_level["markers"][position]["config"] = {"targets": 3, "tolerance": 5}
     problems = validate_levels.check_level(
         write(tmp_path, good_level), validator, content_keys
     )
-    assert any("markers/2/config" in p for p in problems)
+    assert any(f"markers/{position}/config" in p for p in problems)
 
 
 def test_a_level_with_no_required_markers_is_rejected(
@@ -165,24 +240,43 @@ def test_optional_markers_alone_never_meet_a_guided_threshold(
     counts only the required ones, a child unlocks a guided level by doing the
     optional puzzles and never touching the causal spine. The threshold is
     computed over `solved` intersected with `required`."""
-    good_level["markers"][0]["required"] = True
-    good_level["markers"][1]["required"] = False
-    good_level["markers"][2]["required"] = False
+    for marker in good_level["markers"]:
+        marker["required"] = marker["id"] == "earth-sundial"
 
     optional_only = {"earth-seasons-globe", "earth-twilight-zornitsa"}
     assert validate_levels.meets_threshold(good_level, optional_only) is False
     assert validate_levels.meets_threshold(good_level, {"earth-sundial"}) is True
 
 
+def test_the_guided_spine_is_what_gates_the_level(validate_levels, good_level):
+    """Earth ships four required beats — the causal chain rotation -> tilt ->
+    day length — and six that award progress without ever blocking. Solving
+    every optional beat must still leave the level locked."""
+    required = set(validate_levels.required_marker_ids(good_level))
+    assert required == {
+        "earth-sundial",
+        "earth-day-night-spin",
+        "earth-seasons-globe",
+        "earth-day-length",
+    }
+
+    every_optional = {m["id"] for m in good_level["markers"]} - required
+    assert validate_levels.meets_threshold(good_level, every_optional) is False
+    assert validate_levels.meets_threshold(good_level, required) is True
+
+
 def test_markers_are_required_by_default(validate_levels, good_level):
     """Omitting the flag must mean required — an author who says nothing gets
     the safe reading, not a level that unlocks itself."""
+    optional_ids = [
+        m["id"] for m in good_level["markers"] if m.get("required", True) is False
+    ]
+    assert optional_ids, "this level should have optional markers to strip"
+
     for marker in good_level["markers"]:
         marker.pop("required", None)
     assert validate_levels.required_marker_ids(good_level) == [
-        "earth-sundial",
-        "earth-seasons-globe",
-        "earth-twilight-zornitsa",
+        m["id"] for m in good_level["markers"]
     ]
 
 
@@ -191,7 +285,8 @@ def test_unresolvable_data_ref_pointer_is_rejected(
 ):
     """Checking only the filename hides a broken pointer: the file exists, the
     fragment resolves to nothing, and the puzzle opens empty."""
-    good_level["markers"][2]["dataRef"] = "orbital-positions.json#/venus"
+    position = index_of(good_level, "earth-twilight-zornitsa")
+    good_level["markers"][position]["dataRef"] = "orbital-positions.json#/venus"
     problems = validate_levels.check_level(
         write(tmp_path, good_level), validator, content_keys
     )
@@ -274,7 +369,8 @@ def test_missing_content_key_is_rejected(
     validate_levels, validator, content_keys, good_level, tmp_path
 ):
     """A key with no Bulgarian string behind it renders the raw key on screen."""
-    good_level["markers"][2]["reward"]["fact"] = "fact.does-not-exist"
+    position = index_of(good_level, "earth-twilight-zornitsa")
+    good_level["markers"][position]["reward"]["fact"] = "fact.does-not-exist"
     problems = validate_levels.check_level(
         write(tmp_path, good_level), validator, content_keys
     )
@@ -286,7 +382,8 @@ def test_missing_data_ref_file_is_rejected(
 ):
     """dataRef is the seam between the Python output and the game. Pointing it
     at a file no generator has written yet is a silent empty puzzle."""
-    good_level["markers"][2]["dataRef"] = "never-generated.json#/venus"
+    position = index_of(good_level, "earth-twilight-zornitsa")
+    good_level["markers"][position]["dataRef"] = "never-generated.json#/venus"
     problems = validate_levels.check_level(
         write(tmp_path, good_level), validator, content_keys
     )

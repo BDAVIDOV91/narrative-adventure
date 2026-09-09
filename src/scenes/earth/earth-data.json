@@ -15,46 +15,160 @@
     {
       "id": "earth-sundial",
       "position": {
-        "x": 520,
-        "y": 700
+        "x": 620,
+        "y": 880
       },
       "puzzle": "rotate-match",
       "label": "puzzle.earth.sundial.label",
+      "required": true,
       "config": {
-        "targets": 4,
+        "renderer": "sundial",
+        "drives": "sunAngle",
+        "targets": 3,
         "tolerance": 12
       },
       "reward": {
+        "unlocks": ["earth-day-night-spin"],
+        "fact": "fact.day-night"
+      }
+    },
+    {
+      "id": "earth-day-night-spin",
+      "position": {
+        "x": 380,
+        "y": 700
+      },
+      "puzzle": "rotate-match",
+      "label": "puzzle.earth.day-night.label",
+      "required": true,
+      "config": {
+        "renderer": "day-night",
+        "drives": "spin",
+        "targets": 3,
+        "tolerance": 15
+      },
+      "reward": {
+        "unlocks": ["earth-seasons-globe"],
         "fact": "fact.day-night"
       }
     },
     {
       "id": "earth-seasons-globe",
       "position": {
-        "x": 1080,
-        "y": 620
+        "x": 420,
+        "y": 400
       },
       "puzzle": "rotate-match",
       "label": "puzzle.earth.seasons.label",
+      "required": true,
       "config": {
+        "renderer": "seasons-tilt",
+        "drives": "tilt",
         "targets": 2,
         "tolerance": 8
       },
       "reward": {
+        "unlocks": ["earth-day-length"],
         "fact": "fact.seasons"
+      }
+    },
+    {
+      "id": "earth-day-length",
+      "position": {
+        "x": 740,
+        "y": 250
+      },
+      "puzzle": "parallax-compare",
+      "label": "puzzle.earth.day-length.label",
+      "required": true,
+      "reward": {
+        "fact": "fact.day-length"
+      }
+    },
+    {
+      "id": "earth-orbit-year",
+      "position": {
+        "x": 1020,
+        "y": 300
+      },
+      "puzzle": "trajectory-match",
+      "label": "puzzle.earth.orbit-year.label",
+      "required": false,
+      "dataRef": "orbital-positions.json#/bodies/earth",
+      "reward": {
+        "fact": "fact.year-orbit"
+      }
+    },
+    {
+      "id": "earth-moon-phase",
+      "position": {
+        "x": 1270,
+        "y": 440
+      },
+      "puzzle": "rotate-match",
+      "label": "puzzle.earth.moon-phase.label",
+      "required": false,
+      "config": {
+        "renderer": "moon-phase",
+        "drives": "orbitAngle",
+        "targets": 4,
+        "tolerance": 15
+      },
+      "reward": {
+        "fact": "fact.moon-phases"
       }
     },
     {
       "id": "earth-twilight-zornitsa",
       "position": {
-        "x": 820,
-        "y": 340
+        "x": 1360,
+        "y": 660
       },
-      "puzzle": "connect-the-dots",
+      "puzzle": "trajectory-match",
       "label": "puzzle.earth.twilight.label",
+      "required": false,
       "dataRef": "orbital-positions.json#/bodies/venus",
       "reward": {
         "fact": "fact.zornitsa"
+      }
+    },
+    {
+      "id": "earth-big-dipper",
+      "position": {
+        "x": 1200,
+        "y": 830
+      },
+      "puzzle": "connect-the-dots",
+      "label": "puzzle.earth.big-dipper.label",
+      "required": false,
+      "reward": {
+        "fact": "fact.ursa-major-shape"
+      }
+    },
+    {
+      "id": "earth-telescope-focus",
+      "position": {
+        "x": 1010,
+        "y": 990
+      },
+      "puzzle": "telescope-focus",
+      "label": "puzzle.earth.telescope-focus.label",
+      "required": false,
+      "reward": {
+        "fact": "fact.telescope-saturn"
+      }
+    },
+    {
+      "id": "earth-gravity-drop",
+      "position": {
+        "x": 820,
+        "y": 1070
+      },
+      "puzzle": "gravity-drop",
+      "label": "puzzle.earth.gravity-drop.label",
+      "required": false,
+      "reward": {
+        "fact": "fact.gravity-drop"
       }
     }
   ]

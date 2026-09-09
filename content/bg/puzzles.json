@@ -1,5 +1,12 @@
 {
   "puzzle.earth.sundial.label": "Слънчевият часовник",
+  "puzzle.earth.day-night.label": "Ден и нощ",
   "puzzle.earth.seasons.label": "Наклонената Земя",
-  "puzzle.earth.twilight.label": "Първата звезда на здрачаване"
+  "puzzle.earth.orbit-year.label": "Голямата обиколка",
+  "puzzle.earth.moon-phase.label": "Как се мени Луната",
+  "puzzle.earth.twilight.label": "Първата звезда на здрачаване",
+  "puzzle.earth.big-dipper.label": "Колата на небето",
+  "puzzle.earth.gravity-drop.label": "Перо и камък",
+  "puzzle.earth.telescope-focus.label": "Намести телескопа",
+  "puzzle.earth.day-length.label": "Дългият и късият ден"
 }

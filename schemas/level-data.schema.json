@@ -60,10 +60,19 @@
     },
     "rotateMatchConfig": {
       "type": "object",
-      "required": ["targets", "tolerance"],
+      "required": ["renderer", "drives", "targets", "tolerance"],
       "additionalProperties": false,
-      "description": "The one engine that exists. Four Earth beats reskin it — sundial, day/night spin, seasons tilt, moon phase — so its config is pinned here rather than left free-form.",
+      "description": "The one engine that exists. Four Earth beats reskin it — sundial, day/night spin, seasons tilt, moon phase — so its config is pinned here rather than left free-form. One engine, four renderers: `renderer` says which reskin is drawn and `drives` says which angle the child's drag actually changes. Both are closed vocabularies, and neither contains a bare 'rotation' — see the moon-phase branch below for why that matters.",
       "properties": {
+        "renderer": {
+          "enum": ["sundial", "day-night", "seasons-tilt", "moon-phase"],
+          "description": "Which of the four reskins to draw. Closed for the same reason the puzzle-type list is closed: a renderer nobody built is a marker that opens to nothing."
+        },
+        "drives": {
+          "enum": ["sunAngle", "spin", "tilt", "orbitAngle"],
+          "description": "The quantity the child's drag changes. sunAngle = the Sun's apparent angle across the sky, which Earth's rotation is the cause of. spin = a body turning on its own axis. tilt = the axial tilt that causes seasons. orbitAngle = a body's position along its orbit. There is deliberately no generic 'rotation' value: it is the word the original Earth draft used for the moon-phase beat, and the Moon is tidally locked, so turning it produces no phase change at all.",
+          "$comment": "camelCase values name a quantity in code; the renderer names are kebab-case because they name a reskin."
+        },
         "targets": {
           "type": "integer",
           "minimum": 1,
@@ -74,7 +83,19 @@
           "exclusiveMinimum": 0,
           "description": "How close counts as matched, in the renderer's own units. Must be positive — a zero tolerance demands an exact drag, which is the opposite of the brief's forgiving gate."
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": ["renderer"],
+            "properties": { "renderer": { "const": "moon-phase" } }
+          },
+          "then": {
+            "properties": { "drives": { "const": "orbitAngle" } },
+            "description": "Only the moon-phase renderer is pinned to a single quantity, because only this one carries a misconception if it is authored wrong. The Moon is tidally locked, so the lit fraction we see is Sun-Moon-observer geometry: the child moves the Moon around the Earth, and the phase follows. Authoring 'spin' here would teach that phases come from the Moon turning, which is the third live childhood misconception alongside seasons-by-distance and phases-by-Earth's-shadow. The other three renderers are left to the enum: their engines are not built yet and over-pinning a shape nobody has seen is the guess this schema exists to prevent."
+          }
+        }
+      ]
     },
     "noEngineConfig": {
       "type": "object",
