@@ -68,6 +68,25 @@ sys.exit(0 if len(deny) > 0 else 1)
   fi
 fi
 
+# --- the wayfinder frontier hook stays registered ---------------------------
+# It prints the takeable tickets of any open map at session start, which is how a
+# fresh session finds the next decision instead of re-deriving settled ones.
+# Deleting the registration fails silently, so it is asserted here.
+if [ -f "$SHARED" ]; then
+  if python3 -c "
+import json, sys
+with open('$SHARED') as fh:
+    cfg = json.load(fh)
+groups = cfg.get('hooks', {}).get('SessionStart', [])
+cmds = [h.get('command', '') for g in groups for h in g.get('hooks', [])]
+sys.exit(0 if any('wayfinder-frontier.sh' in c for c in cmds) else 1)
+"; then
+    pass "SessionStart runs wayfinder-frontier.sh"
+  else
+    fail "settings.json hooks.SessionStart does not register wayfinder-frontier.sh"
+  fi
+fi
+
 # --- the local override does not undo the hardening -------------------------
 # settings.local.json is gitignored and takes precedence at runtime, so it can
 # silently re-enable what the tracked file disables. Absence is fine.

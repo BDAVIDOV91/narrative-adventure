@@ -40,6 +40,9 @@ venv/bin/flake8 data/scripts tests                     # lint (max-line-length 1
 # Hook regression tests
 sh .husky/test-pre-commit-scope.sh
 sh .claude/hooks/test-block-dangerous-git.sh
+sh .claude/hooks/test-precommit-checks-reminder.sh
+sh .claude/hooks/test-settings-hardening.sh
+bash .claude/hooks/test-wayfinder-frontier.sh   # bash-only: under sh it exits 0 having run nothing
 ```
 
 ## Architecture
