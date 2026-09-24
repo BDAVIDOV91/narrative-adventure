@@ -8,3 +8,7 @@ package-lock.json
 # and line structure are semantic; leave them exactly as written.
 .claude/agents/
 .claude/skills/
+
+# Wayfinder maps are machine-parsed by the frontier hook and the viewer: prettier
+# would rewrite ticket frontmatter quoting and break the parse.
+docs/wayfinder/
