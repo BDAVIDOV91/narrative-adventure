@@ -16,7 +16,7 @@ font rule is CLAUDE.md rule 3 (Cyrillic coverage).
 - **Contrast at least 4.5:1** for normal text and 3:1 for large text. Never carry meaning by colour alone: a solved
   marker needs a shape or icon change as well as a colour change.
 - **Respect `prefers-reduced-motion`.** The book-zoom transition and any spinning model must have a reduced or instant
-  path. Nothing handles it yet (open item: see the current handoff). Do not build it as a drive-by; raise it as its own
+  path. Nothing handles it yet: phase-2 task #9 in `docs/handoffs/2026-09-09-session-handoff.md`. Do not build it as a drive-by; raise it as its own
   task.
 - **Bulgarian runs long** (rule 3): text containers wrap and grow, never fixed-width, and a label is checked at its
   longest real string.
