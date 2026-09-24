@@ -85,6 +85,12 @@ export default tseslint.config(
     },
   },
   {
+    /* Mentor standards-typescript: explicit return types on exports. Enforced
+       here instead of in a prose rule, so it cannot drift (2026-09-24). */
+    files: ['src/**/*.ts'],
+    rules: { '@typescript-eslint/explicit-module-boundary-types': 'error' },
+  },
+  {
     files: ['eslint.config.mjs'],
     rules: {
       'import-x/no-named-as-default': 'off',
