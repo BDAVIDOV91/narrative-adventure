@@ -97,4 +97,26 @@ export default tseslint.config(
     languageOptions: { globals: { ...globals.node } },
     rules: { 'import-x/no-nodejs-modules': 'off' },
   },
+  {
+    /* ops/ is local dev tooling run by Node, never bundled into the game (vite
+       builds from src/ only). It wraps third-party code imported at runtime, so
+       type-aware rules see only `any` and add noise, not safety. console output
+       is the CLI's interface here, not a leak to a child's browser. */
+    files: ['ops/**/*.mjs'],
+    ...tseslint.configs.disableTypeChecked,
+    languageOptions: {
+      globals: { ...globals.node },
+      parserOptions: { projectService: false, project: null },
+    },
+    rules: {
+      ...tseslint.configs.disableTypeChecked.rules,
+      'no-console': 'off',
+      'import-x/no-nodejs-modules': 'off',
+      // A module that is also a CLI: exports for the test, a guarded main().
+      'unicorn/no-exports-in-scripts': 'off',
+      // node:test shares server/port state between before() and the tests.
+      'unicorn/no-top-level-assignment-in-function': 'off',
+      'unicorn/no-await-expression-member': 'off',
+    },
+  },
 );

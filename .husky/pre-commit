@@ -19,6 +19,7 @@ has() { printf '%s\n' "$STAGED" | grep -qE "$1"; }
 RUN_TS=0
 RUN_PY=0
 RUN_LEVELS=0
+RUN_OPS=0
 
 has '\.(ts|tsx|mjs)$|^tsconfig.*\.json$|^eslint\.config\.mjs$|^package\.json$' && RUN_TS=1
 has '\.py$|^requirements\.txt$|^pytest\.ini$|^\.flake8$' && RUN_PY=1
@@ -27,8 +28,14 @@ has '\-data\.json$|^schemas/.*\.json$|^content/bg/.*\.json$' && RUN_LEVELS=1
 # Content changes affect the TypeScript build too (content keys are typed).
 has '^content/bg/.*\.json$' && RUN_TS=1
 
+# Dev tooling has its own node:test suite; vitest only discovers src/.
+has '^ops/' && RUN_OPS=1
+
 if [ "${PRECOMMIT_DRY_RUN:-0}" = "1" ]; then
   echo "plan: ts=$RUN_TS py=$RUN_PY levels=$RUN_LEVELS"
+  if [ "$RUN_OPS" = "1" ]; then
+    echo "plan: ops=1"
+  fi
   exit 0
 fi
 
@@ -61,6 +68,14 @@ if [ "$RUN_TS" = "1" ]; then
   # a vitest config that stops discovering files must now fail the commit
   # rather than pass silently (CLAUDE.md rule 5).
   npx vitest run
+fi
+
+if [ "$RUN_OPS" = "1" ]; then
+  echo "→ ops: node --test"
+  # Pass the file: `node --test <dir>` runs zero tests and exits 0. The viewer
+  # test never skips, so this needs ~/tools/wayfinder-viewer on this machine
+  # (see ops/wayfinder-viewer/README.md).
+  node --test ops/wayfinder-viewer/wayfinder-view.test.mjs
 fi
 
 exit 0

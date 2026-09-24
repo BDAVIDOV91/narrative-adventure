@@ -54,6 +54,15 @@ expect "a mixed commit runs everything" \
   "$(printf 'src/main.ts\ndata/scripts/orbital-positions.py\ncontent/bg/facts.json')" \
   "plan: ts=1 py=1 levels=1"
 
+# Dev tooling under ops/ has its own node:test suite, which vitest never
+# discovers (vitest only includes src/**/*.test.ts). It prints a second plan line
+# only when ops/ is staged, so every expectation above stays byte-identical.
+expect "the viewer runs ts and ops" \
+  "ops/wayfinder-viewer/wayfinder-view.mjs" \
+  "$(printf 'plan: ts=1 py=0 levels=0\nplan: ops=1')"
+expect "the viewer README runs ops only" \
+  "ops/wayfinder-viewer/README.md" \
+  "$(printf 'plan: ts=0 py=0 levels=0\nplan: ops=1')"
 
 # The hook degrades gracefully when the venv is missing ("skipped: venv not
 # found") so a stale interpreter path does NOT fail a commit — it silently stops
@@ -96,6 +105,15 @@ else
   echo "  FAIL the typescript branch never runs vitest"
   echo "         src/ has no test runner in the commit gate, so CLAUDE.md rule 5"
   echo "         (no fix ships without its own regression test) cannot be enforced"
+  FAILURES=$((FAILURES + 1))
+fi
+
+# `node --test <dir>` runs zero tests and exits 0, so the ops branch must name
+# the test file itself.
+if grep -q 'node --test ops/wayfinder-viewer/wayfinder-view.test.mjs' .husky/pre-commit; then
+  echo "  ok   the ops branch runs the viewer test file"
+else
+  echo "  FAIL the ops branch does not run ops/wayfinder-viewer/wayfinder-view.test.mjs"
   FAILURES=$((FAILURES + 1))
 fi
 
