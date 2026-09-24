@@ -52,7 +52,11 @@ npm test                                          # vitest — the TypeScript su
 npm run build                                     # production build
 venv/bin/python -m pytest                        # regression suite
 venv/bin/python data/scripts/validate-levels.py  # every level against the schema
+npm run test:ops                                  # the wayfinder viewer's node:test suite
 ```
+
+Planning big work: `npm run wayfinder` opens a read-only view of the decision maps in
+`docs/wayfinder/` (http://127.0.0.1:7777). Copy-paste triggers: `docs/wayfinder/QUICKSTART.md`.
 
 ## Structure
 
@@ -70,7 +74,10 @@ data/
 schemas/           level-data.schema.json
 assets/            images (NASA + generated), audio, fonts
 prompts/           the exact prompts used for generated art
-docs/              ADRs, architecture, sources.md, dated session handoffs, security audits
+docs/              ADRs, architecture, sources.md, dated session handoffs, security audits,
+                   wayfinder/ decision maps
+ops/               local dev tooling, never bundled (the read-only wayfinder viewer)
+.claude/rules/     adopted working rules, loaded by path
 tests/             pytest regression suite (Python only — TypeScript tests live in src/)
 ```
 

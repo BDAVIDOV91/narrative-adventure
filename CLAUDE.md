@@ -186,6 +186,11 @@ broke → commit, and the test stays in the suite forever.
 **No fix ships without its own regression test. If it shipped untested, it isn't
 done.** A test that passes both before and after the fix is not a regression test.
 
+**Tests passing ≠ the game working.** A scene or puzzle change is done only when it
+has been played via `npm run dev` (after `free -h`, for anything 3D). Before
+re-fixing anything, and on the third failed fix, follow
+`.claude/rules/development-practices.md`.
+
 ### 6. Scope boundary
 
 Solar system only for v1 — Sun, planets, major moons. Interstellar content is a
@@ -260,6 +265,26 @@ Every report grounds findings in the actual diff and cites `file:line`, or marks
 them PLAUSIBLE. **"No issues" is valid only after the checklist was actually
 walked — say what was checked**, so a clean pass is distinguishable from a
 skipped one.
+
+## Wayfinder — the map decides, plan mode builds
+
+Work too big for one session is charted as a **wayfinder map** of decision
+tickets under `docs/wayfinder/<slug>/`, one ticket resolved per session. Triggers
+and the viewer: `docs/wayfinder/QUICKSTART.md`. `/wayfinder` is owner-typed —
+suggest it, never start it.
+
+Size the work before choosing a mode:
+
+| Work                                                   | Mode                      |
+| ------------------------------------------------------ | ------------------------- |
+| Trivial: one file, obvious change                      | do it directly            |
+| Moderate: a few files, clear scope, ≤ 4 open decisions | plan mode (+ challengers) |
+| Can't fit one session, or ≥ 5 linked open decisions    | suggest a wayfinder map   |
+| A bug                                                  | rule 5, never a ticket    |
+
+A settled ticket is a decision: do not re-derive it in a later session. When a
+map is clear, the build goes through plan mode with two `challenger`s.
+Adopted-rules files live in `.claude/rules/` (loaded by path).
 
 ## Conventions
 
