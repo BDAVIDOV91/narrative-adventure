@@ -85,6 +85,27 @@ the astronomy are the same act. See
 - **Status**: VERIFIED, and derivable from the repo's own data —
   `helioLonDegrees` for Earth and Mars drive the walk-the-orbits puzzle, so the
   apparent reversal comes out of real geometry rather than being asserted.
+- **External sources — full pages read 2026-09-25 by `astronomy-accuracy-checker`.**
+  - NASA Mars Exploration, _Mars Retrograde_. **The live URL
+    <https://mars.nasa.gov/all-about-mars/night-sky/retrograde/> no longer carries
+    the page: it redirects to `science.nasa.gov/mars/facts/`, which has no
+    retrograde text.** Cite the Wayback snapshot
+    <https://web.archive.org/web/20221205212053/https://mars.nasa.gov/all-about-mars/night-sky/retrograde/>:
+    „Every two years or so, there are a couple of months when Mars' position from
+    night to night seems to change direction and move east to west." · „It's an
+    illusion, caused by the ways that Earth and Mars orbit the sun." · „Earth has
+    the inside lane and moves faster than Mars" · „About every 26 months, Earth
+    comes up from behind and overtakes Mars." · „Connect the dots, and you'll draw
+    either a loop or an open zigzag."
+  - APOD 2014-10-28, _Retrograde Mars_ <https://apod.nasa.gov/apod/ap141028.html>
+    (live): „About every two years, however, the Earth passes Mars as they orbit
+    around the Sun." · „Mars appeared to move backwards in the sky, a phenomenon
+    called retrograde motion."
+- **Cross-check of the dates.** ALPO, _The 2026-2027 Aphelic Apparition of Mars_
+  <https://www.alpo-astronomy.org/jbeish/2027_MARS.htm>, gives retrograde
+  2027-01-10 → 2027-04-01; this repo's RA turning points are 2027-01-13 and
+  2027-04-04 (research 004). The 3-day offset is consistent with RA versus
+  ecliptic-longitude stationary points; no date reaches the player anyway.
 
 ### Planetary positions — independently spot-checked
 
@@ -537,6 +558,203 @@ content key is **(key TBD by Moon build)** unless named.
   and the near side is dark, we call this a new Moon."
 - **Design constraint**: never „тъмна страна". See "Moon phases" above.
 
+### Mars level — the claims ticket 004 adopts
+
+Adopted by `docs/wayfinder/road-to-v1/tickets/004-mars-level-design.md` from
+`docs/wayfinder/road-to-v1/research/004-mars-claims.md`. Checked 2026-09-25 by
+`astronomy-accuracy-checker`. **How they were checked**: every quote below was
+read on the **full fetched page** (HTML downloaded, stripped to text, searched),
+not taken from a search excerpt. Two NASA URLs in the research file are dead —
+`mars.nasa.gov/all-about-mars/night-sky/retrograde/` redirects to _Mars Facts_ and
+`mars.nasa.gov/resources/21869/mars-hoax/` redirects to a resources index — so
+those two are cited through dated Wayback snapshots of the original pages. Sky &
+Telescope's _An Observer's Guide to Mars_ returned **HTTP 403**, and a Wayback
+request for that path returned 404, so it was **not read**; nothing below rests on it. Every
+content key is **(key TBD by Mars build)**.
+
+### Mars seems to turn back, but never does; Earth overtakes it on the inside
+
+- **Claims** (research 004 rows 1–4): Mars sometimes appears to move backwards
+  against the stars and then forwards again (1). Mars never really turns back; the
+  look comes from Earth catching up and overtaking it (2). Earth overtakes on the
+  inside, because its orbit is the inner one (3). Earth moves around the Sun
+  faster than Mars (4).
+- **Status**: **VERIFIED** (full page), all four.
+- **Source**: NASA Mars Exploration, _Mars Retrograde_, Wayback snapshot
+  <https://web.archive.org/web/20221205212053/https://mars.nasa.gov/all-about-mars/night-sky/retrograde/>:
+  (1) „there are a couple of months when Mars' position from night to night seems
+  to change direction and move east to west"; (2) „Did the planet really stop, back
+  up, change its mind, and then continue to move forward? … Today we know what's
+  going on. It's an illusion, caused by the ways that Earth and Mars orbit the
+  sun." and „Earth comes up from behind and overtakes Mars"; (3) and (4) „The two
+  planets are like race cars on an oval track. Earth has the inside lane and moves
+  faster than Mars". APOD 2014-10-28 <https://apod.nasa.gov/apod/ap141028.html>
+  supports (1): „Mars appeared to move backwards in the sky".
+- **Second source for (4)**: NASA NSSDC, _Planetary Fact Sheet_
+  <https://nssdc.gsfc.nasa.gov/planetary/factsheet/> (live), row „Orbital Velocity
+  (km/s)": Earth **29.8**, Mars **24.1**. NASA _Mars Facts_
+  <https://science.nasa.gov/mars/facts/>: „Mars takes longer to orbit the Sun
+  (because it's farther away)". Numbers stay in this file (rule 2).
+- **Wording guard, confirmed by the source**: the same NASA page says the dots
+  make „either a loop or an open zigzag" — so never promise a loop. „Seems to",
+  „turns back"; never „Mars stops" or „reverses"; „catches up and overtakes on the
+  inside lane", which is the page's own race-track image. No dates.
+
+### Mars never looks as big as the full Moon, not even at its closest
+
+- **Claim** (row 5).
+- **Status**: **VERIFIED** (full page).
+- **Source**: NASA Mars Exploration, _Close Approach_, Wayback snapshot
+  <https://web.archive.org/web/20221231080624/https://mars.nasa.gov/all-about-mars/night-sky/close-approach/>:
+  „don't be fooled by the Mars Hoax! Since 2003, this urban legend has been
+  circulated through email and social media every time Mars makes a close
+  approach. The false message of the urban legend is that Mars will look as big as
+  the Moon in our night sky. If that were true, we'd be in big trouble given the
+  gravitational pulls on Earth, Mars, and our Moon!" The „every time Mars makes a
+  close approach" carries the „not even at its closest" half. NASA _Mars Hoax_,
+  Wayback <https://web.archive.org/web/20221202233134/https://mars.nasa.gov/resources/21869/mars-hoax/>,
+  carries the same sentence.
+- **Context for 2027**: ALPO <https://www.alpo-astronomy.org/jbeish/2027_MARS.htm>
+  (full page): „The 2027 Mars apparition is considered Aphelic" and closest
+  approach gives „an apparent planetary disk diameter of 13.8''". No sizes on
+  screen; no drama.
+- **Not used**: the JPL Night Sky Network page named in research 004 was not
+  located or read. It is not needed.
+
+### Through a small telescope, Mars is a small reddish disc (6′), and its darker patches show best at closest approach (7′)
+
+Rows 6 and 7 were reworded by the owner on 2026-09-25 to what the pages carry.
+Re-checked the same day by `astronomy-accuracy-checker`: both pages below were
+downloaded (HTTP 200), stripped to text and searched. No search excerpt used.
+
+- **Claim 6′** (R3): through a small telescope Mars looks like a small reddish
+  disc, and its colour is the most striking thing about it.
+- **Status**: **VERIFIED** (full page).
+- **Source**: APOD 2003-08-19, _Mars Through a Small Telescope_
+  <https://apod.nasa.gov/apod/ap030819.html>: „Viewed with the unaided eye or
+  through a small telescope, possibly the most striking part of Mars' appearance
+  is its red color." ALPO, _The 2026-2027 Aphelic Apparition of Mars_
+  <https://www.alpo-astronomy.org/jbeish/2027_MARS.htm>: „it will swell from a
+  small apparent disk of 6" in October14, 2026", and at closest approach „an
+  apparent planetary disk diameter of 13.8''" — still a small disc (see row 5).
+- **Wording guard**: APOD hedges („possibly the most striking"). Keep a hedge in
+  Bulgarian — „може би най-забележителното", „първото, което ще забележиш" — not
+  a flat superlative. „Reddish" is fine: it is weaker than APOD's „red color".
+  APOD describes the record **2003** approach and a photograph made over three
+  nights; its caption also lists „white polar caps" and „dark red areas" seen
+  then. **Never promise the 2003 view, polar caps or named features for 2027.**
+  Do not reuse APOD's explanation of the dark areas („relatively smooth
+  lowlands"); the game does not say what the patches are.
+- **Claim 7′** (R3 nudge): darker patches on Mars show best when Mars comes
+  closest to Earth.
+- **Status**: **VERIFIED** (full page), as the combination of two pages.
+- **Source**: ALPO 2027 page, apparition table: at the 6″ start (2026 Oct 14),
+  „Views of surface details not well defined"; at opposition (2027 Feb 19, 13.8″,
+  one day before closest approach), „Views of surface details well defined".
+  APOD 2003-08-19, written eight days before the 2003 closest approach:
+  „Visible through the small telescope are … dark red areas". ALPO carries
+  „best when closest"; APOD carries that the details include darker areas.
+- **Wording guard**: no telescope sizes; no promise of what a particular
+  telescope shows — ALPO's „well defined" is for „4-inch to 8-inch apertures
+  telescopes and up". Do not cite ALPO's sentence „to a maximum diameter on July
+  01, 2027": it contradicts the page's own table (13.8″ at closest approach on
+  Feb 20; July 1 is when the disc falls back to 6″).
+
+### Superseded: rows 6 and 7 as first worded — NEEDS SOURCE, do not ship
+
+- **Claims** (rows 6–7, original wording): through a small telescope Mars is a
+  small orange disc, sometimes with faint dark markings (6); bigger telescopes
+  show more detail (7).
+- **Status**: **SUPERSEDED** by 6′ and 7′ above. Never VERIFIED; the original
+  wording stays **NEEDS SOURCE** and must not ship.
+- **What was read**: ALPO _The 2026-2027 Aphelic Apparition of Mars_ (full page).
+  It supports only the „small" part — „swell from a small apparent disk of 6" in
+  October14, 2026" — and that the apparition „begins for observers using 4-inch to
+  8-inch apertures telescopes and up … Views of surface details not well defined",
+  becoming „well defined" at opposition. That ties detail to the **disc's size over
+  the months**, not to aperture, so it does not carry row 7. It calls the disc
+  „bright orange" **only during a great dust storm**, so it does not carry „orange"
+  in general. „Faint dark markings" is not on the page.
+- **What was not read**: Sky & Telescope, _An Observer's Guide to Mars_ — HTTP 403.
+  This is also the only source behind the polar-cap NOT ATTESTED line below.
+- **Also on the ALPO page, and a trap for the wording**: in 2027 „Astronomers will
+  have an excellent view of the prominent north polar cap … because it will be
+  tilted earthward". That is for 4–8 inch-and-up observers; it does not license a
+  polar cap in a child's small telescope.
+- **Closed by rewording**, not by a new source for the old wording: see 6′/7′.
+  „Orange", „faint dark markings" and „bigger telescopes show more" remain
+  unsourced.
+
+### Mars is red because of rusty dust
+
+- **Claim** (row 8): Mars is red because of rusty (iron oxide) dust.
+- **Status**: **VERIFIED** (full page).
+- **Source**: NASA Science, _Mars Facts_ <https://science.nasa.gov/mars/facts/>:
+  „The reason Mars looks reddish is due to oxidization — or rusting — of iron in the
+  rocks, regolith (Martian “soil”), and dust of Mars. This dust gets kicked up into
+  the atmosphere and from a distance makes the planet appear mostly red." ESA,
+  _Have we been wrong about why Mars is red?_ (2025)
+  <https://www.esa.int/Science_Exploration/Space_Science/Mars_Express/Have_we_been_wrong_about_why_Mars_is_red>:
+  „this red colour is due to rusted iron minerals in the dust".
+- **Wording guard**: ESA's 2025 result is that the rust is likely **ferrihydrite**
+  (a water-bearing iron oxide), not hematite. „Rust" / „ръжда" stays correct; never
+  name hematite as the answer.
+
+### Mars is a cold world (ships without „not because it is hot")
+
+- **Claim as it ships** (row 9, corrected 2026-09-25): „Mars is a cold world",
+  placed beside row 8 „red from rust". **VERIFIED** (full page). The „not because
+  it is hot" half is **dropped** and must not ship.
+- **Original claim** (row 9): Mars's redness is not because it is hot; Mars is a
+  cold world.
+- **Status of the original**: split.
+  - „Mars is a cold world": **VERIFIED** (full page). NASA _Mars Facts_: „Mars — the
+    fourth planet from the Sun — is a dusty, cold, desert world with a very thin
+    atmosphere."
+  - „Its redness is not because it is hot": **NEEDS SOURCE.** **No page read says
+    this.** _Mars Facts_ gives rust as the cause and gives temperatures, but never
+    says the colour is not heat. ESA's page does not say it either. Per research
+    004's own guard, **drop „not heat"**. The game may place the two verified facts
+    side by side (red from rust; a cold world) and let the child notice; it must not
+    assert the negation as a sourced fact.
+- No temperatures on screen.
+
+### A camera on Mars saw a blue glow around the setting Sun
+
+- **Claim** (row 10): Curiosity, in Gale Crater, photographed a sunset with a
+  bluish glow around the Sun.
+- **Status**: **VERIFIED** (full page).
+- **Source**: the old `photojournal.jpl.nasa.gov/catalog/PIA19400` URL now
+  redirects to NASA Science, _Sunset in Mars' Gale Crater_ (PIA19400)
+  <https://science.nasa.gov/photojournal/sunset-in-mars-gale-crater/>. Full
+  caption read: „NASA's Curiosity Mars rover recorded this view of the sun setting
+  at the close of the mission's 956th Martian day, or sol (April 15, 2015), from
+  the rover's location in Gale Crater." · „The color has been calibrated and
+  white-balanced to remove camera artifacts. Mastcam sees color very similarly to
+  what human eyes see, although it is actually a little less sensitive to blue than
+  people are." · „That causes the blue colors in the mixed light coming from the
+  sun to stay closer to sun's part of the sky, compared to the wider scattering of
+  yellow and red colors. The effect is most pronounced near sunset".
+- **Where the blue is**: near the Sun only („closer to sun's part of the sky"),
+  strongest at sunset. **What the white balance means**: it removes camera
+  artifacts, and the caption says Mastcam sees colour much like a human eye. So
+  „white-balanced" must **not** be used to suggest the colour is fake, and the
+  guard no longer mentions it (corrected 2026-09-25 in research 004 row 10).
+  „A camera on Mars saw" stays the right hedge because it is one image, not a
+  claim about every Martian sunset.
+- **Never say or imply the Mars sky is blue.** NASA _Mars Facts_: „To our eyes,
+  the sky would be hazy and red because of suspended dust instead of the familiar
+  blue tint we see on Earth." Never „always"; no „Mars has no air" (the same page:
+  „a thin atmosphere made up mostly of carbon dioxide, nitrogen, and argon").
+
+### A day on Mars is only a little longer than a day on Earth
+
+- **Claim** (row 11).
+- **Status**: **VERIFIED** (full page).
+- **Source**: NASA _Mars Facts_ <https://science.nasa.gov/mars/facts/>: „it
+  completes one rotation every 24.6 hours, which is very similar to one day on
+  Earth (23.9 hours)." „A little longer", no hours on screen.
+
 ---
 
 ## Stars and constellations
@@ -960,7 +1178,11 @@ it.
 Each of these claims was checked and found false or unsupported. Do not state any of them.
 
 - „Марс ще изглежда голям колкото пълната Луна" (Mars will look as big as the full Moon). This is a hoax: NASA,
-  _Mars Hoax_ <https://mars.nasa.gov/resources/21869/mars-hoax/>.
+  _Mars Hoax_ <https://mars.nasa.gov/resources/21869/mars-hoax/> (dead since; read in full 2026-09-25 via Wayback
+  <https://web.archive.org/web/20221202233134/https://mars.nasa.gov/resources/21869/mars-hoax/>, see "Mars level").
+- "The sky on Mars is blue." NASA _Mars Facts_ <https://science.nasa.gov/mars/facts/> (full page, 2026-09-25): „To
+  our eyes, the sky would be hazy and red because of suspended dust". The blue in PIA19400 is only near the setting
+  Sun.
 - "The Moon doesn't rotate." It turns once per orbit: NASA, _Tidal Locking_
   <https://science.nasa.gov/moon/tidal-locking/>.
 - "The Moon is bigger at the horizon." This is an illusion: NASA, _The Moon Illusion_.
@@ -971,7 +1193,10 @@ Each of these claims was checked and found false or unsupported. Do not state an
   because they are not: NASA, _Why Do Eclipses Happen?_ <https://science.nasa.gov/eclipses/geometry/>.
 - "The 2027-08-02 solar eclipse is total from Bulgaria." It is **partial** there: timeanddate, Sofia 2027-08-02.
 - "A small telescope shows Mars's polar cap." That needs a 4–6 inch telescope and excellent seeing: Sky & Telescope,
-  _An Observer's Guide to Mars_.
+  _An Observer's Guide to Mars_. (Search excerpt only: the page returned HTTP 403 on 2026-09-25 and has not been
+  read. The ruling stands until a read page says otherwise.) APOD 2003-08-19 (read in full) does show „white polar
+  caps" through a small telescope, but at the record 2003 approach and as a photograph over three nights; it is not a
+  promise for a child's eye in 2027.
 - "Distance plays no part in seasons, anywhere." False for Mars, where eccentricity matters: NASA, _Helio and You:
   Seasons on Earth, Mars, and Beyond_. Earth's wording (`fact.seasons.distance`, „почти не се променя", "barely
   changes") is specific to Earth and stays correct.

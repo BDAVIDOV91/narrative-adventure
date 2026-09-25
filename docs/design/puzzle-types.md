@@ -6,13 +6,13 @@ enforces the list, and adding to it is a deliberate decision, not a drive-by.
 
 | Type               | Teaches                                                  | First used                                         |
 | ------------------ | -------------------------------------------------------- | -------------------------------------------------- |
-| `rotate-match`     | Rotate a model until it matches a reference              | Earth (sundial, day/night, tilt, moon phase)       |
-| `connect-the-dots` | Constellations, plus a fact about the brightest stars    | Earth (Big Dipper)                                 |
-| `parallax-compare` | Compare two visuals and judge the difference             | Earth (day length), Moon (distance)                |
+| `rotate-match`     | Rotate a model until it matches a reference              | Earth (sundial, day/night, tilt, moon phase); Moon |
+| `connect-the-dots` | Constellations, plus a fact about the brightest stars    | Earth (Big Dipper); Mars (path among the stars)    |
+| `parallax-compare` | Compare two visuals and judge the difference             | Earth (day length); Moon; Mars (size, sunset)      |
 | `zoom-split-star`  | One dot resolves into several stars as you zoom          | Mizar/Alcor — see [`../sources.md`](../sources.md) |
-| `trajectory-match` | Follow a real orbital path                               | Earth (one-year orbit, Зорница)                    |
-| `gravity-drop`     | Air, not weight, is what separates a feather from a rock | Earth (with air), Moon (Apollo 15, without)        |
-| `telescope-focus`  | How focus works; previews planets not yet visited        | Earth                                              |
+| `trajectory-match` | Follow a real orbital path                               | Earth (one-year orbit, Зорница); Mars (retrograde) |
+| `gravity-drop`     | Air, not weight, is what separates a feather from a rock | Earth only — no Moon or Mars use (ticket 005)      |
+| `telescope-focus`  | How focus works; previews planets not yet visited        | Earth; Moon (seas and craters); Mars (disc)        |
 
 ### Why seven and not five
 
@@ -91,7 +91,6 @@ markers** — and a level with zero required markers is rejected, since it would
 unlock at nothing.
 
 `data/scripts/validate-levels.py::meets_threshold` is the canonical definition.
-**`src/shared/game-state.ts` must match it.** It does not yet: `solvedCount`
-counts every solved marker and `meetsThreshold` takes a bare total, so a child
-could unlock a guided level by finishing only optional puzzles. Porting the
-intersection into the runtime is outstanding phase-2 work.
+**`src/shared/game-state.ts` must match it**, and does: `meetsThreshold` counts
+`solved` intersected with the required markers, so finishing only optional
+puzzles never unlocks a guided level.

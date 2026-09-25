@@ -28,12 +28,14 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 ## Notes
 
 - **Fixed inputs, not tickets.** Do not reopen these:
-  - Earth's ten beats and grilling rounds 1–4 (`docs/handoffs/2026-09-09-session-handoff.md`).
+  - Earth's ten beats and grilling rounds 1–4 (`docs/handoffs/2026-09-09-session-handoff.md`), less
+    `earth-gravity-drop`: the ADR 0006 trigger deletes `gravity-drop` (ticket 004, applied by 005; owner-accepted
+    2026-09-25). Its facts move to other markers.
   - The seven-type set and the ADR 0006 trigger.
   - The rule 1/2/8 walls:
-    - `gravity-drop` never models mass;
+    - `gravity-drop` never models mass (retires with the type);
     - `drives` has no `rotation`;
-    - Saturn is absent from the drop comparison;
+    - Saturn is absent from any drop or pull comparison;
     - no exaggerated orbit ellipse.
   - Gating: `unlockThreshold` is 1.0 for the two guided levels (Earth and Moon) and 0.7 for every open level.
 - **Folklore is garnish after Earth** (owner, 2026-09-25):
@@ -64,6 +66,7 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 - [Which worlds make the v1 roster, and in what order](tickets/001-v1-roster.md) — Earth, Moon, Mars, Jupiter; the rest of the solar system is post-v1; Jupiter comes after the ADR 0006 anchor, so `zoom-split-star` goes.
 - [What Jupiter can teach, deep](tickets/007-what-jupiter-can-teach.md) — spine of moons ladder, moving moons, Sirius and fast spin; viable only if `telescope-focus`, `trajectory-match` or `parallax-compare` survive 005.
 - [Moon level design: beats, types and the required spine](tickets/003-moon-level-design.md) — spine M1 → M3 → M2 on `orbitAngle`; optional eclipse, near/far (`parallax-compare`) and seas & craters (`telescope-focus`); 2 companion tiers.
+- [Mars level design: beats and types](tickets/004-mars-level-design.md) — five required beats, spine R1a: retrograde as see-it (`connect-the-dots`) then why (`trajectory-match`), telescope disc, never Moon-sized, blue sunset; `gravity-drop` gets no Mars use.
 
 ## Not yet specified
 
@@ -75,6 +78,9 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
   - which NASA textures to process;
   - the Galilean periods (#20, NEEDS SOURCE), which Jupiter needs;
   - radii and other constants, as cited `data/reference/` rows.
+  - Mars (ticket 004): a Mars radius row, and the Moon radius row it shares with ticket 003, for R2's true-scale
+    panel; the R3 disc frame, public-domain NASA/HST degraded honestly in `process-textures.py` and documented, or a
+    licensed amateur image, never AI-generated; PIA19400 for R6.
   - Moon: which frames for M9's quarter/full crater pair (telescope-like, with a `docs/sources.md` imagery entry),
     and whether an annular Sun-vs-Moon disc needs a cited radius row (ticket 003).
 - **Constellation visibility by latitude (#25)**: does any post-Earth level need it?

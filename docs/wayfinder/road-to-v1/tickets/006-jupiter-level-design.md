@@ -35,10 +35,13 @@ Fixed:
   - `fact.telescope-jupiter` (VERIFIED, `docs/sources.md:235`) is not yet wired to any beat, so it is free to adopt.
   - Earth's telescope beat rewards Saturn.
 - **No folklore beats.**
-- **`gravity-drop` never models mass.**
+- **`gravity-drop` never models mass.** Moot once ticket 005 deletes the type (ticket 004 gave it no Mars use).
 - **The data window** is 365 days, which shows only about 30° of Jupiter's orbit.
 
 If research 007 finds too few honest beats for a required spine, raise it with the owner through `AskUserQuestion`.
 This does not reopen ticket 001; it reports what the designed level can carry.
 
 Close only when every claim the design adopts is VERIFIED in `docs/sources.md`.
+
+Settled by ticket 004: Mars reuses `telescope-focus`, `trajectory-match` and `parallax-compare`, so all three types
+Jupiter's spine needs (research 007) have a second level. Jupiter's viability condition is met, pending 005.
