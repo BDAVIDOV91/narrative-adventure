@@ -19,5 +19,18 @@ it, then keep or delete it.
   a solar-system target. Mizar/Alcor is stellar and outside rule 6.
 - **Any exception** to the trigger needs an explicit reason.
 
+Settled by ticket 001:
+
+- **Jupiter is page 4, after the anchor**, so its use does not count. A post-anchor level designs only from surviving
+  types, and cannot revive a deleted one.
+- **The owner accepts that `zoom-split-star` is deleted.** The prune build removes what it strands:
+  - `fact.mizar-alcor.1-4` (`content/bg/facts.json`);
+  - the Mizar and Alcor claim in `docs/sources.md`, which is to be marked as retired, not deleted, so it is not
+    re-proposed;
+  - its schema branch and enum entry (`schemas/level-data.schema.json`);
+  - the `zoom-split-star` rationale in `data/scripts/star-catalogue.py` and `tests/test_star_catalogue.py`.
+- **Every type except `rotate-match`** has exactly one Earth use (`src/scenes/earth/earth-data.json`). Each of the
+  other types survives only through a Moon or Mars reuse.
+
 Record the verdict as an amendment to `docs/adr/0006-seven-puzzle-types-not-thirteen.md`, then prune the schema enum
 in the build that follows.

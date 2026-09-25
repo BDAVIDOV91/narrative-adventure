@@ -18,8 +18,11 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 - Progress persists across a reload.
 - Every shipped claim is VERIFIED in `docs/sources.md`.
 - The pedagogy, perf and privacy gates pass, and a Playwright QA pass has run.
-- No stubs. That means no storybook page with `sceneKey: null`, no coming-soon marker, and no content key for a world
-  that is off the roster.
+- No stubs.
+  - No storybook page has `sceneKey: null`.
+  - There is no coming-soon marker.
+  - No off-roster world has a `level.<world>.*` key or a storybook page.
+  - A fact string rewarded by a roster beat may mention any solar-system body (ticket 001).
 - Placeholder art is allowed.
 
 ## Notes
@@ -58,17 +61,18 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 ## Decisions so far
 
 - [What each candidate world can teach through the seven types](tickets/002-what-each-world-can-teach.md) — Moon and Mars have honest beats on existing types; Neptune has none; `zoom-split-star` lives only if Jupiter does.
+- [Which worlds make the v1 roster, and in what order](tickets/001-v1-roster.md) — Earth, Moon, Mars, Jupiter; the rest of the solar system is post-v1; Jupiter comes after the ADR 0006 anchor, so `zoom-split-star` goes.
 
 ## Not yet specified
 
-- **Designs for levels after Mars**: one ticket per roster level, graduating when the roster ticket closes. Each
-  carries its companion tier count as level data.
+- ~~**Designs for levels after Mars**~~ — graduated to ticket 006 (Jupiter), backed by research ticket 007.
 - **The book's through-line, ending and navigation**: what the final page does, and how the storybook handles N pages.
-  The current one-row 200px layout (`src/scenes/storybook-scene.ts:71-80`) overflows beyond about five.
+  The four roster pages fit the one-row 200px layout (`src/scenes/storybook-scene.ts:71-80`) only at a window of roughly
+  900px or wider, and the canvas is `Scale.RESIZE`. Narrow and tablet widths are still open.
 - **Imagery and data per level**:
   - which NASA textures to process;
-  - whether Uranus and Neptune need ephemeris if they make the roster (the round-1 pivot bars new pipeline);
-  - the Galilean periods (#20, NEEDS SOURCE) if Jupiter makes the roster.
+  - the Galilean periods (#20, NEEDS SOURCE), which Jupiter needs;
+  - radii and other constants, as cited `data/reference/` rows.
 - **Constellation visibility by latitude (#25)**: does any post-Earth level need it?
 
 ## Out of scope
@@ -80,3 +84,10 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 - **New folklore work (#21 parked)**: folklore is garnish, and no new folklore research opens.
 - **Deploy / delivery to children**: held until the owner says so. It returns as its own effort.
 - **Sound**: added only once the owner judges the game worth it. It returns as its own effort.
+- **Worlds after Jupiter** (the Sun, Mercury, Venus, Saturn, Uranus; Titan and Triton wait with their planets): out
+  because the v1 destination is four worlds (ticket 001). The whole solar system is the owner's post-v1 goal, as a fresh
+  map.
+  - Input to that map: the owner prefers a Sun + Mercury page.
+  - Neptune has no honest beat (research 002).
+- **Phobos, and Mars beat R9**: out because rule 6 covers major moons only, meaning the large round moons, and Phobos
+  is not one (ticket 001).

@@ -29,4 +29,18 @@ Candidates come from research 002. Keeping a type alive is not a design goal.
 The level blurb in `content/bg/levels.json` ("сменя лицето си всяка нощ") points at phases, and may need rewording to
 match. That is content, not a decision.
 
+Candidates added by ticket 001:
+
+- **The Sun–Moon almost-same-size beat.** Never "exactly" the same size: that wording is NOT ATTESTED.
+- **The partial solar eclipse from Bulgaria on 2027-08-02.** It is always "partial". It is the Moon passing between
+  the Sun and Earth, on the same `orbitAngle` drag as M3.
+
+If either is adopted:
+
+- **A safety string is mandatory.** It must be sourced from NASA or AAS eclipse safety, name a safe method (pinhole
+  projection, or certified eclipse glasses with an adult), and never suggest sunglasses.
+- **No Sun through `telescope-focus`** or any other zoom type.
+- **This ticket cannot close** while that string is NEEDS SOURCE.
+- **The eclipse wording must survive the date passing:** the game may ship after 2027-08-02.
+
 Close only when every claim the design adopts is VERIFIED in `docs/sources.md`.

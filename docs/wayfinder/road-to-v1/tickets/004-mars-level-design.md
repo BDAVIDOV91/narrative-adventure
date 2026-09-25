@@ -26,4 +26,9 @@ close this ticket out of scope.
 
 Candidates come from research 002. Keeping a type alive is not a design goal.
 
+Settled by ticket 001:
+
+- **Mars is roster page 3**, and it stays the ADR 0006 anchor.
+- **Phobos is not a major moon**, so beat R9 is out.
+
 Close only when every claim the design adopts is VERIFIED in `docs/sources.md`.
