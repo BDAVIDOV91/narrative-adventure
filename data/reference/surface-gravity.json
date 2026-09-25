@@ -1,0 +1,119 @@
+{
+  "_readme": [
+    "Hand-authored reference table. Deliberately NOT in data/generated/, which is",
+    "reserved for generator output (docs/architecture/data-flow.md). Nothing",
+    "computes this; it is transcribed from a cited source and pinned by",
+    "tests/test_reference_data.py.",
+    "",
+    "It feeds the gravity-drop beat (docs/design/earth-level-brief.md, beat 8).",
+    "That beat is qualitative: only these constants and a binary air flag drive",
+    "it, because no sourced drag numbers exist and a simulated feather would be",
+    "invented physics. The lesson is that AIR separates the feather from the",
+    "rock, never weight.",
+    "",
+    "Read `dropComparison` and nothing else. `excluded` exists so that a body",
+    "left out on purpose is not quietly added back later by someone who assumes",
+    "it was merely forgotten.",
+    "",
+    "No value in this file ever reaches the player (rule 2). It sets how fast a",
+    "drawn stone falls; the child sees the fall, not the number."
+  ],
+  "source": {
+    "name": "NASA/NSSDCA planetary fact sheets",
+    "note": [
+      "Every live https://nssdc.gsfc.nasa.gov/planetary/factsheet/ address",
+      "302-redirects to https://www.nasa.gov/nssdc/ as of 2026-09-09, so the",
+      "dated Wayback snapshot is the citation. Per-row `factSheetLabel` names",
+      "which published quantity the value is, because for the giant planets the",
+      "fact sheets publish more than one and the choice changes the answer."
+    ]
+  },
+  "dropComparison": [
+    {
+      "body": "moon",
+      "value": 1.62,
+      "unit": "m/s2",
+      "factSheetLabel": "Surface gravity (mean), m/s2",
+      "sourceUrl": "https://web.archive.org/web/20250802093603/https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+      "snapshotDate": "2025-08-02",
+      "accessed": "2026-09-09",
+      "reason": "The vacuum panel's anchor: Apollo 15, David Scott, 2 August 1971, hammer and falcon feather landing together on film."
+    },
+    {
+      "body": "mars",
+      "value": 3.73,
+      "unit": "m/s2",
+      "factSheetLabel": "Surface gravity (mean), m/s2",
+      "sourceUrl": "https://web.archive.org/web/20250802093603/https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+      "snapshotDate": "2025-08-02",
+      "accessed": "2026-09-09",
+      "reason": "Clearly quicker than the Moon and clearly slower than Earth, so the middle rung is visible without measurement."
+    },
+    {
+      "body": "earth",
+      "value": 9.82,
+      "unit": "m/s2",
+      "factSheetLabel": "Surface gravity (mean), m/s2",
+      "sourceUrl": "https://web.archive.org/web/20250802093603/https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+      "snapshotDate": "2025-08-02",
+      "accessed": "2026-09-09",
+      "reason": "The child's own reference point, and the only panel where the air panel and the airless panel differ."
+    },
+    {
+      "body": "jupiter",
+      "value": 25.92,
+      "unit": "m/s2",
+      "factSheetLabel": "Surface gravity (mean) at the 1 bar level, m/s2",
+      "equatorialValue": 23.12,
+      "equatorialFactSheetLabel": "Surface gravity (eq.) at the 1 bar level, m/s2",
+      "sourceUrl": "https://web.archive.org/web/20250802093603/https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+      "snapshotDate": "2025-08-02",
+      "accessed": "2026-09-09",
+      "reason": "Stronger than Earth under BOTH published columns (25.92 and 23.12 against 9.82), so the claim does not depend on which one is read. This is the test Saturn fails. Jupiter has no surface either, but nothing here says the stone lands."
+    }
+  ],
+  "excluded": [
+    {
+      "body": "saturn",
+      "value": 11.19,
+      "unit": "m/s2",
+      "factSheetLabel": "Surface gravity (mean) at the 1 bar level, m/s2",
+      "equatorialValue": 8.96,
+      "equatorialFactSheetLabel": "Surface gravity (eq.) at the 1 bar level, m/s2",
+      "sourceUrl": "https://web.archive.org/web/20250802093603/https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+      "snapshotDate": "2025-08-02",
+      "accessed": "2026-09-09",
+      "reason": "NOT ATTESTED for this beat. The two published columns straddle Earth in opposite directions: 11.19 m/s2 is 1.14x Earth, 8.96 m/s2 is 0.92x Earth. Whether a stone falls faster or slower than at home would be decided by which column an author picked, not by Saturn. Do not add it back."
+    },
+    {
+      "body": "mercury",
+      "value": 3.7,
+      "unit": "m/s2",
+      "factSheetLabel": "Surface gravity (mean), m/s2",
+      "sourceUrl": "https://web.archive.org/web/20250802093603/https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+      "snapshotDate": "2025-08-02",
+      "accessed": "2026-09-09",
+      "reason": "Recorded, but never to be shown beside Mars: 3.70 against 3.73 is the same number at published precision. Asking a child to see that difference teaches that invisible differences are visible."
+    },
+    {
+      "body": "venus",
+      "value": 8.87,
+      "unit": "m/s2",
+      "factSheetLabel": "Surface gravity (mean), m/s2",
+      "sourceUrl": "https://web.archive.org/web/20250802093603/https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+      "snapshotDate": "2025-08-02",
+      "accessed": "2026-09-09",
+      "reason": "Almost exactly Earth's, so a side-by-side drop shows nothing. Recorded so the row is never re-typed from memory if a later level wants it."
+    },
+    {
+      "body": "sun",
+      "value": 274.0,
+      "unit": "m/s2",
+      "factSheetLabel": "Surface gravity, m/s2",
+      "sourceUrl": "https://web.archive.org/web/20250802093603/https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+      "snapshotDate": "2025-08-02",
+      "accessed": "2026-09-09",
+      "reason": "Off the scale of any drawable drop, and there is no surface to stand on. Recorded only so the number is never invented."
+    }
+  ]
+}

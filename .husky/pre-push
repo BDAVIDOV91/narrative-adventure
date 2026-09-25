@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+# main is merge-only. Work happens on development and feature branches.
+# Carried over from pdf_data_extractor_v2/.husky/pre-push.
+
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+
+if [ "$BRANCH" = "main" ]; then
+  echo ""
+  echo "  ✋ Direct push to 'main' blocked."
+  echo ""
+  echo "     main receives merges only. Open a PR from 'development':"
+  echo "       git checkout development"
+  echo ""
+  echo "     Emergency bypass (not recommended):"
+  echo "       git push --no-verify"
+  echo ""
+  exit 1
+fi
+
+exit 0

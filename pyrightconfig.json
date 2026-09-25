@@ -1,0 +1,10 @@
+{
+  "include": ["data/scripts", "tests"],
+  "exclude": ["venv", "node_modules", "data/generated", "dist"],
+  "venvPath": ".",
+  "venv": "venv",
+  "pythonVersion": "3.12",
+  "typeCheckingMode": "standard",
+  "reportMissingImports": "error",
+  "reportMissingTypeStubs": "none"
+}

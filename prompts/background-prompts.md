@@ -14,7 +14,7 @@ wording in every page prompt rather than re-describing the style each time.
 ## Cyrillic warning
 
 Any generated art containing **text** is a trap: image generators reliably
-mangle Cyrillic. Generate art *without* text and render all Bulgarian strings at
+mangle Cyrillic. Generate art _without_ text and render all Bulgarian strings at
 runtime from `content/bg/` in a Cyrillic-capable font. Never bake a word into an
 image.
 
