@@ -62,6 +62,7 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 
 - [What each candidate world can teach through the seven types](tickets/002-what-each-world-can-teach.md) — Moon and Mars have honest beats on existing types; Neptune has none; `zoom-split-star` lives only if Jupiter does.
 - [Which worlds make the v1 roster, and in what order](tickets/001-v1-roster.md) — Earth, Moon, Mars, Jupiter; the rest of the solar system is post-v1; Jupiter comes after the ADR 0006 anchor, so `zoom-split-star` goes.
+- [What Jupiter can teach, deep](tickets/007-what-jupiter-can-teach.md) — spine of moons ladder, moving moons, Sirius and fast spin; viable only if `telescope-focus`, `trajectory-match` or `parallax-compare` survive 005.
 
 ## Not yet specified
 

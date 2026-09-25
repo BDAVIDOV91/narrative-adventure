@@ -750,6 +750,29 @@ Each of these claims was checked and found false or unsupported. Do not state an
   misleads.
 - "Venus spins backwards" is sourced (NASA, _Venus Facts_) and is the safe claim.
 
+### Jupiter myths — NOT ATTESTED
+
+Surfaced by `docs/wayfinder/road-to-v1/research/007-what-jupiter-can-teach.md` on 2026-09-25, from search excerpts.
+Do not state any of them.
+
+- "Jupiter has no seasons." Its seasons are milder, not absent: NASA, _Jupiter Facts_ ("not as extreme"); NASA,
+  _Hubble Monitors Changing Weather and Seasons at Jupiter and Uranus_.
+- "The Great Red Spot is easy to see, and red, in a small telescope." It is pale salmon and a small-scope challenge,
+  visible only while it faces us: Sky & Telescope, _Jupiter's Not-So-Great Red Spot_; _Transit Times of Jupiter's
+  Great Red Spot_.
+- "Four Galilean moons are always visible." Say "up to four": one can be behind Jupiter, in front of it, or in its
+  shadow. The mechanisms are NEEDS SOURCE if the game ever explains why.
+- "Ganymede is heavier than Mercury." Only "wider" is sourced (NASA, _Ganymede Facts_). The mass comparison is NEEDS SOURCE and must not be stated.
+- "A dropped stone lands on Jupiter." Jupiter has no true surface (NASA, _Jupiter Facts_), so there is no honest
+  `gravity-drop` scene at Jupiter. `fact.gravity-drop.bodies` stays.
+
+### "The Great Red Spot is twice as wide as Earth" — DISPUTED
+
+- NASA, _Jupiter Facts_ says so.
+- NASA's Hubble release (_Hubble Shows … Great Red Spot Is Smaller than Ever_) says the spot now holds "just over one
+  Earth".
+- The spot is shrinking. Quote no size; "bigger than Earth" is safe.
+
 ---
 
 ## Terminology
