@@ -32,3 +32,7 @@ Settled by ticket 001:
 - **Phobos is not a major moon**, so beat R9 is out.
 
 Close only when every claim the design adopts is VERIFIED in `docs/sources.md`.
+
+Settled by ticket 003: the Moon already reuses `parallax-compare` and `telescope-focus`. `gravity-drop` and
+`trajectory-match` have no Moon use, so Mars is their only possible second level (ticket 005). That is an input, not a
+design goal: a Mars beat still earns its place on its astronomy.

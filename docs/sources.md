@@ -57,13 +57,21 @@ the astronomy are the same act. See
 ### Moon phases — illumination, not Earth's shadow
 
 - **Claim** (`fact.moon-phases`): We see the part of the Moon the Sun lights.
-- **Status**: VERIFIED.
+- **Status**: VERIFIED. Citation added 2026-09-25 (search excerpt; the full-page
+  fetch was blocked in that session). NASA Science, _Moon Phases_
+  <https://science.nasa.gov/moon/moon-phases/>: „The Moon is always half-lit by
+  the Sun" … „we see different portions of the lit side of the Moon." NASA
+  Science, _Top Moon Questions_ <https://science.nasa.gov/moon/top-moon-questions/>:
+  „The Moon does not make its own light. 'Moonlight' is really sunlight that has
+  reflected off of the Moon's surface."
 - **Why it is called out**: children commonly believe phases are Earth's shadow
   on the Moon. That is a lunar eclipse, a different and much rarer event. The
   rotate-match puzzle must not accidentally reinforce the shadow model.
-- **Related trap**: "the dark side of the Moon". The far side is not dark — it
-  receives as much sunlight as the near side. Say **далечната страна**, never
-  тъмната.
+- **Related trap** (`fact.moon-far-side`): "the dark side of the Moon". The far
+  side is not dark — it receives as much sunlight as the near side. Say
+  **далечната страна**, never тъмната. Source: _Top Moon Questions_, above —
+  „The far side of the Moon gets as much sunlight as the near side"; see also
+  "The far side is fully lit at new Moon" below.
 
 ### Parallax
 
@@ -294,6 +302,240 @@ the astronomy are the same act. See
 - `data/generated/orbital-positions.json#/bodies/jupiter` already carries real
   `raHours`, `decDegrees` and `distanceAu`, so any design here uses real positions.
 - **Rule 2**: magnitudes are for this file. No number reaches the screen.
+
+### Moon level — the claims ticket 003 adopts
+
+Adopted by `docs/wayfinder/road-to-v1/tickets/003-moon-level-design.md` from
+`docs/wayfinder/road-to-v1/research/003-moon-claims.md`. Checked 2026-09-25 by
+`astronomy-accuracy-checker`. **How they were checked**: the full-page fetch was
+blocked in that session, so every quote below is from a **search excerpt**
+attributed to the URL given. The search tool can lightly paraphrase. Wherever an
+excerpt could not be pinned to one URL, the entry says so.
+
+**Full-page read, 2026-09-25 (main session, ticket 003).** Every entry in this
+block was then confirmed on its fetched page: the maria (NASA moon-map), the
+terminator (NASA viewing-tips: „Focus particularly along the terminator line…
+long shadows"; „try phases other than the full Moon"), eclipse tilt (NASA
+_Eclipses and the Moon_: „usually passes above or below the Sun… prevents us
+from having monthly solar and lunar eclipses"), lunar eclipses at full Moon
+(same page), the annular ring (NASA types), almost-same-size (NASA _Eclipses and
+the Moon_: „about 400 times… almost perfectly block out the Sun"), each safety
+part (NASA safety; AAS eye-safety and projection), earthshine (APOD 2025-04-03;
+NASA viewing-tips), closest vs farthest (NASA supermoons: „14 percent doesn't
+make a big difference in detectable size"), synchronous rotation and the lit far
+side (NASA _Top Moon Questions_). The „(search excerpt)" tags below now mean
+"first found by excerpt, since read on the page". Still unread: the Sky &
+Telescope „mush" line (supporting only) and NASA SVS 4158 (not cited). Every
+content key is **(key TBD by Moon build)** unless named.
+
+### The dark "seas" are old lava plains, not water
+
+- **Claim** (key TBD by Moon build): the dark patches on the Moon (maria,
+  „морета") are plains of solidified lava (basalt), not water.
+- **Status**: **VERIFIED** (search excerpt).
+- **Source**: NASA Science, _Moon Maps for International Observe the Moon Night_
+  <https://science.nasa.gov/moon/observe-the-moon-night/moon-map/>: „Once thought
+  to be seas of water, these are actually large, flat plains of solidified
+  basaltic lava." The research file's three URLs (`/moon/facts/`,
+  `/moon/composition/`, `/moon/viewing-tips/`) came up in the same searches with
+  "vast plains of basaltic lava" wording, **but the excerpt did not pin the
+  sentence to any one of them**. Cite the moon-map page.
+- **Design constraints**: no ages (the sources disagree in range: "over 3 billion
+  years" vs "4.2 and 1.2 billion years ago"). **Never "there is no water on the
+  Moon"**, because polar ice exists (NASA, _Moon Water and Ices_). The claim is
+  only that the _seas_ are not water.
+
+### Relief shows best near the terminator; full Moon is flat
+
+- **Claim** (key TBD by Moon build): craters and mountains stand out best along
+  the line between day and night on the Moon, where shadows are long. At full
+  Moon there are almost no shadows, so relief is hardest to see.
+- **Status**: **VERIFIED** (search excerpt).
+- **Source**: NASA Science, _Moon Viewing Tips_
+  <https://science.nasa.gov/moon/viewing-tips/>: „The line between night and day
+  on the Moon (called the terminator) is ideal for seeing lunar craters and
+  mountains since very long shadows heighten the contrast of the features." and
+  „For better viewing of craters and mountains, try phases other than the full
+  Moon."
+- **Sky & Telescope is supporting only.** An excerpt reads „Direct-on, shadowless
+  lighting, which occurs at full Moon, transforms our satellite into gray-and-white
+  mush". It could not be pinned to either `/observing/observing-the-fullmoon/` or
+  `/astronomy-news/full-moon-fringe-benefits/`, so do not cite it by URL.
+- **Design constraint**: never say "full Moon is useless". The same S&T material
+  says the full Moon shows the maria shadings and the bright ray systems well.
+
+### A solar eclipse happens only at new Moon, and not at every new Moon
+
+- **Claim** (key TBD by Moon build): the Moon can hide the Sun only when it
+  passes between the Sun and Earth, which is at new Moon. Because the Moon's
+  orbit is tilted a little, it usually passes above or below the Sun, so most new
+  Moons bring no eclipse.
+- **Status**: **VERIFIED** (search excerpt).
+- **Sources**: NASA Science, _Why Do Eclipses Happen?_
+  <https://science.nasa.gov/eclipses/geometry/>: „During the new moon, the Moon
+  usually passes below or above the Sun, and its shadow misses Earth." NASA
+  Science, _Why Don't We Have a Solar Eclipse Every Month?_
+  <https://science.nasa.gov/resource/why-dont-we-have-a-solar-eclipse-every-month/>:
+  "the Moon as seen from Earth's perspective usually passes above or below the
+  Sun when it passes between us and the Sun."
+- **Design constraints**: the tilt is "a little". Draw no steep ramp and state no
+  5°. The Moon's shadow on Earth may be drawn as a small patch, but do not claim
+  it is "seen only there". That is true of totality, and this beat says nothing
+  about totality.
+
+### A lunar eclipse happens only at full Moon, and not at every full Moon
+
+- **Claim** (key TBD by Moon build): Earth's shadow can fall on the Moon only
+  when Earth is between the Sun and the Moon, which is at full Moon. Because of
+  the same tilt, the Moon usually passes above or below the shadow.
+- **Status**: **VERIFIED** (search excerpt) for "only at full Moon" and "not at
+  every full Moon". The quantifier **"most"** full Moons is not in any quote
+  found. Say **не всяко пълнолуние** („not every full Moon").
+- **Sources**: NASA Science, _Eclipses and the Moon_
+  <https://science.nasa.gov/moon/eclipses/>: „Lunar eclipses occur at the full
+  Moon phase." … „the Moon doesn't always get in Earth's shadow because the
+  Moon's path around Earth is tilted compared to Earth's orbit around the Sun."
+  NASA Space Place, _Lunar Eclipses and Solar Eclipses_
+  <https://spaceplace.nasa.gov/eclipses/en/>: „a full moon fades away as Earth's
+  shadow covers it up". The "doesn't always" sentence came up in an excerpt
+  that listed both pages, and it was not pinned to either one.
+- `https://svs.gsfc.nasa.gov/4158` (research file) was **not** confirmed. The
+  searches surfaced other SVS lunar-eclipse pages instead. Do not cite 4158
+  until it has been read.
+- **Design constraints**: the shadow always points straight away from the Sun.
+  This entry is the counterweight to "Moon phases — illumination, not Earth's
+  shadow" above. Earth's shadow on the Moon **is** an eclipse and **is not** a
+  phase. The two must never share a picture.
+
+### The Sun and Moon look almost the same size, and annular eclipses exist because of "almost"
+
+- **Claim** (key TBD by Moon build): the Sun and Moon look almost the same size
+  in our sky. When the Moon is farther from Earth it looks slightly smaller and
+  leaves a ring of Sun uncovered.
+- **Status**: **VERIFIED** (search excerpt). "Exactly the same size" stays **NOT
+  ATTESTED** (see "Common sky myths" below).
+- **Sources**: NASA Science, _Why Do Eclipses Happen?_
+  <https://science.nasa.gov/eclipses/geometry/>: „Even though the Sun is about 400
+  times bigger than the Moon, it is also about 400 times farther away. This makes
+  the Sun and the Moon appear almost exactly the same size in our sky." NASA
+  Science, _Types of Solar Eclipses_ <https://science.nasa.gov/eclipses/types/>:
+  „An annular solar eclipse happens when the Moon passes between the Sun and
+  Earth, but when it is at or near its farthest point from Earth. Because the Moon
+  is farther away from Earth, it appears smaller than the Sun and does not
+  completely cover the Sun." The two sentences came up in one combined excerpt
+  listing both pages, so the page-by-page split is the most likely one but is not
+  certain.
+- **Design constraint**: no "400×" on screen (rule 2).
+
+### Eclipse safety — each part checked separately
+
+- **Claim** (key TBD by Moon build): never look straight at the Sun. Sunglasses,
+  however dark, are not safe. Use eclipse glasses or a pinhole projector with
+  your back to the Sun, and never look through the hole. Never look through
+  binoculars, a telescope or a camera, even while wearing eclipse glasses. Do it
+  with an adult.
+- **Status**: **VERIFIED** (search excerpt), part by part:
+  1. **Never look straight at the Sun**: NASA Science, _Eclipse Viewing Safety_
+     <https://science.nasa.gov/eclipses/safety/>: „it is never safe to look
+     directly at the eclipse without proper eye protection" (said of partial and
+     annular eclipses).
+  2. **Sunglasses are not safe**: same page, „Eclipse glasses are NOT regular
+     sunglasses; regular sunglasses, no matter how dark, are not safe for viewing
+     the Sun."
+  3. **Pinhole, back to the Sun, not through the hole**: AAS, _Indirect Solar
+     Viewing: Pinhole & Optical Projection_
+     <https://eclipse.aas.org/eye-safety/projection>: „With the Sun at your back,
+     you project sunlight through the hole(s) onto a surface and look at the solar
+     image(s) on the surface." and „Do NOT look at the Sun through the
+     pinhole(s)!" NASA's safety page says the same: „With the Sun at your back,
+     you can then safely view the projected image."
+  4. **Not through binoculars, a telescope or a camera, even with eclipse
+     glasses**: NASA _Eclipse Viewing Safety_, above: „Do NOT look at the Sun
+     through a camera lens, telescope, binoculars, or any other optical device
+     while wearing eclipse glasses or using a handheld solar viewer — the
+     concentrated solar rays will burn through the filter and cause serious eye
+     injury."
+  5. **With an adult — attested, so it stays in the string.** AAS, _How to View
+     a Solar Eclipse Safely_ <https://eclipse.aas.org/eye-safety>: „Always
+     supervise children using solar filters." Confirmed on the full page
+     2026-09-25; the AAS line alone carries the claim. The NASA „supervise"
+     wording and a Space Place „Ask an adult" line from the excerpts were **not**
+     found on the fetched pages (`science.nasa.gov/eclipses/safety/`,
+     `spaceplace.nasa.gov/eclipses/en/`), so neither is cited.
+- **Design constraints**:
+  - **"Never" through optics is a deliberate simplification.** NASA and Space
+    Place both say optics are safe with a proper solar filter mounted **on the
+    front** („use special filters over the lenses of cameras, telescopes, or
+    binoculars"). The string may say "never through binoculars, a telescope or a
+    camera **with eclipse glasses**", which is sourced. It must never claim that
+    optics can never be made safe.
+  - "Never look straight at the Sun" is unqualified only because the game says
+    **nothing about totality**. Looking at totality is safe, and the 2027-08-02
+    eclipse is only partial from Bulgaria. If totality is ever mentioned, this
+    string must change.
+  - No "ISO 12312-2" in child text.
+
+### Earthshine — Earth lights the Moon's dark part
+
+- **Claim** (key TBD by Moon build): sunlight reflected off Earth faintly lights
+  the dark part of a crescent Moon.
+- **Status**: **VERIFIED** (search excerpt).
+- **Sources**: APOD 2025 April 3, _The Da Vinci Glow_
+  <https://apod.nasa.gov/apod/ap250403.html>: „While only a sliver of the Moon's
+  sunlit surface is visible, most of the Moon's disk can be seen by earthshine as
+  light reflected from bright planet Earth illuminates the lunar nearside." NASA
+  Earth Observatory, _Earthshine_ (ISS028-E-20073), reached at
+  <https://earthobservatory.nasa.gov/images/83782/earthshine>. The research
+  file's `science.nasa.gov/earth/earth-observatory/earthshine-83782/` is the same
+  image ID, but that exact URL was not seen: „the moon's dark face is being dimly
+  illuminated by 'earthshine'—light reflected off the Earth."
+- **Design constraint**: the beat describes it without naming it. The research
+  file keeps „пепелява светлина" out of player text, although APOD's "ashen
+  glow" confirms it is a real synonym.
+
+### Closest and farthest full Moons differ only a little in size
+
+- **Claim** (key TBD by Moon build): a full Moon at its closest looks up to about
+  14% wider than one at its farthest, which is hard to notice by eye.
+- **Status**: **VERIFIED** (search excerpt).
+- **Sources**: NASA Science, _Supermoons_ <https://science.nasa.gov/moon/supermoons/>:
+  „At its closest point, the full Moon can appear up to 14 percent bigger and 30
+  percent brighter than the faintest Moon of the year". NASA JPL Education, _What's
+  a Supermoon and Just How Super Is It?_
+  <https://www.jpl.nasa.gov/edu/resources/teachable-moment/whats-a-supermoon-and-just-how-super-is-it/>:
+  „it would be difficult to tell the difference between an average full moon and
+  a supermoon with the naked eye". The excerpt merged both pages, so the split
+  follows the page titles and is most likely, but not certain.
+- **Design constraints**: say closest and farthest, never "huge", and show no
+  percentage (rule 2). Do not lift NASA's rising-Moon "double-take" line: the
+  Moon looking bigger at the horizon is the Moon illusion, NOT ATTESTED as a real
+  size change (see "Common sky myths" below).
+
+### The Moon turns once per orbit, so one face always points at Earth
+
+- **Claim** (key TBD by Moon build): the Moon spins once in the time it takes to
+  go round Earth once, so the same side always faces us.
+- **Status**: **VERIFIED** (search excerpt).
+- **Source**: NASA Science, _Tidal Locking_
+  <https://science.nasa.gov/moon/tidal-locking/>: „Earth's Moon rotates, but it
+  takes precisely as long for the Moon to spin on its axis as it does to complete
+  its monthly orbit around Earth." and „The same side of the Moon always faces
+  Earth, because the Moon rotates exactly once each time it orbits our planet."
+- **Design constraints**: never "the Moon doesn't rotate" (NOT ATTESTED, below).
+  Wording about phases never uses „лице", so that "face" in the locking sense and
+  the lit part in the phase sense do not blur together.
+
+### The far side is fully lit at new Moon
+
+- **Claim** (`fact.moon-far-side`, plus a key TBD by Moon build if the new-Moon
+  detail gets its own string): the far side is not dark. At new Moon it is the
+  side in full sunlight.
+- **Status**: **VERIFIED** (search excerpt).
+- **Source**: NASA Science, _Top Moon Questions_
+  <https://science.nasa.gov/moon/top-moon-questions/>: „The far side of the Moon
+  gets as much sunlight as the near side." and „When the far side is fully lit
+  and the near side is dark, we call this a new Moon."
+- **Design constraint**: never „тъмна страна". See "Moon phases" above.
 
 ---
 

@@ -34,3 +34,9 @@ Settled by ticket 001:
 
 Record the verdict as an amendment to `docs/adr/0006-seven-puzzle-types-not-thirteen.md`, then prune the schema enum
 in the build that follows.
+
+Settled by ticket 003:
+
+- **The Moon uses** `rotate-match` (M1, M3, M2, eclipse), `parallax-compare` (M5 near/far) and `telescope-focus`
+  (M9 seas and craters). It does not use `gravity-drop`, `trajectory-match` or `zoom-split-star`.
+- M5 and M9 were chosen for their astronomy. If the build cuts either, this verdict reopens.
