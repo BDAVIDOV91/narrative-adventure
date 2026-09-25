@@ -65,7 +65,7 @@ a second idea goes to that marker's nudge.
 
 Spine chains through `reward.unlocks`: M1 → M3 → M2. The optional markers are open from the start, as on Earth.
 
-**Out:** M6 horizon Moon, M7 daytime Moon, M8 hammer and feather (it only repeats Earth), any dated eclipse (no
+**Out:** M6 horizon Moon, M7 daytime Moon, M8 hammer and feather (it only repeats Earth) (ticket 005: with Earth's drop beat deleted, the air+Apollo lesson returns as the Moon's completion line, not a beat), any dated eclipse (no
 2027-08-02 string), and the term „пепелява светлина".
 
 **Guards the build must hold:**

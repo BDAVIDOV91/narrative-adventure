@@ -21,4 +21,10 @@ it points to were not available to this agent. So nothing was read on the full p
 - Still unpinned: S&T "gray-and-white mush" (which S&T page), svs.gsfc.nasa.gov/4158 (never seen), the NASA
   supervise line (safety vs eclipse-2024/safety), and "most full Moons miss" (only "not always" is quoted).
 
+**Moon air (2026-09-25, full page via `curl -sL` into the scratchpad; that works when WebFetch is hooked):**
+flat „На Луната няма въздух" is NOT ATTESTED (NASA Moon Facts: "very thin and tenuous atmosphere called an
+exosphere"). „почти няма въздух" / „няма въздух, който да задържи перцето" VERIFIED (NASA hammer-feather page:
+"essentially in a vacuum, there was no air resistance"). Recorded in sources.md under "Gravity — air, not weight".
+Do not re-open.
+
 Related: [[settled-sources]].

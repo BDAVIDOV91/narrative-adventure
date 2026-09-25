@@ -2,6 +2,7 @@
 
 - **Status**: accepted
 - **Date**: 2026-09-09
+- **Amended**: 2026-09-25 — see "the trigger applied" below
 
 ## Context
 
@@ -71,3 +72,47 @@ finishing.
   is created speculatively.
 - Supersedes the "five puzzle types" wording in `CLAUDE.md`,
   `docs/design/puzzle-types.md` and `README.md`, all updated.
+
+## Amendment, 2026-09-25 — the trigger applied
+
+The review trigger above fired when the Moon and Mars were designed (wayfinder map `road-to-v1`, tickets
+[003](../wayfinder/road-to-v1/tickets/003-moon-level-design.md),
+[004](../wayfinder/road-to-v1/tickets/004-mars-level-design.md) and
+[005](../wayfinder/road-to-v1/tickets/005-adr-0006-verdict.md)). Mars is the anchor. Jupiter is roster page 4 and
+comes after it, so Jupiter's uses do not count, and Jupiter cannot revive a deleted type.
+
+| Type               | Earth | Moon                | Mars   | Verdict    |
+| ------------------ | ----- | ------------------- | ------ | ---------- |
+| `rotate-match`     | 4     | M1, M3, M2, eclipse | —      | keep       |
+| `connect-the-dots` | 1     | —                   | R1a    | keep       |
+| `parallax-compare` | 1     | M5                  | R2, R6 | keep       |
+| `trajectory-match` | 2     | —                   | R1b    | keep       |
+| `telescope-focus`  | 1     | M9                  | R3     | keep       |
+| `zoom-split-star`  | 0     | —                   | —      | **delete** |
+| `gravity-drop`     | 1     | —                   | —      | **delete** |
+
+**Five types remain.** No exception was granted.
+
+- `zoom-split-star` has no use on any designed level. Its only target, Mizar/Alcor, is stellar and outside CLAUDE.md
+  rule 6.
+- `gravity-drop` has no second level. Mars's drop beat was cut on its astronomy: it repeats Earth's Mars rung, and
+  Mars's thin real air makes neither air flag honest.
+- Earth therefore ships **nine** beats, not ten. The Decision section's "All ten Earth beats still ship" is superseded.
+- Losing `gravity-drop` does not lose its lessons. The air-not-weight lesson and the Apollo 15 hammer-and-feather drop
+  become the Moon level's completion line. The Moon/Mars/Jupiter pull comparison is offered to the Jupiter design as a
+  fact only.
+
+The title and the lines above still say "seven". They are the 2026-09-09 decision, left as written; the live count is
+five.
+
+### When to revisit
+
+The verdict reopens if the build cuts a beat that is a type's only second-level use. Each type dies with its own set:
+
+- `connect-the-dots`: Mars R1a;
+- `trajectory-match`: Mars R1b;
+- `telescope-focus`: both Moon M9 and Mars R3;
+- `parallax-compare`: Moon M5 and Mars R2 and R6, all three.
+
+A deleted type is not restored by a later level. A future level that genuinely needs one of these interactions makes
+the case as a new deliberate decision, here.

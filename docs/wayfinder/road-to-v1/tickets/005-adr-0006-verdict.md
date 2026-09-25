@@ -2,8 +2,8 @@
 id: "005"
 title: Apply the ADR 0006 trigger to the designed levels
 type: grilling
-status: open
-assignee: ""
+status: closed
+assignee: owner
 blocked_by: ["001", "003", "004"]
 ---
 
@@ -70,3 +70,74 @@ Settled by ticket 004 (owner, 2026-09-25):
       says all ten Earth beats ship), `docs/design/puzzle-types.md`, `docs/design/earth-level-brief.md:42,86`;
     - the MAP.md wall "`gravity-drop` never models mass", and ticket 006's copy of it, both retire with the type.
 
+
+## Resolution
+
+Grilled with the owner on 2026-09-25, then challenged by two `challenger` agents. Both said "revise". Their two open
+points (where the air lesson goes, and how retired claims are marked) were answered by the owner. The verdict is an
+amendment to [ADR 0006](../../../adr/0006-seven-puzzle-types-not-thirteen.md) ("the trigger applied").
+
+**Verdict: five types kept, two deleted, no exceptions.**
+
+| Type | Earth | Moon | Mars | Verdict |
+| ---- | ----- | ---- | ---- | ------- |
+| `rotate-match` | 4 | M1, M3, M2, eclipse | — | keep |
+| `connect-the-dots` | 1 | — | R1a | keep |
+| `parallax-compare` | 1 | M5 | R2, R6 | keep |
+| `trajectory-match` | 2 | — | R1b | keep |
+| `telescope-focus` | 1 | M9 | R3 | keep |
+| `zoom-split-star` | 0 | — | — | **delete** |
+| `gravity-drop` | 1 | — | — | **delete** |
+
+**Reopens if the build cuts** R1a (`connect-the-dots`), R1b (`trajectory-match`), both M9 and R3 (`telescope-focus`),
+or all of M5, R2 and R6 (`parallax-compare`). Ticket 003 and ticket 004 say any cut reopens it; this narrows that to the
+sets that actually kill a type.
+
+**Where `gravity-drop`'s facts go:**
+
+- **`fact.gravity-drop` + `fact.gravity-drop.apollo`** merge into one string: the **Moon level's completion line**,
+  shown once the spine (M1 → M3 → M2) is finished. Every child reads it, and no hint is displaced. Not a nudge: a
+  stall-only nudge on M2 would be off-topic and unseen by a child who solves it quickly. This is not M8 revived; it is
+  a line, not a beat. Guards:
+  - keep the explicit „Не защото е тежък" clause, the only refutation of "heavy falls faster";
+  - „притегляне", never „тегло" or „земно ускорение"; no numbers, no masses, no drop height;
+  - the Moon's air: „няма въздух, който да задържи перцето" and/or „почти няма въздух" (VERIFIED, `docs/sources.md:169`,
+    NASA's "no air resistance" and "very thin"). The flat „На Луната няма въздух", which opens today's
+    `content/bg/facts.json:18`, is **NOT ATTESTED** and must not ship. Never „вакуум", „атмосфера" or „екзосфера".
+- **`fact.gravity-drop.bodies`** is handed to ticket 006 (Jupiter) as a candidate. It is not adoptable verbatim, and
+  Jupiter may say only "pull", never falls or lands. `data/reference/surface-gravity.json` and
+  `tests/test_reference_data.py:30` stay until 006 decides; if 006 declines, the claim is marked RETIRED. Until then
+  the key is knowingly unreferenced.
+
+**`docs/sources.md` handling** (owner): a new **RETIRED** status meaning "true, not shipped; reason: …", distinct from
+NOT ATTESTED (false). Mizar/Alcor becomes RETIRED (rule 6). The air/Apollo and surface-gravity entries stay live.
+
+**This supersedes** the "What the prune strands" bullet on `docs/sources.md` above. The air/Apollo and surface-gravity
+entries are not retired, and the "`fact.gravity-drop.bodies` stays" line is `:1286` (after this ticket's sources entry), not `:1009`.
+
+**Build follow-ups** (the prune, through plan mode and two challengers; defects go by RED/GREEN):
+
+- **Schema**: drop both enum entries and branches (`schemas/level-data.schema.json:134-140,148-154,171,173`). Change
+  the enum description at `:176` from seven to five. `tests/test_validate_levels.py:69,81-86,212`.
+- **Code and data**:
+  - delete `src/puzzles/zoom-split-star/` and `earth-gravity-drop` (`src/scenes/earth/earth-data.json:161-173`);
+  - delete `puzzle.earth.gravity-drop.label` (`content/bg/puzzles.json:9`);
+  - in `src/shared/game-state.test.ts`, swap in another optional marker for the fixture (lines 24, 64, 75).
+- **Content**: a new Moon completion-line key plus a level-complete hook. Delete `fact.gravity-drop`,
+  `fact.gravity-drop.apollo` and `fact.mizar-alcor.1-4`. Run `pedagogy-report` and `astronomy-report` on the new
+  string.
+- **Sources**:
+  - add the RETIRED status to the vocabulary table;
+  - mark Mizar/Alcor RETIRED (`:846`) and re-note `:954` and `:1188`;
+  - reword `:221` away from "the same drop";
+  - add research 007's Saturn/Jupiter clarifying line at `:238`;
+  - update `:1286`;
+  - re-key the air/Apollo entry from a beat to the completion line (`:148`).
+- **Star catalogue**: rewrite the `zoom-split-star` rationale in `data/scripts/star-catalogue.py:13` (grandfathered at
+  500 lines; do not grow it) and `tests/test_star_catalogue.py`.
+- **Docs**:
+  - "seven" → "five" in `CLAUDE.md:95-100`, `README.md:66`, `docs/design/puzzle-types.md:3,17` and
+    `docs/design/earth-level-brief.md:26,42,54,56,86-104`;
+  - the `surface-gravity.json` readme line "feeds the gravity-drop beat".
+- **Agent config**: `.claude/agents/challenger.md:61` (its type list was already stale), and in
+  `.claude/agent-memory/astronomy-accuracy-checker/`, `settled-sources.md:11` and `bulgarian-folk-figures.md:39`.

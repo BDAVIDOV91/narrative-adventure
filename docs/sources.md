@@ -166,6 +166,53 @@ the astronomy are the same act. See
     1971-08-02.
   - **The ALSJ moved.** Every `nasa.gov/history/alsj/…` URL now redirects to a
     landing page; cite `apollojournals.org`.
+- **Why they fell together: no air to hold the feather — not "no air on the
+  Moon".** (`fact.gravity-drop.apollo`; the Moon-level nudge of ticket 005, merged
+  with `fact.gravity-drop`.)
+  - **Claim**: on the Moon there is (almost) no air, so nothing holds the feather
+    back; the hammer and the feather fall together because all objects fall at
+    the same rate regardless of how heavy they are.
+  - **Status**: **VERIFIED** for „почти няма въздух" and for „няма въздух, който
+    да задържи перцето". **NOT ATTESTED** for the flat „На Луната няма въздух":
+    NASA says the Moon _has_ an atmosphere, a very thin one (an exosphere).
+    Checked 2026-09-25 by `astronomy-accuracy-checker`, **every quote read on the
+    full fetched page**, not a search excerpt.
+  - **The drop itself** — NASA Science, _The Apollo 15 Hammer-Feather Drop_
+    (page modified 2025-02-12)
+    <https://science.nasa.gov/resource/the-apollo-15-hammer-feather-drop/>:
+    „Because they were essentially in a vacuum, there was no air resistance and
+    the feather fell at the same rate as the hammer, as Galileo had concluded
+    hundreds of years before - all objects released together fall at the same
+    rate regardless of mass." Note **„essentially"**: NASA does not say
+    "a vacuum", flat.
+  - **What the Moon has instead of air** — NASA Science, _Moon Facts_ (modified
+    2026-02-12) <https://science.nasa.gov/moon/facts/>: „The Moon has a very thin
+    and tenuous atmosphere called an exosphere. It is not breathable." and
+    „The Moon has a very thin and weak atmosphere."
+  - NASA Science, _The Moon's Atmosphere_ (modified 2026-03-05)
+    <https://science.nasa.gov/moon/lunar-atmosphere/>: „The lunar atmosphere is
+    mostly an exosphere, which itself is mostly empty space. If you were to visit
+    the Moon and walk around on its surface, you might think it had no atmosphere
+    at all." and „The Moon's atmosphere contains about one million billion (10¹⁵)
+    times fewer molecules per cubic centimeter than Earth's does."
+  - **The Earth half, from the same astronaut** — ALSJ, _Apollo 15 EVA-3
+    Close-out_ (URL above), Scott's later commentary on repeating the drop on a
+    lake bed at Edwards: „And, of course, the feather floats down, because of the
+    air."
+  - **Wording guard.**
+    - **Use** „…няма въздух, който да задържи перцето" (the NASA wording is
+      literally „no air resistance"), or „На Луната почти няма въздух". Both may
+      be joined: „На Луната почти няма въздух — няма кой да задържи перцето."
+    - **Never** the flat „На Луната няма въздух" or „на Луната има вакуум": NASA
+      says there is a thin atmosphere and the drop was „essentially" in a vacuum.
+      Same rule as Mars („no 'Mars has no air'", below) and as water („never
+      'no water on the Moon'", ticket 003).
+    - **The „не защото е тежък" clause stays.** It is the Galilean-equivalence
+      claim of the entry above, and NASA's „fall at the same rate regardless of
+      mass" is the quoted source for it. Keep the cause on **въздуха**, never on
+      **тегло**.
+    - No „атмосфера", „екзосфера" or „10¹⁵" on screen: rule 2, and a child
+      needs only „въздух".
 - **Rule 2**: the masses and the drop height are for this file only. No number,
   and no use of `земно ускорение`, reaches the player — say **притегляне**.
 
@@ -348,6 +395,11 @@ side (NASA _Top Moon Questions_). The „(search excerpt)" tags below now mean
 "first found by excerpt, since read on the page". Still unread: the Sky &
 Telescope „mush" line (supporting only) and NASA SVS 4158 (not cited). Every
 content key is **(key TBD by Moon build)** unless named.
+
+**Hammer and feather (ticket 005: the Moon completion line).** The Apollo 15 drop and the „почти
+няма въздух / няма въздух, който да задържи перцето" wording are recorded under
+_Gravity — air, not weight_ above (VERIFIED, full-page read 2026-09-25). The flat
+„На Луната няма въздух" is **NOT ATTESTED** and must not ship.
 
 ### The dark "seas" are old lava plains, not water
 

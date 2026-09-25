@@ -30,10 +30,9 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 - **Fixed inputs, not tickets.** Do not reopen these:
   - Earth's ten beats and grilling rounds 1–4 (`docs/handoffs/2026-09-09-session-handoff.md`), less
     `earth-gravity-drop`: the ADR 0006 trigger deletes `gravity-drop` (ticket 004, applied by 005; owner-accepted
-    2026-09-25). Its facts move to other markers.
-  - The seven-type set and the ADR 0006 trigger.
+    2026-09-25). Its facts move to the Moon's completion line and a Jupiter candidate (ticket 005).
+  - The five-type set left by ticket 005, and the ADR 0006 trigger.
   - The rule 1/2/8 walls:
-    - `gravity-drop` never models mass (retires with the type);
     - `drives` has no `rotation`;
     - Saturn is absent from any drop or pull comparison;
     - no exaggerated orbit ellipse.
@@ -67,6 +66,7 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 - [What Jupiter can teach, deep](tickets/007-what-jupiter-can-teach.md) — spine of moons ladder, moving moons, Sirius and fast spin; viable only if `telescope-focus`, `trajectory-match` or `parallax-compare` survive 005.
 - [Moon level design: beats, types and the required spine](tickets/003-moon-level-design.md) — spine M1 → M3 → M2 on `orbitAngle`; optional eclipse, near/far (`parallax-compare`) and seas & craters (`telescope-focus`); 2 companion tiers.
 - [Mars level design: beats and types](tickets/004-mars-level-design.md) — five required beats, spine R1a: retrograde as see-it (`connect-the-dots`) then why (`trajectory-match`), telescope disc, never Moon-sized, blue sunset; `gravity-drop` gets no Mars use.
+- [Apply the ADR 0006 trigger to the designed levels](tickets/005-adr-0006-verdict.md) — five types kept, `zoom-split-star` and `gravity-drop` deleted; air+Apollo becomes the Moon's completion line, the pull comparison a Jupiter candidate; sources gain a RETIRED status.
 
 ## Not yet specified
 

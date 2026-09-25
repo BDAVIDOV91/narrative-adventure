@@ -35,7 +35,6 @@ Fixed:
   - `fact.telescope-jupiter` (VERIFIED, `docs/sources.md:235`) is not yet wired to any beat, so it is free to adopt.
   - Earth's telescope beat rewards Saturn.
 - **No folklore beats.**
-- **`gravity-drop` never models mass.** Moot once ticket 005 deletes the type (ticket 004 gave it no Mars use).
 - **The data window** is 365 days, which shows only about 30° of Jupiter's orbit.
 
 If research 007 finds too few honest beats for a required spine, raise it with the owner through `AskUserQuestion`.
@@ -45,3 +44,14 @@ Close only when every claim the design adopts is VERIFIED in `docs/sources.md`.
 
 Settled by ticket 004: Mars reuses `telescope-focus`, `trajectory-match` and `parallax-compare`, so all three types
 Jupiter's spine needs (research 007) have a second level. Jupiter's viability condition is met, pending 005.
+
+Settled by ticket 005:
+
+- **Five types survive**: `rotate-match`, `connect-the-dots`, `parallax-compare`, `trajectory-match`,
+  `telescope-focus`. `gravity-drop` and `zoom-split-star` are deleted, so the "`gravity-drop` never models mass" wall
+  is retired.
+- **Candidate fact: `fact.gravity-drop.bodies`** (Moon slow, Mars faster, Jupiter much stronger pull), backed by
+  `data/reference/surface-gravity.json`. It is not adoptable verbatim, since two thirds of it is about the Moon and
+  Mars. A Jupiter use may say only "pull", never falls or lands (no true surface; `docs/sources.md:1286`). The value is
+  the 1-bar row. A rewrite is a new string and needs its own wording check. If this ticket declines it, the claim is
+  marked RETIRED and the build deletes the reference file and its test.
