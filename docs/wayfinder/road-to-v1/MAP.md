@@ -57,6 +57,8 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 
 ## Decisions so far
 
+- [What each candidate world can teach through the seven types](tickets/002-what-each-world-can-teach.md) — Moon and Mars have honest beats on existing types; Neptune has none; `zoom-split-star` lives only if Jupiter does.
+
 ## Not yet specified
 
 - **Designs for levels after Mars**: one ticket per roster level, graduating when the roster ticket closes. Each

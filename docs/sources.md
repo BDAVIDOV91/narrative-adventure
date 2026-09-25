@@ -706,6 +706,52 @@ of these is the lesson; each is attached to a lesson.
 
 ---
 
+## Claims ruled out during v1 roster research
+
+Surfaced by `docs/wayfinder/road-to-v1/research/002-what-each-world-can-teach.md` on 2026-09-25. Each source was
+confirmed from a search excerpt, not a full page fetch. Recorded now so that nobody proposes them again. The
+candidate beats in that file are **not** entered here: a claim enters this register only when a design ticket adopts
+it.
+
+### Common sky myths — NOT ATTESTED
+
+Each of these claims was checked and found false or unsupported. Do not state any of them.
+
+- „Марс ще изглежда голям колкото пълната Луна" (Mars will look as big as the full Moon). This is a hoax: NASA,
+  _Mars Hoax_ <https://mars.nasa.gov/resources/21869/mars-hoax/>.
+- "The Moon doesn't rotate." It turns once per orbit: NASA, _Tidal Locking_
+  <https://science.nasa.gov/moon/tidal-locking/>.
+- "The Moon is bigger at the horizon." This is an illusion: NASA, _The Moon Illusion_.
+- "A supermoon is huge." It is at most about 14% wider than the smallest full Moon: NASA, _Supermoons_
+  <https://science.nasa.gov/moon/supermoons/>.
+- "Mercury is the hottest planet." Venus is: NASA, _Venus Facts_ <https://science.nasa.gov/venus/venus-facts/>.
+- "The Sun and Moon are _exactly_ the same size in the sky." NASA says "almost exactly", and annular eclipses exist
+  because they are not: NASA, _Why Do Eclipses Happen?_ <https://science.nasa.gov/eclipses/geometry/>.
+- "The 2027-08-02 solar eclipse is total from Bulgaria." It is **partial** there: timeanddate, Sofia 2027-08-02.
+- "A small telescope shows Mars's polar cap." That needs a 4–6 inch telescope and excellent seeing: Sky & Telescope,
+  _An Observer's Guide to Mars_.
+- "Distance plays no part in seasons, anywhere." False for Mars, where eccentricity matters: NASA, _Helio and You:
+  Seasons on Earth, Mars, and Beyond_. Earth's wording (`fact.seasons.distance`, „почти не се променя", "barely
+  changes") is specific to Earth and stays correct.
+- "The Galilean moons are visible to the naked eye" (for a child). Say binoculars: NASA Night Sky Network, _From
+  Galileo to Clipper_.
+
+### Phobos as "the only moon that orbits faster than its planet spins" — DISPUTED
+
+- NASA, _Phobos in Orbit around Mars_, makes the claim.
+- Jupiter's Metis and Adrastea, Uranus's Cordelia and Neptune's Naiad appear to contradict it. That is general
+  knowledge, not yet sourced: verify against the JPL satellite tables.
+- Do not state it either way until it is resolved.
+
+### "A day on Venus is longer than its year" — DISPUTED
+
+- It is true only for one rotation measured against the stars (≈243 days against ≈225).
+- A sunrise-to-sunrise day is ≈117 Earth days (NEEDS SOURCE), which is _shorter_ than the year. So the plain phrase
+  misleads.
+- "Venus spins backwards" is sourced (NASA, _Venus Facts_) and is the safe claim.
+
+---
+
 ## Terminology
 
 Standard Bulgarian, checked against bg.wikipedia's own astronomy articles.
