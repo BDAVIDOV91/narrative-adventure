@@ -132,12 +132,20 @@ the astronomy are the same act. See
 
 ### Jupiter's Galilean moons
 
-- **Claim**: Io, Europa, Ganymede and Callisto shift position night to night;
-  their orbital periods can be deduced from watching them.
-- **Status**: **NEEDS SOURCE** for the specific periods. The four names and
-  Galileo's discovery are uncontroversial; the numbers the puzzle depends on
-  must come from a cited source (JPL) and be generated into
-  `data/generated/`, never typed from memory.
+- **Claim** (re-scoped 2026-09-25 to ticket 006 claim 4): Io, Europa, Ganymede
+  and Callisto circle Jupiter, each at its own pace, the closer ones faster. Their
+  orbit sizes and Jupiter's radius set the J2 drawing at true relative scale.
+  **Schematic and undated**: no periods, radii or dates on screen, and no
+  "night to night" or "work out the period by watching" framing — that older
+  wording is withdrawn.
+- **Status**: **VERIFIED** (full page, 2026-09-25). Quotes, values and URLs are in
+  "Jupiter level — the claims ticket 006 adopts", claim 4, below.
+- **Storage**: hand-authored, cited rows in `data/reference/` (the same pattern as
+  `data/reference/surface-gravity.json`: `value`, `unit`, `factSheetLabel`,
+  `sourceUrl`, `accessed` per row) — **not `data/generated/`**, which is reserved
+  for generator output. Values come from the NSSDC _Jovian Satellite Fact Sheet_,
+  never from memory, and never from the JPL SSD mean-element "P" column (see the
+  trap under claim 4).
 
 ### Gravity — air, not weight, separates the feather from the rock
 
@@ -220,6 +228,13 @@ the astronomy are the same act. See
 
 - **Claim** (`fact.gravity-drop.bodies`): the same drop is slow and floating on
   the Moon, a little quicker on Mars, and far stronger on Jupiter.
+- **Superseded for Jupiter by ticket 006 (2026-09-25).** `gravity-drop` is deleted
+  (ADR 0006), and **`fact.gravity-drop.bodies` is deleted in the build**. The
+  Jupiter half survives only as a new Jupiter completion-line key (e.g.
+  `fact.jupiter.complete`): "Jupiter pulls much harder than Earth". **Only
+  „дърпа" / „притегля"** — never falls, lands, stands or weighs, because Jupiter has
+  no true surface. See claim 14 under "Jupiter level — the claims ticket 006
+  adopts". The values below stay as the source for that line.
 - **Status**: **VERIFIED** for Moon, Mars, Earth and Jupiter.
 - **Source**: NASA/NSSDCA planetary fact sheets. **The live URLs are dead** — as
   of 2026-09-09 every `https://nssdc.gsfc.nasa.gov/planetary/factsheet/*` address
@@ -807,6 +822,282 @@ downloaded (HTTP 200), stripped to text and searched. No search excerpt used.
   completes one rotation every 24.6 hours, which is very similar to one day on
   Earth (23.9 hours)." „A little longer", no hours on screen.
 
+### Jupiter level — the claims ticket 006 adopts
+
+Adopted by `docs/wayfinder/road-to-v1/tickets/006-jupiter-level-design.md` from
+`docs/wayfinder/road-to-v1/research/006-jupiter-claims.md` (claim numbers below are
+that file's rows). Checked 2026-09-25 by `astronomy-accuracy-checker`. **Method:
+full page** — every page was downloaded, stripped to text and searched; no status
+rests on a search excerpt. All access dates are **2026-09-25**. Every content key
+is **(key TBD by Jupiter build)** except where named.
+
+**URL notes.** The NSSDC fact sheets under
+`https://nssdc.gsfc.nasa.gov/planetary/factsheet/` **are live again** (HTTP 200 on
+2026-09-25; they redirected on 2026-09-09), so they are cited live below; the
+Wayback snapshots recorded under "Surface gravity per body" remain valid. Sky &
+Telescope returns **HTTP 403** to scripts, so every S&T page is cited through a
+dated Wayback snapshot.
+
+Sources read in full, cited by short name:
+
+- **[JF]** NASA, _Jupiter Facts_ <https://science.nasa.gov/jupiter/jupiter-facts/>
+- **[NSN]** NASA Night Sky Network, _October's Night Sky Notes: From Galileo to
+  Clipper, Exploring Jupiter's Moons_ (V. White, 2023)
+  <https://science.nasa.gov/solar-system/skywatching/night-sky-network/octobers-night-sky-notes-from-galileo-to-clipper-exploring-jupiters-moons/>
+- **[ST-BBB]** Sky & Telescope, J. Kelly Beatty, _How to See Jupiter: Big, Bright,
+  and Beautiful_ (2014), Wayback 2024-07-16
+  <https://web.archive.org/web/20240716160421/https://skyandtelescope.org/observing/jupiter-big-bright-and-beautiful-2/>
+- **[ST-OPP]** Sky & Telescope, Bob King, _Jupiter Is Outstanding at Opposition_,
+  Wayback 2025-12-07
+  <https://web.archive.org/web/20251207132001/https://skyandtelescope.org/observing/jupiter-is-outstanding-at-opposition/>
+- **[ST-GRS]** Sky & Telescope, J. Kelly Beatty, _Jupiter's Not-So-Great Red Spot_
+  (2014), Wayback 2025-05-22
+  <https://web.archive.org/web/20250522171752/https://skyandtelescope.org/astronomy-news/observing-news/jupiters-great-red-spot/>
+- **[ST-TR]** Sky & Telescope, _Transit Times of Jupiter's Great Red Spot_, Wayback
+  2026-01-06
+  <https://web.archive.org/web/20260106055436/https://skyandtelescope.org/observing/interactive-sky-watching-tools/transit-times-of-jupiters-great-red-spot/>
+- **[IO] [EU] [GA] [CA]** NASA _Io Facts_
+  <https://science.nasa.gov/jupiter/jupiter-moons/io/facts/>, _Europa Facts_
+  <https://science.nasa.gov/jupiter/jupiter-moons/europa/europa-facts/>,
+  _Ganymede Facts_ <https://science.nasa.gov/jupiter/jupiter-moons/ganymede/facts/>,
+  _Callisto Facts_ <https://science.nasa.gov/jupiter/jupiter-moons/callisto/facts/>
+- **[ME]** NASA _Mercury Facts_ <https://science.nasa.gov/mercury/facts/>;
+  **[EF]** NASA _Earth Facts_ <https://science.nasa.gov/earth/facts/>
+- **[NSSDC-JS]** NASA NSSDC, _Jovian Satellite Fact Sheet_ (last updated
+  2023-12-06) <https://nssdc.gsfc.nasa.gov/planetary/factsheet/joviansatfact.html>
+- **[NSSDC-J]** NASA NSSDC, _Jupiter Fact Sheet_
+  <https://nssdc.gsfc.nasa.gov/planetary/factsheet/jupiterfact.html>;
+  **[NSSDC-P]** _Planetary Fact Sheet_ (last updated 2025-03-18)
+  <https://nssdc.gsfc.nasa.gov/planetary/factsheet/>; **[NSSDC-N]** _Notes on the
+  Fact Sheets_ <https://nssdc.gsfc.nasa.gov/planetary/factsheet/planetfact_notes.html>
+- **[SSD]** JPL SSD, _Planetary Satellite Mean Elements_
+  <https://ssd.jpl.nasa.gov/sats/elem/> (cross-check only — see the trap in 4)
+- **[VAN]** University of Illinois Physics Van, _Light From Planets and Stars_
+  <https://van.physics.illinois.edu/ask/listing/14244>
+
+#### 1. Through binoculars, up to four moons show as small dots in a line beside Jupiter
+
+- **Status**: **VERIFIED** (full page).
+- **Quotes**: [NSN] „Look a bit closer, with a pair of binoculars … you will likely
+  see a line of smaller dots on one or both sides. … Jupiter … and its four largest
+  moons"; „easily visible through a pair of modest binoculars or a small
+  telescope". [ST-BBB] „If your binoculars are good quality and magnify at least
+  seven times … Look closely to either side of Jupiter's disk — do you see a line
+  of three or four tiny stars?"
+- **Guard**: "up to four" (S&T's own „three or four"); binoculars, never the naked
+  eye; never „звезди" (both pages say "stars" loosely — the game must not). Undated.
+
+#### 2. Jupiter is a huge ball of gas; a small telescope shows a small disc with dark cloud belts when the air is steady (`fact.telescope-jupiter`)
+
+- **Status**: **VERIFIED** (full page), including the two clauses that lacked a
+  quote.
+- **"Ball of gas"**: [ST-BBB] „Jupiter is a gas giant planet — it consists almost
+  entirely of hydrogen and helium, nearly all the way down. The "surface" you see
+  is actually the top layers of cloud decks"; [JF] „As a gas giant, Jupiter doesn't
+  have a true surface. The planet is mostly swirling gases and liquids"; [ST-OPP]
+  „Jupiter has no solid surface. Nothing but clouds and weather".
+- **"When the air is steady"**: [ST-OPP] „Try to observe it every clear night if you
+  can, the better to catch nights of calm and steady seeing when the planet sits
+  rock-steady and sharp"; and „The big yellow planet rippled in the turbulent air
+  like a flag in the wind". [ST-BBB] „Depending on the size of your scope and the
+  quality of the night's seeing".
+- **Belts in a small scope**: [ST-GRS] „Its two main cloud belts appear in most any
+  backyard setup"; the 2.4-inch quote under "Through a small telescope" above.
+- **Wording guard (LOW)**: [JF] says the deep interior is liquid („gases and
+  liquids"; „an ocean made of hydrogen"). „Огромно кълбо от газ" is the gas-giant
+  simplification [ST-BBB] itself uses and may ship; never extend it to "gas all the
+  way to the centre". „Газов гигант" is the standard Bulgarian term if one is taught.
+
+#### 3. The Great Red Spot is often pale and hard to see in a small telescope, and is well placed only while Jupiter's spin turns it toward us
+
+- **Status**: **VERIFIED** (full page) **with a wording correction**: „often pale",
+  not an unconditional „faint and pale".
+- **Quotes**: [ST-TR] „in recent decades it has generally been a much less
+  conspicuous pale tan"; „for something so famous, it can be surprisingly
+  difficult to see"; „Features on Jupiter appear closer to the central meridian
+  than to the limb — and thus are well placed for viewing — for 50 minutes before
+  and after their transit times". [ST-BBB] colour „brick red (very rarely), pale
+  orange tan (more often), pinkish tan, or an almost invisible creamy yellowish";
+  „seeing the Great Red Spot is a challenge in a small telescope. Your best
+  prospects will be when the spot appears near the middle of Jupiter's disk … The
+  planet's rapid rotation means that these windows of opportunity last only a
+  couple hours".
+- **Counter-evidence, recorded**: [ST-OPP] (2019 season) says the spot „maintains
+  its orange-red hue" and is „easy to see at 100× and higher in good seeing";
+  [ST-GRS] notes it had „taken on a distinctly orange color" in 2014. The colour
+  varies from year to year, so the art is pale-to-orange, never poster-red, and the
+  text never says "always faint". **No size** („twice Earth" stays DISPUTED; [ST-BBB]
+  repeats it and [ST-OPP] says „about 1.3 Earths" — they disagree, which confirms
+  the DISPUTED entry).
+
+#### 4. The four moons circle Jupiter, each at its own pace, closer ones faster; drawn at true relative scale
+
+- **Status**: **VERIFIED** (full page). Values for `data/reference/` rows only —
+  **never player text** (rule 2).
+- **Quotes**: [EU] „every time Ganymede orbits Jupiter once, Europa orbits twice,
+  and Io orbits four times"; [GA] „Ganymede completes an orbit around Jupiter about
+  every seven Earth days (7.155)"; [CA] „Callisto takes about 17 (16.689) Earth days
+  … Callisto is about 1.8 times farther from Jupiter than Ganymede, 2.8 times
+  farther than Europa and 4.5 times farther than Io"; [EU] „Europa orbits Jupiter
+  every 3.5 days". [IO] gives no period.
+- **Values** ([NSSDC-JS], „Orbital Period* (days)", „Semi-major axis (10³ km)",
+  „Semi-major axis (Jovian Radii)", „Radius (km)"; Jovian radius used there =
+  71,492 km):
+
+  | Moon     | Period (d) | a (10³ km) | a (R_J) | Radius (km) | NASA facts page cross-check            |
+  | -------- | ---------- | ---------- | ------- | ----------- | -------------------------------------- |
+  | Io       | 1.769138   | 421.8      | 5.91    | 1821.5      | „422,000 kilometers"; no period        |
+  | Europa   | 3.551181   | 671.1      | 9.40    | 1560.8      | „671,000 kilometers"; „every 3.5 days" |
+  | Ganymede | 7.154553   | 1070.4     | 14.97   | 2631.2      | „1,070,000 kilometers"; „7.155"        |
+  | Callisto | 16.689017  | 1882.7     | 26.33   | 2410.3      | „1,883,000 kilometers"; „16.689"       |
+
+- **Jupiter's radius**: [JF] „With a radius of 43,440.7 miles (69,911 kilometers)"
+  — this is the **volumetric mean**; [NSSDC-J] „Equatorial radius (1 bar level)
+  (km) 71,492", „Volumetric mean radius (km) 69,911". **Draw with 71,492 km** so the
+  disc matches the R_J column above; mixing the two shifts every orbit by 2.3%.
+- **Trap — do not use [SSD] "P" for Io and Europa.** The JPL mean-element table
+  lists P = 1.762732 d (Io) and 3.525463 d (Europa) — 0.4% and 0.7% off the
+  sidereal periods above (the mean elements are "a precessing ellipse … fit in a
+  least squares sense" and the page warns they are "not intended for ephemeris
+  computation"). Its semi-major axes (421,800 / 671,100 / 1,070,400 / 1,882,700 km)
+  and Ganymede/Callisto periods agree with [NSSDC-JS]. Cite [NSSDC-JS].
+- **Guard**: no periods, radii or dates on screen; the target line-up is generated
+  from the model; Callisto is not drawn locked to the 1:2:4 rhythm (the resonance
+  quote names only Io, Europa and Ganymede).
+
+#### 5. We see the moons' orbits almost edge-on, so they appear strung along a line through Jupiter
+
+- **Status**: **VERIFIED** (full page) — was NEEDS SOURCE.
+- **Quotes**: [ST-BBB] „We see their orbits almost exactly edge on." — in the same
+  passage as „a line of three or four tiny stars". [EU] „Jupiter's equator (and
+  the orbital plane of its moons) is tilted … by only 3 degrees" — the four share
+  one plane. The "so" is the geometry of a circle seen edge-on; the edge-on strip
+  shows it.
+- **Guard**: „almost" edge-on, never "exactly"; "along a line", never "in a
+  perfectly straight row".
+
+#### 6. Galileo saw the four moons move, worked out they circle Jupiter, and so showed that not everything circles Earth
+
+- **Status**: **VERIFIED** (full page) **with a wording correction**.
+- **Quotes**: [NSN] „Galileo famously chronicled the four moving dots near Jupiter
+  and surmised that they were orbiting the distant world"; [ST-BBB] „he soon
+  realized they were actually circling around Jupiter"; [IO] and [GA] (same
+  sentence on both): „The discovery … was the first time a moon was discovered
+  orbiting a planet other than Earth. The discovery … eventually led to the
+  understanding that planets in our solar system orbit the Sun, instead of our
+  solar system revolving around Earth."
+- **Wording correction**: Galileo **saw the dots move and worked out** that they
+  circle Jupiter (NSN „surmised") — not "saw them move around Jupiter". "Showed
+  that not everything circles Earth" is carried by „a moon … orbiting a planet
+  other than Earth". **Never** "proved Earth goes round the Sun" and never "first
+  proof": NASA says only „eventually led to". No year on screen.
+
+#### 7. Sometimes fewer than four show, because a moon can pass behind Jupiter or in front of it
+
+- **Status**: **VERIFIED** (full page) — was NEEDS SOURCE.
+- **Quotes**: [ST-BBB] „You'll probably see all four — but possibly only three
+  depending on when you look. The count often changes from night to night (or if
+  you're patient, even from hour to hour). That's because while orbiting Jupiter
+  they sometimes glide in front of the planet, behind it, or through its shadow."
+  [ST-OPP] „Don't expect to see all four all the time as one or other often pass in
+  front or behind the planet."
+- **Guard**: the page names a third cause — Jupiter's **shadow**. "Behind or in
+  front" is true but not complete; never say those are the only reasons. The
+  design's "a moon in front is never drawn as a bright dot over the disc" is an
+  art caution, not a sourced claim.
+
+#### 8 and 15. Ganymede is the largest moon in the Solar System and wider than Mercury; the J3 discs
+
+- **Status**: **VERIFIED** (full page).
+- **Quotes**: [GA] „Jupiter's moon Ganymede is the largest moon in our solar
+  system, bigger than the planet Mercury and dwarf planet Pluto"; „Ganymede's
+  diameter is about 3, 270 miles (5,260 kilometers)". [JF] „Ganymede is the largest
+  moon in the solar system (even bigger than the planet Mercury)". [ME] „With a
+  radius of 1,516 miles (2,440 kilometers)".
+- **Drawing values**: Ganymede radius **2631.2 km** [NSSDC-JS] (diameter 5,262 km);
+  Mercury diameter **4,879 km** [NSSDC-P]. Ratio **1.079** — about 8% wider, drawn
+  true, never exaggerated.
+- **Guard**: „по-широк" / „по-голям на ръст"; never heavier (NOT ATTESTED —
+  Mercury's mass is about twice Ganymede's). Imagery public-domain, never AI.
+
+#### 9. Planets shine only by reflected sunlight and look bright because they are far closer (`fact.brightest-why`)
+
+- **Status**: **VERIFIED** (full page) — adds the quote the earlier entry lacked.
+- **Quote**: [VAN] „Planets are not stars. They do not produce their own light,
+  like stars. The light you see from planets … is that reflected from the sun";
+  „to us the planets look as bright or brighter than most stars because they are
+  much closer to us."
+- **Guard**: carry both "reflected" and "near".
+
+#### 9a. The brightest "star" in the evening can be a planet: Jupiter outshines Sirius
+
+- **Status**: **VERIFIED** — rests on "The brightest "star" in the evening sky is
+  usually a planet" above. Re-read today: [NSSDC-J] „Maximum apparent visual
+  magnitude -2.94", „Apparent visual magnitude -2.7" (mean at opposition); Sirius
+  −1.44 in `data/generated/stars.json` (HIP 32349, re-read). No Venus, no magnitudes.
+
+#### 10. Jupiter and Sirius are both in the Bulgarian evening sky, February–April 2027, about 50° apart
+
+- **Status**: **VERIFIED** (computed; data spot-checked independently).
+- **Separation** from `orbital-positions.json#/bodies/jupiter` and Sirius in
+  `stars.json`: **54.0° (02-01), 51.9° (03-01), 50.5° (04-01), 50.4° (04-15)**. Say
+  "about 50°" only in this file; the scene draws the true angle.
+- **Altitudes at the end of civil twilight, Sofia** (skyfield + committed
+  `de440s.bsp`): 02-01 Sirius 11.6°, Jupiter **2.7°** (still rising); 03-01 27.8° /
+  32.2°; 04-01 27.7° / 59.7°; 04-15 20.7° / 64.0°; 04-30 Sirius **9.8°**. So both
+  are well up from **late February to mid-April**; early February needs an hour
+  after dusk. No date on screen, so this changes nothing the player sees.
+- **Frame — the guard needs correcting.** The committed Jupiter `raHours` /
+  `decDegrees` match JPL Horizons **astrometric ICRF** positions (quantity 1) to
+  0.0004 h and 0.002° on 2027-02-01, 03-01 and 04-15, and `distanceAu` to 10⁻⁶ AU.
+  They differ from Horizons **apparent of-date** RA/Dec (quantity 2) by 0.025 h /
+  0.12° — exactly the 2000→2027 precession. So the "apparent" in the file's
+  `_readme` is skyfield's ICRS-frame apparent place, **not of-date**. Jupiter and
+  Sirius are therefore already in the **same (ICRS/J2000) frame** and the
+  separation above is frame-consistent. The guard should read "both ICRS", not
+  "apparent RA/Dec vs catalogue epoch". Anyone converting one of them to of-date
+  coordinates alone introduces a ~0.4° error.
+
+#### 11. Jupiter spins faster than any other planet: it has the shortest day
+
+- **Status**: **VERIFIED** (full page).
+- **Quotes**: [JF] „Jupiter has the shortest day in the solar system. One day on
+  Jupiter takes 9.9 hours"; [ST-BBB] „Among the planets, Jupiter has the fastest
+  spin (once every 10 hours)". [NSSDC-P] Length of Day: Jupiter 9.9 h, Saturn
+  10.7 h, the next shortest. No hours on screen.
+
+#### 12. While Earth turns once, Jupiter turns more than twice, and both turn the same way
+
+- **Status**: **VERIFIED** (full page).
+- **Values**: [NSSDC-J] „Sidereal rotation period (hrs) 9.9250* 23.9345 0.415"
+  (Jupiter, Earth, ratio; *System III). Earth/Jupiter = **2.41**. [EF] „it completes
+  one rotation every 23.9 hours"; [JF] „9.9 hours".
+- **Same direction**: [NSSDC-P] Rotation Period row: Earth **23.9**, Jupiter
+  **9.9** (both positive; Venus −5832.5, Uranus −17.2); [NSSDC-N] „Negative numbers
+  indicate retrograde (backwards relative to the Earth) rotation."
+- **Guard**: the ratio is drawn, never stated; no hour marks. "More than twice" —
+  never "two and a half".
+
+#### 13. Jupiter's fast spin helps stretch its clouds into long bands
+
+- **Status**: **VERIFIED** (full page) — was NEEDS SOURCE.
+- **Quote**: [JF] „Jupiter's fast rotation – spinning once every 10 hours – creates
+  strong jet streams, separating its clouds into dark belts and bright zones across
+  long stretches." Same page, hedge: „Researchers are still trying to solve the
+  mystery of how the jet streams form."
+- **Guard**: "helps" — the spin drives the winds and the winds draw out the bands.
+  Never "the spin paints the stripes", and never a full explanation of how the jets
+  form (NASA calls that open).
+
+#### 14. Jupiter pulls much harder than Earth (new completion-line key, e.g. `fact.jupiter.complete`)
+
+- **Status**: **VERIFIED** (full page, live).
+- **Values**: [NSSDC-J] „Gravity (mean, 1 bar) (m/s 2 ) 25.92 9.82 2.640";
+  „Acceleration (eq., 1 bar) … 23.12 9.78 2.364". Either column gives "much
+  harder" (2.4–2.6×). [JF] „As a gas giant, Jupiter doesn't have a true surface."
+- **Guard**: only „дърпа" / „притегля". Never falls, lands, stands or weighs; no
+  surface; no number. `fact.gravity-drop.bodies` is deleted in the build.
+
 ---
 
 ## Stars and constellations
@@ -1280,10 +1571,11 @@ Do not state any of them.
   visible only while it faces us: Sky & Telescope, _Jupiter's Not-So-Great Red Spot_; _Transit Times of Jupiter's
   Great Red Spot_.
 - "Four Galilean moons are always visible." Say "up to four": one can be behind Jupiter, in front of it, or in its
-  shadow. The mechanisms are NEEDS SOURCE if the game ever explains why.
+  shadow. The mechanisms were VERIFIED on 2026-09-25 (claim 7 of the ticket 006 section).
 - "Ganymede is heavier than Mercury." Only "wider" is sourced (NASA, _Ganymede Facts_). The mass comparison is NEEDS SOURCE and must not be stated.
 - "A dropped stone lands on Jupiter." Jupiter has no true surface (NASA, _Jupiter Facts_), so there is no honest
-  `gravity-drop` scene at Jupiter. `fact.gravity-drop.bodies` stays.
+  `gravity-drop` scene at Jupiter. `fact.gravity-drop.bodies` is **deleted** in the build (ticket 006); the pull fact
+  moves to a new Jupiter completion-line key (e.g. `fact.jupiter.complete`), worded with „дърпа" / „притегля" only.
 
 ### "The Great Red Spot is twice as wide as Earth" — DISPUTED
 

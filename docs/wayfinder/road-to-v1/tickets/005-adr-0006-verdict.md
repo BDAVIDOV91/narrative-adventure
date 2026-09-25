@@ -141,3 +141,7 @@ entries are not retired, and the "`fact.gravity-drop.bodies` stays" line is `:12
   - the `surface-gravity.json` readme line "feeds the gravity-drop beat".
 - **Agent config**: `.claude/agents/challenger.md:61` (its type list was already stale), and in
   `.claude/agent-memory/astronomy-accuracy-checker/`, `settled-sources.md:11` and `bulgarian-folk-figures.md:39`.
+
+**Ticket 006 note (2026-09-25):** Jupiter adopts `fact.gravity-drop.bodies`'s claim as a new completion-line key, so
+the claim is not RETIRED; `fact.gravity-drop.bodies` itself is deleted in the build. Jupiter's type uses and the reverse
+dependency on this verdict are recorded in ticket 006 and in ADR 0006 "When to revisit".

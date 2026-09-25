@@ -67,6 +67,7 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 - [Moon level design: beats, types and the required spine](tickets/003-moon-level-design.md) — spine M1 → M3 → M2 on `orbitAngle`; optional eclipse, near/far (`parallax-compare`) and seas & craters (`telescope-focus`); 2 companion tiers.
 - [Mars level design: beats and types](tickets/004-mars-level-design.md) — five required beats, spine R1a: retrograde as see-it (`connect-the-dots`) then why (`trajectory-match`), telescope disc, never Moon-sized, blue sunset; `gravity-drop` gets no Mars use.
 - [Apply the ADR 0006 trigger to the designed levels](tickets/005-adr-0006-verdict.md) — five types kept, `zoom-split-star` and `gravity-drop` deleted; air+Apollo becomes the Moon's completion line, the pull comparison a Jupiter candidate; sources gain a RETIRED status.
+- [Jupiter level design: beats, types and the required/optional split](tickets/006-jupiter-level-design.md) — five required beats, 4 of 5 to pass, spine J1: the eye → binoculars → telescope ladder (`telescope-focus`), then moons that move (`trajectory-match`), Ganymede vs Mercury and a binocular peek at Jupiter vs Sirius (`parallax-compare`), and a fast spin timed by one Earth turn (`rotate-match`); the pull fact becomes the completion line.
 
 ## Not yet specified
 
@@ -76,8 +77,12 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
   900px or wider, and the canvas is `Scale.RESIZE`. Narrow and tablet widths are still open.
 - **Imagery and data per level**:
   - which NASA textures to process;
-  - the Galilean periods (#20, NEEDS SOURCE), which Jupiter needs;
-  - radii and other constants, as cited `data/reference/` rows.
+  - the Galilean periods (#20): VERIFIED by ticket 006, values in `docs/sources.md`; only the data row remains;
+  - radii and other constants, as cited `data/reference/` rows. `dataRef` reaches only `data/generated/` today, so
+    these rows need the seam extended or a sibling loader (ticket 006).
+  - Jupiter (ticket 006): Galilean periods and orbit radii, Jupiter/Ganymede/Mercury radii and the Jupiter/Earth
+    rotation rows; J1 rung-3 telescope-like imagery (the Red Spot pale); the J7 close-up (real imagery, framed as up
+    close); Ganymede and Mercury disc images; the J4 wide-sky frame (~50°, both J2000).
   - Mars (ticket 004): a Mars radius row, and the Moon radius row it shares with ticket 003, for R2's true-scale
     panel; the R3 disc frame, public-domain NASA/HST degraded honestly in `process-textures.py` and documented, or a
     licensed amateur image, never AI-generated; PIA19400 for R6.

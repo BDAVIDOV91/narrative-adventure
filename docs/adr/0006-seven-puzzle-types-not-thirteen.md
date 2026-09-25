@@ -116,3 +116,8 @@ The verdict reopens if the build cuts a beat that is a type's only second-level 
 
 A deleted type is not restored by a later level. A future level that genuinely needs one of these interactions makes
 the case as a new deliberate decision, here.
+
+Jupiter (ticket 006, page 4, after the anchor) uses `telescope-focus`, `trajectory-match`, `parallax-compare` and
+`rotate-match`. Its uses change none of the sets above. The dependency runs the other way: if a set above is cut and
+its type deleted, ticket 006 reopens for the Jupiter markers on that type (R1b → J2; M9 and R3 → J1; M5, R2 and R6 →
+J3 and J4).
