@@ -97,3 +97,7 @@ and its facts move to other markers.
 - A Mars radius row, the Moon radius row (shared with ticket 003), the R3 disc frame (public-domain NASA/HST,
   degraded honestly and documented, or licensed, never AI) and PIA19400: all in MAP fog "Imagery and data".
 - The dead `mars.nasa.gov` URLs are cited as Wayback copies in `docs/sources.md`.
+
+**Amended by [ticket 008](008-what-makes-a-child-keep-playing.md) (2026-09-26):** a nudge only points. Each nudge's
+second idea in the table above moves to that marker's album card, shown on tapping its lit page element, and the
+nudge is rewritten at build. See ADR 0007.

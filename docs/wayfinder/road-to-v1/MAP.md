@@ -53,6 +53,10 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 - **Build work runs beside the map, not as tickets.** This covers:
   - phase-2 task #3 and the rest of the Earth build;
   - reduced motion (phase-2 task 9).
+- **Hints and nudges (ticket 008, ADR 0007):** every level build follows these.
+  - A nudge only points.
+  - The hint step narrows _what_ to try, never _how far_.
+  - Nothing is ever shown as a count, in digits or in words.
 - **Premise corrected at charting:** no Mars scene exists.
   - `src/scenes/mars/` and `src/scenes/moon/` are empty.
   - Mars and Moon are storybook stubs (`sceneKey: null`) with a name and a blurb.
@@ -68,14 +72,16 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 - [Mars level design: beats and types](tickets/004-mars-level-design.md) — five required beats, spine R1a: retrograde as see-it (`connect-the-dots`) then why (`trajectory-match`), telescope disc, never Moon-sized, blue sunset; `gravity-drop` gets no Mars use.
 - [Apply the ADR 0006 trigger to the designed levels](tickets/005-adr-0006-verdict.md) — five types kept, `zoom-split-star` and `gravity-drop` deleted; air+Apollo becomes the Moon's completion line, the pull comparison a Jupiter candidate; sources gain a RETIRED status.
 - [Jupiter level design: beats, types and the required/optional split](tickets/006-jupiter-level-design.md) — five required beats, 4 of 5 to pass, spine J1: the eye → binoculars → telescope ladder (`telescope-focus`), then moons that move (`trajectory-match`), Ganymede vs Mercury and a binocular peek at Jupiter vs Sirius (`parallax-compare`), and a fast spin timed by one Earth turn (`rotate-match`); the pull fact becomes the completion line.
+- [What makes a child want to keep playing](tickets/008-what-makes-a-child-keep-playing.md) — the book's pages come alive as markers are solved, with no counter; hints are free (a pointing nudge, then a visual hint step, plus „Спомни си“ cards), never earned; second ideas move from nudges to the album card (ADR 0007).
 
 ## Not yet specified
 
 - ~~**Designs for levels after Mars**~~ — graduated to ticket 006 (Jupiter), backed by research ticket 007.
-- **The book's through-line, ending and navigation**: what the final page does, and how the storybook handles N pages.
-  The four roster pages fit the one-row 200px layout (`src/scenes/storybook-scene.ts:71-80`) only at a window of roughly
-  900px or wider, and the canvas is `Scale.RESIZE`. Narrow and tablet widths are still open.
+- ~~**The book's through-line, ending and navigation**~~ — page display settled by ticket 008 (a page comes alive as
+  its markers are solved); the ending and narrow-width layout graduated to ticket 009.
 - **Imagery and data per level**:
+  - storybook page art with one element per marker, lit as it is solved (ticket 008). It is textless, and placeholder
+    art is allowed.
   - which NASA textures to process;
   - the Galilean periods (#20): VERIFIED by ticket 006, values in `docs/sources.md`; only the data row remains;
   - radii and other constants, as cited `data/reference/` rows. `dataRef` reaches only `data/generated/` today, so

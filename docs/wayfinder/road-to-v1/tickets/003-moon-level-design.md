@@ -102,3 +102,7 @@ counts them, so cutting either during the build reopens 005. If the build overru
 - New `content/bg` fact, nudge and safety keys.
 - `docs/design/puzzle-types.md:14` lists `gravity-drop` on the Moon; M8 is cut, so correct it.
 - Mechanical texture processing for M9 and M5 via `process-textures.py`, once the fog below settles which frames.
+
+**Amended by [ticket 008](008-what-makes-a-child-keep-playing.md) (2026-09-26):** a nudge only points. Each nudge's
+second idea in the table above moves to that marker's album card, shown on tapping its lit page element, and the
+nudge is rewritten at build. See ADR 0007.

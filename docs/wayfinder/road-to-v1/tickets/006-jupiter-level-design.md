@@ -134,3 +134,7 @@ ADR 0006 "When to revisit".
   `tests/test_reference_data.py:91`.
 - `astronomy-accuracy-checker` agent memory: the Galilean entry is settled, the NSSDC sheets are live again, the
   ephemeris is in the J2000 frame, and the JPL period column is off.
+
+**Amended by [ticket 008](008-what-makes-a-child-keep-playing.md) (2026-09-26):** a nudge only points. Each nudge's
+second idea in the table above moves to that marker's album card, shown on tapping its lit page element, and the
+nudge is rewritten at build. See ADR 0007.
