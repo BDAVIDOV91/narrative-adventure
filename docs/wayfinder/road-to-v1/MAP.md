@@ -28,6 +28,12 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
   - There is no coming-soon marker.
   - No off-roster world has a `level.<world>.*` key or a storybook page.
   - A fact string rewarded by a roster beat may mention any solar-system body (ticket 001).
+- The companion's story (ticket 012, ADR 0008):
+  - every completed world page shows its memory element inside the page art, never as a new row, and the element
+    opens that world's memory card;
+  - an unlit memory element is invisible;
+  - the storybook intro shows only while no level has a solved marker;
+  - every memory's astronomy is VERIFIED, and every story line is listed under "Story lines" in `docs/sources.md`.
 - Placeholder art is allowed.
 
 ## Notes
@@ -58,7 +64,15 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 - **Skills per ticket:** `grilling`, plus `astronomy-consultant` for design physics.
 - **Build work runs beside the map, not as tickets.** This covers:
   - phase-2 task #3 and the rest of the Earth build;
-  - reduced motion (phase-2 task 9).
+  - reduced motion (phase-2 task 9);
+  - the companion's story (ticket 012):
+    - a memory element per world page, reading the same `completed` flag as the unlock (`storybook-scene.ts:80`);
+    - the intro, which runs on `Object.values(progress.levels).every(l => l.solved.length === 0)`;
+    - five memory keys plus the back-cover line. A new content bundle needs its import in `src/shared/content.ts`;
+    - the intro must not repeat Earth's tier-1 arrival line;
+    - the companion is never called „спътник“.
+    - the memory element glows once on the page whose `completed` has just become true, worked out from stored
+      state; the Earth memory names Сияна in passing, for a child who skipped the intro (pedagogy nice-to-haves).
 - **Hints and nudges (ticket 008, ADR 0007):** every level build follows these.
   - A nudge only points.
   - The hint step narrows _what_ to try, never _how far_.
@@ -82,6 +96,7 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 - [The book's ending and navigation](tickets/009-book-ending-and-navigation.md) — a non-tappable back cover after the last world, derived from `completed`, whose companion lines send the child to find the worlds in the real sky; wrap-and-fit grid down to 360px with a text floor; bookmark on the newest open page; Saturn joins v1 (confirmed by 010 and 011).
 - [What Saturn can teach, deep](tickets/010-what-saturn-can-teach.md) — three honest required beats, a thin margin, so Saturn stays: the rings come and go as Saturn goes round (`rotate-match` on `orbitAngle`), the slowest wanderer (`connect-the-dots`) and Titan wrapped in fog (`parallax-compare`); if 011 judges the slow-wanderer beat a Mars repeat, Saturn falls back to post-v1 unless the ring-swarm beat gets sourced. _Amended by ticket 011: not triggered; Saturn stays._
 - [Saturn level design: beats, types and the required/optional split](tickets/011-saturn-level-design.md) — four required beats, 3 of 4 to pass, spine S1: the rings come and go as Saturn goes round (`rotate-match`, new `ring-view` renderer pinned to `orbitAngle`), then any 2 of the slowest wanderer beside Mars (`connect-the-dots`, two panels), Titan wrapped in fog (`parallax-compare`) and the rings as a swarm (`trajectory-match`); the completion line gives Saturn seasons like Earth's.
+- [The companion's story](tickets/012-companion-story.md) — the tiny AI's telescope was Сияна's, a fictional amateur astronomer it was separated from (the cause is never stated in v1); each completed world returns one memory with a new VERIFIED fact (Earth's shadow at dusk, the Moon walking among the stars, Mars brightening, a moon's shadow on Jupiter, the Cassini line), in a page element that opens a card; a storybook intro and one back-cover line; the dimming star is gone (ADR 0008).
 
 ## Not yet specified
 
@@ -112,7 +127,16 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
     ecliptic-of-J2000, the 2025 crossing and equinox anchors) for S1; the monthly ring-opening table is already in
     `docs/sources.md` (claim 4); Moon/Titan radii and C/B/A ring radii rows; Cassini PIA06230 (visible) and PIA20016
     (infrared, labelled false colour). Earth's `fact.telescope-saturn` art shows a narrowly open south face.
-- **Constellation visibility by latitude (#25)**: does any post-Earth level need it?
+  - Companion memories (ticket 012):
+    - five textless vignettes of Сияна at the eyepiece;
+    - the astronomy in them is hand-drawn from a cited reference image, or is real processed photography, never
+      AI-generated, and each has an imagery entry in `docs/sources.md`;
+    - the Earth vignette shows no Moon; the Moon vignette puts the star on the Moon's east side;
+    - Jupiter's dot is the shadow, never the moon; Saturn's rings are drawn well open, with the line clearest at their
+      ends.
+- ~~**Constellation visibility by latitude (#25)**~~: no post-Earth level needs it. Mars, Jupiter and Saturn use
+  fixed real star fields and windows (tickets 004, 006, 011). Earth's constellation beat keeps it as build work
+  (ticket 012).
 
 ## Out of scope
 
@@ -130,7 +154,8 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
   - Input to that map: **Pluto** as a fully optional bonus page, near Sun + Mercury and outside the unlock chain, for
     curious children (ticket 009 Q6/Q11). It needs CLAUDE.md rule 6 amended first.
   - Input to that map: the **companion's finale**, a "help the companion" section that unlocks when the whole solar
-    system is cleared ([The companion's story](tickets/012-companion-story.md) seeds it).
+    system is cleared. It means finding Сияна, and it is where the reason they parted comes out ([The companion's
+    story](tickets/012-companion-story.md), ADR 0008). v1 never teases it.
   - Input to that map: new world pages insert before the back cover, and that map decides how the back cover stays
     open with no new stored state (ticket 009).
   - Neptune has no honest beat (research 002).

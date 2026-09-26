@@ -6,10 +6,11 @@ level-select screen, and tapping a page zooms into that world, played from a
 top-down view.
 
 The player is a Bulgarian kid who finds an old telescope with a tiny AI
-companion inside. Something is dimming a star, and the mystery unravels by
-learning real astronomy at each location — with Bulgarian folklore woven through
-as flavour: Зорница and Вечерница turning out to be one planet, Кумова слама
-running across the sky.
+companion inside. The telescope belonged to Сияна, an astronomer the companion
+has lost, and with her its memory. Each world the child completes brings back one
+night the two of them watched the sky, and each memory carries a real
+observation (ADR 0008). Folklore is a light garnish: Зорница and Вечерница turning
+out to be one planet.
 
 > **Status**: early. The storybook shell runs, the Earth level has its data and
 > markers, and the precompute pipeline produces real ephemeris data. The puzzle

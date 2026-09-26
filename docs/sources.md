@@ -27,6 +27,7 @@ the astronomy are the same act. See
 | **NEEDS SOURCE** | Believed true, no source recorded yet. Must not ship in player-facing content until it has one. |
 | **DISPUTED**     | A specific problem has been identified. Must be resolved before it ships.                       |
 | **NOT ATTESTED** | Investigated and found unsupported. Recorded so nobody re-adds it.                              |
+| **RETIRED**      | True, but not shipped; the entry says why. Distinct from NOT ATTESTED, which means false.       |
 
 ---
 
@@ -512,6 +513,10 @@ duration, angle or date reaches the player.
 
 #### 5. Anchor for ticket 012: how far people have travelled
 
+- **RETIRED (ticket 012, 2026-09-26).** Written for an astronaut partner; ticket 012
+  made the partner an astronomer, so no story or companion line uses it. The
+  entries below stay on record. Anyone who revives them re-checks replacement 1
+  first: it goes stale the day a crew lands on the Moon.
 - **As requested — „No human has travelled beyond the Moon; the last crewed lunar
   mission was Apollo 17 (December 1972)" — DISPUTED. Do not ship.** The second half
   has been false since April 2026. NASA, _NASA Welcomes Record-Setting Artemis II
@@ -543,6 +548,322 @@ duration, angle or date reaches the player.
   above. No year, distance or mission name needs to reach the player; the
   companion line can say „хората са стигали само до Луната — и никой още не е
   продължил нататък".
+
+### Companion memories (ticket 012)
+
+Adopted by `docs/wayfinder/road-to-v1/tickets/012-companion-story.md`: one
+remembered observing night per world, candidates in
+`docs/wayfinder/road-to-v1/research/012-companion-memories.md`. Checked 2026-09-26
+by `astronomy-accuracy-checker`. Observer: an amateur astronomer in Bulgaria, about
+42.7° N, undated. **How they were checked**: „(page read)" means the page was
+fetched in full in this session and the quoted sentence was found in the page
+text. „(search excerpt)" means only a search result was seen. **Two of the
+research file's quotes were not the pages' words.** APOD 2018-07-05 does not say
+„seen as the dark blue band along the horizon". NASA _The Familiar Division_ says
+„modest telescopes", not „a small telescope". The quotes below are the real
+ones. Content keys are **(key TBD by the build)**. The memories are fiction (Сияна
+and the companion are invented). The astronomy inside each memory is a claim, and
+it is recorded here. **Rule 2**: every number below (minutes, magnitudes,
+apertures, angles, dates) stays in this file. No duration, width, brightness,
+aperture or year reaches the player.
+
+#### 1. Earth: just after sunset, looking east, Earth's shadow rises as a dark blue-grey band with a pink glow above it
+
+- **Status**: **VERIFIED.**
+- **Source**: APOD 2018-07-05, _Shadow Rise on the Inside Passage_ (Steve Cullen),
+  page read <https://apod.nasa.gov/apod/ap180705.html>: „At sunset look east not
+  west. As Earth's dark shadow rises from the eastern horizon, faint and subtle
+  colors will appear opposite the setting Sun." The page also says „the pinkish
+  anti-twilight arch … is tinted by filtered sunlight backscattered in the dense
+  atmosphere, hugging the planet's rising blue-grey shadow."
+- **Second source**: _Atmospheric Optics_, _Earth Shadow_, page read
+  <https://atoptics.co.uk/blog/earth-shadow/> (the old URL `atoptics.co.uk/atoptics/earshad.htm`
+  redirects there): „After sunset look eastwards. A low horizon is needed … As
+  twilight deepens a dark band rises upwards from the horizon, The band is the
+  shadow of the Earth on the atmosphere. Immediately above, where the evening air
+  is still lit, glows a pink band". It adds „The atmosphere is a thin skin compared
+  to the diameter of the earth", which is why the shadow is a low band and does not
+  cover the whole sky.
+- **Naked eye**: both pages describe it as something you look at, with no
+  instrument. Atmospheric Optics adds one condition, **a low eastern horizon**. So
+  the vignette needs an open horizon (a field or a hill), not a street of houses.
+- **Guards**:
+  - Never „Belt of Venus" / „Поясът на Венера", even though both sources use the
+    name. It teases Venus, and Venus has nothing to do with it.
+  - The edge is soft. Atmospheric Optics calls it a „stark contrast" with the lit
+    sky, but no source here describes a sharp line. Draw a gradient, not a ruled
+    edge. (Art guard only; no source is needed for being conservative.)
+  - Keep the shadow low over the eastern horizon. No Moon in the vignette. Never
+    link this shadow to the Moon's phases. The phases are lit and unlit halves,
+    not shadow (_Moon phases_, above). This is challenger finding 2.
+  - „Clear evening" is safe. „Every evening" is not: haze and a blocked horizon
+    hide it.
+- **Safe wording** (companion's first person, neutral forms; revised by `puzzle-pedagogy-reviewer` 2026-09-26; illustrative, not final copy): „Една ясна вечер, точно след залез, гледахме на изток, с
+  гръб към залеза. Ниско над хоризонта се надигаше тъмна синьо-сива ивица с розово
+  сияние отгоре – сянката на самата Земя."
+
+#### 2. Moon: the Moon moves east among the stars, noticeably over one evening beside a bright star, which is why it rises later each night
+
+- **Status**: **VERIFIED.** This includes „always later" for all of Bulgaria. The
+  delay is never „the same amount".
+- **Eastward drift**: Strobel, _Our Moon and Planetary Motions_ (UMass mirror of
+  _Astronomy Notes_), page read
+  <https://people.umass.edu/wqd/strobel/nakedeye/nakedeyc.htm>: „The moon moves
+  rapidly with respect to the background stars. It moves about 13 degrees (26 times
+  its apparent diameter) in 24 hours---slightly greater than its own diameter in
+  one hour!" The same page says „The Moon drifts eastward with respect to the
+  background stars (or it lags behind the stars)." Over a few hours beside a bright
+  star that adds up to several Moon-widths. That is noticeable to the eye, and it
+  is why the memory works.
+- **Why it rises later**: Fred Schaaf, _What Is the Harvest Moon?_, The Old
+  Farmer's Almanac (2026-09-17, updated 2026-09-24), page read
+  <https://www.almanac.com/what-harvest-moon>: „when the Earth turns toward that
+  point 24 hours later, the Moon has moved off to the east about 12 degrees, and it
+  takes an average of 50 minutes longer for the Earth to rotate toward the Moon".
+  Space.com, _The Harvest Moon has a trick no other full moon can quite match_,
+  page read
+  <https://www.space.com/stargazing/the-harvest-moon-has-a-trick-no-other-full-moon-can-quite-match>:
+  „our rotating planet has to turn a little farther each day before the moon comes
+  back above the horizon."
+- **The delay varies a lot, and at 42° N it never reaches zero.** Almanac, same
+  page: „as little as 23 minutes later on several nights before and after the Full
+  Harvest Moon (at about 42 degrees north latitude)" and „as much as 75 minutes (at
+  42 degrees north latitude)" in spring. Alison Klesman, _What is the Harvest Moon
+  effect?_, Astronomy (2026-09-25), page read
+  <https://www.astronomy.com/observing/what-is-the-harvest-moon-effect/>, gives
+  „20 minutes or so" in autumn and „70-minute" in spring.
+- **„Always later" computed for Bulgaria.** Skyfield 1.55 `risings_and_settings`
+  with the committed `data/ephemeris/de440s.bsp`, at longitude 23.3° E and
+  latitudes 41.2°, 42.7° and 44.2° N (Bulgaria's south and north edges and the
+  middle). Every pair of consecutive moonrises from 2020-01-01 to 2039-01-01 was
+  checked: 6,704 pairs, a full 18.6-year node cycle. The shortest gap beyond 24 h
+  was **+19.0 min at 42.7° N** (2027-07-22; +20.1 at 41.2°, +17.9 at 44.2°). The
+  longest was **+83.8 min** (2027-01-21). There were **zero** gaps of 24 h or less.
+  The 42.7° minimum matches the Almanac's „as little as 23 minutes" at 42° N to
+  within a few minutes. Earlier moonrises only happen much farther north. Astronomy
+  gives Anchorage, 61° N, as the example. Bulgaria is not affected. (About once a
+  month a calendar day has no moonrise at all. That is the same fact, not an
+  exception.)
+- **Guards**:
+  - Always „among the stars" / „спрямо звездите". The whole sky, Moon included,
+    still moves west across the night, so „the Moon moves east" on its own is
+    false to a child's eye.
+  - „Over the evening" / „докато вечерта минаваше". Never a duration. Never „its
+    own width". Never „the same amount later every night".
+  - Draw the bright star on the Moon's **east** side (the side toward where things
+    rise), so that the Moon closes in on it. If the star is on the west side, the
+    Moon moves away from it.
+- **Safe wording** (companion's first person, neutral forms; revised by `puzzle-pedagogy-reviewer` 2026-09-26; illustrative, not final copy): „Веднъж Луната стоеше до ярка звезда и докато вечерта
+  минаваше, гледахме как се приближава към нея. Луната пътува на изток спрямо
+  звездите – затова всяка нощ изгрява по-късно."
+
+#### 3. Mars: around the time Earth passes Mars, Mars brightens week after week, then fades, because it comes closer and then moves away
+
+- **Status**: **VERIFIED, with one wording change.** Use „week after week" /
+  „седмица след седмица", not „night after night". The change from one night to
+  the next is too small to see. The source's timescale is weeks and months.
+- **Source**: EarthSky, _Mars sometimes is bright and sometimes is faint_ (Deborah
+  Byrd and co-author, 2026-08-25, updated 2026-09-11), page read
+  <https://earthsky.org/astronomy-essentials/why-is-mars-sometimes-bright-and-sometimes-faint/>:
+  „Mars can appear bright or faint in our sky depending on its distance from Earth.
+  It'll spend 2026 becoming bright again, as Earth catches up to it in orbit around
+  the sun." Also: „Mars' brightness, or lack of brightness, is all about how close
+  we are to the red planet", and „When Mars passes opposition, every 2 years, it
+  appears large and bright for only a few weeks."
+- **Second source (weak)**: NASA Science, _Mars' Apparent Brightness Increases As
+  it Gets Closer to Earth_ (2018-05-18), page read
+  <https://mars.nasa.gov/resources/21871/mars-apparent-brightness-increases-as-it-gets-closer-to-earth/>
+  (redirects to science.nasa.gov). It is a video page. Its text says only „In 2018,
+  Mars will appear brightest from July 27 to July 30. Its closest approach to Earth
+  is July 31." It supports brightest-when-closest, not the build-up over weeks. The
+  research file's „page title only" note was right.
+- **Computed, for this file only.** Skyfield `planetary_magnitude` with the
+  committed `de440s.bsp` for the 2027 opposition: +1.11 (2026-10-01), +0.21
+  (2026-12-15), −0.61 (2027-01-20), **−1.28 at 0.678 AU (2027-02-20)**, −0.61
+  (2027-03-22), +0.52 (2027-05-15). It brightens smoothly over about four months
+  and fades the same way, peaking close to the opposition date already recorded
+  under _Back cover_ claim 1. EarthSky independently puts the 2027 peak in February
+  („Mars will appear 13.8 arcseconds wide on February 19, 2027").
+- **Guards**:
+  - The cause is **closer, then farther**. The catch-up is R1a's cause (_Mars
+    seems to turn back_, above). The memory reuses it and does not re-teach it.
+  - Never explain why some close approaches are closer than others. EarthSky's
+    „15-year cycle" needs the oval orbit, which is ruled out.
+  - No magnitudes. Never „brighter than Jupiter". In the 2027 window Mars peaks
+    near −1.3 and Jupiter is brighter.
+  - Keep „autumn" off the line (challenger finding 9, B8d). It would date the
+    memory.
+- **Safe wording** (companion's first person, neutral forms; revised by `puzzle-pedagogy-reviewer` 2026-09-26; illustrative, not final copy): „Една година Марс светеше все по-ярко, седмица след
+  седмица, а после бавно избледня. Земята го настигна и той беше по-близо до нас,
+  а после пак се отдалечи." Never „угасна" (it reads as Mars going out).
+
+#### 4. Jupiter: a moon's shadow crossing Jupiter shows as a small black dot in an amateur telescope, a solar eclipse as seen from Jupiter's clouds
+
+- **Status**: **VERIFIED, with one wording change for the eclipse clause.**
+  Jupiter has no ground, so „an eclipse on Jupiter" must become „seen from
+  Jupiter's clouds" / „за онзи, който е в облаците на Юпитер".
+- **Eclipse**: APOD 2004-11-11, _Pastel Planet, Triple Eclipse_, page read
+  <https://apod.nasa.gov/apod/ap041111.html>: „shadows of Jupiter's moons Ganymede
+  (left edge), Callisto (right edge) and Io, three black spots crossing the sunlit
+  Jovian cloud tops … Viewed from Jupiter's perspective, these shadow crossings
+  would be seen as solar eclipses, analogous to the Moon's shadow crossing the
+  sunlit face of planet Earth." APOD 2013-11-02, _Jupiter's Triple Shadow Transit_,
+  page read <https://apod.nasa.gov/apod/ap131102.html>, has the same wording („could
+  be seen as solar eclipses"). APOD 2022-04-27, _Moon Shadow on Jupiter_, page read
+  <https://apod.nasa.gov/apod/ap220427.html>: „if you were in a dark shadow on
+  Jupiter, you would see a moon completely eclipse the Sun." NASA's own wording is
+  „cloud tops" and „Jupiter's perspective", never a surface.
+- **Amateur telescope, and the aperture**: Space.com, Geoff Gaherty, _Spotting the
+  Shadows of Jupiter's Galilean Moons_, page read
+  <https://www.space.com/32221-spotting-shadows-of-jupiter-galilean-moons.html>:
+  „These shadows may be observed with telescopes of at least 90mm aperture,
+  provided Earth's atmosphere is steady." Astronomy Now (2018-03-23), page read
+  <https://astronomynow.com/2018/03/23/get-ready-for-multiple-shadow-transits-of-jupiters-galilean-moons/>:
+  „visible in modest (3-inch, or 7½-centimetre aperture) telescopes of good
+  quality at magnifications of 100× or more as inky black dots slowly drifting
+  across the face of the planet." EarthSky, Kelly Kizer Whitt, _Transits of
+  Jupiter's moons ahead_ (2021-07-30), page read
+  <https://earthsky.org/astronomy-essentials/transits-of-jupiters-moons-shadow/>:
+  „a 2- to 3-inch (60 mm) telescope … a tiny dark speck – a moon shadow – crossing
+  Jupiter." **Answer: about 75–90 mm in steady air at about 100×.** That is more
+  than the 60 mm that shows the belts (_Through a small telescope_, above), so the
+  line says „her telescope", not „a small telescope".
+- **NASA image of the event**: NASA Science, _Jupiter Moon Transit_ (2015-04-09),
+  page read <https://science.nasa.gov/resource/jupiter-moon-transit/>: „Three moons
+  and their shadows parade across Jupiter … Europa's shadow is toward the left side
+  of the image and Callisto's shadow to the right." A possible reference image for
+  the vignette. It still needs an imagery entry (challenger finding 6).
+- **Guards**:
+  - The dot is the **shadow**, never the moon. Keep it apart from J2 (claim 7 of
+    the Jupiter level), where a moon disappears into Jupiter's shadow.
+  - Draw a round black dot, as for Io, Europa or Ganymede. Callisto's shadow is
+    greyer and elongated (APOD 2013-11-02: „Callisto casts the most elongated
+    one"), so do not model the art on it.
+  - Challenger finding 6 says the moon itself is „usually invisible on the disc".
+    **No source found for that.** EarthSky says a transiting moon can be seen. The
+    art may leave the moon out or put it off the disc, but no line may say it is
+    invisible.
+  - Never „on Jupiter's surface" / „на повърхността на Юпитер".
+- **Safe wording** (companion's first person, neutral forms; revised by `puzzle-pedagogy-reviewer` 2026-09-26; illustrative, not final copy): „Веднъж през този телескоп видяхме как по Юпитер пълзи
+  мъничка черна точка – сянката на един от спътниците му. Който е в облаците на
+  Юпитер точно там, вижда слънчево затъмнение."
+
+#### 5. Saturn: with the rings well open, the Cassini Division shows as a thin dark line through her telescope, and it is not empty
+
+- **Status**: **VERIFIED for „a thin dark line, in a good telescope, rings well
+  open, steady air" and for „not empty".** The exact ring opening needed is **not
+  pinned to a source**. That is harmless while the memory stays undated and the
+  art shows the rings well open.
+- **Not empty**: NASA Science, _The Familiar Division_ (Cassini image, 2007-03-21),
+  page read <https://science.nasa.gov/resource/the-familiar-division/>: „This
+  division between the A and B rings, visible through modest telescopes from
+  Earth, actually contains five dim bands of ring material". So „fewer pieces
+  there" / „там парчетата са по-малко" is exactly right.
+- **Seen from Earth**: Sky & Telescope, Alan MacRobert, _Viewing Saturn: The
+  Planet, Rings and Moons_, page read via Wayback snapshot 2026-02-03
+  <https://web.archive.org/web/20260203185546/https://skyandtelescope.org/observing/viewing-saturn-the-planet-rings-and-moons/>
+  (the live page returns HTTP 403 to scripts): „Details in the rings can be viewed
+  with a small scope during spells of good seeing. The plainest is the black
+  Cassini Division between the A and B rings. Its clarity is an excellent test of
+  atmospheric steadiness and the telescope's optical quality."
+- **Aperture**: Astroshop magazine, _The Lord of the Rings_ (a retailer's
+  magazine, so secondary), page read
+  <https://www.astroshop.eu/magazine/practical-tips/spix-s-spotting-tips/the-lord-of-the-rings/i,1466>:
+  „Even through a small telescope with a 60mm aperture you can see two of these
+  rings … With an 80mm aperture, it is possible to identify the Cassini Division as
+  a dark, fine line". Same page: „this requires very calm air, which will allow you
+  to use a magnification of around 100× and more. The best way to find the Cassini
+  Division is to concentrate first on the outer areas of the ring, left and right
+  of the planet. There … the Cassini Division appears wider". **Answer: about 80
+  mm is the threshold in calm air, and 100 mm or more is comfortable.** That is
+  above the „ears → detached ring at about 75 mm" ladder already cited
+  (_Through a small telescope_, above). So `fact.telescope-saturn`
+  (`content/bg/facts.json:21`) and this memory do not conflict, as long as the
+  memory says „her telescope" and never „a small telescope".
+- **Ring opening**: EarthSky, _Seeing Saturn's rings: top tips for beginners_
+  (2026-09-25), page read
+  <https://earthsky.org/astronomy-essentials/viewing-saturns-rings-tips-for-beginners/>,
+  says the tilt matters and names the Cassini Division as the one division a
+  telescope user is likely to see. It gives no threshold. The only numeric
+  threshold found was commercial (Telescope Advisor, page read) and was not
+  adopted. That page puts the 2026 tilt at „11–13°", which contradicts this
+  file's own computed −8.3° for 2026-09. **The repo's figures** (_Through a small
+  telescope_, above): ring opening −8.3° (2026-09) and −14.1° (2027-09), versus a
+  maximum near 27°. So in the game's window the rings are narrow, and „rings wide
+  open" must not be dated to it. PLAUSIBLE, unsourced: the division is hard to see
+  at an opening below about 10°.
+- **Guards**:
+  - Never „empty" / „празно" (see the NOT ATTESTED entry below).
+  - Never „small telescope". Use „her telescope" / „нейния телескоп"
+    (challenger finding 7).
+  - Keep it undated. Do not explain Mimas.
+  - Art: a thin dark line, clearest at the ring ends left and right of the planet
+    (the ansae), with the rings drawn well open.
+- **Bulgarian term: „делението на Касини"** (standard). Bulgarian Wikipedia,
+  _Сатурн (планета)_, page read
+  <https://bg.wikipedia.org/wiki/Сатурн_(планета)>: „Най-голямата пролука в
+  пръстените носи неговото име – деление на Касини" and „Най-големите пролуки в
+  пръстените като делението на Касини и делението на Енке могат да бъдат
+  наблюдавани от Земята". The Bulgarian solar-system site valchev-bg.com, page
+  read <http://www.solarsystem.valchev-bg.com/missions/cassinip4.php>, uses the
+  same pattern for the sister gap („Делението на Енк"). Other forms seen:
+  „участъкът Касини" (bg.wikipedia _Пръстени на Сатурн_, page read; a one-article
+  calque, do not use) and „процеп на Касини" (search excerpt only, attributed to a
+  Mediapool.bg article; the fetched page did not contain it). The name is optional
+  for the player. If it is used, use „делението на Касини".
+- **Safe wording** (companion's first person, neutral forms; revised by `puzzle-pedagogy-reviewer` 2026-09-26; illustrative, not final copy): „Когато пръстените на Сатурн бяха широко отворени, през
+  този телескоп видяхме тънка тъмна линия, която ги разделяше. Там парченцата са
+  по-малко на брой, но не е празно." Never a bare „по-малко": it reads as
+  „smaller".
+
+#### 6. „The Cassini Division is empty" — NOT ATTESTED
+
+- NASA _The Familiar Division_, page read (quoted above): the division „actually
+  contains five dim bands of ring material". It looks black from Earth because it
+  holds far less material than the A and B rings on either side, not because it
+  holds none. Never state or imply that it is empty: „празнина", „празно
+  пространство" and „дупка" are all out. „Пролука" is acceptable only together
+  with „fewer pieces" / „по-малко на брой".
+
+### Story lines — fiction, not claims (ticket 012)
+
+The companion's story is invented, and it is recorded here so a reviewer can see
+where the fiction stops. **Сияна** (first name only) is a fictional amateur
+astronomer. The tiny AI in her old telescope is fictional. So are their
+separation, the companion's lost memory and the observing nights. None of it is
+history, and no line may tie it to a real person, observatory, mission or date.
+
+Every **astronomy** statement inside a story line is a claim. It must point at a
+VERIFIED entry in this file, and a line whose astronomy is not VERIFIED does not
+ship. Story lines are past, undated recollections in the companion's first person.
+The companion's own forms stay gender-neutral, and lines addressed to the child
+avoid gendered forms. Keys are **(TBD by the build)**.
+
+Wording rules from `puzzle-pedagogy-reviewer` (PASS WITH CHANGES, 2026-09-26):
+
+- **Nothing that reads as death or grief:** no „загубих я", „изгубих я", „вече я
+  няма", „отиде си", „напусна ме", „почина", „завинаги", „никога повече", „остана
+  сам/сама" or „липсва ми".
+- **No promise of a reunion** (no „ще я намерим"): that would tease the post-v1
+  finale.
+- **Сияна is quoted in the present tense** („Сетих се какво казва Сияна: …"). The
+  past „винаги казваше" at the story's end reads as a eulogy.
+- **Neutral forms for the companion:** present tense, first-person-singular aorist
+  („видях", „сетих се") and every „ние" form. Never past participles, perfect
+  tenses or gendered adjectives („бил/била", „съм видял/видяла", „сигурен/сигурна").
+- **Lines to the child:** imperatives and „можеш" are fine; „готов/готова" is not.
+- Card text is at most two short sentences. The companion is never „спътник";
+  „спътниците му" for a planet's moons is correct.
+
+| Story line                                                                         | Astronomy it rests on                                          |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Storybook intro: the companion remembers only Сияна's name and her telescope       | none (pure story)                                              |
+| Earth memory                                                                       | Companion memories 1                                           |
+| Moon memory                                                                        | Companion memories 2                                           |
+| Mars memory                                                                        | Companion memories 3 (the cause reuses Mars retrograde, above) |
+| Jupiter memory                                                                     | Companion memories 4                                           |
+| Saturn memory                                                                      | Companion memories 5, and 6 as its guard                       |
+| Back cover: Сияна says the sky is best when you show it to someone (present tense) | Back cover claims 1–4 (the lines that follow it)               |
 
 ### Moon level — the claims ticket 003 adopts
 

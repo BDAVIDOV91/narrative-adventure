@@ -3,3 +3,4 @@
 - [Earth beats 4/8/9/10 sources](earth-beats-4-8-9-10.md) — gravity, year, telescope, day length: values found, plus three traps that silently produce wrong content
 - [Moon level claims (ticket 003)](moon-level-claims.md) — 10 Moon claims VERIFIED from search excerpts; which URL holds each quote; what is still unpinned
 - [Back cover claims (ticket 009)](back-cover-009.md) — naked-eye worlds, twinkling, near-ecliptic; Artemis II makes "Apollo 17 last crewed lunar mission" false
+- [Companion memories (ticket 012)](companion-memories-012.md) — 5 memory facts VERIFIED; curl works when WebFetch is blocked; consultant quotes can be misquoted
