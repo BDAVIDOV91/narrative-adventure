@@ -12,6 +12,7 @@ it points to were not available to this agent. So nothing was read on the full p
 **Why:** a later session with working fetch should promote these by reading the pages, not by re-searching.
 
 **How to apply:**
+
 - Maria "once thought to be seas of water … solidified basaltic lava" is on `/moon/observe-the-moon-night/moon-map/`,
   NOT on the research file's facts/composition/viewing-tips URLs.
 - "With an adult" is ATTESTED: AAS eye-safety "Always supervise children using solar filters"; Space Place
