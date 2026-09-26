@@ -1742,6 +1742,35 @@ Do not state any of them.
   Earth".
 - The spot is shrinking. Quote no size; "bigger than Earth" is safe.
 
+### Saturn myths — NOT ATTESTED
+
+Surfaced by `docs/wayfinder/road-to-v1/research/010-what-saturn-can-teach.md` on 2026-09-26, from search excerpts.
+Do not state any of them.
+
+- "Saturn would float in a bathtub." NASA _Saturn Facts_ says it, from mean density below water's, but Saturn is not a
+  rigid body and its dense core would sink: IFLScience, _Is NASA's Claim That Saturn Could Float On Water Really
+  True?_; BBC Sky at Night, _Saturn could float on water_.
+- "The rings vanish every 15 years." The gaps between edge-on views alternate at about 13.7 and 15.7 years, and some
+  crossings are triple (2038–39): Obliquity SkyEye, _Ring Plane Crossings of Saturn_; In-The-Sky. Say "twice each trip
+  around the Sun".
+- "The rings disappear completely." Edge-on, they become a thin line that is hard to see: ESA/Hubble _opo9525c_; NASA,
+  _Hubble Views Saturn Ring-Plane Crossing_.
+- "The rings tip / change angle." Saturn's axis keeps pointing the same way; our viewpoint moves round the orbit (NASA/JPL
+  _PIA03156_ caption says "changes angle", which is loose phrasing: do not quote it).
+- "The rings open a little more every month in 2026–27." Earth's own orbit adds a yearly wobble (about 0.37° on
+  2025-11-23, after the March crossing: AAQ). NEEDS SOURCE until a monthly computation exists; do not state it.
+- "Titan is the largest moon." Ganymede is slightly larger: NASA, _Titan Facts_.
+- "Titan is heavier than Mercury." Titan is slightly wider, with about half Mercury's mass: NASA, _Titan Facts_.
+- "Titan is the only moon with an atmosphere." NASA says the only moon with a **thick** atmosphere; the word „плътна"
+  is required: NASA, _Titan Facts_.
+- "Saturn's hexagon can be seen in a telescope." It sits at the north pole, turned away from Earth through 2026–27, and
+  no source makes it a small-telescope sight.
+
+### Saturn's ring thickness — DISPUTED
+
+- NASA/JPL _PIA03156_ excerpt gives about 10 m; other sources range up to about 1 km.
+- Quote no figure. "Very thin for how wide they are" is the safe claim, once a design ticket adopts it.
+
 ---
 
 ## Terminology

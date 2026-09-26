@@ -80,6 +80,7 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 - [Jupiter level design: beats, types and the required/optional split](tickets/006-jupiter-level-design.md) — five required beats, 4 of 5 to pass, spine J1: the eye → binoculars → telescope ladder (`telescope-focus`), then moons that move (`trajectory-match`), Ganymede vs Mercury and a binocular peek at Jupiter vs Sirius (`parallax-compare`), and a fast spin timed by one Earth turn (`rotate-match`); the pull fact becomes the completion line.
 - [What makes a child want to keep playing](tickets/008-what-makes-a-child-keep-playing.md) — the book's pages come alive as markers are solved, with no counter; hints are free (a pointing nudge, then a visual hint step, plus „Спомни си“ cards), never earned; second ideas move from nudges to the album card (ADR 0007).
 - [The book's ending and navigation](tickets/009-book-ending-and-navigation.md) — a non-tappable back cover after the last world, derived from `completed`, whose companion lines send the child to find the worlds in the real sky; wrap-and-fit grid down to 360px with a text floor; bookmark on the newest open page; Saturn joins v1 if 010 finds three honest beats.
+- [What Saturn can teach, deep](tickets/010-what-saturn-can-teach.md) — three honest required beats, a thin margin, so Saturn stays: the rings come and go as Saturn goes round (`rotate-match` on `orbitAngle`), the slowest wanderer (`connect-the-dots`) and Titan wrapped in fog (`parallax-compare`); if 011 judges the slow-wanderer beat a Mars repeat, Saturn falls back to post-v1 unless the ring-swarm beat gets sourced.
 
 ## Not yet specified
 
@@ -106,8 +107,10 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
     - they are pictures, not the naked-eye view, so Saturn's rings are not promised to the eye;
     - a closed back cover is a plain dim cover;
     - plus the bookmark ribbon.
-  - Saturn (tickets 010/011): the ring-opening angle is not in `data/generated/`, so it needs a cited row or a one-off
-    computation (`docs/sources.md` "Through a small telescope"); plus the Saturn disc imagery.
+  - Saturn (tickets 010/011): a hand-authored `data/reference/saturn-ring-geometry.json` (obliquity, IAU pole, the
+    2025 crossing and equinox anchors) for the ring beat, plus the one-off ring-opening computation re-run monthly
+    across the window and recorded in `docs/sources.md`; a Moon/Titan radii row; Cassini visible and infrared Titan
+    frames; the Saturn disc imagery (research 010). Earth's `fact.telescope-saturn` art shows a narrowly open ring.
 - **Constellation visibility by latitude (#25)**: does any post-Earth level need it?
 
 ## Out of scope
