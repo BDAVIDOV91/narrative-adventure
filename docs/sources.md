@@ -386,6 +386,164 @@ the astronomy are the same act. See
   `raHours`, `decDegrees` and `distanceAu`, so any design here uses real positions.
 - **Rule 2**: magnitudes are for this file. No number reaches the screen.
 
+### Back cover — seeing the worlds with your own eyes (ticket 009)
+
+Adopted by `docs/wayfinder/road-to-v1/tickets/009-book-ending-and-navigation.md`
+for the storybook's back cover. Checked 2026-09-26 by `astronomy-accuracy-checker`.
+Observer: Bulgaria, about 42.7° N. **How they were checked**: pages marked
+„(page read)" were fetched and the quoted sentence found in the page text. Pages
+marked „(search excerpt)" were not fetched in this session: the session's fetch
+hook blocked further page reads, so the quote is from a search result attributed to
+that URL and may be lightly paraphrased. Content keys are **(key TBD by the
+back-cover build)**. **Rule 2**: every number below stays in this file; no count,
+duration, angle or date reaches the player.
+
+#### 1. The Moon, Mars, Jupiter and Saturn can all be seen with the naked eye from Bulgaria
+
+- **Status**: **VERIFIED**, in this wording only: all four can be seen with the
+  naked eye, **not every night and not always together**. Saturn is a point of
+  light; its rings need a telescope.
+- **Naked eye**: NASA Science, _Planetary Alignments and Planet Parades_ (Preston
+  Dyches, 2025-02-04), page read
+  <https://science.nasa.gov/solar-system/skywatching/planetary-alignments-and-planet-parades/>:
+  „Five planets are visible without optical aid: Mercury, Venus, Mars, Jupiter,
+  and Saturn." Same page: „On most nights, weather permitting, you can spot at
+  least one bright planet" and „While two or three planets are commonly visible …
+  occasionally four or five bright planets can be seen simultaneously". That is
+  the source for **not always together**.
+- **Not every night — computed from this repo's data.** Solar elongation from
+  `data/generated/orbital-positions.json` (Sun = Earth `helioLonDegrees` + 180°;
+  planet longitude from `raHours`/`decDegrees`) over 2026-09-08 → 2027-09-07:
+  **Saturn** passes within 15° of the Sun for 35 days (2027-03-22 → 2027-04-25,
+  closest 2.2° on 2027-04-08); **Jupiter** for 27 days (2027-08-12 → the end of
+  the window, closest 0.9° on 2027-08-31); **Mars** never comes closer than 49°
+  in the window. Oppositions fall out of the same series at Saturn 2026-10-05,
+  Jupiter 2027-02-11 and Mars 2027-02-20. These dates are derived from the
+  committed ephemeris only and were **not** checked against an independent almanac
+  in this pass; none reaches the player. Each planet is out of sight for weeks, so „tonight" must never appear.
+- **Saturn is a point, and faint for its fame.** The rings: Sky & Telescope, _Viewing
+  Saturn_ (already cited above, _Through a small telescope_): „visible in even the
+  smallest telescope at 25×". Brightness: Saturn peaks at +0.43 and is **always
+  fainter than Sirius** (_The brightest "star"_ above). Nothing on the cover may
+  call Saturn bright or draw its rings as a naked-eye sight.
+- **Guards**: name the four worlds and use no count word („четирите", „four
+  worlds"). Never „tonight"/„довечера". The art may show Saturn's rings only in a
+  telescope frame, never over a naked-eye sky.
+- **Safe wording** (Bulgarian is a draft for the content pass): „Луната, Марс,
+  Юпитер и Сатурн можеш да видиш с просто око — не всяка нощ и не винаги заедно.
+  Сатурн е само точица светлина; пръстените му се виждат с телескоп."
+
+#### 2. Away from lights and screens, your eyes adjust and you see many more, fainter stars
+
+- **Status**: **VERIFIED** (search excerpt). The player line carries no duration.
+- **Source**: Kalloniatis & Luu, _Light and Dark Adaptation_, Webvision, NCBI
+  Bookshelf <https://www.ncbi.nlm.nih.gov/books/NBK11525/> (search excerpt): the
+  dark-adaptation curve has a fast cone branch, then „the sensitivity of the rod
+  pathway improves considerably after 5-10 minutes in the dark"; brighter
+  pre-adapting light delays the rod branch and „the absolute threshold also takes
+  longer to reach". Lower threshold = fainter stars = more stars.
+- **Duration, for this file only**: most of the gain in about **20–30 minutes**,
+  full rod sensitivity after roughly **20–40 minutes** in real darkness. This is a
+  search-result summary that merged ScienceDirect Topics, _Dark Adaptation_, and
+  Scientific American,
+  <https://www.scientificamerican.com/article/experts-eyes-adjust-to-darkness/>,
+  and **could not be pinned to one URL**. Read the Webvision page itself before
+  any duration is used anywhere.
+- **Screens**: white light undoes the adaptation (search excerpt, Almanac.com,
+  _Adjusting to Darkness_). A phone screen is a bright light at close range; that
+  is why the line names screens.
+- **Safe wording**: „Отдалечи се от лампите и екраните и почакай. Очите ти
+  постепенно свикват с тъмното и започват да виждат много повече звезди."
+
+#### 3. The planets always appear near the band of sky the Sun and Moon cross
+
+- **Status**: **VERIFIED**, with **near**, never **on**. The word „еклиптика" never
+  reaches the player.
+- **Source**: NASA Science, _Planetary Alignments and Planet Parades_, page read:
+  „planets always appear along a line or arc across the sky. This occurs because
+  the planets orbit our Sun in a relatively flat, disc-shaped plane … this disc
+  appears as a line, which we call the ecliptic". NASA/GSFC _From Stargazers to
+  Starships_, _The Path of the Sun, the Ecliptic_, page read
+  <https://pwg.gsfc.nasa.gov/stargaze/Secliptc.htm>: the planets „are confined to
+  a narrow strip"; „The path of the Sun across the celestial sphere is very close
+  to that of the planets and the moon. Because of its relation to eclipses, that
+  path is known as the ecliptic."
+- **Why „near" and not „on" — NASA's own „along a line" is looser than the truth.**
+  The Moon: NASA _Moon Fact Sheet_, page read (HTTP 200, 2026-09-26)
+  <https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html>: „Inclination
+  to ecliptic (deg) 5.145". Geocentric ecliptic latitude computed from the
+  committed `raHours`/`decDegrees` (obliquity 23.4393°), 2026-09-08 → 2027-09-07:
+  Moon **±5.29°**, Mars **−0.33° to +4.47°**, Jupiter **+0.54° to +1.07°**, Saturn
+  **−2.72° to −2.23°** (Venus reaches −7.57°, Mercury ±4.7°). The Moon's ±5.29°
+  matches the fact-sheet 5.145° plus its known wobble, which cross-checks the
+  method. `orbital-positions.json` carries no latitude field; these were derived.
+- **Safe wording**: „Планетите винаги са близо до пътя, по който Слънцето и Луната
+  минават по небето." Art: a soft band, planets scattered near it, not beads on a
+  line.
+
+#### 4. Twinkling
+
+- **„Planets don't twinkle" (absolute) — NOT ATTESTED.** Low planets twinkle, and
+  small-disc Mars can: EarthSky, _Why do stars twinkle, but planets don't?_
+  (Deborah Byrd, 2026-06-28), page read
+  <https://earthsky.org/space/why-dont-planets-twinkle-as-stars-do/>: „Stars
+  twinkle, while planets (usually) shine steadily" and „You might see planets
+  twinkling if you spot them low in the sky … you're looking through more
+  atmosphere". APOD 2011-04-28, _Scintillating_, page read
+  <https://apod.nasa.gov/apod/ap110428.html>: turbulence makes the star Regulus
+  scintillate „more readily than the planet" Mars, whose disc is „on average,
+  less affected" — less, not never. Do not state the absolute form anywhere.
+- **„Planets usually shine more steadily than stars, because they show a tiny disc
+  and not a point" — VERIFIED.** EarthSky, same page: „Planets shine more steadily
+  because they're closer to Earth and so appear not as pinpoints, but as tiny disks
+  in our sky … The zigs and zags of light from a planetary disk cancel each other
+  out". APOD 2011-04-28: „Though tiny, its disk is seen as a bundle of light rays
+  that is substantially broader compared to a star's". University of
+  Wisconsin–Madison, _Curiosities: Why do stars appear to twinkle?_, page read
+  <https://news.wisc.edu/curiosities-why-do-stars-appear-to-twinkle-in-the-night-sky>:
+  „these points average out, so planets generally don't twinkle nearly as much as
+  stars."
+- **Guard**: „usually" / „обикновено" is load-bearing; dropping it turns the
+  VERIFIED claim into the NOT ATTESTED one. Never offer twinkling as a sure test
+  for „is it a planet".
+- **Safe wording**: „Планетите обикновено светят по-спокойно от звездите и
+  блещукат по-малко, защото са мъничко кръгче, а не точка." („блещукат" is the
+  everyday Bulgarian verb; „сцинтилация" is not for the player.)
+
+#### 5. Anchor for ticket 012: how far people have travelled
+
+- **As requested — „No human has travelled beyond the Moon; the last crewed lunar
+  mission was Apollo 17 (December 1972)" — DISPUTED. Do not ship.** The second half
+  has been false since April 2026. NASA, _NASA Welcomes Record-Setting Artemis II
+  Moonfarers Back to Earth_, page read
+  <https://www.nasa.gov/news-release/nasa-welcomes-record-setting-artemis-ii-moonfarers-back-to-earth/>:
+  „Their lunar flyby took them farther than any humans have ever traveled before,
+  surpassing the previous distance record set by Apollo 13 astronauts in 1970."
+  NASA, _NASA's Artemis II Crew Eclipses Record for Farthest Human Spaceflight_,
+  page read
+  <https://www.nasa.gov/news-release/nasas-artemis-ii-crew-eclipses-record-for-farthest-human-spaceflight/>:
+  launched April 1, splashdown April 10, farthest point „about 252,756 miles",
+  and the crew „will be the first to see some parts of the far side of the Moon
+  with human eyes". Artemis II is a crewed lunar mission, so Apollo 17 is not the
+  last one. „Beyond the Moon" is also unsafe: Artemis II (and every Apollo crew
+  that orbited) passed behind the Moon, farther from Earth than the Moon itself.
+- **VERIFIED replacement 1 — the last Moon landing.** „The last people to walk on
+  the Moon were the crew of Apollo 17, in December 1972." NASA, _Apollo 17_ mission
+  page, page read <https://www.nasa.gov/mission/apollo-17/>: „Launch Dec. 7, 1972
+  … Splashdown Dec. 19, 1972"; Cernan, „commander of the last Apollo mission to the
+  Moon … the last person to leave his footprints on the surface of the Moon"; „the
+  final lunar landing mission of the Apollo Program". Still true on 2026-09-26:
+  NASA, _Artemis III_ mission page, page read
+  <https://www.nasa.gov/mission/artemis-iii/>: launch 2027, „NASA will test one or
+  both human landing systems in low Earth orbit". **Re-check before release**:
+  this goes stale the day a crew lands.
+- **VERIFIED replacement 2 — nobody has gone past the Moon's neighbourhood.**
+  „No person has ever travelled farther than the Moon. The farthest trip, by the
+  Artemis II crew in April 2026, looped around the Moon and came home." Sources as
+  above. No year, distance or mission name needs to reach the player; the
+  companion line can say „хората са стигали само до Луната — и никой още не е
+  продължил нататък".
+
 ### Moon level — the claims ticket 003 adopts
 
 Adopted by `docs/wayfinder/road-to-v1/tickets/003-moon-level-design.md` from

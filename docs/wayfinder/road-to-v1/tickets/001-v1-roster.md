@@ -67,6 +67,31 @@ fresh map.
 
 **Build follow-ups, beside the map and not tickets:**
 
-- Remove `level.saturn.name` (`content/bg/levels.json:12`, its only reference).
+- ~~Remove `level.saturn.name` (`content/bg/levels.json:12`, its only reference).~~ Keep it: Saturn joined v1 (see the amendment below).
 - Add `level.jupiter.blurb`, plus Jupiter's page in `src/scenes/storybook-scene.ts`.
 - `ui.puzzle.coming-soon` (`content/bg/ui.json:8`) must be gone by v1. It belongs to the Earth build.
+
+## Amendment (2026-09-26, ticket 009)
+
+The owner added **Saturn to v1** while grilling
+[The book's ending and navigation](009-book-ending-and-navigation.md) (Q5, Q8, Q17). The table above now reads:
+
+| Page | World   | Gate |
+| ---- | ------- | ---- |
+| 1    | Earth   | 1.0  |
+| 2    | Moon    | 1.0  |
+| 3    | Mars    | 0.7  |
+| 4    | Jupiter | 0.7  |
+| 5    | Saturn  | 0.7  |
+
+A back cover, not a world, follows the last world page.
+
+- **The type verdict stands.** Saturn comes after the Mars anchor, exactly as Jupiter does.
+  - It designs from the five types kept by 005 only.
+  - Reviving a deleted type would reopen 005 explicitly, argued in ADR 0006, and is outside this map.
+- **Saturn is conditional.** [What Saturn can teach, deep](010-what-saturn-can-teach.md) must find at least three honest
+  required beats on the kept types. If it does not, Saturn returns to post-v1, and this amendment is reverted.
+- **Titan** is a major moon and a Saturn candidate. It no longer waits out of scope.
+- **Build follow-ups amended:**
+  - ~~Remove `level.saturn.name`~~: keep it.
+  - Add `level.saturn.blurb` and Saturn's page in `src/scenes/storybook-scene.ts`.
