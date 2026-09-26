@@ -103,7 +103,8 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 - ~~**Designs for levels after Mars**~~ — graduated to ticket 006 (Jupiter), backed by research ticket 007.
 - ~~**The book's through-line, ending and navigation**~~ — page display settled by ticket 008 (a page comes alive as
   its markers are solved); the ending and narrow-width layout graduated to ticket 009.
-- **Imagery and data per level**:
+- ~~**Imagery and data per level**~~ — handed to the v1-build map as a fixed input (see Out of scope). The detail stays
+  here for it:
   - storybook page art with one element per marker, lit as it is solved (ticket 008). It is textless, and placeholder
     art is allowed.
   - which NASA textures to process;
@@ -159,5 +160,8 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
   - Input to that map: new world pages insert before the back cover, and that map decides how the back cover stays
     open with no new stored state (ticket 009).
   - Neptune has no honest beat (research 002).
+- **Imagery and data per level**: asset and data work, past this map's destination (roster, beats, type verdicts).
+  It is carried to the v1-build map as a fixed input, and its detail stays in the struck fog patch above (owner,
+  2026-09-26).
 - **Phobos, and Mars beat R9**: out because rule 6 covers major moons only, meaning the large round moons, and Phobos
   is not one (ticket 001).
