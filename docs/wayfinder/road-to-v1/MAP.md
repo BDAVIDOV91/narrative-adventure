@@ -72,15 +72,16 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
 ## Decisions so far
 
 - [What each candidate world can teach through the seven types](tickets/002-what-each-world-can-teach.md) — Moon and Mars have honest beats on existing types; Neptune has none; `zoom-split-star` lives only if Jupiter does.
-- [Which worlds make the v1 roster, and in what order](tickets/001-v1-roster.md) — Earth, Moon, Mars, Jupiter, plus Saturn (added by ticket 009, if ticket 010 finds three honest beats); the rest of the solar system is post-v1; Jupiter comes after the ADR 0006 anchor, so `zoom-split-star` goes.
+- [Which worlds make the v1 roster, and in what order](tickets/001-v1-roster.md) — Earth, Moon, Mars, Jupiter, plus Saturn (added by ticket 009, confirmed by tickets 010 and 011); the rest of the solar system is post-v1; Jupiter comes after the ADR 0006 anchor, so `zoom-split-star` goes.
 - [What Jupiter can teach, deep](tickets/007-what-jupiter-can-teach.md) — spine of moons ladder, moving moons, Sirius and fast spin; viable only if `telescope-focus`, `trajectory-match` or `parallax-compare` survive 005.
 - [Moon level design: beats, types and the required spine](tickets/003-moon-level-design.md) — spine M1 → M3 → M2 on `orbitAngle`; optional eclipse, near/far (`parallax-compare`) and seas & craters (`telescope-focus`); 2 companion tiers.
 - [Mars level design: beats and types](tickets/004-mars-level-design.md) — five required beats, spine R1a: retrograde as see-it (`connect-the-dots`) then why (`trajectory-match`), telescope disc, never Moon-sized, blue sunset; `gravity-drop` gets no Mars use.
 - [Apply the ADR 0006 trigger to the designed levels](tickets/005-adr-0006-verdict.md) — five types kept, `zoom-split-star` and `gravity-drop` deleted; air+Apollo becomes the Moon's completion line, the pull comparison a Jupiter candidate; sources gain a RETIRED status.
 - [Jupiter level design: beats, types and the required/optional split](tickets/006-jupiter-level-design.md) — five required beats, 4 of 5 to pass, spine J1: the eye → binoculars → telescope ladder (`telescope-focus`), then moons that move (`trajectory-match`), Ganymede vs Mercury and a binocular peek at Jupiter vs Sirius (`parallax-compare`), and a fast spin timed by one Earth turn (`rotate-match`); the pull fact becomes the completion line.
 - [What makes a child want to keep playing](tickets/008-what-makes-a-child-keep-playing.md) — the book's pages come alive as markers are solved, with no counter; hints are free (a pointing nudge, then a visual hint step, plus „Спомни си“ cards), never earned; second ideas move from nudges to the album card (ADR 0007).
-- [The book's ending and navigation](tickets/009-book-ending-and-navigation.md) — a non-tappable back cover after the last world, derived from `completed`, whose companion lines send the child to find the worlds in the real sky; wrap-and-fit grid down to 360px with a text floor; bookmark on the newest open page; Saturn joins v1 if 010 finds three honest beats.
-- [What Saturn can teach, deep](tickets/010-what-saturn-can-teach.md) — three honest required beats, a thin margin, so Saturn stays: the rings come and go as Saturn goes round (`rotate-match` on `orbitAngle`), the slowest wanderer (`connect-the-dots`) and Titan wrapped in fog (`parallax-compare`); if 011 judges the slow-wanderer beat a Mars repeat, Saturn falls back to post-v1 unless the ring-swarm beat gets sourced.
+- [The book's ending and navigation](tickets/009-book-ending-and-navigation.md) — a non-tappable back cover after the last world, derived from `completed`, whose companion lines send the child to find the worlds in the real sky; wrap-and-fit grid down to 360px with a text floor; bookmark on the newest open page; Saturn joins v1 (confirmed by 010 and 011).
+- [What Saturn can teach, deep](tickets/010-what-saturn-can-teach.md) — three honest required beats, a thin margin, so Saturn stays: the rings come and go as Saturn goes round (`rotate-match` on `orbitAngle`), the slowest wanderer (`connect-the-dots`) and Titan wrapped in fog (`parallax-compare`); if 011 judges the slow-wanderer beat a Mars repeat, Saturn falls back to post-v1 unless the ring-swarm beat gets sourced. _Amended by ticket 011: not triggered; Saturn stays._
+- [Saturn level design: beats, types and the required/optional split](tickets/011-saturn-level-design.md) — four required beats, 3 of 4 to pass, spine S1: the rings come and go as Saturn goes round (`rotate-match`, new `ring-view` renderer pinned to `orbitAngle`), then any 2 of the slowest wanderer beside Mars (`connect-the-dots`, two panels), Titan wrapped in fog (`parallax-compare`) and the rings as a swarm (`trajectory-match`); the completion line gives Saturn seasons like Earth's.
 
 ## Not yet specified
 
@@ -107,10 +108,10 @@ Plan mode plus two challengers builds from that spec afterwards; this map decide
     - they are pictures, not the naked-eye view, so Saturn's rings are not promised to the eye;
     - a closed back cover is a plain dim cover;
     - plus the bookmark ribbon.
-  - Saturn (tickets 010/011): a hand-authored `data/reference/saturn-ring-geometry.json` (obliquity, IAU pole, the
-    2025 crossing and equinox anchors) for the ring beat, plus the one-off ring-opening computation re-run monthly
-    across the window and recorded in `docs/sources.md`; a Moon/Titan radii row; Cassini visible and infrared Titan
-    frames; the Saturn disc imagery (research 010). Earth's `fact.telescope-saturn` art shows a narrowly open ring.
+  - Saturn (ticket 011): a hand-authored `data/reference/saturn-ring-geometry.json` (obliquity, IAU pole rotated into
+    ecliptic-of-J2000, the 2025 crossing and equinox anchors) for S1; the monthly ring-opening table is already in
+    `docs/sources.md` (claim 4); Moon/Titan radii and C/B/A ring radii rows; Cassini PIA06230 (visible) and PIA20016
+    (infrared, labelled false colour). Earth's `fact.telescope-saturn` art shows a narrowly open south face.
 - **Constellation visibility by latitude (#25)**: does any post-Earth level need it?
 
 ## Out of scope

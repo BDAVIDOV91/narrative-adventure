@@ -68,3 +68,6 @@ not design facts.
 - **Types Saturn would use** (for ADR 0006's reverse-dependency line, written by 011): `rotate-match`,
   `connect-the-dots`, `parallax-compare`, and `trajectory-match` if S4 is adopted.
 - All external sources are search excerpts; `astronomy-accuracy-checker` must fetch each page when 011 adopts a claim.
+
+**Amended by [ticket 011](011-saturn-level-design.md) (2026-09-26):** the fail line did not trigger. S2 was judged not
+a Mars repeat, and S4's claim is VERIFIED, so Saturn ships four required beats, 3 of 4 to pass.

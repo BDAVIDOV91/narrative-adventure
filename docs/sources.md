@@ -1256,6 +1256,352 @@ Sources read in full, cited by short name:
 - **Guard**: only „дърпа" / „притегля". Never falls, lands, stands or weighs; no
   surface; no number. `fact.gravity-drop.bodies` is deleted in the build.
 
+### Saturn level — the claims ticket 011 adopts
+
+Adopted by `docs/wayfinder/road-to-v1/tickets/011-saturn-level-design.md` from
+`docs/wayfinder/road-to-v1/research/011-saturn-claims.md` (claim numbers below are
+that file's rows). Checked 2026-09-26 by `astronomy-accuracy-checker`. **Method:
+full page**: every page was downloaded, stripped to text and searched. No status
+rests on a search excerpt. All access dates are **2026-09-26**. Every content key
+is **(key TBD by Saturn build)**. **Rule 2**: every number below stays in this
+file.
+
+**URL notes.** The NSSDC fact sheets are live (HTTP 200) and are cited live. Sky &
+Telescope returns **HTTP 403** to scripts and In-The-Sky serves a bot wall
+(Anubis), so both are cited through dated Wayback snapshots. Britannica returns
+403 and is cited through Wayback. **PIA03156 is a Hubble Heritage image, not a
+NASA/JPL spacecraft frame.** Its caption, read in full, contains neither "changes
+angle" nor any ring thickness. Both phrases were misattributed to it by the
+search-excerpt research. See the corrected myth and thickness rows below.
+
+Sources read in full, cited by short name:
+
+- **[PIA03156]** NASA Science, _A Change of Seasons on Saturn_ (PIA03156, 2001;
+  credit „NASA and The Hubble Heritage Team (STScI/AURA)")
+  <https://science.nasa.gov/resource/a-change-of-seasons-on-saturn/>
+- **[SF]** NASA, _Saturn Facts_ <https://science.nasa.gov/saturn/facts/>
+- **[TF]** NASA, _Titan Facts_ <https://science.nasa.gov/saturn/moons/titan/facts/>
+- **[CR]** NASA Science, _Cassini: Saturn Rings_
+  <https://science.nasa.gov/mission/cassini/science/rings/>
+- **[DAPH]** NASA Science, _Ripples from Daphnis_
+  <https://science.nasa.gov/resource/ripples-from-daphnis/>
+- **[KEELER]** J. E. Keeler, _A Spectroscopic Proof of the Meteoric Constitution
+  of Saturn's Rings_, ApJ 1, 416 (1895), ADS scan
+  <https://articles.adsabs.harvard.edu/pdf/1895ApJ.....1..416K> (PDF, text layer
+  read)
+- **[SP-YR]** NASA Space Place, _How Long is a Year on Other Planets?_
+  <https://spaceplace.nasa.gov/years-on-other-planets/en/>
+- **[ITS-EQ]** In-The-Sky.org (D. Ford), _Equinox on Saturn_ (2025-05-06), Wayback
+  2026-04-21
+  <https://web.archive.org/web/20260421133803/https://in-the-sky.org/news.php?id=20250506_12_100>
+- **[ITS-CONJ]** In-The-Sky.org, _Saturn at solar conjunction_ (2026-03-25),
+  Wayback 2026-03-23
+  <https://web.archive.org/web/20260323061543/https://in-the-sky.org//news.php?id=20260325_12_100>
+- **[OBL]** Obliquity SkyEye, _Ring Plane Crossings of Saturn_
+  <https://www.obliquity.com/skyeye/misc/ringcrossing.html>
+- **[HST-RPX]** NASA Science, _Hubble Views Saturn Ring-Plane Crossing_ (1995)
+  <https://science.nasa.gov/missions/hubble/hubble-views-saturn-ring-plane-crossing/>
+- **[ESA-RPX]** ESA/Hubble, _Saturn ring-plane crossing_ (opo9525c)
+  <https://esahubble.org/images/opo9525c/>
+- **[BRIT-K]** Britannica Kids, _Saturn_, Wayback 2026-08-20
+  <https://web.archive.org/web/20260820101434/https://kids.britannica.com/students/article/Saturn/345008>
+- **[ES]** EarthSky, _Give me 5 minutes and I'll give you Saturn_ (2026-08-18)
+  <https://earthsky.org/astronomy-essentials/give-me-five-minutes-ill-give-you-saturn/>
+- **[ST-VS]** Sky & Telescope, Alan MacRobert, _Viewing Saturn: The Planet, Rings
+  and Moons_ (2013), Wayback 2026-08-13
+  <https://web.archive.org/web/20260813092125/https://skyandtelescope.org/stargazing-and-observing/celestial-objects-to-watch/viewing-saturn-the-planet-rings-and-moons/>
+- **[BBC-M]** BBC Sky at Night, _How to observe Saturn's moons_
+  <https://www.skyatnightmagazine.com/advice/skills/how-observe-saturn-moons>
+- **[MVT]** NASA Science, _Moon Viewing Tips_ <https://science.nasa.gov/moon/viewing-tips/>
+- **[NSSDC-R]** NASA NSSDC, _Saturnian Rings Fact Sheet_ (last updated
+  2022-04-19) <https://nssdc.gsfc.nasa.gov/planetary/factsheet/satringfact.html>
+- **[NSSDC-SS]** NASA NSSDC, _Saturnian Satellite Fact Sheet_ (last updated
+  2025-07-22) <https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturniansatfact.html>
+- **[NSSDC-S]** NASA NSSDC, _Saturn Fact Sheet_ (last updated 2025-03-18)
+  <https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html>
+- **[NSSDC-M]** NASA NSSDC, _Moon Fact Sheet_ (last updated 2024-01-11)
+  <https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html>
+- **[PCK]** NAIF, `pck00011.tpc` (IAU WGCCRE 2015 rotation elements: Archinal et
+  al., CeMDA 130, 22, 2018)
+  <https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/pck00011.tpc>
+- **[PIA06230]** NASA Science, _Cassini's View of Titan: Natural Color Composite_
+  <https://science.nasa.gov/resource/cassinis-view-of-titan-natural-color-composite/>;
+  JPL copy
+  <https://www.jpl.nasa.gov/images/pia06230-cassinis-view-of-titan-natural-color-composite/>
+- **[PIA20016]** NASA Photojournal, _Peering Through Titan's Haze_
+  <https://science.nasa.gov/photojournal/peering-through-titans-haze/>
+- **[PIA21923]** NASA Science, _Seeing Titan with Infrared Eyes_
+  <https://science.nasa.gov/resource/seeing-titan-with-infrared-eyes/> (supporting)
+- **[JPL-USE]** JPL, _Image Use Policy_ <https://www.jpl.nasa.gov/jpl-image-use-policy/>;
+  **[NASA-USE]** NASA, _Images and Media_ guidelines
+  <https://www.nasa.gov/nasa-brand-center/images-and-media/>
+- **[HZN]** JPL Horizons API (observer, geocentric, astrometric), queried
+  2026-09-26. Cross-check of the committed ephemeris only.
+
+**Ephemeris spot-check.** Committed `data/generated/orbital-positions.json` Saturn
+against [HZN] astrometric: 2026-10-05 RA 0.7381 h / Dec 1.811° / 8.43428 AU vs
+0.7378 h / 1.808° / 8.43428 AU; 2027-01-15 0.5925 / 1.221 / 9.61847 vs 0.5926 /
+1.222 / 9.61847; 2027-05-31 1.5109 / 6.999 / 10.04528 vs 1.5111 / 7.000 /
+10.04527. Units correct (hours, degrees, AU); agreement within 0.0003 h and
+0.003°.
+
+#### 1. Saturn's axis keeps pointing the same way in space; the rings lie around its equator and share its tilt
+
+- **Status**: **VERIFIED** (full page + IAU pole model).
+- **Tilt and alternation**: [PIA03156] „Saturn's equator is tilted relative to its
+  orbit by 27 degrees … As Saturn moves along its orbit, first one hemisphere,
+  then the other is tilted towards the Sun." [SF] „Its axis is tilted by 26.73
+  degrees with respect to its orbit". [NSSDC-S] „Obliquity to orbit (deg) 26.73".
+- **Same direction in space**: [PCK] `BODY699_POLE_RA = (40.589 -0.036 0.)`,
+  `BODY699_POLE_DEC = (83.537 -0.004 0.)` (degrees; rates per Julian century).
+  Over one Saturn orbit (29.45 years) the pole moves about **0.001°** on the sky.
+  "Keeps pointing the same way" is exact for the game. [HST-RPX] names a pole
+  precession, but it is a timing detail of hours, not something the model draws.
+- **Rings in the equator plane**: [OBL] „Because the rings are in the equatorial
+  plane of Saturn, the angle of the rings relative to the Sun also varies between
+  0° and 26.7°"; [ITS-EQ] „Saturn's rings are closely aligned with its equator";
+  [BRIT-K] „The rings are thin and flat and always lie in the same plane as the
+  planet's equator."
+- **Guard**: [PIA03156] itself says the planet and rings „nod majestically". That
+  is loose phrasing, like "changes angle", and must not be quoted.
+
+#### 2. Over one trip round the Sun we see the rings from above, edge-on, from below, edge-on again, because our viewpoint moves
+
+- **Status**: **VERIFIED** (full page).
+- **Quotes**: [ITS-EQ] „This configuration arises twice within each orbit that
+  Saturn makes around the Sun, just as the Earth has two equinoxes each year."
+  [OBL] „Earth also observes ring plane crossings twice a Saturnian year … the
+  Earth either experiences a single crossing event or a triple crossing event."
+  [BRIT-K] „Viewers on Earth see the sunlit northern side of the rings for about
+  15 years and then the sunlit southern side for about the next 15 years."
+- **Viewpoint**: [ITS-EQ] „Our line of sight to Saturn is very closely aligned
+  with the line between the Sun and Saturn, because Saturn's distance from the
+  Sun and Earth is more than nine times greater than the distance between the
+  Earth and Sun." That is the source for viewing the model from the Sun's side.
+- **Guard**: "twice each trip". [ITS-EQ], [HST-RPX] and [ESA-RPX] all say „every
+  15 years"; [OBL]'s table gives gaps of 15.6 and 13.4 years between Sun
+  crossings. Do not copy the „every 15 years" line.
+
+#### 3. Edge-on, the rings shrink to a very thin line that is very hard to see; they are still there
+
+- **Status**: **VERIFIED** (full page) **with a wording correction**: the rings do
+  not stop existing, but through a small telescope they can look gone. „They do
+  not disappear" must mean "they are still there", never "you can still see them".
+- **Quotes**: [ITS-EQ] „When they are viewed edge-on, they can become so thin as
+  to be incredibly hard to see." [HST-RPX] „as Saturn approaches the equinoxes of
+  its orbit, the rings appear thinner and are more difficult to see"; „Through the
+  garden variety backyard telescope, Saturn's rings are much less prominent than
+  usual, sometimes invisible"; „Saturn's rings remained virtually invisible as the
+  Earth passed through the ring plane". [BRIT-K] „The rings are practically
+  invisible when their thin edge is pointed directly at Earth". [ESA-RPX] (the
+  Hubble image of 1995-05-22) shows the edge-on rings as a thin line; its caption
+  says only „turned edge-on".
+- **Guard**: the thin line is drawn in the diagram's inset, which is a model and
+  not a telescope view. Never "a telescope always shows the line". Never
+  „изчезват". [OBL] itself says „the rings vanish as they appear edge on", which
+  is the phrasing this game avoids.
+
+#### 4. In 2026–27 Earth sees the south face of the rings, narrowly open
+
+- **Status**: **VERIFIED** (computed + full page). The monthly table the claims
+  file asked for now exists.
+- **Computation**: sub-Earth ring latitude from the committed Saturn RA/Dec and the
+  [PCK] pole (J2000 values; the century rates are negligible), on the 8th of each
+  month: 2026-09 −8.3°, 10 −7.3°, 11 −6.4°, 12 −6.1°, 2027-01 −6.5°, 02 −7.6°,
+  03 −9.0°, 04 −10.6°, 05 −12.2°, 06 −13.4°, 07 −14.2°, 08 −14.4°, 09 −14.1°.
+  Negative on every day of the window (south face), between 6.1° and 14.4°.
+- **Independent check**: [ES] „They'll have a -7.5-degree tilt around
+  opposition" (computed: −7.46° on 2026-10-04). [OBL] 2025-03-23 crossing „North →
+  South", and the sequence ends „in 2032 when the south pole of Saturn will be
+  most inclined toward Earth".
+- **Consequence for the "opening steadily" row**: the table shows the rings
+  **narrowing** from September to early December 2026, then opening. The Saturn
+  myths row stays NEEDS SOURCE as instructed. This table is the evidence for
+  whoever next reviews it.
+
+#### 5. Of the five naked-eye planets, Saturn creeps among the stars far more slowly than Mars
+
+- **Status**: **VERIFIED** (full page + committed data).
+- **Quote**: [ES] „Saturn takes almost 30 years to orbit the sun. So it moves more
+  slowly than the other bright planets in front of the fixed stars." The five:
+  the VERIFIED back-cover row (NASA, _Planetary Alignments_).
+- **Committed data, 2026-11-01 → 2027-05-31** (summed daily angular steps / net):
+  Saturn 17.4° / 14.6°, Mars 57.8° / 18.1°.
+- **Guard (HIGH, new)**: in this window **Jupiter moves no more than Saturn**
+  (16.0° path, 4.1° net: it loops round its February opposition). S2 must compare
+  Saturn with **Mars only**. A Jupiter panel would show the "slowest" claim
+  failing on screen. „Най-бавната" stays qualified („от петте, които виждаме с
+  просто око") and is taught as a general fact, not as something the window shows
+  against every planet.
+
+#### 6. Saturn is far from the Sun, so one trip round the Sun takes a very long time
+
+- **Status**: **VERIFIED** (full page).
+- **Quotes**: [SP-YR] „Planets that orbit farther from the Sun than Earth have
+  longer years than Earth … This happens for two main reasons. If a planet is
+  close to the Sun, the distance it orbits around the Sun is fairly short … The
+  closer a planet travels to the Sun, the more the Sun's gravity can pull on the
+  planet. The stronger the pull of the Sun's gravity, the faster the planet
+  orbits." [SF] „9.5 astronomical units away from the Sun"; „about 29.4 Earth
+  years". [NSSDC-S] sidereal period 10,755.699 d.
+
+#### 7. For a few weeks in spring 2027 Saturn is too close to the Sun in our sky to see
+
+- **Status**: **VERIFIED** (full page + independent almanac).
+- **Quote**: [ITS-CONJ] (the 2026 conjunction; same mechanism) „At closest
+  approach, Saturn will appear at a separation of only 2°07' from the Sun, making
+  it totally unobservable for several weeks while it is lost in the Sun's glare."
+- **Dates**: [HZN] solar elongation below 15° from **2027-03-22 to 2027-04-25**,
+  minimum 2.25° on 2027-04-08. This matches the committed-data result in the
+  back-cover row exactly. That row's "not checked against an independent almanac"
+  caveat is now closed for Saturn.
+
+#### 8. Titan is Saturn's largest moon, and it is wider than our Moon
+
+- **Status**: **VERIFIED** (full page).
+- **Quotes**: [TF] „Titan is the second largest moon in our solar system. Only
+  Jupiter's moon Ganymede is larger, by just 2 percent. Titan is bigger than
+  Earth's moon, and larger than even the planet Mercury"; „nearly 50 percent wider
+  than Earth's moon".
+
+#### 9. Titan has a thick atmosphere, and its haze hides the ground in ordinary light
+
+- **Status**: **VERIFIED** (full page) **with a wording correction**: the haze
+  hides the ground **seen from above** (from space). The ESA Huygens probe landed
+  under the haze in 2005 ([TF] names its descent).
+- **Quotes**: [TF] „the only moon with a thick atmosphere"; „surface is completely
+  obscured by a golden hazy atmosphere"; „a thick, orange-colored haze that makes
+  the moon's surface difficult to view from space. (Spacecraft and telescopes can,
+  however, see through the haze at certain wavelengths of light outside of those
+  visible to human eyes.)" [PIA21923] „Observing the surface of Titan in the
+  visible region of the spectrum is difficult … small particles called aerosols in
+  Titan's upper atmosphere strongly scatter visible light."
+
+#### 10. Cassini saw Titan's surface through the haze in infrared light
+
+- **Status**: **VERIFIED** (full page).
+- **Quote**: [PIA20016] „A view at visible wavelengths (centered around 0.5
+  microns) would show only Titan's hazy atmosphere … The near-infrared wavelengths
+  in this image allow Cassini's vision to penetrate the haze and reveal the moon's
+  surface." [PIA21923] „the VIMS instrument excelled, parting the haze to obtain
+  clear images of Titan's surface."
+
+#### 11. Our Moon shows craters when you look closer
+
+- **Status**: **VERIFIED** (full page; the Moon row above rested on a search
+  excerpt, and this read confirms it).
+- **Quote**: [MVT] „Pick up a pair of binoculars, and the Moon transforms … Smooth-
+  looking patterns of gray and white resolve into craters and large mountain
+  ridges." Also: „for better viewing of craters and mountains, try phases other
+  than the full Moon."
+- **Guard**: draw the Moon disc part-lit or with terminator shadows, not flat full.
+
+#### 12. Saturn's rings are not a solid disc: each piece goes round Saturn on its own
+
+- **Status**: **VERIFIED** (full page).
+- **Quotes**: [KEELER] „The hypothesis that the rings of Saturn are composed of an
+  immense multitude of comparatively small bodies, revolving around Saturn in
+  circular orbits, has been firmly established … a solid or fluid ring could not
+  exist"; the spectrograms are „the first direct proof". [SF] „billions of small
+  chunks of ice and rock"; „each ring orbits at a different speed around the
+  planet."
+
+#### 13. The inner pieces go round faster than the outer ones
+
+- **Status**: **VERIFIED** (full page): primary source plus two NASA pages. S4
+  stands.
+- **Primary**: [KEELER] „if the ring rotated as a whole the velocity of the outer
+  edge would exceed that of the inner edge … If, on the other hand, the ring is an
+  aggregation of satellites revolving around Saturn, the velocity would be
+  greatest at the inner edge"; „the photographs prove not only that the velocity
+  of the inner edge of Saturn's ring exceeds the velocity of the outer edge, but
+  that … the relative velocities at different parts are such as to satisfy
+  Kepler's third law." His table: inner edge 21.01 km/s, outer edge 17.14 km/s.
+- **NASA**: [CR] „The ring particles nearer Saturn move faster than the moonlet
+  while those farther from Saturn move slower than the moonlet". [DAPH] „Material
+  on the inner edge of the gap orbits faster than the moon … Material on the outer
+  edge moves slower than the moon". [SP-YR] gives the same rule for planets.
+- **Not usable**: [SF] says only „each ring orbits at a different speed", with no
+  direction. JPL _Slower Spinning Rings_ (PIA03562) is about particle
+  temperature and spin. It is not about orbital speed and must not be cited here.
+
+#### 14. Saturn's tilt gives it seasons, just as Earth's tilt gives Earth seasons
+
+- **Status**: **VERIFIED** (full page).
+- **Quotes**: [PIA03156] „This cyclical change causes seasons on Saturn, just as
+  the changing orientation of Earth's tilt causes seasons on our planet." [SF]
+  „This means that, like Earth, Saturn experiences seasons."
+- **Guard**: "like Earth", never "only because of the tilt". Saturn's orbital
+  eccentricity is 0.054 ([NSSDC-S] mean elements), about three times Earth's.
+
+#### 15. Through a small telescope Titan is only a dot; the game's Titan close-ups are spacecraft pictures
+
+- **Status**: **VERIFIED** (computed + full page) **with a wording correction**:
+  "through a small telescope", not "even through a telescope". [TF] says
+  „Spacecraft **and telescopes** can … see through the haze" at non-visible
+  wavelengths. Never "only a spacecraft can see Titan's ground".
+- **Seen**: [ST-VS] „A 2-inch scope will show Titan." [BBC-M] „When you're gazing
+  at it through your scope, you're not actually looking at Titan's surface but at
+  its nitrogen-rich cloud tops"; mag +8.4.
+- **Dot, computed**: Titan's diameter (2 × 2,575 km, [NSSDC-SS]) at the committed
+  Saturn distances 8.434–10.378 AU is **0.84″–0.68″**. The Dawes limit of a 60 mm
+  aperture is 116/60 = 1.9″, so Titan is unresolved in any small telescope.
+- **Guard**: label every close-up a spacecraft view. [BBC-M] and search results
+  call Titan "orangish" in a scope. Never promise the colour.
+
+#### 16. Titan's orange haze colour, as drawn: Cassini ISS natural-colour frame PIA06230
+
+- **Status**: **VERIFIED** (full page). **Pick: PIA06230**; alternate PIA14602.
+- **Quote**: [PIA06230] „a combination of images taken through three filters that
+  are sensitive to red, green and violet light. It shows approximately what Titan
+  would look like to the human eye: a hazy orange globe surrounded by a tenuous,
+  bluish haze. The orange color is due to the hydrocarbon particles". Instrument:
+  Imaging Science Subsystem, Wide Angle; 2005-04-16.
+- **Credit line (from the page)**: „NASA/JPL/Space Science Institute". Alternate
+  PIA14602 _Hazy Orange Orb_
+  <https://science.nasa.gov/resource/hazy-orange-orb/>: „natural color view",
+  credit „NASA/JPL-Caltech/Space Science Institute".
+- **Guard**: "what a spacecraft camera saw", never "what your telescope shows".
+
+#### 17. The Moon's and Titan's radii, as drawn
+
+- **Status**: **VERIFIED** (full page, live).
+- **Values**: [NSSDC-SS] Titan radius **2,575 km**; [TF] „2,575 kilometers".
+  [NSSDC-M] Moon volumetric mean radius **1,737.4 km** (equatorial 1,738.1).
+  Ratio **1.482**, which matches [TF] „nearly 50 percent wider". The radius is the
+  solid body; draw the haze as a thin rim outside it, not as a larger disc.
+
+#### 18. The ring radii that set S4's relative speeds
+
+- **Status**: **VERIFIED** (full page, live).
+- **Values** [NSSDC-R] (km from Saturn's centre): Saturn equator **60,268**; C
+  inner edge **74,658**; C outer = B inner edge **91,975**; B outer edge
+  **117,507**; A outer edge **136,780**.
+- **Speeds** (Kepler: v ∝ r^−½, from row 13), relative to the A outer edge: C
+  inner **1.354**, B inner **1.220**, B outer **1.079**, A outer **1.000**.
+  Periods C inner : A outer ≈ **1 : 2.48**. Computed at build time; never shown.
+
+#### 19. Cassini visible and infrared Titan frames: licence and credit
+
+- **Status**: **VERIFIED** (full page).
+- **Infrared pick: PIA20016**, _Peering Through Titan's Haze_ (VIMS, T-114 flyby,
+  2015-11-13). Credit line from the page: „NASA/JPL/University of Arizona/
+  University of Idaho". Supporting: PIA21923 (six global VIMS mosaics from 13
+  years), credit „NASA/JPL-Caltech/Stéphane Le Mouélic, University of Nantes,
+  Virginia Pasek, University of Arizona" (JPL copy: „NASA/JPL-Caltech/University
+  of Nantes/University of Arizona").
+- **Visible pick: PIA06230** (row 16), „NASA/JPL/Space Science Institute".
+- **Licence**: no page carries a copyright mark. [JPL-USE] „Unless otherwise
+  noted, images and video on JPL public web sites … may be used for any purpose
+  without prior permission". [NASA-USE] „NASA content … generally are not subject
+  to copyright in the United States … NASA should be acknowledged as the source";
+  third-party copyright material „will be marked". The university names are part
+  of the credit line, so ship the credit exactly as the page gives it.
+- **Guard (MEDIUM)**: PIA20016 is **false colour** („blue represents wavelengths
+  centered at 1.3 microns, green … 2.0 microns, and red … 5.0 microns"). Label it
+  as an infrared camera picture. A child must not read its colours as Titan's
+  ground colours.
+
 ---
 
 ## Stars and constellations
@@ -1754,11 +2100,15 @@ Do not state any of them.
   crossings are triple (2038–39): Obliquity SkyEye, _Ring Plane Crossings of Saturn_; In-The-Sky. Say "twice each trip
   around the Sun".
 - "The rings disappear completely." Edge-on, they become a thin line that is hard to see: ESA/Hubble _opo9525c_; NASA,
-  _Hubble Views Saturn Ring-Plane Crossing_.
-- "The rings tip / change angle." Saturn's axis keeps pointing the same way; our viewpoint moves round the orbit (NASA/JPL
-  _PIA03156_ caption says "changes angle", which is loose phrasing: do not quote it).
+  _Hubble Views Saturn Ring-Plane Crossing_. The rings are still there, but a backyard telescope may not show them at all
+  ("sometimes invisible", same NASA page; claim 3 of the ticket 011 section).
+- "The rings tip / change angle." Saturn's axis keeps pointing the same way; our viewpoint moves round the orbit.
+  Corrected 2026-09-26 on a full read: the _PIA03156_ caption (a Hubble Heritage image) does not say "changes angle".
+  It says the planet and rings "nod majestically", which is the same loose phrasing. Do not quote either.
 - "The rings open a little more every month in 2026–27." Earth's own orbit adds a yearly wobble (about 0.37° on
-  2025-11-23, after the March crossing: AAQ). NEEDS SOURCE until a monthly computation exists; do not state it.
+  2025-11-23, after the March crossing: AAQ). **NOT ATTESTED** (2026-09-26): the monthly computation in claim 4 of the
+  ticket 011 section shows the rings narrowing from −8.3° (Sep 2026) to −6.1° (Dec 2026) before opening to −14.4°
+  (Aug 2027). Do not state it.
 - "Titan is the largest moon." Ganymede is slightly larger: NASA, _Titan Facts_.
 - "Titan is heavier than Mercury." Titan is slightly wider, with about half Mercury's mass: NASA, _Titan Facts_.
 - "Titan is the only moon with an atmosphere." NASA says the only moon with a **thick** atmosphere; the word „плътна"
@@ -1768,7 +2118,9 @@ Do not state any of them.
 
 ### Saturn's ring thickness — DISPUTED
 
-- NASA/JPL _PIA03156_ excerpt gives about 10 m; other sources range up to about 1 km.
+- NASA _Saturn Facts_ gives "typically about 30 feet (10 meters) in the main rings"; NSSDC _Saturnian Rings Fact Sheet_
+  lists 5–30 m by ring; In-The-Sky _Equinox on Saturn_ says "no more than a kilometer thick". Attribution corrected
+  2026-09-26 on a full read: the 10 m figure is not on the _PIA03156_ page, which gives no thickness.
 - Quote no figure. "Very thin for how wide they are" is the safe claim, once a design ticket adopts it.
 
 ---

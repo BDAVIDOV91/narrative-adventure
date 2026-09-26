@@ -77,6 +77,8 @@ folded in below, and the owner answered Q17–Q18. `astronomy-accuracy-checker` 
 - Saturn designs on the five kept types only; a revival would reopen 005 in ADR 0006.
 - **Saturn is conditional (Q17):** [What Saturn can teach, deep](010-what-saturn-can-teach.md) must find three honest
   required beats, or Saturn returns to post-v1.
+  _Amended by [ticket 011](011-saturn-level-design.md) (2026-09-26): the condition is met. Saturn ships four required
+  beats._
 - [Saturn level design](011-saturn-level-design.md) is blocked by 010.
 
 **Post-v1 inputs (map Out of scope):**

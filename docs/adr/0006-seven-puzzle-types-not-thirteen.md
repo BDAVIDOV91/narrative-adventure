@@ -121,3 +121,7 @@ Jupiter (ticket 006, page 4, after the anchor) uses `telescope-focus`, `trajecto
 `rotate-match`. Its uses change none of the sets above. The dependency runs the other way: if a set above is cut and
 its type deleted, ticket 006 reopens for the Jupiter markers on that type (R1b → J2; M9 and R3 → J1; M5, R2 and R6 →
 J3 and J4).
+
+Saturn (ticket 011, page 5) uses `rotate-match`, `connect-the-dots`, `parallax-compare` and `trajectory-match`. Its
+uses change none of the sets above. If a set is cut and its type deleted, ticket 011 reopens for the Saturn markers on
+that type (R1a → S2; M5, R2 and R6 → S3; R1b → S4). S1 is on Earth's own `rotate-match` engine, which is in no set.

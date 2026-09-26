@@ -91,6 +91,8 @@ A back cover, not a world, follows the last world page.
   - Reviving a deleted type would reopen 005 explicitly, argued in ADR 0006, and is outside this map.
 - **Saturn is conditional.** [What Saturn can teach, deep](010-what-saturn-can-teach.md) must find at least three honest
   required beats on the kept types. If it does not, Saturn returns to post-v1, and this amendment is reverted.
+  _Amended by [ticket 011](011-saturn-level-design.md) (2026-09-26): the condition is met. Saturn ships four required
+  beats._
 - **Titan** is a major moon and a Saturn candidate. It no longer waits out of scope.
 - **Build follow-ups amended:**
   - ~~Remove `level.saturn.name`~~: keep it.
