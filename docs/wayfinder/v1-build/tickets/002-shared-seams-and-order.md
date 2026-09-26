@@ -12,6 +12,8 @@ blocked_by: ["001"]
 In what order are the shared seams built, and what does each one depend on? This ticket decides order and dependencies
 only. Ticket 003 assigns the seams to level phases. Ticket 001's placement of Earth tasks #3 and #4 is inherited.
 Only their widening past Earth's needs is open here, such as drag and a movable light for the Moon terminator.
+Ticket 001 also places the first build of the hint step, the page album and the companion intro and memory elements in
+Earth's wrap phase E7, and the shared reduced-motion helper in E1. The same rule applies to them.
 
 The seams (v1-spec §3, §5 and §6):
 
