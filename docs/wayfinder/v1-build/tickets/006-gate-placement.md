@@ -33,3 +33,6 @@ Uses ticket 004's findings for what Playwright can run.
 
 The phase list runs E0–E7, the shell, grid + ribbon, Moon A/B, Mars A/B, Jupiter A/B1/B2, Saturn A/B and the back
 cover (ticket 003).
+
+Ticket 005 adds: `qa-report` prints the `placeholder: true` list at every milestone, and the placeholder test (and the
+imagery-entry test from Moon B) runs with the suite.

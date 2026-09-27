@@ -53,6 +53,7 @@ This map decides; it does not build.
 - [Slot the ticket-005 prune and Earth's build into phases](tickets/001-slot-earth-into-phases.md) — eight Earth phases, E0–E7: prune, overlay, renderer, rotate-match, parallax + dots, trajectory-match, telescope-focus, wrap; Earth is completable at E4 and playable at E7.
 - [Shared seams and their order](tickets/002-shared-seams-and-order.md) — after E7 comes the shell (Earth migrated), then grid + ribbon with a closed cover tile; the back cover comes after Saturn. E4 gains the `reference/` `dataRef` and the level-complete hook; E7 gains the nudge and the `remembers` swap. Pins and variant renderers ride with their first user; `planet-render` is unchanged past Earth.
 - [Level build order after Earth](tickets/003-level-build-order.md) — roster order, Moon → Mars → Jupiter → Saturn, strictly serial; each level is A (scene, head beat and the beat it unlocks) then B (the rest + content), Jupiter B split in two, then one back-cover phase. The eclipse flag moves to Moon A with M3, each blurb lands by the phase that unlocks its page (the Moon blurb in E4), and reference rows are listed by first needer for ticket 005.
+- [Where imagery and reference-data work sits](tickets/005-imagery-and-reference-data.md) — every image and reference row lands with the phase that first shows or reads it; no asset phases. Photos are real at exit, and drawn art may be a content-free placeholder, tracked in data. E0 re-documents `surface-gravity.json`, E6 draws Saturn in code from a tested ring-angle row, and Moon B gains the Sun and Moon radii and the degrade recipe. Photo checklists go to the owner one phase early, and images before Saturn B are public domain.
 
 ## Not yet specified
 
@@ -61,6 +62,7 @@ This map decides; it does not build.
   - Earth's phases E0–E7 and their exits are set by ticket 001.
   - Seam order, and the seam additions to E4–E7, are set by ticket 002.
   - Level phases (Moon A … Saturn B, back cover), their entries and exits are set by ticket 003.
+  - Imagery, reference rows, placeholders and owner photo checklists per phase are set by ticket 005.
 - **Release-time re-checks**: re-run the monthly Saturn ring-opening table behind `docs/sources.md` "Through a small
   telescope" (road-to-v1 010, 011), and re-read any VERIFIED claim whose source page may have moved.
 - **README cadence**: CLAUDE.md rule 7 wants README updated after big changes. Decide which phase exits carry it.

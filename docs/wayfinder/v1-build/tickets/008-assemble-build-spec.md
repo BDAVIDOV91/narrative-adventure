@@ -18,3 +18,6 @@ each phase with its dependencies, entry and exit criteria, and gates.
 - Check that every item in v1-spec §6 lands in a phase.
 - Fold in ticket 003's amendments to earlier tickets: the Moon blurb rewrite in E4 (ticket 001), the per-round eclipse
   flag in Moon A with M3 (ticket 002 decision 2), and the `ui.book.locked` deletion in grid + ribbon.
+- Fold in ticket 005's amendments (its Resolution, "Handed on"): `surface-gravity.json` re-documented in E0; the
+  ring-angle row and code-drawn Saturn in E6; Sun and Moon radii in Moon B; the imagery-entry format in E2; the degrade
+  recipe and imagery test in Moon B; photo checklists one phase early; public-domain-only images before Saturn B.
