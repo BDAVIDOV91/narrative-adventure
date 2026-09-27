@@ -21,3 +21,11 @@ each phase with its dependencies, entry and exit criteria, and gates.
 - Fold in ticket 005's amendments (its Resolution, "Handed on"): `surface-gravity.json` re-documented in E0; the
   ring-angle row and code-drawn Saturn in E6; Sun and Moon radii in Moon B; the imagery-entry format in E2; the degrade
   recipe and imagery test in Moon B; photo checklists one phase early; public-domain-only images before Saturn B.
+- Fold in ticket 006's amendments (its Resolution, "Handed on"):
+  - the M2 offload phase between E0 and E1 (amends ticket 001), with its pin list, strip/add list, MemAvailable guard,
+    owner checklist and CLAUDE.md section;
+  - the router's `data/reference/` widening in E0;
+  - a start SHA in every phase plan;
+  - the E1 suite, and the ticket-004 gap checks on both machines;
+  - the perf rule and its applied list, including which of E5 and Mars A first reads `orbital-positions.json`;
+  - the finish-bar assertions by phase, and the `qa-report` SKILL.md updates by phase.
