@@ -16,3 +16,5 @@ each phase with its dependencies, entry and exit criteria, and gates.
 - Check it against road-to-v1's finish bar line by line. Each line names the phase that meets it, and no line is left
   unscheduled.
 - Check that every item in v1-spec §6 lands in a phase.
+- Fold in ticket 003's amendments to earlier tickets: the Moon blurb rewrite in E4 (ticket 001), the per-round eclipse
+  flag in Moon A with M3 (ticket 002 decision 2), and the `ui.book.locked` deletion in grid + ribbon.

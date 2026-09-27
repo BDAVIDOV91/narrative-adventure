@@ -30,3 +30,6 @@ Name where each finish-bar check first runs, and where it re-runs:
 - `free -h` before any 3D run, Playwright included (rule 9).
 
 Uses ticket 004's findings for what Playwright can run.
+
+The phase list runs E0–E7, the shell, grid + ribbon, Moon A/B, Mars A/B, Jupiter A/B1/B2, Saturn A/B and the back
+cover (ticket 003).

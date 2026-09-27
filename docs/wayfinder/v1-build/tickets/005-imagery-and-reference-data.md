@@ -35,3 +35,7 @@ Decide:
 - which items need the owner's hands (downloads, licensing, hand-drawing), as checklists;
 - where placeholder art is allowed, and the phase by which it is replaced. Placeholder art is allowed at the finish bar;
   AI-generated astronomy never is.
+
+Ticket 003's Resolution (decision 8) lists each reference row's first-needing phase; this ticket decides where each is
+built. The phase list after Earth is the shell, grid + ribbon, Moon A/B, Mars A/B, Jupiter A/B1/B2, Saturn A/B, back
+cover.
