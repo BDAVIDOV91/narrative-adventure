@@ -55,6 +55,7 @@ This map decides; it does not build.
 - [Level build order after Earth](tickets/003-level-build-order.md) — roster order, Moon → Mars → Jupiter → Saturn, strictly serial; each level is A (scene, head beat and the beat it unlocks) then B (the rest + content), Jupiter B split in two, then one back-cover phase. The eclipse flag moves to Moon A with M3, each blurb lands by the phase that unlocks its page (the Moon blurb in E4), and reference rows are listed by first needer for ticket 005.
 - [Where imagery and reference-data work sits](tickets/005-imagery-and-reference-data.md) — every image and reference row lands with the phase that first shows or reads it; no asset phases. Photos are real at exit, and drawn art may be a content-free placeholder, tracked in data. E0 re-documents `surface-gravity.json`, E6 draws Saturn in code from a tested ring-angle row, and Moon B gains the Sun and Moon radii and the degrade recipe. Photo checklists go to the owner one phase early, and images before Saturn B are public domain.
 - [Where the pedagogy, perf, privacy, astronomy and QA gates run](tickets/006-gate-placement.md) — every exit re-runs the router over the phase diff (widened to `data/reference/`), Claude walks `npm run dev` on M1, and from E1 a Playwright suite on build+preview runs on the M2. A new M2 offload phase sits between E0 and E1, with a guarded M1 fallback. `perf-report` plus the owner's headed M1 play run wherever a renderer, a runtime texture or generated data first enters the bundle. Finish-bar assertions land with their seams, and `qa-report` runs at milestones and the back cover.
+- [Milestones for merging development into main](tickets/007-merge-milestones.md) — seven merge-commit PRs, which the owner opens: E4, E7, Moon B, Mars B, Jupiter B2, Saturn B and the back cover, each after `qa-report` and the owner's play, with frame rate judged on M1. A failed report blocks the next phase, and nothing lands between a pass and the PR. README is refreshed at milestones and at command changes. The release re-checks gate the back cover. No tags.
 
 ## Not yet specified
 
@@ -65,9 +66,10 @@ This map decides; it does not build.
   - Level phases (Moon A … Saturn B, back cover), their entries and exits are set by ticket 003.
   - Imagery, reference rows, placeholders and owner photo checklists per phase are set by ticket 005.
   - Gates per phase, the M2 offload phase and the finish-bar assertions are set by ticket 006.
-- **Release-time re-checks**: re-run the monthly Saturn ring-opening table behind `docs/sources.md` "Through a small
+- ~~**Release-time re-checks**~~ — settled by ticket 007 as a gate on the back-cover merge: re-run the monthly Saturn ring-opening table behind `docs/sources.md` "Through a small
   telescope" (road-to-v1 010, 011), and re-read any VERIFIED claim whose source page may have moved.
-- **README cadence**: CLAUDE.md rule 7 wants README updated after big changes. Decide which phase exits carry it.
+- ~~**README cadence**~~ — CLAUDE.md rule 7 wants README updated after big changes. Settled by ticket 007: every
+  milestone exit, plus any phase exit that adds or changes a command or setup step.
 - **Storybook display font**: `src/shared/fonts.ts:10` is a system stack, so Bulgarian glyph forms depend on the OS. Any
   adopted font is self-hosted (rule 8) and verified for Bulgarian forms (rule 3). The finish bar does not demand one.
 

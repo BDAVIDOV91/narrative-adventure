@@ -29,3 +29,10 @@ each phase with its dependencies, entry and exit criteria, and gates.
   - the E1 suite, and the ticket-004 gap checks on both machines;
   - the perf rule and its applied list, including which of E5 and Mars A first reads `orbital-positions.json`;
   - the finish-bar assertions by phase, and the `qa-report` SKILL.md updates by phase.
+- Fold in ticket 007's amendments (its Resolution, "Handed on"):
+  - the seven milestones (E4, E7, Moon B, Mars B, Jupiter B2, Saturn B, back cover) as exit criteria, with their README,
+    `qa-report` and owner-play gates;
+  - the README rule per phase, including M2 offload and E1;
+  - the merge window, the failed-report block and the stuck-finding waiver, in the phase-exit procedure;
+  - the `qa-report` SKILL.md additions (README check and frame rate on M1 at E4, release re-checks at the back cover);
+  - the one-time GitHub merge-message setting, as an owner checklist item before merge 1.
