@@ -6,8 +6,8 @@ that already. Each section names its source tickets (`T001`…`T012` =
 `docs/wayfinder/road-to-v1/tickets/NNN-*.md`). A ticket holds the reasoning. This file holds the answer. If they ever
 disagree, the ticket is the authority and this file has a bug.
 
-It is the first fixed input of the [v1-build map](../wayfinder/v1-build/MAP.md). Do not re-derive anything here in a
-build session.
+It is the first fixed input of the [v1-build map](../wayfinder/v1-build/MAP.md), whose answer is the ordered
+[build spec](v1-build-spec.md). Do not re-derive anything here in a build session.
 
 ## 1. What was decided
 

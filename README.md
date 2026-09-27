@@ -59,8 +59,8 @@ npm run test:ops                                  # the wayfinder viewer's node:
 Planning big work: `npm run wayfinder` opens a read-only view of the decision maps in
 `docs/wayfinder/` (http://127.0.0.1:7777). Copy-paste triggers: `docs/wayfinder/QUICKSTART.md`.
 
-What v1 is: `docs/design/v1-spec.md`, which is what the finished `road-to-v1` map decided. How it gets built: the
-`v1-build` map, which charts the ordered build phases.
+What v1 is: `docs/design/v1-spec.md`, which is what the finished `road-to-v1` map decided. How it gets built:
+`docs/design/v1-build-spec.md`, the 21 ordered build phases that the finished `v1-build` map decided.
 
 ## Structure
 

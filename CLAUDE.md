@@ -284,6 +284,7 @@ Size the work before choosing a mode:
 
 A settled ticket is a decision: do not re-derive it in a later session. When a
 map is clear, the build goes through plan mode with two `challenger`s.
+v1 build order: `docs/design/v1-build-spec.md`, one phase per plan-mode session.
 Adopted-rules files live in `.claude/rules/` (loaded by path).
 
 ## Conventions
