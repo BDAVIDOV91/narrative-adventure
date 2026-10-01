@@ -58,7 +58,7 @@ equivalent of a security hole.
 
 ### 4. Puzzle-type reuse
 - [ ] Is this genuinely one of the five types (`rotate-match`, `connect-the-dots`,
-      `parallax-compare`, `zoom-split-star`, `trajectory-match`) reskinned — or a one-off
+      `parallax-compare`, `trajectory-match`, `telescope-focus`) reskinned — or a one-off
       that will need its own maintenance forever?
 - [ ] Adding a sixth type requires changing `schemas/level-data.schema.json`. Is that
       deliberate and justified, or accidental?

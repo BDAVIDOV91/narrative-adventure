@@ -1,6 +1,6 @@
 ---
 name: earth-beats-4-8-9-10
-description: Sources found 2026-09-09 for Earth beats 4 (year/solstices), 8 (gravity drop), 9 (telescope), 10 (day length) and the planets-outshine-stars claim — including three traps that would silently produce wrong content
+description: Sources found 2026-09-09 for Earth beats 4 (year/solstices), 8 (gravity drop — beat deleted, sources now back the Moon and Jupiter completion lines), 9 (telescope), 10 (day length) and the planets-outshine-stars claim — including three traps that would silently produce wrong content
 metadata:
   type: project
 ---
@@ -42,7 +42,7 @@ Saturn 11.19 mean 1 bar / 8.96 eq. 1 bar. Earth: sidereal year 365.256 d, tropic
 
 ## Live sources that worked
 
-- Apollo 15 drop: science.nasa.gov/resource/the-apollo-15-hammer-feather-drop/ plus
+- Apollo 15 drop (now the Moon completion line, not an Earth beat): science.nasa.gov/resource/the-apollo-15-hammer-feather-drop/ plus
   the Apollo Lunar Surface Journal, now at **apollojournals.org/alsj/** (the
   nasa.gov/history/alsj URLs redirect). GET 167:22:06 → 2 August 1971.
 - Day length for Sofia: **USNO API** `aa.usno.navy.mil/api/rstt/oneday?date=…&coords=42.6977,23.3219&tz=…`

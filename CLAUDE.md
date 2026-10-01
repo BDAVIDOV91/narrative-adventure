@@ -92,19 +92,20 @@ A level is `src/scenes/<id>/<id>-data.json`, validated against
 levels (Earth, Moon) and `0.7` for open-exploration levels — the brief's
 forgiving gate, kept as data so both kinds share one code path.
 
-### The seven puzzle types
+### The five puzzle types
 
-`rotate-match`, `connect-the-dots`, `parallax-compare`, `zoom-split-star`,
-`trajectory-match`, `gravity-drop`, `telescope-focus`. Each is built once and
-reskinned per planet. The schema enforces the list, and constrains each type's
-`config` in its own branch. **An eighth type is a one-off that needs its own
-maintenance forever** — adding one is a deliberate decision, never a drive-by.
+`rotate-match`, `connect-the-dots`, `parallax-compare`, `trajectory-match`,
+`telescope-focus`. Each is built once and reskinned per planet. The schema
+enforces the list, and constrains each type's `config` in its own branch. **A
+sixth type is a one-off that needs its own maintenance forever** — adding one is
+a deliberate decision, never a drive-by.
 
 A **beat** is level content; a **type** is code maintained forever. Four of
-Earth's ten beats are one interaction — rotate a model until it matches a
+Earth's nine beats are one interaction — rotate a model until it matches a
 reference — so they are one engine with four renderers, not four types. Review
 trigger: **any type not reused on a second level by the Mars build gets deleted.**
-See `docs/adr/0006-seven-puzzle-types-not-thirteen.md`.
+It fired once: `zoom-split-star` and `gravity-drop` were deleted (road-to-v1
+ticket 005). See `docs/adr/0006-seven-puzzle-types-not-thirteen.md`.
 
 ## Rules
 
@@ -248,14 +249,14 @@ fixes inline — **never overwrite the original plan**.
 **Pre-commit** (`PreToolUse(Bash)` on `git commit`): injects the RED/GREEN
 checklist, and routes to the domain skills the staged files call for.
 
-| Staged                                                   | Skill              |
-| -------------------------------------------------------- | ------------------ |
-| `content/`, `data/generated/`, `docs/sources.md`         | `astronomy-report` |
-| `src/puzzles/`, `content/bg/`                            | `pedagogy-report`  |
-| `assets/`, `planet-render.ts`, `package.json`            | `perf-report`      |
-| `src/`, `package.json`, `requirements.txt`, `index.html` | `privacy-guard`    |
-| `package.json`, `package-lock.json`, `requirements.txt`  | `security-audit`   |
-| before a milestone or merge to main                      | `qa-report`        |
+| Staged                                                              | Skill              |
+| ------------------------------------------------------------------- | ------------------ |
+| `content/`, `data/generated/`, `data/reference/`, `docs/sources.md` | `astronomy-report` |
+| `src/puzzles/`, `content/bg/`                                       | `pedagogy-report`  |
+| `assets/`, `planet-render.ts`, `package.json`                       | `perf-report`      |
+| `src/`, `package.json`, `requirements.txt`, `index.html`            | `privacy-guard`    |
+| `package.json`, `package-lock.json`, `requirements.txt`             | `security-audit`   |
+| before a milestone or merge to main                                 | `qa-report`        |
 
 Agents: `challenger`, `astronomy-consultant` (consulted _during_ design),
 `astronomy-accuracy-checker` (verifies _after_), `puzzle-pedagogy-reviewer`,

@@ -67,7 +67,7 @@ What v1 is: `docs/design/v1-spec.md`, which is what the finished `road-to-v1` ma
 ```
 src/
   scenes/          storybook + one folder per level (<level>-scene.ts + <level>-data.json)
-  puzzles/         the seven reusable puzzle types
+  puzzles/         the five reusable puzzle types
   shared/          content (i18n), game-state, fonts, player, zoom transition,
                    planet-render (the only Three.js)
   **/*.test.ts     vitest, co-located with what it tests

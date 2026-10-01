@@ -21,9 +21,10 @@ with a **visible world reaction** confirming success. Keep the total short and
 snappy. Err toward _short and complete_ over _long and thorough_ — the brief's
 governing test is "genuinely finished, not an infinite scope-creep exercise".
 
-## The ten beats
+## The nine beats
 
-Ten beats, **seven puzzle types**. Four of the beats are the same interaction —
+Nine beats, **five puzzle types**. Beat 8 and its type were deleted by road-to-v1
+ticket 005; the numbering is kept so older references still resolve. Four of the beats are the same interaction —
 rotate a rendered object until it matches a reference within tolerance — so they
 are one engine with four renderers, not four engines. A beat is level content; a
 type is code that must be maintained forever.
@@ -39,22 +40,23 @@ The walking route runs the causal chain in order: **rotation → tilt → day le
 | 5   | Moon phase preview | `rotate-match`     | the lit fraction changes; full depth comes on the Moon level |
 | 6   | Зорница            | `trajectory-match` | one object, two appearances                                  |
 | 7   | Big Dipper         | `connect-the-dots` | constellation recognition                                    |
-| 8   | Gravity drop       | `gravity-drop`     | **air** is what separates the feather from the rock          |
+| 8   | ~~Gravity drop~~   | ~~`gravity-drop`~~ | deleted (road-to-v1 ticket 005)                              |
 | 9   | Telescope focus    | `telescope-focus`  | how focus works; previews later planets                      |
 | 10  | Day length         | `parallax-compare` | day length varies with season, tied back to tilt             |
 
-**Required spine:** 1 → 2 → 3 → 10. The other six award progress but never block.
+**Required spine:** 1 → 2 → 3 → 10. The other five award progress but never block.
 Guided still means a 1.0 threshold — **of required markers only**.
 
 ## The four corrections to the original draft
 
-### 1. Eight new types became two
+### 1. Eight new types became two, then one
 
 The draft named `shadow-sundial`, `day-night-spin`, `seasons-tilt`, `orbit-drag`,
 `moon-phase-preview`, `find-zornitsa`, `gravity-drop`, `telescope-focus` and
 `day-length-compare` as types. `CLAUDE.md`: _a sixth type is a one-off that needs
 its own maintenance forever._ Only **`gravity-drop`** and **`telescope-focus`**
-are genuinely new interactions. The rest are configs.
+are genuinely new interactions. The rest are configs. `gravity-drop` was later
+deleted (road-to-v1 ticket 005), leaving `telescope-focus`.
 
 `find-zornitsa` in particular is **not** a type. The draft made it a pan-the-sky
 "tap the brightest dot" puzzle, which teaches recognition, not why Venus appears
@@ -85,6 +87,10 @@ worldwide version needs it, it returns as **latitude bands, not continents**.
 
 ### 3. Gravity drop is honest about air
 
+**Deleted by road-to-v1 ticket 005.** The beat is gone; its facts moved to the
+Moon and Jupiter completion lines. The reasoning below stays because it still
+guards those lines: air, never weight.
+
 The draft had a feather and a rock landing together on Earth, "no air resistance
 in this stylized world". That is false on Earth's surface and this audience will
 notice.
@@ -101,8 +107,8 @@ surface gravity and a **binary air flag** drive it. The vacuum panel is anchored
 **Apollo 15 — David Scott, 2 August 1971** — filmed, citable, and true. The fact
 string is built around **въздухът**, never weight.
 
-Because gravity is a per-body constant, this type is reused on every level: the
-same drop on the Moon and on Mars is visibly slower, which is the payoff.
+The type was expected to be reused on every level. It was not: no Moon or Mars
+beat used it, so the ADR 0006 review trigger deleted it.
 
 ### 4. Moon phases are not the Moon rotating
 
@@ -155,6 +161,5 @@ axis rather than tolerance tightening. The tier count is **level data, not code*
 
 Interstellar content (rule 6, solar system only for v1). The continent picker. The
 constellation-visibility-by-month table — beat 7 ships as a **stub** whose config
-is deliberately minimal until task #25 exists. Any sixth, eighth or ninth puzzle
-type. Folklore beyond the Зорница beat: folklore is the on-ramp for this audience,
+is deliberately minimal until task #25 exists. Any sixth puzzle type. Folklore beyond the Зорница beat: folklore is the on-ramp for this audience,
 not the subject, and no new folklore work opens.

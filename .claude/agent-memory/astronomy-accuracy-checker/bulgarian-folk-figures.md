@@ -35,8 +35,9 @@ he got it.
 - **Mizar = Мечката / Alcor = кучето is Бонов-attested**, upgraded from
   PLAUSIBLE. The tale: a bear ate one ox, the youth harnessed the bear, it pulled
   sideways, „за това в съзвездието колата е разкривена“. **The dog barking at the
-  bear _is_ Alcor** — the folk name is the naked-eye split, which is a genuine
-  ADR 0005 pass for the `zoom-split-star` beat.
+  bear _is_ Alcor** — the folk name is the naked-eye split. It was an ADR 0005
+  pass for the `zoom-split-star` beat, which is deleted (road-to-v1 ticket 005);
+  the attestation stands, no beat uses it.
 - Бонов tells the **wide** variant (a ~30° scene across three IAU constellations,
   including Сириус and Процион). The game tells the **narrow** one, per Вакарелски
   p. 413: eight stars, **which eight is not stated**.

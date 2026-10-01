@@ -1,22 +1,20 @@
 # Puzzle types
 
-Seven reusable types, each built once and reskinned per planet. An eighth type is
+Five reusable types, each built once and reskinned per planet. A sixth type is
 a one-off that needs its own maintenance forever — `schemas/level-data.schema.json`
 enforces the list, and adding to it is a deliberate decision, not a drive-by.
 
-| Type               | Teaches                                                  | First used                                         |
-| ------------------ | -------------------------------------------------------- | -------------------------------------------------- |
-| `rotate-match`     | Rotate a model until it matches a reference              | Earth (sundial, day/night, tilt, moon phase); Moon |
-| `connect-the-dots` | Constellations, plus a fact about the brightest stars    | Earth (Big Dipper); Mars (path among the stars)    |
-| `parallax-compare` | Compare two visuals and judge the difference             | Earth (day length); Moon; Mars (size, sunset)      |
-| `zoom-split-star`  | One dot resolves into several stars as you zoom          | Mizar/Alcor — see [`../sources.md`](../sources.md) |
-| `trajectory-match` | Follow a real orbital path                               | Earth (one-year orbit, Зорница); Mars (retrograde) |
-| `gravity-drop`     | Air, not weight, is what separates a feather from a rock | Earth only — no Moon or Mars use (ticket 005)      |
-| `telescope-focus`  | How focus works; previews planets not yet visited        | Earth; Moon (seas and craters); Mars (disc)        |
+| Type               | Teaches                                               | First used                                         |
+| ------------------ | ----------------------------------------------------- | -------------------------------------------------- |
+| `rotate-match`     | Rotate a model until it matches a reference           | Earth (sundial, day/night, tilt, moon phase); Moon |
+| `connect-the-dots` | Constellations, plus a fact about the brightest stars | Earth (Big Dipper); Mars (path among the stars)    |
+| `parallax-compare` | Compare two visuals and judge the difference          | Earth (day length); Moon; Mars (size, sunset)      |
+| `trajectory-match` | Follow a real orbital path                            | Earth (one-year orbit, Зорница); Mars (retrograde) |
+| `telescope-focus`  | How focus works; previews planets not yet visited     | Earth; Moon (seas and craters); Mars (disc)        |
 
-### Why seven and not five
+### Why five
 
-The count went 5 → 13 → 7. The Earth brief proposed one type per beat, which two
+The count went 5 → 13 → 7 → 5. The Earth brief proposed one type per beat, which two
 independent plan reviews called scope creep: four of the ten Earth beats are
 **the same interaction** — rotate a rendered object until it matches a reference
 within tolerance — so they are one engine and four renderers.
@@ -25,7 +23,9 @@ within tolerance — so they are one engine and four renderers.
 `gravity-drop` and `telescope-focus` were genuinely new interactions.
 
 **Review trigger:** any type not reused on a second level by the Mars build gets
-**deleted, not maintained.**
+**deleted, not maintained.** It fired once: road-to-v1 ticket 005 deleted
+`zoom-split-star` (no level used it) and `gravity-drop` (Earth only). Their facts
+moved to the Moon and Jupiter completion lines; see the ADR 0006 amendment.
 
 ### Config is validated per type
 

@@ -8,9 +8,10 @@ Re-running these costs time and proves nothing new.
 - **Orion's Belt — the brief was exactly inverted.** Alnilam is the brightest AND
   the only single star; Mintaka is faintest with five components.
   Oplištilová et al., A&A 704, A204 (2025).
-- **Mizar/Alcor is the `zoom-split-star` target**, not a belt star — Ursa Major is
-  circumpolar from Bulgaria, Orion is winter-only. Separation recomputed
-  independently: **708.6″ = 11.81′**.
+- **Mizar/Alcor is RETIRED in `docs/sources.md`** (road-to-v1 ticket 005):
+  `zoom-split-star` and `fact.mizar-alcor.*` are deleted. True, not shipped — do
+  not re-propose the zoom ladder. Mizar still ships as a Колата vertex
+  (`earth-big-dipper`). Separation recomputed independently: **708.6″ = 11.81′**.
 - **Pleiades naked-eye count** reproduced from catalogue data: 6 at V ≤ 5.0, 7
   with Pleione at 5.05. Квачката's folk number is the naked-eye limit.
 - **Star catalogue provenance**: HYG v4.4 (CC BY-SA 4.0, Codeberg — the GitHub
