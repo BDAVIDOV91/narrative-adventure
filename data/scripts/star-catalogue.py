@@ -10,7 +10,7 @@ catalogue row, and every run re-checks itself against an independent source.
 
 The self-check is not decoration. The obvious candidate catalogue for this job —
 the IAU/WGSN "Naked Eye Catalog" — carries a corrupt right ascension for Mizar,
-off by 3.2 degrees, which is this game's primary zoom-split-star target. That
+off by 3.2 degrees, and Mizar is a vertex of the Big Dipper that earth-big-dipper draws. That
 file loads, validates and passes bounds tests while placing Mizar three degrees
 from Alcor instead of eleven arcminutes. It was caught only by checking against
 a source that was not the file's own generator, so that check is built in here

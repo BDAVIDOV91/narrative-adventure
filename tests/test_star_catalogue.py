@@ -4,8 +4,8 @@ The failure mode these exist for is a catalogue that is internally consistent
 and wrong. The IAU/WGSN "Naked Eye Catalog" is the worked example: it is
 IAU-published, cut at exactly the right magnitude, carries the official proper
 names — and gives Mizar a right ascension 3.2 degrees off. Data like that loads,
-validates against the schema, passes every bounds check, and silently places the
-zoom-split-star puzzle's subject three degrees from its companion.
+validates against the schema, passes every bounds check, and silently bends the
+Big Dipper that earth-big-dipper draws, placing Mizar three degrees from Alcor.
 
 So the tests here are not bounds checks. They assert *relationships between
 specific stars* that a corrupt position breaks, because that is the only kind of
@@ -77,11 +77,11 @@ def test_mizar_and_alcor_are_708_arcsec_apart(by_hip):
     wrong, which puts this at roughly 11,500" — so this assertion fails RED on
     the catalogue we rejected and passes GREEN on the one we shipped.
 
-    It is also the pair the whole zoom-split-star puzzle rests on: if these two
-    are not this far apart, the puzzle teaches nothing true.
+    Mizar (HIP 65378) is also a vertex of the Big Dipper figure that
+    earth-big-dipper draws, so a wrong Mizar bends a figure a child traces.
     """
-    assert MIZAR in by_hip, "Mizar is missing — the zoom-split-star target"
-    assert ALCOR in by_hip, "Alcor is missing — the zoom-split-star target"
+    assert MIZAR in by_hip, "Mizar is missing — a Big Dipper vertex"
+    assert ALCOR in by_hip, "Alcor is missing — Mizar's check star"
     assert separation_arcsec(by_hip[MIZAR], by_hip[ALCOR]) == pytest.approx(
         708.4, abs=5.0
     )
