@@ -150,11 +150,13 @@ the astronomy are the same act. See
 
 ### Gravity — air, not weight, separates the feather from the rock
 
-- **Claim** (`fact.gravity-drop`): a rock lands before a feather on Earth
+- **Claim** (formerly `fact.gravity-drop`; now the Moon level's completion line, key
+  assigned in Moon A, merging `fact.gravity-drop` and `fact.gravity-drop.apollo` per
+  road-to-v1 ticket 005): a rock lands before a feather on Earth
   **because of the air**, not because it is heavier. Remove the air and they land
   together.
 - **Status**: **VERIFIED** — Galilean equivalence, uncontroversial.
-- **The misconception this beat must not create.** Over a few metres a rock and a
+- **The misconception this line must not create.** Over a few metres a rock and a
   ball land indistinguishably. A puzzle in which the **heavier** object visibly
   wins teaches _heavy falls faster_ — the Aristotelian misconception, the same
   failure class as seasons-by-distance. **The content is built on `въздухът`,
@@ -176,8 +178,8 @@ the astronomy are the same act. See
   - **The ALSJ moved.** Every `nasa.gov/history/alsj/…` URL now redirects to a
     landing page; cite `apollojournals.org`.
 - **Why they fell together: no air to hold the feather — not "no air on the
-  Moon".** (`fact.gravity-drop.apollo`; the Moon-level nudge of ticket 005, merged
-  with `fact.gravity-drop`.)
+  Moon".** (formerly `fact.gravity-drop.apollo`; merged with
+  `fact.gravity-drop` into the Moon completion line, road-to-v1 ticket 005.)
   - **Claim**: on the Moon there is (almost) no air, so nothing holds the feather
     back; the hammer and the feather fall together because all objects fall at
     the same rate regardless of how heavy they are.
@@ -227,8 +229,9 @@ the astronomy are the same act. See
 
 ### Surface gravity per body
 
-- **Claim** (`fact.gravity-drop.bodies`): the same drop is slow and floating on
-  the Moon, a little quicker on Mars, and far stronger on Jupiter.
+- **Claim** (formerly `fact.gravity-drop.bodies`, now deleted): what ships is
+  Jupiter's completion line only — Jupiter pulls much harder than Earth. No
+  Moon/Mars gravity comparison ships; their values stay below as source data.
 - **Superseded for Jupiter by ticket 006 (2026-09-25).** `gravity-drop` is deleted
   (ADR 0006), and **`fact.gravity-drop.bodies` is deleted in the build**. The
   Jupiter half survives only as a new Jupiter completion-line key (e.g.
@@ -246,12 +249,15 @@ the astronomy are the same act. See
 - **Values, m/s²**: Sun 274.0 · Mercury 3.70 · Venus 8.87 · Earth 9.82 mean ·
   Moon 1.62 · Mars 3.73 mean · Jupiter 25.92 mean at 1 bar (23.12 equatorial) ·
   Saturn 11.19 mean at 1 bar (8.96 equatorial).
-- **Saturn is NOT ATTESTED for this beat and must not appear in it.** The fact
-  sheet's two columns straddle Earth in opposite directions — 11.19 m/s² is
+- **Saturn is NOT ATTESTED for any gravity comparison and must not appear in
+  one.** The fact sheet's two columns straddle Earth in opposite directions — 11.19 m/s² is
   **1.14× Earth**, 8.96 m/s² is **0.92× Earth** — and the summary table publishes
   the _acceleration_ figure while the body page leads with _gravity_. So „на
   Сатурн би паднало по-бавно" is an artefact of a column choice, not a fact.
   Saturn also has no surface to fall to. **Use Moon, Mars and Jupiter only.**
+  Jupiter has no true surface either, which is not an inconsistency (research 007):
+  Saturn fails on the column ambiguity; Jupiter passes it — stronger than Earth
+  under both columns — and only ever appears as a pull, never a fall.
 - **Do not build a "which pulls harder" comparison from Mercury and Mars** — both
   round to 3.7 at summary precision (3.70 vs 3.73). The difference is invisible,
   the same trap as the Alioth/Dubhe 0.05-mag margin recorded below.
@@ -1959,8 +1965,14 @@ against [HZN] astrometric: 2026-10-05 RA 0.7381 h / Dec 1.811° / 8.43428 AU vs
   amateur-reachable split is 2.42″ at a 1.7-mag contrast, which cannot be made
   honest at storybook zoom.
 
-### Mizar and Alcor — the primary `zoom-split-star` target
+### Mizar and Alcor — written for the deleted `zoom-split-star`
 
+- **RETIRED (road-to-v1 ticket 005, applied 2026-10-01).** True, but not shipped:
+  `zoom-split-star` was deleted (ADR 0006) and `fact.mizar-alcor.1-4` with it. The
+  entry stays on record so the claim is not re-proposed. Mizar itself still ships
+  as a vertex of Колата (`earth-big-dipper`), and the 708″ Alcor check still
+  guards the catalogue (`tests/test_star_catalogue.py`). Reviving the ladder
+  reopens ticket 005.
 - **Claim** (`fact.mizar-alcor.*`): what looks like one star in the handle of
   Колата separates into more stars at each level of magnification, and there are
   six in total.
@@ -2067,8 +2079,9 @@ It is the obvious candidate: IAU-published, cut at exactly V ≤ 6.5, carrying t
 official proper names, HIP/HR/HD and distances. It is also **corrupt**. Cross-
 matching all 8,895 rows carrying a HIP number against Hipparcos-2 finds **15
 stars with grossly wrong right ascension, 11 of them by more than a degree** —
-including **Mizar, off by 3.2° (11,545″)**, this game's primary
-`zoom-split-star` target. Declination is correct in every case; it is an RA-only
+including **Mizar, off by 3.2° (11,545″)**, a vertex of the Big Dipper
+`earth-big-dipper` draws (and the target of the since-deleted `zoom-split-star`).
+Declination is correct in every case; it is an RA-only
 corruption on a subset.
 
 Recorded here so it is not re-proposed. The failure it would have produced is
@@ -2301,8 +2314,9 @@ of these is the lesson; each is attached to a lesson.
   not the proper names). The tale attached: a bear ate one ox, the youth harnessed
   the bear in its place, it pulled sideways, „за това в съзвездието колата е
   разкривена“. **The dog barking at the bear _is_ Alcor** — the folk name is the
-  naked-eye split, which makes this a genuine ADR 0005 pass for the
-  `zoom-split-star` beat.
+  naked-eye split, which made this a genuine ADR 0005 pass for the
+  `zoom-split-star` beat. That beat is deleted (see the RETIRED Mizar and Alcor
+  entry); the attestation stands.
 
 - **Terminology, so it is not mangled later**: a **рало** is an ard (symmetrical
   scratch plough), never a плуг (mouldboard). An **остен** is the ox-goad, not the
