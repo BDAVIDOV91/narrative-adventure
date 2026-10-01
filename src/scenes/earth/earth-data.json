@@ -157,19 +157,6 @@
       "reward": {
         "fact": "fact.telescope-saturn"
       }
-    },
-    {
-      "id": "earth-gravity-drop",
-      "position": {
-        "x": 820,
-        "y": 1070
-      },
-      "puzzle": "gravity-drop",
-      "label": "puzzle.earth.gravity-drop.label",
-      "required": false,
-      "reward": {
-        "fact": "fact.gravity-drop"
-      }
     }
   ]
 }

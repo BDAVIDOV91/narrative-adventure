@@ -134,21 +134,7 @@
         {
           "if": {
             "required": ["puzzle"],
-            "properties": { "puzzle": { "const": "zoom-split-star" } }
-          },
-          "then": { "properties": { "config": { "$ref": "#/$defs/noEngineConfig" } } }
-        },
-        {
-          "if": {
-            "required": ["puzzle"],
             "properties": { "puzzle": { "const": "trajectory-match" } }
-          },
-          "then": { "properties": { "config": { "$ref": "#/$defs/noEngineConfig" } } }
-        },
-        {
-          "if": {
-            "required": ["puzzle"],
-            "properties": { "puzzle": { "const": "gravity-drop" } }
           },
           "then": { "properties": { "config": { "$ref": "#/$defs/noEngineConfig" } } }
         },
@@ -168,12 +154,10 @@
             "rotate-match",
             "connect-the-dots",
             "parallax-compare",
-            "zoom-split-star",
             "trajectory-match",
-            "gravity-drop",
             "telescope-focus"
           ],
-          "description": "One of the seven reusable puzzle types. Each is built once and reskinned per planet — an eighth value here means a one-off that needs its own maintenance forever, so it takes an ADR, never a drive-by edit."
+          "description": "One of the five reusable puzzle types. Each is built once and reskinned per planet — a sixth value here means a one-off that needs its own maintenance forever, so it takes an ADR, never a drive-by edit."
         },
         "label": { "$ref": "#/$defs/contentKey" },
         "required": {

@@ -66,7 +66,7 @@ def test_the_real_earth_level_passes(
 def test_unknown_puzzle_type_is_rejected(
     validate_levels, validator, content_keys, good_level, tmp_path
 ):
-    """The seven reusable types are the whole vocabulary. An eighth is a one-off
+    """The five reusable types are the whole vocabulary. A sixth is a one-off
     that would need its own maintenance forever, so it must not slip in."""
     good_level["markers"][0]["puzzle"] = "invent-a-new-minigame"
     problems = validate_levels.check_level(
@@ -75,23 +75,35 @@ def test_unknown_puzzle_type_is_rejected(
     assert any("is not one of" in p for p in problems)
 
 
-def test_the_two_new_puzzle_types_are_accepted(
+@pytest.mark.parametrize("deleted_type", ["zoom-split-star", "gravity-drop"])
+def test_the_deleted_puzzle_types_are_rejected(
+    validate_levels, validator, content_keys, good_level, tmp_path, deleted_type
+):
+    """Road-to-v1 ticket 005 deleted both types (ADR 0006): neither was reused on
+    a second level. A revival reopens that ticket; it never slips back in as data.
+    The marker carries no config, so only the enum itself can reject it."""
+    marker = good_level["markers"][index_of(good_level, "earth-big-dipper")]
+    marker.pop("config", None)
+    marker["puzzle"] = deleted_type
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("is not one of" in p for p in problems)
+
+
+def test_the_telescope_focus_type_is_accepted(
     validate_levels, validator, content_keys, good_level, tmp_path
 ):
-    """gravity-drop and telescope-focus joined the enum by deliberate decision.
-    Neither has an engine yet, so neither carries config."""
-    good_level["markers"][0] = {
-        "id": "earth-second-gravity-drop",
-        "position": {"x": 400, "y": 400},
-        "puzzle": "gravity-drop",
-        "label": "puzzle.earth.sundial.label",
-    }
-    good_level["markers"][1] = {
-        "id": "earth-second-telescope-focus",
-        "position": {"x": 500, "y": 400},
-        "puzzle": "telescope-focus",
-        "label": "puzzle.earth.seasons.label",
-    }
+    """telescope-focus joined the enum by deliberate decision. It has no engine
+    yet, so it carries no config."""
+    good_level["markers"].append(
+        {
+            "id": "earth-second-telescope-focus",
+            "position": {"x": 500, "y": 400},
+            "puzzle": "telescope-focus",
+            "label": "puzzle.earth.seasons.label",
+        }
+    )
     problems = validate_levels.check_level(
         write(tmp_path, good_level), validator, content_keys
     )
@@ -209,7 +221,7 @@ def test_rotate_match_can_never_carry_a_rotation(
 def test_a_type_with_no_engine_must_not_carry_config(
     validate_levels, validator, content_keys, good_level, tmp_path
 ):
-    """Six of the seven types have no engine yet, so no config shape is known.
+    """Four of the five types have no engine yet, so no config shape is known.
     Pinning a guess would be worse than requiring emptiness: an authored config
     that no engine reads looks like a working setting and is not one."""
     position = index_of(good_level, "earth-twilight-zornitsa")
@@ -250,7 +262,7 @@ def test_optional_markers_alone_never_meet_a_guided_threshold(
 
 def test_the_guided_spine_is_what_gates_the_level(validate_levels, good_level):
     """Earth ships four required beats — the causal chain rotation -> tilt ->
-    day length — and six that award progress without ever blocking. Solving
+    day length — and five that award progress without ever blocking. Solving
     every optional beat must still leave the level locked."""
     required = set(validate_levels.required_marker_ids(good_level))
     assert required == {

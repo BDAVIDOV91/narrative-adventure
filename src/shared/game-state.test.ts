@@ -11,9 +11,9 @@ import {
 } from '@/shared/game-state';
 
 /**
- * The Earth spine, shortened. Four required markers, two optional — the same
- * shape as `src/scenes/earth/earth-data.json`, which is what makes the hole
- * these tests close reachable in the shipping level.
+ * The Earth spine, shortened. Four required markers, two optional — real ids
+ * from `src/scenes/earth/earth-data.json`, which ships the same four required
+ * beats beside optional ones, so the hole these tests close is reachable there.
  */
 const EARTH_MARKERS: readonly ThresholdMarker[] = [
   { id: 'earth-sundial', required: true },
@@ -21,7 +21,7 @@ const EARTH_MARKERS: readonly ThresholdMarker[] = [
   { id: 'earth-seasons-globe', required: true },
   { id: 'earth-day-length', required: true },
   { id: 'earth-moon-phase', required: false },
-  { id: 'earth-gravity-drop', required: false },
+  { id: 'earth-telescope-focus', required: false },
 ];
 
 function progressWith(solved: readonly string[]): GameProgress {
@@ -61,7 +61,7 @@ describe('meetsThreshold', () => {
     // marker against a required-only denominator lets a child finish the two
     // optional puzzles, never touch the causal spine, and still pass a 1.0
     // gate. The numerator is `solved` INTERSECTED WITH `required`.
-    const progress = progressWith(['earth-moon-phase', 'earth-gravity-drop']);
+    const progress = progressWith(['earth-moon-phase', 'earth-telescope-focus']);
     expect(meetsThreshold(progress, 'earth', EARTH_MARKERS, 1)).toBe(false);
   });
 
@@ -72,7 +72,7 @@ describe('meetsThreshold', () => {
       'earth-sundial',
       'earth-day-night-spin',
       'earth-moon-phase',
-      'earth-gravity-drop',
+      'earth-telescope-focus',
     ]);
     expect(meetsThreshold(progress, 'earth', EARTH_MARKERS, 0.7)).toBe(false);
   });
