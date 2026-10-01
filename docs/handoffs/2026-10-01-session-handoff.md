@@ -34,7 +34,23 @@ The plan was challenged twice. Both challengers returned revise, and the fixes w
 
 ## The exact next step
 
-**M2 offload, M1 side** (§4, as amended), in plan mode with two `challenger`s. The M2 is not needed for this phase.
+**M2 offload.** It was planned and challenged on 2026-10-01, then **paused by the owner before any code was written**.
+The owner resumes it once they confirm the M2 is online.
+
+- Start SHA: `c0db095`. No implementation commit exists yet.
+- The plan and both challenger reports (A and B, both revise) are in
+  [`2026-10-01-m2-offload-plan.md`](2026-10-01-m2-offload-plan.md). The plan was written for the M1 side. Its
+  "Challenger Findings" section lists 18 accepted fixes not yet folded in, and one open owner question (Q4, compound
+  pinned commands).
+- **If the M2 is online at resume**, the amendment's deferral may no longer be needed. The phase can exit on the
+  original items, `preflight.sh` READY and the hostname-proven vitest run, instead of M1-complete. Ask the owner which
+  exit applies; do not assume.
+
+## Pending owner question
+
+- **Q4. Compound or over-matched pinned commands.** For example, `git add -A && npm test` would run vitest on M1. The
+  recommendation is to auto-guard heavy pinned commands through mem-guard. The other options are refusing them, or
+  accepting the pdfx behaviour. The detail is in the plan file.
 
 ## Settled — do not re-ask
 
@@ -44,6 +60,12 @@ The plan was challenged twice. Both challengers returned revise, and the fixes w
   RSS, one M2 suite run) form an **M2 catch-up gate before merge 1** (E4). If the M2 is still offline at E4's exit,
   the owner decides whether to waive it or wait.
 - Everything in the 2026-09-27 handoff's settled list still holds.
+- **M2 offload design** (owner, 2026-10-01):
+  - The mem-guard floor is a provisional 1536 MB MemAvailable, overridable with `MEM_GUARD_MIN_MB`, and re-tuned at E1
+    entry from the measured peak RSS.
+  - The wrapper's default mode is `remote` and fails closed. An unknown mode refuses. `local` and `probe` run only when
+    exported explicitly.
+  - The wrapper auto-guards the pinned `npm run dev`.
 - E0's reduced path: none (owner, 2026-10-01).
 - **The favicon 404 is fixed in E1, as the preview smoke test's first RED** (owner, 2026-10-01). `/favicon.ico` has
   404'd since the scaffold: `index.html` has no icon link and there is no `public/`. E1's smoke test fails on any 4xx
