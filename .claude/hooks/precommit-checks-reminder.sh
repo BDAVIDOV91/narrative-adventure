@@ -15,7 +15,7 @@ STAGED="${PRECOMMIT_STAGED:-$(git diff --cached --name-only --diff-filter=ACMR 2
 [ -z "$STAGED" ] && exit 0
 
 NEEDED=""
-printf '%s\n' "$STAGED" | grep -qE '^content/|^data/generated/|^docs/sources\.md$' \
+printf '%s\n' "$STAGED" | grep -qE '^content/|^data/generated/|^data/reference/|^docs/sources\.md$' \
   && NEEDED="$NEEDED astronomy-report"
 printf '%s\n' "$STAGED" | grep -qE '^src/puzzles/|^content/bg/' \
   && NEEDED="$NEEDED pedagogy-report"

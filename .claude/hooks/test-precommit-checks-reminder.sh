@@ -53,7 +53,10 @@ expect_routes "a puzzle routes pedagogy"        "src/puzzles/rotate-match/rotate
   "pedagogy-report privacy-guard"
 expect_routes "bulgarian content routes both"   "content/bg/facts.json" \
   "astronomy-report pedagogy-report"
-expect_routes "a texture routes perf"           "assets/images/nasa/mars.webp" "perf-report"
+# Hand-authored reference rows are sourced claims too (v1-build ticket 006 d2).
+expect_routes "reference data routes astronomy" "data/reference/surface-gravity.json" \
+  "astronomy-report"
+expect_routes "a texture routes perf"          "assets/images/nasa/mars.webp" "perf-report"
 expect_routes "the renderer routes perf"        "src/shared/planet-render.ts" \
   "perf-report privacy-guard"
 
