@@ -92,15 +92,15 @@ A milestone is a phase exit that merges `development` into `main`. On top of §2
    one merge commit ahead of `development`, which is expected.
 8. The owner opens and merges every PR and does every push (rule 7).
 
-| Merge | Phase exit | PR title (example)                          | Extra                                                  |
-| ----- | ---------- | ------------------------------------------- | ------------------------------------------------------ |
-| 1     | E4         | `chore(release): Earth is completable (E4)` | no placeholder print yet; the font check (E4 block)    |
-| 2     | E7         | `chore(release): Earth is playable (E7)`    | placeholder print from here on                         |
-| 3     | Moon B     | `chore(release): the Moon is playable`      | also carries the shell and grid + ribbon               |
-| 4     | Mars B     | `chore(release): Mars is playable`          | —                                                      |
-| 5     | Jupiter B2 | `chore(release): Jupiter is playable`       | —                                                      |
-| 6     | Saturn B   | `chore(release): Saturn is playable`        | —                                                      |
-| 7     | Back cover | `chore(release): v1 reaches the finish bar` | finish-bar checklist, sources sweep, release re-checks |
+| Merge | Phase exit | PR title (example)                          | Extra                                                                                      |
+| ----- | ---------- | ------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| 1     | E4         | `chore(release): Earth is completable (E4)` | no placeholder print yet; the font check (E4 block); the M2 catch-up gate (T006 amendment) |
+| 2     | E7         | `chore(release): Earth is playable (E7)`    | placeholder print from here on                                                             |
+| 3     | Moon B     | `chore(release): the Moon is playable`      | also carries the shell and grid + ribbon                                                   |
+| 4     | Mars B     | `chore(release): Mars is playable`          | —                                                                                          |
+| 5     | Jupiter B2 | `chore(release): Jupiter is playable`       | —                                                                                          |
+| 6     | Saturn B   | `chore(release): Saturn is playable`        | —                                                                                          |
+| 7     | Back cover | `chore(release): v1 reaches the finish bar` | finish-bar checklist, sources sweep, release re-checks                                     |
 
 ## 4. The phases
 
@@ -144,11 +144,14 @@ A milestone is a phase exit that merges `development` into `main`. On top of §2
   - A CLAUDE.md section records the routing and why it fits the `Bash(ssh:*)` deny rule. Never a direct `ssh`.
   - Husky still runs vitest and pytest on M1 at commit, because `git` is pinned.
 - **Exit:** `preflight.sh` READY, and a vitest run proven on the M2 by the wrapper's hostname check. README updated.
+- **Amended 2026-10-01 (T006 amendment):** with the M2 offline, the phase builds its M1 side and exits
+  M1-complete. The two M2 items move to the **M2 catch-up** gate before merge 1, and E1 enters without the M2.
 
 ### E1 Overlay
 
 - **Entry:** close ticket 004's gaps: peak RSS measured on **both** machines, the MCP browser-cache overlap, Playwright
-  telemetry (T006 d4).
+  telemetry (T006 d4). Amended 2026-10-01: the M2 half is measured at the M2 catch-up gate, and the suite runs on M1 behind
+  the guard until then.
 - **Scope:** 09-09 task #3: the puzzle overlay, the companion box (`content/bg/companion.json` plus its `content.ts`
   import), the progress write, the book-zoom call site; one shared reduced-motion helper; reduced paths for the zoom and
   the overlay. Closes latent bugs 4 and 5 (T001).

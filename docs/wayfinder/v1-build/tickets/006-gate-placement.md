@@ -155,3 +155,20 @@ Handed on:
   - the E1 suite and the ticket-004 gap checks on both machines;
   - the perf rule and its applied list, including which of E5 and Mars A first reads `orbital-positions.json`;
   - the finish-bar assertions by phase, and the `qa-report` SKILL.md updates by phase.
+
+## Amendment — 2026-10-01: the M2 is offline
+
+The owner amends decision 3 while the M2 is out of reach. This is a deferral, not a reversal, and the M2 stays in the
+plan.
+
+1. **M2 offload builds its M1 side now.** That covers the deny-list wrapper, the pin list with its RED cases, the
+   strip/add list, the MemAvailable guard with its sibling test, and the CLAUDE.md section. With the M2 down, the
+   wrapper must fail closed: it runs nothing on M1 that the pin list does not name. Two exit items are deferred:
+   `preflight.sh` READY and the vitest run proven by hostname. The phase exits **M1-complete**.
+2. **E1 and later phases may enter without the M2.** The suite uses §2 item 5's existing fallback: it runs on M1
+   behind the MemAvailable guard, with `workers: 1`, the headless shell and the dev server stopped, and each exit
+   report says so. Ticket 004's peak-RSS gap is measured on M1 only. The baselines belong to M1.
+3. **An M2 catch-up gate comes before merge 1 (E4's milestone).** Its items: the deferred M2 offload exit items,
+   peak RSS on the M2, and one suite run on the M2. A failure there blocks merge 1, like a failed `qa-report`. If
+   the M2 is still offline at E4's exit, the owner decides through `AskUserQuestion` whether to waive the gate or
+   wait.

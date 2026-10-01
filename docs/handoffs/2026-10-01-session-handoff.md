@@ -34,11 +34,15 @@ The plan was challenged twice. Both challengers returned revise, and the fixes w
 
 ## The exact next step
 
-**M2 offload** (§4), in plan mode with two `challenger`s. It blocks E1 entry. Its exit and E1's entry need the M2
-online, and neither has a fallback.
+**M2 offload, M1 side** (§4, as amended), in plan mode with two `challenger`s. The M2 is not needed for this phase.
 
 ## Settled — do not re-ask
 
+- **The M2 is offline; ticket 006 decision 3 is amended** (owner, 2026-10-01; see the amendment at the end of ticket
+  006). M2 offload builds its M1 side and exits M1-complete. E1 and later phases enter without the M2; the suite runs
+  on M1 behind the MemAvailable guard. The deferred M2 items (preflight READY, the hostname-proven vitest run, M2 peak
+  RSS, one M2 suite run) form an **M2 catch-up gate before merge 1** (E4). If the M2 is still offline at E4's exit,
+  the owner decides whether to waive it or wait.
 - Everything in the 2026-09-27 handoff's settled list still holds.
 - E0's reduced path: none (owner, 2026-10-01).
 - **The favicon 404 is fixed in E1, as the preview smoke test's first RED** (owner, 2026-10-01). `/favicon.ico` has
@@ -50,8 +54,8 @@ online, and neither has a fallback.
 
 ## Owner items
 
-- Push `development` (seven E0 commits on top of `69bf816`).
-- Before the M2 offload exit: the M2 online, with Tailscale, the ssh alias, Mutagen and the bootstrap.
+- Push `development` (E0's commits, the handoff and the T006 amendment, on top of `69bf816`).
+- Before merge 1 (E4), at the M2 catch-up gate: the M2 online, with Tailscale, the ssh alias, Mutagen and the bootstrap.
 - Before merge 1 (E4): GitHub merge-commit default message "Pull request title".
 
 ## Left over
