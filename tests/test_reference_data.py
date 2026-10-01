@@ -88,8 +88,9 @@ def test_every_gravity_row_names_the_fact_sheet_column_it_came_from(gravity):
         assert row.get("factSheetLabel"), f"{row.get('body')} names no fact-sheet row"
 
 
-def test_the_drop_comparison_runs_moon_mars_earth_jupiter(gravity):
-    """The visible ordering the beat teaches: floating, then quicker, then hard.
+def test_the_drop_comparison_orders_moon_mars_earth_jupiter(gravity):
+    """The ordering the completion lines lean on: the Moon pulls least, Jupiter
+    much harder than Earth.
 
     Asserted on the values, not on the array order, so a reordered file that
     still claims Moon-to-Jupiter cannot pass by accident.
@@ -107,7 +108,8 @@ def test_the_drop_comparison_runs_moon_mars_earth_jupiter(gravity):
 
 
 def test_saturn_is_absent_from_the_drop_comparison(gravity):
-    """docs/sources.md: NOT ATTESTED for this beat, and it has no surface.
+    """docs/sources.md: NOT ATTESTED for any gravity comparison, and it has no
+    surface.
 
     11.19 m/s2 is 1.14x Earth and 8.96 m/s2 is 0.92x Earth -- the two published
     columns disagree about whether a stone falls faster or slower than at home.
@@ -115,7 +117,7 @@ def test_saturn_is_absent_from_the_drop_comparison(gravity):
     bodies = [row["body"] for row in gravity["dropComparison"]]
     assert "saturn" not in bodies, (
         "Saturn is in the drop comparison; its fact-sheet columns straddle "
-        "Earth in opposite directions, so no honest drop can be shown"
+        "Earth in opposite directions, so no honest comparison can be made"
     )
     excluded = _by_body(list(gravity["excluded"]))
     assert "saturn" in excluded, "Saturn must stay recorded as deliberately excluded"
@@ -134,7 +136,7 @@ def test_jupiter_outweighs_earth_under_both_published_columns(gravity):
     """The test Saturn fails and Jupiter passes, made explicit.
 
     Jupiter is stronger than Earth whether you read the mean 1-bar figure or
-    the equatorial one, so the beat's claim survives the column choice.
+    the equatorial one, so Jupiter's completion line survives the column choice.
     """
     rows = _by_body(list(gravity["dropComparison"]))
     earth = rows["earth"]["value"]
