@@ -843,7 +843,11 @@ Every **astronomy** statement inside a story line is a claim. It must point at a
 VERIFIED entry in this file, and a line whose astronomy is not VERIFIED does not
 ship. Story lines are past, undated recollections in the companion's first person.
 The companion's own forms stay gender-neutral, and lines addressed to the child
-avoid gendered forms. Keys are **(TBD by the build)**.
+avoid gendered forms. Memory and intro keys are **(TBD by the build)**.
+
+The companion's **arrival lines** (`companion.<marker-id>.arrival`, E1) are goal prompts to the child, not
+recollections. They sit in this table under the same rule: they state no sky fact, so each is "none (pure story)",
+and a line that ever starts to state one needs a VERIFIED row like any other claim.
 
 Wording rules from `puzzle-pedagogy-reviewer` (PASS WITH CHANGES, 2026-09-26):
 
