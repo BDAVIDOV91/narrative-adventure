@@ -388,3 +388,18 @@ Method: `npm pack @playwright/test@1.63.0 playwright@1.63.0 playwright-core@1.63
   - `@playwright/test@1.63.0` and `@playwright/mcp@0.0.80` (bundled `playwright-core@1.63.0-alpha-2026-08-31`) both pin `chromium-headless-shell` revision **1243** (153.0.8010.12), per each version's `browsers.json`.
   - On M1 the MCP actually drives **system Chrome** (`channel: chrome`, profile in `~/.cache/ms-playwright-mcp/`), so today the two share no binary and no profile directory. The suite's headless shell lands in `~/.cache/ms-playwright/chromium_headless_shell-1243`.
   - If the MCP pin moves to a version on another revision, two headless-shell builds coexist in the cache, which costs disk, not RAM. That is a reason to bump them together, per ADR 0004.
+
+## Settled during the build (owner, 2026-10-07)
+
+- **The mem-guard floor stays at 1536 MB:** the formula gives 1408 and the owner kept max(1408, 1536) until E2's 3D is
+  measured.
+- **The seasons-tilt engine (E3):** the tilt angle is **fixed**, and the child moves Earth along its orbit, or turns
+  the Sun's direction, until a hemisphere leans toward or away from the Sun. A child-varied tilt angle would teach
+  that the tilt changes through the year, which is false. This came from the pedagogy review of the arrival lines.
+  It changes only the meaning of `drives`; no new type.
+- **The arrival lines after `puzzle-pedagogy-reviewer`:**
+  - sundial: „сянката падне", not „легне"; „точно" dropped (the engine has a tolerance);
+  - seasons: „Нагласи", neutral about what moves;
+  - day-length: asks which day has **light** for longer, because a whole day lasts the same in summer and winter.
+- The keys are `companion.<marker-id>.arrival` (e.g. `companion.earth-sundial.arrival`). The plan's
+  `companion.earth.<beat>.arrival` is superseded.
