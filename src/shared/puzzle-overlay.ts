@@ -126,8 +126,19 @@ export function openPuzzleOverlay(
   layout();
   scene.scale.on('resize', layout);
 
-  const destroy = (): void => {
+  // The resize listener lives on the game-wide ScaleManager, which outlives the scene. A scene that stops mid-fade
+  // kills the fade tween, so its onComplete never runs: release the listener on shutdown too (perf-report, 2026-10-07).
+  let released = false;
+  const release = (): void => {
+    if (released) return;
+    released = true;
     scene.scale.off('resize', layout);
+    scene.events.off('shutdown', release);
+  };
+  scene.events.once('shutdown', release);
+
+  const destroy = (): void => {
+    release();
     for (const part of parts) part.destroy();
     callbacks.onClosed();
   };
