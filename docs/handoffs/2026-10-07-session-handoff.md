@@ -38,16 +38,17 @@ The resume plan was challenged again (CF-2, both revise). Its fixes are folded i
    of 360 MB and 434 MB from about 2.9 GB, with 4 workers. These feed E1's floor re-tune.
 9. Parity: pytest 88 passed / 0 skipped on **both** machines (`data/raw` is synced, so the Hipparcos oracle test runs
    on the M2); vitest 21/21 on both.
-10. `CLAUDE_CODE_SHELL` inside a real session: see "Pending owner item" below.
+10. `CLAUDE_CODE_SHELL` inside a real session. The owner ran `claude-m2.sh` and `claude-m2.sh --probe`, and
+    `ops/remote-shell/argv.log` (gitignored, kept as evidence) shows:
+    - Every call is `shell=…/bash-remote-shell.sh`, so Claude Code honours the variable.
+    - The calling convention is now `-c <cmd>` (argc=2), not pdfx's August `-c -l <cmd>`. The parser takes both.
+    - Commands arrive as `source <snapshot> … && eval '<cmd>' < /dev/null && pwd -P >| /tmp/claude-e6be-cwd`. The
+      cwd-file path still matches the wrapper's regex, and stdin is `/dev/null`.
+    - The exact logged string, re-sent through the wrapper in remote mode: `echo`/`hostname`/vitest → REMOTE, `git`
+      → PIN, `npm run dev` → PIN+GUARD. A remote `hostname` returned **Bobby**, and the cwd file was mirrored back to M1.
 11. README updated (the Checks list and an offload paragraph).
 
-## Pending owner item
-
-- **Exit item 10.** Run `./ops/remote-shell/claude-m2.sh`, ask for `hostname`, and record the answer (expect `Bobby`).
-  Then run `./ops/remote-shell/claude-m2.sh --probe` and one `echo probe`, and have Claude read
-  `ops/remote-shell/argv.log`: the argv shape (`-c -l <cmd>`) and the cwd-file path must still match the wrapper's
-  regex `/tmp/claude-[A-Za-z0-9_.-]+-cwd`. If the path changed (this Claude Code's temp tree is `/tmp/claude-1000/…`),
-  that is a bug: RED/GREEN on the regex.
+Every exit item is met.
 
 ## The exact next step
 
@@ -73,7 +74,7 @@ The suite's first run is on the M2.
 ## Owner items
 
 - Push `development` (this phase's commits, on top of `fc75eba`).
-- Exit item 10 (above).
+
 - Before merge 1 (E4): the GitHub merge-commit default message "Pull request title".
 
 ## Left over
