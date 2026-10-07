@@ -9,6 +9,8 @@ dist-ssr/
 playwright-report/
 test-results/
 blob-report/
+# The Playwright MCP's walk artifacts (screenshots, console logs): local evidence, never committed.
+.playwright-mcp/
 
 # ---- Python ----
 .venv/

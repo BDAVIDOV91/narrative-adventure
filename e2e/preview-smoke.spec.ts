@@ -44,3 +44,28 @@ for (const reducedMotion of ['no-preference', 'reduce'] as const) {
     expect(problems).toEqual([]);
   });
 }
+
+/*
+ * Into Earth and back, through the book zoom (CF A13). The canvas has no DOM to query, so this taps the Earth card
+ * where the book lays it out (storybook-scene.ts: 3 pages, 200 px wide, 24 px apart, centred) and asserts the trip
+ * raises no error. Level phases extend this to their own scenes (T006 d5).
+ */
+for (const reducedMotion of ['no-preference', 'reduce'] as const) {
+  test(`into Earth and back to the book (reduced motion: ${reducedMotion})`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion });
+    const problems = watchProblems(page);
+    await page.goto('/');
+    const canvas = page.locator('canvas');
+    await expect(canvas).toBeVisible();
+    const box = await canvas.boundingBox();
+    if (box === null) throw new Error('no canvas box');
+
+    const earthCard = { x: (box.width - 648) / 2 + 100, y: box.height / 2 };
+    await canvas.click({ position: earthCard });
+    await page.waitForTimeout(1200); // the 700 ms zoom, then Earth's create
+    await canvas.click({ position: { x: 40, y: 24 } }); // Earth's back button, top left
+    await page.waitForTimeout(900); // the 500 ms zoom out
+
+    expect(problems).toEqual([]);
+  });
+}

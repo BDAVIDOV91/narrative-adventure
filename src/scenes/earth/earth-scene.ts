@@ -53,7 +53,7 @@ export class EarthScene extends Scene {
       .setScrollFactor(0)
       .setInteractive({ useHandCursor: true })
       .on('pointerup', () => {
-        this.scene.start(STORYBOOK_SCENE);
+        this.scene.start(STORYBOOK_SCENE, { returnFrom: earthData.id });
       });
   }
 
