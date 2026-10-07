@@ -1,3 +1,4 @@
+import companion from '@content/bg/companion.json';
 import facts from '@content/bg/facts.json';
 import levels from '@content/bg/levels.json';
 import puzzles from '@content/bg/puzzles.json';
@@ -11,7 +12,7 @@ import ui from '@content/bg/ui.json';
  * Keys stay ASCII so code and grep stay readable; values are Cyrillic.
  */
 
-const bundles = { ...ui, ...levels, ...puzzles, ...facts };
+const bundles = { ...ui, ...levels, ...puzzles, ...facts, ...companion };
 
 export type ContentKey = keyof typeof bundles;
 
@@ -27,6 +28,15 @@ export function t(key: ContentKey): string {
     return key;
   }
   return value;
+}
+
+/**
+ * Narrows a key read from level JSON (typed `string`) to a ContentKey. validate-levels.py already proves every
+ * level key exists at build time; this is the runtime seam for the type checker, and for a key built from a marker
+ * id, which no build step sees.
+ */
+export function isContentKey(key: string): key is ContentKey {
+  return Object.hasOwn(bundles, key);
 }
 
 /** Every key that exists, for the build-time completeness check. */

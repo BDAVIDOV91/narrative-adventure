@@ -861,15 +861,19 @@ Wording rules from `puzzle-pedagogy-reviewer` (PASS WITH CHANGES, 2026-09-26):
 - Card text is at most two short sentences. The companion is never „спътник";
   „спътниците му" for a planet's moons is correct.
 
-| Story line                                                                         | Astronomy it rests on                                          |
-| ---------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| Storybook intro: the companion remembers only Сияна's name and her telescope       | none (pure story)                                              |
-| Earth memory                                                                       | Companion memories 1                                           |
-| Moon memory                                                                        | Companion memories 2                                           |
-| Mars memory                                                                        | Companion memories 3 (the cause reuses Mars retrograde, above) |
-| Jupiter memory                                                                     | Companion memories 4                                           |
-| Saturn memory                                                                      | Companion memories 5, and 6 as its guard                       |
-| Back cover: Сияна says the sky is best when you show it to someone (present tense) | Back cover claims 1–4 (the lines that follow it)               |
+| Story line                                                                                          | Astronomy it rests on                                          |
+| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Storybook intro: the companion remembers only Сияна's name and her telescope                        | none (pure story)                                              |
+| Earth memory                                                                                        | Companion memories 1                                           |
+| Moon memory                                                                                         | Companion memories 2                                           |
+| Mars memory                                                                                         | Companion memories 3 (the cause reuses Mars retrograde, above) |
+| Jupiter memory                                                                                      | Companion memories 4                                           |
+| Saturn memory                                                                                       | Companion memories 5, and 6 as its guard                       |
+| Back cover: Сияна says the sky is best when you show it to someone (present tense)                  | Back cover claims 1–4 (the lines that follow it)               |
+| Earth arrival line, `companion.earth-sundial.arrival`: names the puzzle's goal, no sky claim        | none (pure story)                                              |
+| Earth arrival line, `companion.earth-day-night-spin.arrival`: names the puzzle's goal, no sky claim | none (pure story)                                              |
+| Earth arrival line, `companion.earth-seasons-globe.arrival`: names the puzzle's goal, no sky claim  | none (pure story)                                              |
+| Earth arrival line, `companion.earth-day-length.arrival`: names the puzzle's goal, no sky claim     | none (pure story)                                              |
 
 ### Moon level — the claims ticket 003 adopts
 

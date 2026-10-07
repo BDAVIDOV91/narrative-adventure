@@ -457,3 +457,28 @@ def test_no_python_script_silences_a_whole_rule_set(repo_root):
             assert (
                 line.strip() != "# type: ignore"
             ), f"{path.name} silences all type errors"
+
+
+def test_a_level_without_a_companion_tier_count_is_rejected(
+    validate_levels, validator, content_keys, good_level, tmp_path
+):
+    """The companion's tier count is level data, not a branch in code (v1-spec
+    :27-29, owner 2026-10-07): Earth speaks in three tiers, every later level in
+    two. A level that forgets to say so must not load with a silent default."""
+    del good_level["companionTiers"]
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert any("companionTiers" in p for p in problems)
+
+
+@pytest.mark.parametrize("tiers", [1, 4, "3"])
+def test_a_companion_tier_count_other_than_two_or_three_is_rejected(
+    validate_levels, validator, content_keys, good_level, tmp_path, tiers
+):
+    """Two (nudge, fact) or three (arrival, nudge, fact): nothing else exists."""
+    good_level["companionTiers"] = tiers
+    problems = validate_levels.check_level(
+        write(tmp_path, good_level), validator, content_keys
+    )
+    assert problems != []

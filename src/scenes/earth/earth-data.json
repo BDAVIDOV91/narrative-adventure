@@ -3,6 +3,7 @@
   "displayName": "level.earth.name",
   "mode": "guided",
   "unlockThreshold": 1.0,
+  "companionTiers": 3,
   "map": {
     "width": 1600,
     "height": 1200,

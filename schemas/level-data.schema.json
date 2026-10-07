@@ -4,7 +4,7 @@
   "title": "Level data",
   "description": "One playable location. Everything a level needs that is not code: where the player starts, where the puzzle markers are, which reusable puzzle type each marker opens, and which precomputed astronomy data it reads.",
   "type": "object",
-  "required": ["id", "displayName", "mode", "unlockThreshold", "map", "markers"],
+  "required": ["id", "displayName", "mode", "unlockThreshold", "companionTiers", "map", "markers"],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -25,6 +25,10 @@
       "minimum": 0,
       "maximum": 1,
       "description": "Fraction of this level's REQUIRED markers that must be solved to unlock the next page — solved intersected with required, so optional markers can never carry a level on their own. 1.0 for guided levels, 0.7 for open ones — the brief's forgiving gate, kept as data so both kinds share one code path."
+    },
+    "companionTiers": {
+      "enum": [2, 3],
+      "description": "How many tiers the companion speaks in on this level. 3 = arrival (naming the goal, when a puzzle opens), nudge (on a stall), fact (on success): Earth. 2 = nudge and fact: the Moon, Mars, Jupiter and Saturn (v1-spec :27-29). Level data, not a branch in code, the same seam as unlockThreshold (owner, 2026-10-07)."
     },
     "map": {
       "type": "object",

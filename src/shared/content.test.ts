@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { allKeys, t, type ContentKey } from '@/shared/content';
+import { allKeys, isContentKey, t, type ContentKey } from '@/shared/content';
 
 /**
  * Every Bulgarian bundle on disk, discovered rather than listed. `content.ts`
@@ -44,5 +44,13 @@ describe('content bundles', () => {
     // referenced from level data; this covers the bundles themselves.
     const nonAscii = allKeys().filter((key) => !/^[ -~]+$/.test(key));
     expect(nonAscii).toEqual([]);
+  });
+
+  it('narrows a level-data string to a key only when the key exists', () => {
+    expect(isContentKey('ui.puzzle.close')).toBe(true);
+    expect(isContentKey('companion.earth-sundial.arrival')).toBe(true);
+    expect(isContentKey('companion.no-such-marker.arrival')).toBe(false);
+    // Not fooled by the prototype chain.
+    expect(isContentKey('toString')).toBe(false);
   });
 });
