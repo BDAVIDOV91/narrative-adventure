@@ -24,6 +24,15 @@ function calls(text: string, fn: string): boolean {
   );
 }
 
+describe('bug 4: progress has a writer', () => {
+  it('a level scene commits a solve through the progress write', () => {
+    // commitSolve (progress-write.ts) is the one function that calls saveProgress; its own behaviour is unit-tested.
+    // This guards the other half: that a scene reaches it at all.
+    const scenes = Object.keys(sources).filter((path) => calls(sources[path] ?? '', 'commitSolve'));
+    expect(scenes).not.toEqual([]);
+  });
+});
+
 describe('bug 5: the book zoom has call sites', () => {
   it('a page tap zooms into the page', () => {
     expect(calls(source('storybook-scene.ts'), 'zoomIntoPage')).toBe(true);

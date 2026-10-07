@@ -12,6 +12,8 @@ const WALK_SPEED = 160;
 export interface PlayerHandle {
   readonly sprite: Phaser.GameObjects.Rectangle;
   update: () => void;
+  /** Off while a puzzle overlay is open: the player stands still and ignores the arrow keys. */
+  setEnabled: (enabled: boolean) => void;
 }
 
 export function createPlayer(scene: Scene, x: number, y: number): PlayerHandle {
@@ -22,11 +24,16 @@ export function createPlayer(scene: Scene, x: number, y: number): PlayerHandle {
   body.setCollideWorldBounds(true);
 
   const keys = scene.input.keyboard?.createCursorKeys();
+  let enabled = true;
 
   return {
     sprite,
+    setEnabled: (on: boolean): void => {
+      enabled = on;
+      if (!on) body.setVelocity(0, 0);
+    },
     update: (): void => {
-      if (!keys) return;
+      if (!keys || !enabled) return;
       const vx = (keys.right.isDown ? 1 : 0) - (keys.left.isDown ? 1 : 0);
       const vy = (keys.down.isDown ? 1 : 0) - (keys.up.isDown ? 1 : 0);
       // Normalise so diagonal walking is not faster.
