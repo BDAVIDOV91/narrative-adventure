@@ -172,3 +172,20 @@ plan.
    peak RSS on the M2, and one suite run on the M2. A failure there blocks merge 1, like a failed `qa-report`. If
    the M2 is still offline at E4's exit, the owner decides through `AskUserQuestion` whether to waive the gate or
    wait.
+
+## Amendment 2 — 2026-10-07: the M2 is online
+
+The owner confirmed the M2 is online and chose the original exit for M2 offload. Amendment 1 is lifted. It is kept,
+not deleted, as the contingency for any later outage.
+
+1. **M2 offload exits on decision 3's original items**: `preflight.sh` READY and a vitest run proven on the M2 by the
+   wrapper's hostname check. The deferral ends.
+2. **E1 entry reverts to "the M2 online"**, with peak RSS measured on both machines. The mem-guard floor is re-tuned
+   from the **M1** peak, because the guard protects M1.
+3. **The M2 catch-up gate is dissolved.** Its items land as follows:
+   - the deferred offload items: proven at the M2 offload exit;
+   - M2 peak RSS: E1 entry;
+   - "one suite run on the M2", meaning the Playwright suite: E1's first exit, which runs it on the M2.
+   Nothing is left for merge 1.
+4. **If the M2 goes offline again**, Amendment 1's rules (the M1 fallback behind the guard, plus a catch-up gate)
+   apply again from that point, and the owner is asked through `AskUserQuestion`.
