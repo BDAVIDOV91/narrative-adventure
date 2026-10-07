@@ -12,10 +12,25 @@ rest, including the things that can only be confirmed by actually playing.
 
 Run all of them and report real output. Do not summarise a failure as a pass.
 
+Heavy runs leave M1 (T006 d5, d11). In a plain `claude` session, run them on the M2 through the wrapper and prove
+the machine in the same command; under `claude-m2.sh` they route there on their own. Never infer the redirect.
+
+```bash
+ops/remote-shell/preflight.sh                        # must say STATE=READY before anything below goes to the M2
+ops/remote-shell/bash-remote-shell.sh -c 'hostname; npm test'            # vitest; expect the M2's hostname
+ops/remote-shell/bash-remote-shell.sh -c 'hostname; npm run test:e2e'    # the suite: build + preview, 1 worker
+```
+
+Record the bundle chunk sizes from the suite's build output (`vite build` prints them) in the report (T006 d8).
+
+**M2 down:** run the suite on M1 in a plain `claude` session, dev server stopped, `free -h` first, through the
+guard: `ops/mem-guard/mem-guard.sh -- npm run test:e2e` (the config is already one worker, headless shell). The
+report says it ran on M1. Never wait for the M2 (T006 d6).
+
 ```bash
 npm run validate                                     # tsc + eslint + prettier
 npm run build                                        # production build + chunk sizes
-venv/bin/python -m pytest                           # 15 regression tests
+venv/bin/python -m pytest                           # the regression suite
 venv/bin/python data/scripts/validate-levels.py     # every level against the schema
 venv/bin/black --check data/scripts tests
 venv/bin/flake8 data/scripts tests

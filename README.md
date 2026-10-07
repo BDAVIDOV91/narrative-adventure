@@ -28,6 +28,7 @@ out to be one planet.
 
 ```bash
 npm install
+npx playwright install --only-shell chromium   # once: the headless browser the e2e suite drives (~115 MB download)
 
 uv venv venv
 uv pip install -r requirements.txt
@@ -51,6 +52,7 @@ database, no accounts. See `docs/adr/0001-python-is-build-time-only.md`.
 npm run validate                                  # type-check + lint + format
 npm test                                          # vitest — the TypeScript suite
 npm run build                                     # production build
+npm run test:e2e                                  # Playwright on the preview build: zero network, smoke, reload
 venv/bin/python -m pytest                        # regression suite
 venv/bin/python data/scripts/validate-levels.py  # every level against the schema
 npm run test:ops                                  # the wayfinder viewer's node:test suite
@@ -60,7 +62,9 @@ bash ops/mem-guard/test-mem-guard.sh              # the MemAvailable guard
 
 Two-machine offload: `./ops/remote-shell/claude-m2.sh` starts a Claude Code session whose Bash runs on a second
 machine (the M2), so heavy test and build runs leave the dev laptop. `ops/remote-shell/preflight.sh` reports whether
-it is READY; `ops/mem-guard/mem-guard.sh -- <cmd>` guards a heavy run on the laptop itself. Details: the
+it is READY; `ops/mem-guard/mem-guard.sh -- <cmd>` guards a heavy run on the laptop itself. The e2e suite runs on the M2 at every phase exit
+(`ops/remote-shell/bash-remote-shell.sh -c 'hostname; npm run test:e2e'`); on the laptop only through the guard,
+with the dev server stopped. Details: the
 "Two-machine offload" section of `CLAUDE.md`.
 
 Planning big work: `npm run wayfinder` opens a read-only view of the decision maps in
