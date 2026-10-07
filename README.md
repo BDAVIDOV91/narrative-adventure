@@ -54,7 +54,14 @@ npm run build                                     # production build
 venv/bin/python -m pytest                        # regression suite
 venv/bin/python data/scripts/validate-levels.py  # every level against the schema
 npm run test:ops                                  # the wayfinder viewer's node:test suite
+bash ops/remote-shell/test-pin-list.sh            # the M2 offload's routing (offline, stubs only)
+bash ops/mem-guard/test-mem-guard.sh              # the MemAvailable guard
 ```
+
+Two-machine offload: `./ops/remote-shell/claude-m2.sh` starts a Claude Code session whose Bash runs on a second
+machine (the M2), so heavy test and build runs leave the dev laptop. `ops/remote-shell/preflight.sh` reports whether
+it is READY; `ops/mem-guard/mem-guard.sh -- <cmd>` guards a heavy run on the laptop itself. Details: the
+"Two-machine offload" section of `CLAUDE.md`.
 
 Planning big work: `npm run wayfinder` opens a read-only view of the decision maps in
 `docs/wayfinder/` (http://127.0.0.1:7777). Copy-paste triggers: `docs/wayfinder/QUICKSTART.md`.

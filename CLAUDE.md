@@ -43,6 +43,13 @@ sh .claude/hooks/test-block-dangerous-git.sh
 sh .claude/hooks/test-precommit-checks-reminder.sh
 sh .claude/hooks/test-settings-hardening.sh
 bash .claude/hooks/test-wayfinder-frontier.sh   # bash-only: under sh it exits 0 having run nothing
+bash ops/remote-shell/test-pin-list.sh          # the M2 offload's pin list + fail-closed paths (stubs only)
+bash ops/mem-guard/test-mem-guard.sh            # the MemAvailable guard
+
+# Two-machine offload (see the section below)
+./ops/remote-shell/claude-m2.sh                 # a session whose Bash runs on the M2
+ops/remote-shell/preflight.sh                   # READY / PARTIAL / UNBOOTSTRAPPED
+ops/mem-guard/mem-guard.sh -- <cmd>             # a heavy run on M1, refused below the floor
 ```
 
 ## Architecture
@@ -235,6 +242,39 @@ Target: 4 cores, ~1.9 GB free RAM, AMD Radeon integrated APU. Textures capped at
 `src/shared/planet-render.ts` and renders **single objects** — a planet, not a
 system. Dispose geometry, material, texture and renderer on close: a leaked WebGL
 context here is a crash, not a slowdown.
+
+## Two-machine offload (M1 ↔ M2)
+
+Heavy Bash runs leave M1 for the M2 (Tailscale peer `bobby`, ssh alias `m2`, mutagen session
+`narrative-adventure`, same path on both machines). Live since 2026-10-07; the plan is
+`docs/handoffs/2026-10-01-m2-offload-plan.md`.
+
+- **Launch:** `./ops/remote-shell/claude-m2.sh`. It runs `preflight.sh` and launches only on READY;
+  PARTIAL, UNBOOTSTRAPPED or any other code refuses. The redirect is opt-in per session.
+- **Kill switch:** "go local" means `REMOTE_SHELL_MODE=local` (or `claude-m2.sh --local`), or plain
+  `claude`.
+- **Fail closed:** the default mode is remote. The M2 unreachable, mutagen missing or a failed flush
+  refuses (127); a cwd missing on the M2 refuses (97); an unknown mode refuses. There is never a
+  silent local fallback.
+- **The pin list** (git, `free`, `npm run dev`, hook tests, the wayfinder viewer, the offload's own
+  scripts, mutagen, mem-guard, `~/.claude/projects/`) runs on M1. It is guarded by
+  `test-pin-list.sh` and never changes without a case there.
+- **Why it fits `Bash(ssh:*)`:** the deny rule stops Claude typing an ssh command. The transport
+  lives only inside the reviewed, tested `remote-shell.sh` and `preflight.sh`. Never a direct `ssh`.
+- **Two traps carried from pdfx:** `CLAUDE_CODE_SHELL` needs "bash" in the path, so always use the
+  `bash-remote-shell.sh` symlink; and the redirect is proven by hostname, never inferred.
+- **The guard:** `ops/mem-guard/mem-guard.sh -- <cmd>` refuses (75) below a MemAvailable floor,
+  provisional 1536 MB, re-tuned at E1 entry from the measured M1 peak. Override one run with a
+  leading `MEM_GUARD_MIN_MB=<MB>`. A pinned or local command that is HEAVY (tests, builds, lint,
+  the dev server, `data/scripts/`) is guarded automatically. In a plain `claude` session, call the
+  guard explicitly for any heavy or 3D run, and never chain work onto a pinned command
+  (`git add -A && npm test` would run the tests on M1). Holes: `npm run  dev` (two spaces), a bare
+  `vite`.
+- **Husky** still runs on M1 at commit, because git is pinned; its vitest and pytest lines go
+  through the guard. A docs-only commit never blocks.
+- **Bootstrap** a fresh M2: create the mutagen session (the command is in
+  `ops/remote-shell/mutagen.yml`), then run `ops/remote-shell/setup-m2.sh` on the M2 (through the
+  wrapper works). It refuses on M1.
 
 ## Review gates
 
