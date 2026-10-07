@@ -5,8 +5,9 @@
 # check) that pushes it into swap or the OOM killer takes the whole machine down (CLAUDE.md rule 9). The guard reads
 # MemAvailable, the kernel's own estimate of what can be allocated without swapping, and refuses below a floor.
 #
-# Floor: MEM_GUARD_MIN_MB, default 1536. PROVISIONAL (owner, 2026-10-01): re-tuned at E1 entry from the measured M1
-# peak RSS plus a margin. A refusal exits 75 (EX_TEMPFAIL: try again later) and prints the measured value and the
+# Floor: MEM_GUARD_MIN_MB, default 1536. Confirmed at E1 entry (owner, 2026-10-07): the Playwright suite (build +
+# vite preview + headless shell, one worker) peaked at an 828 MB MemAvailable drop on M1, so the formula (peak drop +
+# 512, rounded up to 128) gives 1408; the floor stays at max(1408, 1536) until E2's 3D renderer is measured. A refusal exits 75 (EX_TEMPFAIL: try again later) and prints the measured value and the
 # override. It fails closed: an unreadable meminfo, a missing MemAvailable line or a non-integer floor all refuse.
 # At or above the floor it `exec`s the command, so the command's own exit code is the guard's exit code.
 #

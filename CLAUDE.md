@@ -264,7 +264,7 @@ Heavy Bash runs leave M1 for the M2 (Tailscale peer `bobby`, ssh alias `m2`, mut
 - **Two traps carried from pdfx:** `CLAUDE_CODE_SHELL` needs "bash" in the path, so always use the
   `bash-remote-shell.sh` symlink; and the redirect is proven by hostname, never inferred.
 - **The guard:** `ops/mem-guard/mem-guard.sh -- <cmd>` refuses (75) below a MemAvailable floor,
-  provisional 1536 MB, re-tuned at E1 entry from the measured M1 peak. Override one run with a
+  1536 MB, confirmed at E1 entry against the measured M1 suite peak (re-checked at E2's 3D). Override one run with a
   leading `MEM_GUARD_MIN_MB=<MB>`. A pinned or local command that is HEAVY (tests, builds, lint,
   the dev server, `data/scripts/`) is guarded automatically. In a plain `claude` session, call the
   guard explicitly for any heavy or 3D run, and never chain work onto a pinned command

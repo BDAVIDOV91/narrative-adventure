@@ -40,3 +40,25 @@ Findings: [research/004-playwright-qa.md](../research/004-playwright-qa.md). The
   over pixel baselines.
 - **Gaps:** peak RSS measured on this machine; which Playwright version `@playwright/mcp@0.0.80` bundles, and whether
   the two share a browser cache; Playwright telemetry. Check these before adding the dependency.
+
+## Gaps closed (E1 entry, 2026-10-07)
+
+- **Telemetry:** none in `@playwright/test`, `playwright` or `playwright-core` 1.63.0, checked on `npm pack` tarballs
+  before install. They have no install scripts. The only network they use is the browser download at
+  `playwright install` time, from `cdn.playwright.dev` and `playwright.download.prss.microsoft.com`.
+- **Browser cache vs the MCP:** `@playwright/mcp@0.0.80` bundles `playwright-core@1.63.0-alpha-2026-08-31`. That build
+  and the pinned 1.63.0 both use `chromium-headless-shell` revision 1243. On M1 the MCP drives system Chrome, so today
+  the two share no binary and no profile. If the MCP pin moves, the two headless-shell builds coexist on disk. Bump
+  them together (ADR 0004).
+- **Peak RSS** for `npm run test:e2e`, which is build plus `vite preview` plus the headless shell, one worker,
+  zero-network spec, dev server stopped. Three runs each. Drop is MemAvailable sampled every 0.2 s (before minus
+  minimum). Tree RSS is the summed VmRSS of the process tree, which overcounts shared pages.
+
+  | Machine          | MemAvailable before | Peak drop | Tree RSS peak |
+  | ---------------- | ------------------- | --------- | ------------- |
+  | M1 (TechnoJihad) | 2.5-2.8 GB          | 828 MB    | 1283 MB       |
+  | M2 (Bobby)       | 9.3-10.2 GB         | 1253 MB   | 1289 MB       |
+
+- **Mem-guard floor:** the formula (M1 peak drop + 512, rounded up to 128) gives 1408 MB. The owner kept **1536 MB**
+  (2026-10-07), which is max(formula, provisional), until E2's 3D renderer is measured.
+
