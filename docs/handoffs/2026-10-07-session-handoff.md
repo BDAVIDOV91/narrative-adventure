@@ -129,3 +129,54 @@ this file's git history (`1eaa6c5`).
 - **context-mode is outdated** (v1.0.127, v1.0.169 available: `/ctx-upgrade`). Its hook blocks commands that contain
   `curl` or `fetch(` text; use the Edit tool for such code and `ctx_execute` for network checks.
 - **Latent bugs:** 7 and 8 are scheduled for E2, and 10 for E5.
+
+## E2 entry: the NASA Earth texture (pulled 2026-10-07, not yet processed)
+
+The source file is already in the drop path. It is gitignored, so nothing has been committed or processed.
+
+| Field      | Value                                                                                                                                  |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| File       | `assets/images/nasa/raw/earth-bmng-200407.jpg`, 5400×2700 (2:1 equirectangular), 1,617,810 bytes                                       |
+| SHA-256    | `f55226d46d27e05511f2118dc6aa24f5dbf9b6b2cddc87cc6e0e7dd067c00b11`                                                                     |
+| Image      | Blue Marble: Next Generation, **base map**, July 2004: a MODIS true-colour monthly composite, 500 m/px, no shaded relief or bathymetry |
+| Source URL | https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-base/july/world.200407.3x5400x2700.jpg                     |
+| Page       | https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-map/                                                 |
+| Credit     | "Blue Marble: Next Generation was produced by Reto Stöckli, NASA Earth Observatory (NASA Goddard Space Flight Center)."                |
+| Licence    | NASA imagery, public domain (T005 d6: the credit goes in `sources.md` only). The usage sentence was not fully confirmed this session.  |
+
+Open for E2's plan: **which month.**
+
+- July shows northern summer, with no Alpine snow.
+- January is on the same URL pattern (`…/bmng-base/january/world.200401.3x5400x2700.jpg`).
+- The old `eoimages.gsfc.nasa.gov` and `visibleearth.nasa.gov` links are dead. Everything moved to `science.nasa.gov`.
+
+If the file must be re-fetched by hand:
+
+1. Open the page above in a browser. No login is needed.
+2. Pick the month, then the 5400×2700 JPEG.
+3. Save it as `assets/images/nasa/raw/earth-bmng-2004MM.jpg`.
+
+The other variants (base-topography, base-topography-bathymetry) add shaded relief. That is not plain photography, so avoid them.
+
+## Trigger for the next session
+
+```text
+Start phase E2 Renderer (docs/design/v1-build-spec.md §4). Read
+docs/handoffs/2026-10-07-session-handoff.md first; its "Settled" list is
+not to be re-asked. Start SHA is <git rev-parse --short HEAD>.
+
+Run ops/remote-shell/preflight.sh first; if it is not READY, ask me.
+Create the native task list (TaskCreate) right after plan approval and
+keep it updated.
+
+E2 entry: the NASA Earth texture is already in assets/images/nasa/raw/
+(earth-bmng-200407.jpg, details in the handoff). Confirm the month with
+me, then run it through process-textures.py and define the sources.md
+imagery-entry format (T005 d7). Latent bugs 7 and 8 close in this phase.
+Carry the E3 entry items from the handoff, do not build them.
+
+Plan mode first, with two challengers. Then implement in plan-approved
+steps, RED/GREEN for each step, one commit per step, and do the full §2
+exit, including perf-report and my headed play on M1 after free -h. The
+suite runs on the M2 through bash-remote-shell.sh with hostname proof.
+```
