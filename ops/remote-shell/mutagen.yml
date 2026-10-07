@@ -45,6 +45,9 @@ sync:
         - 'dist-ssr'
         - '.vite'
         - 'coverage'
+        - 'test-results' # Playwright output: machine-local, never synced back to M1
+        - 'playwright-report'
+        - 'blob-report'
         - '__pycache__'
         - '.pytest_cache'
         - '.ruff_cache'

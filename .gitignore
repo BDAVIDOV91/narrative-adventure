@@ -5,6 +5,11 @@ dist-ssr/
 .vite/
 *.local
 
+# ---- Playwright (the E1 suite) ----
+playwright-report/
+test-results/
+blob-report/
+
 # ---- Python ----
 .venv/
 venv/

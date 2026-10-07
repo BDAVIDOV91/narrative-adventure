@@ -7,7 +7,15 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {
-    ignores: ['dist/**', 'node_modules/**', 'data/generated/**', 'venv/**'],
+    ignores: [
+      'dist/**',
+      'node_modules/**',
+      'data/generated/**',
+      'venv/**',
+      'playwright-report/**',
+      'test-results/**',
+      'blob-report/**',
+    ],
   },
   js.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
@@ -98,8 +106,8 @@ export default tseslint.config(
     },
   },
   {
-    /* Config files run in Node, not the browser. */
-    files: ['*.config.ts', '*.config.mjs', 'vite.config.ts', 'vitest.config.ts'],
+    /* Config files and the Playwright specs run in Node, not the browser. */
+    files: ['*.config.ts', '*.config.mjs', 'vite.config.ts', 'vitest.config.ts', 'e2e/**/*.ts'],
     languageOptions: { globals: { ...globals.node } },
     rules: { 'import-x/no-nodejs-modules': 'off' },
   },

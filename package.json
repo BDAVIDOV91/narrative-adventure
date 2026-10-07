@@ -17,6 +17,7 @@
     "format": "prettier --write \"**/*.{ts,js,mjs,json,md,html,css}\"",
     "format:check": "prettier --check \"**/*.{ts,js,mjs,json,md,html,css}\"",
     "test": "vitest run",
+    "test:e2e": "playwright test",
     "test:ops": "node --test ops/wayfinder-viewer/wayfinder-view.test.mjs",
     "wayfinder": "node ops/wayfinder-viewer/wayfinder-view.mjs",
     "validate": "npm run type-check && npm run lint && npm run format:check",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
+    "@playwright/test": "1.63.0",
     "@types/node": "26.5.0",
     "@types/three": "0.185.4",
     "eslint": "10.10.0",

@@ -100,7 +100,7 @@ PINNED_PATTERNS+='|\bmutagen\b|mem-guard|\.claude/projects/'
 # HEAVY (owner Q4, 2026-10-07): a command that would load M1. Pinned or local, it runs through mem-guard, so
 # `git add -A && npm test` cannot sneak vitest onto M1 behind the git pin. Not `git commit`: husky guards its own
 # vitest/pytest lines, so a docs-only commit never blocks (owner, 2026-10-07).
-HEAVY="npm (run )?(test|build|validate|lint|type-check)$B|npm t$B|npx (vitest|tsc|eslint|vite|playwright)$B"
+HEAVY="npm (run )?(test|build|validate|lint|type-check)$B|npm run test:e2e$B|npm t$B|npx (vitest|tsc|eslint|vite|playwright)$B"
 HEAVY+="|(^|[;&|][[:space:]]*)vitest$B|-m pytest$B|vite preview|data/scripts/|$DEV_RE"
 # Exempt: the wrapper or preflight invoked as a command. Their heavy text is the M2's payload, not M1's load.
 HEAVY_EXEMPT='(remote-shell|preflight)\.sh'

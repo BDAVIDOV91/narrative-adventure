@@ -3,6 +3,9 @@ node_modules/
 data/generated/
 venv/
 package-lock.json
+playwright-report/
+test-results/
+blob-report/
 
 # Agent and skill definitions are prompt documents, not source. Their frontmatter
 # and line structure are semantic; leave them exactly as written.

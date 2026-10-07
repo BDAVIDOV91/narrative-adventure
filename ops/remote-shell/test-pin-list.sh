@@ -177,6 +177,8 @@ run 0 yes "MEM_GUARD_MIN_MB prefix overrides the floor" MEM_GUARD_MEMINFO="$LOW"
   "MEM_GUARD_MIN_MB=1 : npm run dev; $M"
 run 75 no "local mode guards an unpinned HEAVY command" REMOTE_SHELL_MODE=local MEM_GUARD_MEMINFO="$LOW" -- \
   ": npx vitest run; $M"
+run 75 no "local mode guards the Playwright suite (npm run test:e2e)" REMOTE_SHELL_MODE=local \
+  MEM_GUARD_MEMINFO="$LOW" -- ": npm run test:e2e; $M"
 run 0 yes "local mode runs a light command" REMOTE_SHELL_MODE=local MEM_GUARD_MEMINFO="$LOW" -- ": echo; $M"
 
 echo "setup-m2.sh refuses on M1 (stubs only, never a real install)"

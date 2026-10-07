@@ -38,5 +38,13 @@
       "@content/*": ["./content/*"]
     }
   },
-  "include": ["src", "tests", "content", "vite.config.ts", "vitest.config.ts"]
+  "include": [
+    "src",
+    "tests",
+    "content",
+    "e2e",
+    "vite.config.ts",
+    "vitest.config.ts",
+    "playwright.config.ts"
+  ]
 }
