@@ -207,6 +207,28 @@ setup_case "an ssh alias 'Host m2' means M1" "$TMP/home-m1" "$TOOLS:/usr/bin:/bi
 cp "$STUB/mutagen" "$NOMUT/mutagen"
 setup_case "a mutagen CLI on PATH means M1" "$TMP/home-plain" "$TOOLS:$NOMUT:/usr/bin:/bin"
 
+# 2026-10-07 (RED->GREEN): the wrapper dispatches through a NON-login ssh shell, whose PATH lacks ~/.local/bin, so
+# setup-m2.sh died "uv missing" on an M2 where uv is installed there (and preflight's `bash -lc` parity check passed).
+# Runs setup from this checkout with every tool a stub: uv exists ONLY in the stub $HOME/.local/bin. It needs
+# de440s and venv/ present, so that setup reaches no real download; on a checkout without them the case is skipped.
+if [ -f "$REPO/data/ephemeris/de440s.bsp" ] && [ -d "$REPO/venv" ]; then
+  mkdir -p "$TMP/home-m2/.local/bin" "$TMP/m2tools"
+  for t in npm npx node python3 pip; do cp "$TOOLS/$t" "$TMP/m2tools/$t"; done
+  printf '#!/bin/sh\ntouch "%s/called-uv"\necho "uv 0.8.0"\n' "$TMP" >"$TMP/home-m2/.local/bin/uv"
+  chmod +x "$TMP/home-m2/.local/bin/uv"
+  rm -f "$TMP"/called-*
+  (cd "$REPO" && env HOME="$TMP/home-m2" PATH="$TMP/m2tools:/usr/bin:/bin" timeout 10 /bin/bash \
+    "$HERE/setup-m2.sh" >"$TMP/out" 2>&1)
+  rc=$?
+  if [ "$rc" = 0 ] && [ -e "$TMP/called-uv" ] && grep -q 'M2 ready' "$TMP/out"; then
+    ok "setup finds uv in ~/.local/bin under a non-login PATH"
+  else
+    bad "setup with uv only in ~/.local/bin: rc=$rc out=$(grep -E 'FATAL|WARN' "$TMP/out" | tr '\n' ' ')"
+  fi
+else
+  ok "setup ~/.local/bin case skipped (no de440s or venv in this checkout)"
+fi
+
 echo "preflight and launcher (stubs only)"
 out=$(env REMOTE_SHELL_SSH="$STUB/ssh" REMOTE_SHELL_MUTAGEN="$STUB/mutagen" STUB_SSH_RC=255 \
   timeout 20 "$HERE/preflight.sh" 2>&1)

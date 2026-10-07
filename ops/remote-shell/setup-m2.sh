@@ -21,6 +21,9 @@ fi
 set -euo pipefail
 
 REPO="/home/technojihad/narrative-adventure"
+# 2026-10-07: routed through the wrapper, this runs in a NON-login ssh shell, whose PATH lacks ~/.local/bin, where
+# the uv installer puts uv. It died "uv missing" on an M2 that had uv. Test: test-pin-list.sh.
+export PATH="$HOME/.local/bin:$PATH"
 
 say() { printf '\n=== %s\n' "$*"; }
 die() {
