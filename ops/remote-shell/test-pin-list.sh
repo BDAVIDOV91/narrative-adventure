@@ -179,6 +179,70 @@ run 75 no "local mode guards an unpinned HEAVY command" REMOTE_SHELL_MODE=local 
   ": npx vitest run; $M"
 run 0 yes "local mode runs a light command" REMOTE_SHELL_MODE=local MEM_GUARD_MEMINFO="$LOW" -- ": echo; $M"
 
+echo "setup-m2.sh refuses on M1 (stubs only, never a real install)"
+# Every toolchain binary setup could call is a stub that only touches a marker, and the cwd is a mktemp dir, so a
+# regression cannot run `npm ci` or `uv venv` against this checkout (CF-2 2).
+TOOLS="$TMP/tools"
+mkdir -p "$TOOLS" "$TMP/home-m1/.ssh" "$TMP/home-plain"
+for t in uv npm npx node python3 pip; do
+  printf '#!/bin/sh\ntouch "%s/called-%s"\n' "$TMP" "$t" >"$TOOLS/$t"
+  chmod +x "$TOOLS/$t"
+done
+printf 'Host m2\n  HostName 100.64.0.1\n' >"$TMP/home-m1/.ssh/config"
+NOMUT="$TMP/nomutagen"
+mkdir -p "$NOMUT"
+setup_case() { # setup_case <description> <HOME> <PATH>
+  local desc="$1" home="$2" path="$3" rc called
+  rm -f "$TMP"/called-*
+  (cd "$TMP" && env HOME="$home" PATH="$path" timeout 10 /bin/bash "$HERE/setup-m2.sh" >"$TMP/out" 2>&1)
+  rc=$?
+  called=$(ls "$TMP"/called-* 2>/dev/null | wc -l)
+  if [ "$rc" != 0 ] && [ "$called" = 0 ] && grep -q 'REFUSED: this looks like M1' "$TMP/out"; then
+    ok "$desc (rc=$rc, no tool called)"
+  else
+    bad "$desc: rc=$rc tools_called=$called out=$(head -3 "$TMP/out" | tr '\n' ' ')"
+  fi
+}
+setup_case "an ssh alias 'Host m2' means M1" "$TMP/home-m1" "$TOOLS:/usr/bin:/bin"
+cp "$STUB/mutagen" "$NOMUT/mutagen"
+setup_case "a mutagen CLI on PATH means M1" "$TMP/home-plain" "$TOOLS:$NOMUT:/usr/bin:/bin"
+
+echo "preflight and launcher (stubs only)"
+out=$(env REMOTE_SHELL_SSH="$STUB/ssh" REMOTE_SHELL_MUTAGEN="$STUB/mutagen" STUB_SSH_RC=255 \
+  timeout 20 "$HERE/preflight.sh" 2>&1)
+rc=$?
+if [ "$rc" = 10 ] && [ "$(tail -1 <<<"$out")" = "STATE=UNBOOTSTRAPPED" ]; then
+  ok "preflight: M2 unreachable -> STATE=UNBOOTSTRAPPED, exit 10"
+else
+  bad "preflight unreachable: rc=$rc last='$(tail -1 <<<"$out")'"
+fi
+
+CL="$TMP/claude-bin"
+mkdir -p "$CL"
+printf '#!/bin/sh\nprintf "%%s\\n" "$*" >"%s/claude-args"\n' "$TMP" >"$CL/claude"
+chmod +x "$CL/claude"
+for code in 10 20 33; do
+  printf '#!/bin/sh\necho STATE=STUB\nexit %s\n' "$code" >"$TMP/fake-preflight"
+  chmod +x "$TMP/fake-preflight"
+  rm -f "$TMP/claude-args"
+  env PATH="$CL:$PATH" CLAUDE_M2_PREFLIGHT="$TMP/fake-preflight" timeout 10 "$HERE/claude-m2.sh" >/dev/null 2>&1
+  rc=$?
+  if [ "$rc" = "$code" ] && [ ! -e "$TMP/claude-args" ]; then
+    ok "launcher refuses on preflight exit $code (rc=$rc, claude never started)"
+  else
+    bad "launcher on preflight $code: rc=$rc claude_started=$([ -e "$TMP/claude-args" ] && echo yes || echo no)"
+  fi
+done
+printf '#!/bin/sh\necho STATE=READY\nexit 0\n' >"$TMP/fake-preflight"
+rm -f "$TMP/claude-args"
+env PATH="$CL:$PATH" CLAUDE_M2_PREFLIGHT="$TMP/fake-preflight" timeout 10 "$HERE/claude-m2.sh" --probe --resume x \
+  >/dev/null 2>&1
+if [ -e "$TMP/claude-args" ] && [ "$(cat "$TMP/claude-args")" = "--resume x" ]; then
+  ok "launcher strips its own --probe before exec claude"
+else
+  bad "launcher passed to claude: '$(cat "$TMP/claude-args" 2>/dev/null)'"
+fi
+
 echo "  ----"
 printf '  pass=%s fail=%s\n' "$pass" "$fail"
 [ "$fail" -eq 0 ]

@@ -1,0 +1,52 @@
+# Mutagen sync config for the M1 -> M2 execution offload. Ported from pdfx (.claude/remote-shell/mutagen.yml).
+# Consumed by:
+#   mutagen sync create --name narrative-adventure -c ops/remote-shell/mutagen.yml \
+#     /home/technojihad/narrative-adventure m2:/home/technojihad/narrative-adventure
+#
+# Same path on both machines: that is the wrapper's whole translation scheme.
+
+sync:
+  defaults:
+    mode: two-way-resolved
+    ignore:
+      # vcs: false means .git IS synced. That is why `git` is pinned to M1 whole in remote-shell.sh: the worktrees
+      # differ (the M2 lacks every ignored path below), so git reads on the M2 lie and git writes escape into the
+      # shared index (pdfx 2026-08-26).
+      vcs: false
+      paths:
+        # --- rebuilt on the M2 by setup-m2.sh, never synced (compiled binaries, absolute paths) ---
+        - 'venv'
+        - '.venv'
+        - 'node_modules'
+        - 'data/ephemeris' # de440s, fetched by setup-m2.sh
+        - '*.bsp'
+        - '*.bpc'
+
+        # --- M1-only ---
+        - 'graphify-out'
+        - '.playwright-mcp'
+        - 'assets/images/nasa/raw' # raw NASA sources; process-textures.py runs on M1
+
+        # data/raw IS synced on purpose (~15 MB of public HYG/Stellarium/Hipparcos data): without it the Hipparcos
+        # oracle test in tests/test_star_catalogue.py silently skips on the M2 and the two suites diverge.
+
+        # --- secrets and key material (none exist here today; fail closed anyway) ---
+        - '.env*'
+        - '!.env.example'
+        - '*.pem'
+        - '*.key'
+        - '*.p12'
+        - '*.pfx'
+        - '*-credentials.json'
+        - '*-service-account.json'
+
+        # --- build output, caches, machine-local artifacts ---
+        - 'dist'
+        - 'dist-ssr'
+        - '.vite'
+        - 'coverage'
+        - '__pycache__'
+        - '.pytest_cache'
+        - '.ruff_cache'
+        - '.mypy_cache'
+        - '*.log'
