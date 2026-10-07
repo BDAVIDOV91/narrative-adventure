@@ -54,7 +54,9 @@ if [ "$RUN_PY" = "1" ]; then
     venv/bin/black --check data/scripts tests
     venv/bin/flake8 data/scripts tests
     npx pyright
-    venv/bin/python -m pytest -q
+    # Guarded (owner, 2026-10-07): commits are not guarded in the remote-shell wrapper, so the two lines that
+    # load M1 are. Below the floor the commit refuses with exit 75; MEM_GUARD_MIN_MB=<MB> git commit ... overrides.
+    bash ops/mem-guard/mem-guard.sh -- venv/bin/python -m pytest -q
   else
     echo "  (skipped: venv not found)"
   fi
@@ -67,15 +69,18 @@ if [ "$RUN_TS" = "1" ]; then
   # Real tests exist as of src/shared/*.test.ts, so --passWithNoTests is gone:
   # a vitest config that stops discovering files must now fail the commit
   # rather than pass silently (CLAUDE.md rule 5).
-  npx vitest run
+  bash ops/mem-guard/mem-guard.sh -- npx vitest run
 fi
 
 if [ "$RUN_OPS" = "1" ]; then
-  echo "→ ops: node --test"
+  echo "→ ops: node --test + the offload's own tests"
   # Pass the file: `node --test <dir>` runs zero tests and exits 0. The viewer
   # test never skips, so this needs ~/tools/wayfinder-viewer on this machine
   # (see ops/wayfinder-viewer/README.md).
   node --test ops/wayfinder-viewer/wayfinder-view.test.mjs
+  # The M2 offload: the pin list and the guard (offline, stubs only, a few seconds).
+  bash ops/remote-shell/test-pin-list.sh
+  bash ops/mem-guard/test-mem-guard.sh
 fi
 
 exit 0

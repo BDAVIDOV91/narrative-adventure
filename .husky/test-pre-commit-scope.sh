@@ -63,6 +63,9 @@ expect "the viewer runs ts and ops" \
 expect "the viewer README runs ops only" \
   "ops/wayfinder-viewer/README.md" \
   "$(printf 'plan: ts=0 py=0 levels=0\nplan: ops=1')"
+expect "the remote-shell wrapper runs ops only" \
+  "ops/remote-shell/remote-shell.sh" \
+  "$(printf 'plan: ts=0 py=0 levels=0\nplan: ops=1')"
 
 # The hook degrades gracefully when the venv is missing ("skipped: venv not
 # found") so a stale interpreter path does NOT fail a commit — it silently stops
@@ -116,6 +119,28 @@ else
   echo "  FAIL the ops branch does not run ops/wayfinder-viewer/wayfinder-view.test.mjs"
   FAILURES=$((FAILURES + 1))
 fi
+
+# The M2 offload's own tests run whenever ops/ is staged (M2 offload plan, step 4). Without this a pin-list or
+# guard regression would land with nothing in the commit gate to notice it.
+for t in ops/remote-shell/test-pin-list.sh ops/mem-guard/test-mem-guard.sh; do
+  if grep -q "bash $t" .husky/pre-commit; then
+    echo "  ok   the ops branch runs $t"
+  else
+    echo "  FAIL the ops branch does not run $t"
+    FAILURES=$((FAILURES + 1))
+  fi
+done
+
+# Owner decision 2026-10-07: `git commit` is NOT guarded in the wrapper, so a docs-only commit never blocks on RAM.
+# The guard lives here instead, on the two lines that actually load M1.
+for line in 'npx vitest run' 'venv/bin/python -m pytest'; do
+  if grep -q "ops/mem-guard/mem-guard.sh -- $line" .husky/pre-commit; then
+    echo "  ok   '$line' runs through mem-guard"
+  else
+    echo "  FAIL '$line' does not run through ops/mem-guard/mem-guard.sh"
+    FAILURES=$((FAILURES + 1))
+  fi
+done
 
 # A commit-time gate must not fetch a moving version. Everything else in this
 # repo is pinned exactly (save-exact=true, ADR-0004); the hook must match.
